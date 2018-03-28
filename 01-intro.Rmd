@@ -1,13 +1,16 @@
 # MCMC 与 RStan {#intro}
 
+
+安装 rstan
 ```{r install-rstan, eval = (!"rstan" %in% .packages(TRUE))}
 install.packages("rstan",dependencies = TRUE)
 ```
-
-
-
-
-
+加载 rstan
+```{r setup-rstan, eval = ("rstan" %in% .packages(TRUE))}
+library(rstan)
+rstan_options(auto_write = TRUE)
+options(mc.cores = parallel::detectCores())
+```
 
 You can label chapter and section titles using `{#label}` after them, e.g., we can reference Chapter \@ref(intro). If you do not manually label them, there will be automatic labels anyway, e.g., Chapter \@ref(methods).
 
