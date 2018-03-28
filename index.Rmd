@@ -109,7 +109,7 @@ fonts() # 查看可用的字体
 
 图 \@ref(fig:xkcd-demo) 是一个简单的使用例子
 
-```{r xkcd-demo,fig.cap="xkcd 风的图"}
+```{r xkcd-demo,fig.cap="xkcd 风的图",dev='png'}
 library(xkcd)
 p <- ggplot() + geom_point(aes(mpg, wt), data = mtcars) +
   theme_xkcd()
