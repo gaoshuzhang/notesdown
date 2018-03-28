@@ -1,0 +1,15 @@
+Package: bookdown-chinese
+Title: bookdown demo for Chinese book
+Version: 1.0.0
+Authors@R: c(
+  person("Xiangyun", "Huang", , "xiangyunfaith@outlook.com", c("aut", "cre"))
+  )
+URL: https://github.com/XiangyunHuang/bookdown-chinese
+Depends: 
+    R (>= 3.1.0)
+Imports: 
+    bookdown,
+    knitr,
+    rticles,
+    svglite,
+    gridExtra
