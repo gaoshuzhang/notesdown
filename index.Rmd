@@ -120,7 +120,8 @@ p
 
 ```{r download-fontcm, eval=(!"fontcm" %in% .packages(TRUE))}
 library(extrafont)
-font_install('fontcm')
+install.packages("fontcm",dependencies = TRUE)
+# 或 font_install('fontcm') 
 loadfonts() # 注册字体
 ```
 
