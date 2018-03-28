@@ -30,6 +30,22 @@ To compile this example to PDF, you need XeLaTeX. You are recommended to install
 
 Pandoc\index{Pandoc} and Hugo\index{Hugo}
 
+## 软件信息
+
+系统安装的 R 包有：
+
+```{r}
+.packages(TRUE)
+```
+
+
+R 软件运行环境：
+
+```{r}
+devtools::session_info()
+```
+
+
 ```{r include=FALSE}
 # automatically create a bib database for R packages
 knitr::write_bib(c(
