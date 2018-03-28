@@ -127,7 +127,7 @@ loadfonts() # 注册字体
 
 一个小demo如下
 
-```{r fontcm-demo,fig.cap="默认风格与fontcm",fig.path="figures/"}
+```{r fontcm-demo,fig.cap="默认风格与fontcm",dev='png'}
 library(fontcm)
 p <- qplot(c(1, 5), c(1, 5)) +
   xlab("Made with CM fonts") + ylab("Made with CM fonts") +
