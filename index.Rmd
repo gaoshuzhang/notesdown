@@ -54,7 +54,8 @@ Pandoc\index{Pandoc} and Hugo\index{Hugo}
 
 ## 设置字体
 
-安装 showtext 包和思源字体
+安装 showtext 包[@Qiu2015]和思源字体
+
 ```{r font-setup, eval= (!"showtext" %in% .packages(TRUE))}
 install.packages("showtext",dependencies = TRUE)
 library(showtext)
@@ -62,8 +63,10 @@ library(showtext)
 font_install(source_han_serif("CN")) # 思源宋体
 font_install(source_han_sans("CN"))  # 思源黑体
 ```
-使用 showtext 包处理中文，下面这个例子使用5号思源宋体，英文和数字使用 serif 字体
-```{r demo-ggplot2, fig.showtext = TRUE}
+
+showtext 包可以调用系统字体，图\@ref(fig:demo-ggplot2)使用5号思源宋体，英文和数字使用 serif 字体。详细的使用文档可以看 [showtext 的开发页面](https://github.com/yixuan/showtext)
+
+```{r demo-ggplot2, fig.showtext = TRUE,fig.cap="showtext包处理图里的中文"}
 library(ggplot2)
 ggplot(iris, aes(Sepal.Length, Sepal.Width)) +
   geom_point(aes(colour = Species)) +
@@ -78,6 +81,22 @@ ggplot(iris, aes(Sepal.Length, Sepal.Width)) +
     axis.text = element_text(family = "serif", size = 10.54)
     )
 ```
+
+这篇文章主要使用 ggplot2 包[@Wickham2016]绘图，为了好玩我们还使用 xkcd 字体，先下载和加载 xkcd 包[@R-xkcd]
+
+```{r xkcd-setup, eval=(!"xkcd" %in% .packages(TRUE))}
+install.packages("xkcd",dependencies = TRUE)
+library(xkcd)
+```
+
+图 \@ref(fig:xkcd-demo) 是一个简单的使用例子
+
+```{r xkcd-demo,fig.cap="xkcd 风的图"}
+p <- ggplot() + geom_point(aes(mpg, wt), data = mtcars) +
+  theme_xkcd()
+p
+```
+
 
 
 ## 软件信息
@@ -99,6 +118,7 @@ devtools::session_info()
 ```{r include=FALSE}
 # automatically create a bib database for R packages
 knitr::write_bib(c(
-  .packages(), 'bookdown', 'knitr', 'rmarkdown'
+  .packages(), 'bookdown', 'knitr', 'rmarkdown','showtext',
+  'ggplot2','rstan','xkcd'
 ), 'packages.bib')
 ```
