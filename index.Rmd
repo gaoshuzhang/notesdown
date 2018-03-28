@@ -151,7 +151,7 @@ p + annotate("text",
     axis.title.y = element_text(face = "bold")
   ) # fig 2
 dev.off()
-# 使用 gs 嵌入数学字体
+# 使用 ghostscript 嵌入数学字体
 # Embed the fonts
 embed_fonts("figures/ggplot_cm.pdf", outfile = "figures/ggplot_cm_embed.pdf")
 ```
