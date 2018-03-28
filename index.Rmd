@@ -89,6 +89,25 @@ install.packages("xkcd",dependencies = TRUE)
 library(xkcd)
 ```
 
+下载和注册 xkcd 字体
+
+```{r download-xkcd, eval= (!'xkcd' %in% extrafont::fonts())}
+download.file("http://simonsoftware.se/other/xkcd.ttf",
+  dest = "xkcd.ttf", mode = "wb"
+)
+system("mkdir ~/.fonts")
+system("cp xkcd.ttf ~/.fonts")
+library(extrafont)
+font_import(pattern = "[X/x]kcd", prompt = FALSE)
+if (.Platform$OS.type != "unix") {
+  ## Register fonts for Windows bitmap output
+  loadfonts(device = "win")
+} else {
+  loadfonts() # 注册字体
+}
+fonts() # 查看可用的字体
+```
+
 图 \@ref(fig:xkcd-demo) 是一个简单的使用例子
 
 ```{r xkcd-demo,fig.cap="xkcd 风的图"}
@@ -97,6 +116,51 @@ p <- ggplot() + geom_point(aes(mpg, wt), data = mtcars) +
 p
 ```
 
+安装 fontcm 包[@R-fontcm]处理数学公式，下载 fontcm 包^[<https://github.com/wch/fontcm>] 和相关字体
+
+```{r download-fontcm, eval=(!"fontcm" %in% .packages(TRUE))}
+library(extrafont)
+font_install('fontcm')
+loadfonts() # 注册字体
+```
+
+一个小demo如下
+
+```{r fontcm-demo,eval=FALSE}
+library(fontcm)
+pdf("figures/ggplot_cm.pdf", width = 4, height = 4)
+p <- qplot(c(1, 5), c(1, 5)) +
+  xlab("Made with CM fonts") + ylab("Made with CM fonts") +
+  ggtitle("Made with CM fonts")
+
+# Equation
+eq <- "italic(sum(frac(1, n*'!'), n==0, infinity) ==
+       lim(bgroup('(', 1 + frac(1, n), ')')^n, n %->% infinity))"
+
+# Without the new fonts
+p + annotate("text", x = 3, y = 3, parse = TRUE, label = eq) # fig 1
+
+# With the new fonts
+p + annotate("text",
+  x = 3, y = 3, parse = TRUE,
+  family = "CM Roman", label = eq
+) +
+  theme(
+    text = element_text(size = 16, family = "CM Roman"),
+    axis.title.x = element_text(face = "italic"),
+    axis.title.y = element_text(face = "bold")
+  ) # fig 2
+dev.off()
+# 使用 gs 嵌入数学字体
+# Embed the fonts
+embed_fonts("figures/ggplot_cm.pdf", outfile = "figures/ggplot_cm_embed.pdf")
+```
+
+使用 fontcm 包，效果如图\@ref(fig:fontcm-ggplot)所示
+
+```{r fontcm-ggplot, echo=FALSE,fig.cap="fontcm 处理数学公式"}
+knitr::include_graphics("figures/ggplot_cm_embed.pdf")
+```
 
 
 ## 软件信息
