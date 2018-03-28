@@ -3,16 +3,38 @@ title: "A Minimal Book Example"
 author: "黄湘云"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
+geometry: margin=1.18in
 documentclass: ctexbook
 bibliography: [book.bib, packages.bib]
 biblio-style: apalike
+lof: yes
+lot: yes
+graphics: yes
+tables: yes
 link-citations: yes
+colorlinks: yes
+classoption: "hyperref, a4paper, UTF8, zihao = -4, linespread = 1.3"
 description: "This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook."
 ---
 
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  comment = "#>",
+  collapse = TRUE,
+  echo = TRUE,
+  # cache = TRUE,
+  out.width = "70%",
+  fig.align = 'center',
+  fig.width = 6,
+  fig.asp = 0.618,  # 1 / phi
+  fig.show = "hold"
+)
+```
+
 \mainmatter
 
-# 前言
+# 前言 {#preface}
 
 This is a _sample_ book written in **Markdown**. You can use anything that Pandoc's Markdown supports, e.g., a math equation $a^2 + b^2 = c^2$.
 
@@ -29,6 +51,34 @@ Remember each Rmd file contains one and only one chapter, and a chapter is defin
 To compile this example to PDF, you need XeLaTeX. You are recommended to install TinyTeX (which includes XeLaTeX): <https://yihui.name/tinytex/>.
 
 Pandoc\index{Pandoc} and Hugo\index{Hugo}
+
+## 设置字体
+
+安装 showtext 包和思源字体
+```{r font-setup, eval= (!"showtext" %in% .packages(TRUE))}
+install.packages("showtext",dependencies = TRUE)
+library(showtext)
+# Install Source Han Sans/Serif font (by default Simplified Chinese)
+font_install(source_han_serif("CN")) # 思源宋体
+font_install(source_han_sans("CN"))  # 思源黑体
+```
+使用 showtext 包处理中文，下面这个例子使用5号思源宋体，英文和数字使用 serif 字体
+```{r demo-ggplot2, fig.showtext = TRUE}
+library(ggplot2)
+ggplot(iris, aes(Sepal.Length, Sepal.Width)) +
+  geom_point(aes(colour = Species)) +
+  scale_colour_brewer(palette = "Set1") +
+  labs(
+    title = "鸢尾花数据的散点图",
+    x = "萼片长度", y = "萼片宽度", colour = "鸢尾花类别"
+  ) +
+  theme_minimal(base_size = 10.54, base_family = "source-han-serif-cn") +
+  theme(
+    legend.text = element_text(family = "serif", size = 10.54),
+    axis.text = element_text(family = "serif", size = 10.54)
+    )
+```
+
 
 ## 软件信息
 
