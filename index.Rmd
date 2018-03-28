@@ -158,6 +158,7 @@ grid.arrange(p1,p2, nrow = 1, ncol = 2)
 使用 ghostscript 嵌入数学字体
 
 ```{r embed}
+# 保存成图片
 pdf(file = 'figures/ggplot_cm.pdf',width = 8,height = 4)
 grid.arrange(p1,p2, nrow = 1, ncol = 2)
 dev.off()
