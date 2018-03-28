@@ -127,8 +127,10 @@ loadfonts() # 注册字体
 
 一个小demo如下
 
-```{r fontcm-demo,fig.cap="默认风格与fontcm",dev='png'}
+```{r fontcm-demo,fig.cap="默认风格与fontcm"}
 library(fontcm)
+library(extrafont)
+loadfonts()
 p <- qplot(c(1, 5), c(1, 5)) +
   xlab("Made with CM fonts") + ylab("Made with CM fonts") +
   ggtitle("Made with CM fonts")
@@ -158,8 +160,6 @@ grid.arrange(p1,p2, nrow = 1, ncol = 2)
 保存成图片
 
 ```r
-library(extrafont)
-loadfonts()
 pdf(file = 'figures/ggplot_cm.pdf',width = 8,height = 4)
 grid.arrange(p1,p2, nrow = 1, ncol = 2)
 dev.off()
@@ -167,7 +167,7 @@ dev.off()
 
 使用 ghostscript 嵌入数学字体
 
-```{r embed}
+```{r embed,eval=FALSE}
 # Embed the fonts
 embed_fonts("figures/ggplot_cm.pdf", outfile = "figures/ggplot_cm_embed.pdf")
 ```
