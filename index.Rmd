@@ -127,9 +127,8 @@ loadfonts() # 注册字体
 
 一个小demo如下
 
-```{r fontcm-demo,eval=FALSE}
+```{r fontcm-demo,fig.cap="默认风格与fontcm",fig.path="figures/"}
 library(fontcm)
-pdf("figures/ggplot_cm.pdf", width = 4, height = 4)
 p <- qplot(c(1, 5), c(1, 5)) +
   xlab("Made with CM fonts") + ylab("Made with CM fonts") +
   ggtitle("Made with CM fonts")
@@ -139,10 +138,10 @@ eq <- "italic(sum(frac(1, n*'!'), n==0, infinity) ==
        lim(bgroup('(', 1 + frac(1, n), ')')^n, n %->% infinity))"
 
 # Without the new fonts
-p + annotate("text", x = 3, y = 3, parse = TRUE, label = eq) # fig 1
+p1 <- p + annotate("text", x = 3, y = 3, parse = TRUE, label = eq) # fig 1
 
 # With the new fonts
-p + annotate("text",
+p2 <- p + annotate("text",
   x = 3, y = 3, parse = TRUE,
   family = "CM Roman", label = eq
 ) +
@@ -151,8 +150,17 @@ p + annotate("text",
     axis.title.x = element_text(face = "italic"),
     axis.title.y = element_text(face = "bold")
   ) # fig 2
+
+library(gridExtra)
+grid.arrange(p1,p2, nrow = 1, ncol = 2)
+```
+
+使用 ghostscript 嵌入数学字体
+
+```{r embed}
+pdf(file = 'figures/ggplot_cm.pdf',width = 8,height = 4)
+grid.arrange(p1,p2, nrow = 1, ncol = 2)
 dev.off()
-# 使用 ghostscript 嵌入数学字体
 # Embed the fonts
 embed_fonts("figures/ggplot_cm.pdf", outfile = "figures/ggplot_cm_embed.pdf")
 ```
