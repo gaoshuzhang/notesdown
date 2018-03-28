@@ -184,6 +184,6 @@ devtools::session_info()
 # automatically create a bib database for R packages
 knitr::write_bib(c(
   .packages(), 'bookdown', 'knitr', 'rmarkdown','showtext',
-  'ggplot2','rstan','xkcd'
+  'ggplot2','rstan','xkcd','fontcm'
 ), 'packages.bib')
 ```
