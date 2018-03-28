@@ -102,7 +102,7 @@ if (.Platform$OS.type != "unix") {
   ## Register fonts for Windows bitmap output
   loadfonts(device = "win")
 } else {
-  loadfonts() # 注册字体
+  loadfonts() # 加载字体
 }
 fonts() # 查看可用的字体
 ```
@@ -122,24 +122,21 @@ p
 library(extrafont)
 install.packages("fontcm",dependencies = TRUE)
 # 或 font_install('fontcm') 
-loadfonts() # 注册字体
+loadfonts() # 加载字体
 ```
 
-一个小demo如下
+使用 fontcm 包，一个小 demo 如下
 
 ```{r fontcm-demo,fig.cap="默认风格与fontcm",dev='png'}
 library(fontcm)
 p <- qplot(c(1, 5), c(1, 5)) +
   xlab("Made with CM fonts") + ylab("Made with CM fonts") +
   ggtitle("Made with CM fonts")
-
 # Equation
 eq <- "italic(sum(frac(1, n*'!'), n==0, infinity) ==
        lim(bgroup('(', 1 + frac(1, n), ')')^n, n %->% infinity))"
-
 # Without the new fonts
 p1 <- p + annotate("text", x = 3, y = 3, parse = TRUE, label = eq) # fig 1
-
 # With the new fonts
 p2 <- p + annotate("text",
   x = 3, y = 3, parse = TRUE,
@@ -150,7 +147,6 @@ p2 <- p + annotate("text",
     axis.title.x = element_text(face = "italic"),
     axis.title.y = element_text(face = "bold")
   ) # fig 2
-
 library(gridExtra)
 grid.arrange(p1,p2, nrow = 1, ncol = 2)
 ```
@@ -163,17 +159,14 @@ grid.arrange(p1,p2, nrow = 1, ncol = 2)
 dev.off()
 ```
 
-使用 ghostscript 嵌入数学字体
+使用 ghostscript 嵌入数学字体，最终效果如图\@ref(fig:fontcm-ggplot)所示，
 
 ```{r embed,eval=FALSE}
 # Embed the fonts
 embed_fonts("figures/ggplot_cm.pdf", outfile = "figures/ggplot_cm_embed.pdf")
 ```
-
-使用 fontcm 包，效果如图\@ref(fig:fontcm-ggplot)所示
-
 ```{r fontcm-ggplot, echo=FALSE,fig.cap="fontcm 处理数学公式"}
-knitr::include_graphics("figures/ggplot_cm_embed.pdf")
+knitr::include_graphics("figures/ggplot_cm_embed.png")
 ```
 
 
