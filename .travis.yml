@@ -6,6 +6,7 @@ cache:
   - _bookdown_files
   - $HOME/.npm
   - $HOME/texlive
+  - $HOME/.fonts
 
 pandoc_version: 2.1.2
 

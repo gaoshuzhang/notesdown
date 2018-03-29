@@ -52,9 +52,13 @@ To compile this example to PDF, you need XeLaTeX. You are recommended to install
 
 Pandoc\index{Pandoc} and Hugo\index{Hugo}
 
-## 设置字体
+## 字体
 
-安装 showtext 包[@Qiu2015]和思源字体
+字体设置包括自定义中文字体、英文字体和数学公式。
+
+### showtext 
+
+下载和安装 showtext 包[@Qiu2015]，下载并加载思源字体
 
 ```{r font-setup, eval= (!"showtext" %in% .packages(TRUE))}
 install.packages("showtext",dependencies = TRUE)
@@ -82,7 +86,9 @@ ggplot(iris, aes(Sepal.Length, Sepal.Width)) +
     )
 ```
 
-这篇文章主要使用 ggplot2 包[@Wickham2016]绘图，为了好玩我们还使用 xkcd 字体，先下载和加载 xkcd 包[@R-xkcd]
+### xkcd
+
+这篇文章主要使用 ggplot2 包[@Wickham2016]绘图，为了好玩我们还使用 xkcd 字体，先下载和加载 xkcd 包[@R-xkcd]，它提供一个 gg 风格的图层`theme_xkcd()`
 
 ```{r xkcd-setup, eval=(!"xkcd" %in% .packages(TRUE))}
 install.packages("xkcd",dependencies = TRUE)
@@ -107,14 +113,61 @@ if (.Platform$OS.type != "unix") {
 fonts() # 查看可用的字体
 ```
 
-图 \@ref(fig:xkcd-demo) 是一个简单的使用例子
+图 \@ref(fig:xkcd-demo) 是一个简单使用 xkcd 字体的例子
 
 ```{r xkcd-demo,fig.cap="xkcd 风的图",dev='png'}
 library(xkcd)
-p <- ggplot() + geom_point(aes(mpg, wt), data = mtcars) +
+ggplot(aes(mpg, wt), data = mtcars) + geom_point() +
   theme_xkcd()
-p
 ```
+
+### emojifont
+
+下载 emojifont 包
+
+```{r download-emojifont, eval = (!"emojifont" %in% .packages(TRUE))}
+install.packages("emojifont")
+```
+
+加载 emojifont 包和字体
+
+```{r demo-emoji}
+library(emojifont)
+search_emoji('smile')
+```
+
+在 base plot 中使用
+```{r emoji-base-plot,dev='png'}
+set.seed(123)
+x <- rnorm(10)
+set.seed(321)
+y <- rnorm(10)
+plot(x, y, cex=0)
+text(x, y, labels=emoji('cow'), cex=1.5, col='steelblue', family='EmojiOne')
+```
+画一个玫瑰
+```{r emoji-ggplot,dev='png'}
+ggplot() + geom_emoji("rose", color='steelblue') + theme_void()
+```
+fontAwesome 字体使用
+
+```{r emoji-ggplot-demo2,dev='png'}
+set.seed(2018)
+fa <- fontawesome(c("fa-github", "fa-weibo", "fa-twitter", "fa-android", "fa-coffee"))
+d <- data.frame(
+  x = rnorm(20),
+  y = rnorm(20),
+  label = sample(fa, 20, replace = T)
+)
+
+ggplot(d, aes(x, y, color = label, label = label)) +
+  geom_text(family = "fontawesome-webfont", size = 6) +
+  xlab(NULL) + ylab(NULL) +
+  theme(legend.text = element_text(family = "fontawesome-webfont"))
+```
+
+
+### fontcm
 
 安装 fontcm 包[@R-fontcm]处理数学公式，下载 fontcm 包^[<https://github.com/wch/fontcm>] 和相关字体
 
@@ -177,7 +230,6 @@ knitr::include_graphics("figures/ggplot_cm_embed.png")
 ```{r}
 .packages(TRUE)
 ```
-
 
 R 软件运行环境：
 
