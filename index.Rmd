@@ -115,7 +115,8 @@ fonts() # 查看可用的字体
 
 图 \@ref(fig:xkcd-demo) 是一个简单使用 xkcd 字体的例子
 
-```{r xkcd-demo,fig.cap="xkcd 风的图",dev='png'}
+```{r xkcd-demo, fig.cap = "xkcd 风的图"}
+extrafont::fonts()
 library(xkcd)
 ggplot(aes(mpg, wt), data = mtcars) + geom_point() +
   theme_xkcd()
@@ -131,27 +132,19 @@ install.packages("emojifont")
 
 加载 emojifont 包和字体
 
-```{r demo-emoji}
+```{r}
 library(emojifont)
 search_emoji('smile')
 ```
 
-在 base plot 中使用
-```{r emoji-base-plot,dev='png'}
-set.seed(123)
-x <- rnorm(10)
-set.seed(321)
-y <- rnorm(10)
-plot(x, y, cex=0)
-text(x, y, labels=emoji('cow'), cex=1.5, col='steelblue', family='EmojiOne')
-```
 画一个玫瑰
-```{r emoji-ggplot,dev='png'}
+
+```{r}
 ggplot() + geom_emoji("rose", color='steelblue') + theme_void()
 ```
 fontAwesome 字体使用
 
-```{r emoji-ggplot-demo2,dev='png'}
+```{r}
 set.seed(2018)
 fa <- fontawesome(c("fa-github", "fa-weibo", "fa-twitter", "fa-android", "fa-coffee"))
 d <- data.frame(
