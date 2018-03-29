@@ -115,50 +115,17 @@ fonts() # 查看可用的字体
 
 图 \@ref(fig:xkcd-demo) 是一个简单使用 xkcd 字体的例子
 
-```{r xkcd-demo, fig.cap = "xkcd 风的图"}
-extrafont::fonts()
+```{r xkcd-demo, fig.cap = "xkcd 风的图", eval = knitr::is_html_output()}
+# pdf(file = 'figures/xkcd.pdf',width = 6,height = 4)
 library(xkcd)
 ggplot(aes(mpg, wt), data = mtcars) + geom_point() +
-  theme_xkcd()
+    theme_xkcd()
+dev.off()
+# embed_fonts("figures/xkcd.pdf", outfile = "figures/xkcd_embed.pdf")
 ```
-
-### emojifont
-
-下载 emojifont 包
-
-```{r download-emojifont, eval = (!"emojifont" %in% .packages(TRUE))}
-install.packages("emojifont")
+```{r, eval= knitr::is_latex_output(),echo=FALSE}
+knitr::include_graphics("figures/xkcd_embed.pdf")
 ```
-
-加载 emojifont 包和字体
-
-```{r}
-library(emojifont)
-search_emoji('smile')
-```
-
-画一个玫瑰
-
-```{r}
-ggplot() + geom_emoji("rose", color='steelblue') + theme_void()
-```
-fontAwesome 字体使用
-
-```{r}
-set.seed(2018)
-fa <- fontawesome(c("fa-github", "fa-weibo", "fa-twitter", "fa-android", "fa-coffee"))
-d <- data.frame(
-  x = rnorm(20),
-  y = rnorm(20),
-  label = sample(fa, 20, replace = T)
-)
-
-ggplot(d, aes(x, y, color = label, label = label)) +
-  geom_text(family = "fontawesome-webfont", size = 6) +
-  xlab(NULL) + ylab(NULL) +
-  theme(legend.text = element_text(family = "fontawesome-webfont"))
-```
-
 
 ### fontcm
 
