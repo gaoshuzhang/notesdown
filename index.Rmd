@@ -113,17 +113,17 @@ if (.Platform$OS.type != "unix") {
 fonts() # 查看可用的字体
 ```
 
-图 \@ref(fig:xkcd-demo) 是一个简单使用 xkcd 字体的例子
+图 \@ref(fig:xkcd-embed) 是一个简单使用 xkcd 字体的例子
 
 ```{r xkcd-demo, fig.cap = "xkcd 风的图", eval = knitr::is_html_output()}
 # pdf(file = 'figures/xkcd.pdf',width = 6,height = 4)
 library(xkcd)
 ggplot(aes(mpg, wt), data = mtcars) + geom_point() +
     theme_xkcd()
-dev.off()
+# dev.off()
 # embed_fonts("figures/xkcd.pdf", outfile = "figures/xkcd_embed.pdf")
 ```
-```{r, eval= knitr::is_latex_output(),echo=FALSE}
+```{r xkcd-embed, eval= knitr::is_latex_output(), echo=FALSE}
 knitr::include_graphics("figures/xkcd_embed.pdf")
 ```
 
