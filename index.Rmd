@@ -86,6 +86,36 @@ ggplot(iris, aes(Sepal.Length, Sepal.Width)) +
     )
 ```
 
+用 ggplot2 画个简单地图，地图数据在 mapdata 包 [@R-mapdata]
+
+```{r install-spatial, eval = (!"mapproj" %in% .packages(TRUE))}
+install.packages(c("maps", "mapdata", "mapproj"), dependencies = TRUE)
+```
+
+如图 \@ref(fig:map-Fiji-earthquake) 所示
+
+```{r map-Fiji-earthquake, fig.showtext=TRUE,fig.cap="斐济地震带"}
+library(maps)
+library(mapdata)
+FijiMap <- map_data("worldHires", region = "Fiji")
+ggplot(FijiMap, aes(x = long, y = lat)) +
+  geom_map(map = FijiMap, aes(map_id = region), size = .2) +
+  geom_point(data = quakes, aes(x = long, y = lat, colour = mag), pch = 16) +
+  xlim(160, 195) +
+  scale_colour_distiller(palette = "Spectral") +
+  scale_y_continuous(breaks = (-18:18) * 5) +
+  coord_map("ortho", orientation = c(-10, 180, 0)) +
+  labs(colour = "震级", x = "经度", y = "纬度", title = "斐济地震带") +
+  theme_minimal() +
+  theme(
+    title = element_text(family = "source-han-sans-cn"),
+    axis.title = element_text(family = "source-han-serif-cn"),
+    legend.title = element_text(family = "source-han-sans-cn"),
+    legend.position = c(1, 0), legend.justification = c(1, 0)
+  )
+```
+
+
 ### xkcd
 
 这篇文章主要使用 ggplot2 包[@Wickham2016]绘图，为了好玩我们还使用 xkcd 字体，先下载和加载 xkcd 包[@R-xkcd]，它提供一个 gg 风格的图层`theme_xkcd()`
@@ -113,7 +143,7 @@ if (.Platform$OS.type != "unix") {
 fonts() # 查看可用的字体
 ```
 
-图 \@ref(fig:xkcd-embed) 是一个简单使用 xkcd 字体的例子
+图 `r ifelse(knitr::is_html_output(),'\\@ref(fig:xkcd-demo)','\\@ref(fig:xkcd-embed)') ` 是一个简单使用 xkcd 字体的例子
 
 ```{r xkcd-demo, fig.cap = "xkcd 风的图", eval = knitr::is_html_output()}
 # pdf(file = 'figures/xkcd.pdf',width = 6,height = 4)
@@ -123,7 +153,8 @@ ggplot(aes(mpg, wt), data = mtcars) + geom_point() +
 # dev.off()
 # embed_fonts("figures/xkcd.pdf", outfile = "figures/xkcd_embed.pdf")
 ```
-```{r xkcd-embed, eval= knitr::is_latex_output(), echo=FALSE}
+
+```{r xkcd-embed,fig.cap = "xkcd 风的图", eval= knitr::is_latex_output(), echo=FALSE}
 knitr::include_graphics("figures/xkcd_embed.pdf")
 ```
 
@@ -202,6 +233,6 @@ devtools::session_info()
 # automatically create a bib database for R packages
 knitr::write_bib(c(
   .packages(), 'bookdown', 'knitr', 'rmarkdown','showtext',
-  'ggplot2','rstan','xkcd','fontcm'
+  'mapdata','ggplot2','rstan','xkcd','fontcm'
 ), 'packages.bib')
 ```
