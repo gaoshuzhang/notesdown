@@ -40,3 +40,4 @@ vignettes/*.pdf
 _book/
 _bookdown_files/
 packages.bib
+manual/
