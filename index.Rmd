@@ -52,6 +52,28 @@ To compile this example to PDF, you need XeLaTeX. You are recommended to install
 
 Pandoc\index{Pandoc} and Hugo\index{Hugo}
 
+
+## 读图
+
+导入 SVG 格式的图片, rsvg [@R-rsvg] 批量转化 svg 文件为 pdf 文件
+
+```{r rsvg, eval = (!"rsvg" %in% .packages(TRUE))}
+install.packages("rsvg", dependencies = TRUE)
+```
+
+```r
+library(rsvg)
+tmp <- 'figure/Ink' # svgs 存放目录
+input_paths <- paste0(tmp, '/', list.files(tmp) )
+output_paths <- paste0('figure/pdf', '/', gsub('svg','pdf',list.files(tmp)) ) 
+
+for( i in seq(length( list.files(tmp) )) ){
+  rsvg_pdf(input_paths[i],file = output_paths[i])
+}
+```
+
+
+
 ## 字体
 
 字体设置包括自定义中文字体、英文字体和数学公式。
@@ -254,7 +276,7 @@ devtools::session_info()
 ```{r include=FALSE}
 # automatically create a bib database for R packages
 knitr::write_bib(c(
-  .packages(), 'bookdown', 'knitr', 'rmarkdown','showtext',
-  'mapdata','ggplot2','rstan','xkcd','fontcm'
-), 'packages.bib')
+  .packages(), "bookdown", "knitr", "rmarkdown", "showtext", "rsvg",
+  "mapdata", "ggplot2", "rstan", "xkcd", "fontcm"
+), "packages.bib")
 ```
