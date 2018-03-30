@@ -1,11 +1,13 @@
 # MCMC 与 RStan {#intro}
 
-
 安装 rstan
+
 ```{r install-rstan, eval = (!"rstan" %in% .packages(TRUE))}
 install.packages("rstan",dependencies = TRUE)
 ```
+
 加载 rstan
+
 ```{r setup-rstan, eval = ("rstan" %in% .packages(TRUE))}
 library(rstan)
 rstan_options(auto_write = TRUE)
