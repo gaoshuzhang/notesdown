@@ -13,5 +13,3 @@ Imports:
     rticles,
     svglite,
     gridExtra
-Remotes:
-    leonawicz/mapmate
