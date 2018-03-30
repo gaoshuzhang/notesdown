@@ -1,4 +1,4 @@
-# 时空可视化 {#spatio-temporal}
+# 时空可视化 {#visualization}
 
 ## 可视分析
 
