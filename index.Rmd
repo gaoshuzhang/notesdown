@@ -115,6 +115,28 @@ ggplot(FijiMap, aes(x = long, y = lat)) +
   )
 ```
 
+用 base plot 画地图，如图 \@ref(fig:maps-unemp-plot) 所示
+
+```{r maps-unemp-plot, fig.cap="2009年美国各城镇失业率",fig.width=8,fig.height=6}
+library(mapproj) 	
+data(unemp)
+data(county.fips)
+colors <- c("#F1EEF6", "#D4B9DA", "#C994C7", "#DF65B0", "#DD1C77", "#980043")
+unemp$colorBuckets <- as.numeric(cut(unemp$unemp, c(0, 2, 4, 6, 8, 10, 100)))
+leg.txt <- c("<2%", "2-4%", "4-6%", "6-8%", "8-10%", ">10%")
+cnty.fips <- county.fips$fips[match(map("county", plot=FALSE)$names,
+                                    county.fips$polyname)]
+colorsmatched <- unemp$colorBuckets[match(cnty.fips, unemp$fips)]
+op <- par(mar=c(0,0,2,0))
+# draw map
+map("county", col = colors[colorsmatched], fill = TRUE, resolution = 0,
+    lty = 0, projection = "polyconic")
+map("state", col = "white", fill = FALSE, add = TRUE, lty = 1, lwd = 0.2,
+    projection="polyconic")
+title("unemployment by county, 2009")
+legend("top", leg.txt, horiz = TRUE, fill = colors)
+par(op)  
+```
 
 ### xkcd
 
