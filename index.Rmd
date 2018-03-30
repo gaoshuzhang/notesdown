@@ -58,7 +58,7 @@ Pandoc\index{Pandoc} and Hugo\index{Hugo}
 导入 SVG 格式的图片, rsvg [@R-rsvg] 批量转化 svg 文件为 pdf 文件
 
 ```{r rsvg, eval = (!"webp" %in% .packages(TRUE))}
-install.packages("webp","rsvg", dependencies = TRUE)
+install.packages(c("webp","rsvg"), dependencies = TRUE)
 ```
 
 ```r
