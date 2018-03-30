@@ -72,6 +72,13 @@ for( i in seq(length( list.files(tmp) )) ){
 }
 ```
 
+pdftools [@R-pdftools] 文本提取，渲染和转化 PDF 文档
+
+```{r, eval= (!"pdftools" %in% .packages(TRUE))}
+install.packages("pdftools")
+```
+
+
 magick 的简单使用
 
 ```{r, eval= (!"magick" %in% .packages(TRUE))}
@@ -344,6 +351,7 @@ devtools::session_info()
 # automatically create a bib database for R packages
 knitr::write_bib(c(
   .packages(), "bookdown", "knitr", "rmarkdown", "showtext", "rsvg",
-  "mapdata", "ggplot2", "rstan", "xkcd", "fontcm","RDieHarder","magick"
+  "mapdata", "ggplot2", "rstan", "xkcd", "fontcm","RDieHarder",
+  "pdftools","magick"
 ), "packages.bib")
 ```
