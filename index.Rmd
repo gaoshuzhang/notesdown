@@ -55,7 +55,10 @@ Pandoc\index{Pandoc} and Hugo\index{Hugo}
 ## 配色
 
 ```{r color-pakages}
-Pkgs <- c("colorspace", "scales", "palr", "colortools", "colormap")
+Pkgs <- c(
+  "colorspace", "scales", "palr", "colortools", "colormap", "colormap",
+  "dichromat", "yarrr", "colorRamps", "ColorPalette","pals"
+)
 if (length(setdiff(Pkgs, .packages(TRUE))) > 0) install.packages(setdiff(Pkgs, .packages(TRUE)))
 ```
 
@@ -330,6 +333,209 @@ ls("package:ggplot2",pattern = "scale_col(ou|o)r_")
 ls("package:ggplot2",pattern = "scale_fill_")
 ```
 
+
+除之前提到的 grDevices 包[@R-base] 、colorspace 包 [@R-colorspace]和 RColorBrewer 包 [@R-RColorBrewer] 之外，此处还收录 yarrr 包[@R-yarrr] 、dichromat 包[@R-dichromat] 、colormap 包[@R-colormap]、viridis 包[@R-viridis]、pals 包[@R-pals] 、ColorPalette 包[@R-ColorPalette]、colorRamps包 [@R-colorRamps]、colortools包[@R-colortools] ，此外还有 palr 包[@R-palr] 就不一一收录了
+
+```{r palettes,fig.height=5.5,fig.width=6,fig.cap="grDevices调色板1"}
+# 代码来自 ?palettes
+demo.pal <-
+  function(n, border = if (n < 32) "light gray" else NA,
+           main = paste("color palettes: alpha = 1,  n=", n),
+           ch.col = c("rainbow(n, start=.7, end=.1)", "heat.colors(n)",
+                      "terrain.colors(n)", "topo.colors(n)",
+                      "cm.colors(n)","gray.colors(n, start = 0.3, end = 0.9)"))
+{
+    nt <- length(ch.col)
+    i <- 1:n; j <- n / nt; d <- j/6; dy <- 2*d
+    plot(i, i+d, type = "n", axes = FALSE, ylab = "",xlab = "", main = main)
+    for (k in 1:nt) {
+        rect(i-.5, (k-1)*j+ dy, i+.4, k*j,
+             col = eval(parse(text = ch.col[k])), border = border)
+        text(2*j,  k * j + dy/4, ch.col[k])
+    }
+}
+n <- if(.Device == "postscript") 64 else 16
+# Since for screen, larger n may give color allocation problem
+op <- par(mar=c(0,0,2,0))
+demo.pal(n)
+par(op)
+```
+
+```{r democolors,fig.width=8,fig.height=11,fig.align='center',fig.cap="grDevices调色板2"}
+op <- par(mfrow =c(33,1),mar=c(0,0,.8,0))
+ for( i in seq(32)) {
+	  pal( colors()[ (1+20*(i-1)) : (20*i) ] ,main = paste(1+20*(i-1),"to", 20*i))
+}
+pal( colors()[ 641 : 657 ], main = "641 to 657") 
+par(op)
+```
+
+
+```{r ColorPalette,fig.width=8,fig.height=3,fig.cap="ColorPalette调色板"}
+library(ColorPalette)
+op <- par(mfrow=c(4,1),mar=c(0,0,2,0))
+pal(generateMonochromaticColors("lightblue", 16),main = "generateMonochromaticColors")
+pal(complementColors("lightblue", 16),main = "complementColors")
+pal(tetradicColors("lightblue",16),main = "tetradicColors")
+pal(triadicColors("lightblue",16), main = "triadicColors")
+par(op)
+```
+
+```{r colorRamps,fig.width=8,fig.height=4,fig.cap="colorRamps调色板"}
+library(colorRamps)
+op <- par(mfrow=c(6,1),mar=c(0,0,2,0))
+n <- 16
+pal(matlab.like(n),main = "matlab.like")
+pal(matlab.like2(n),main = "matlab.like2")
+pal(blue2green2red(n),main = "blue2green2red")
+pal(primary.colors(n), main = "primary.colors")
+pal(ygobb(n), main = "ygobb")
+pal(rgb.tables(n), main = "rgb.tables")
+par(op)
+```
+
+```{r viridis,fig.width=8,fig.height=3,fig.cap="viridis调色板"}
+library(viridisLite)
+library(viridis)
+n <- 16
+op <- par(mfrow=c(4,1),mar=c(0,0,2,0))
+pal(viridis_pal(alpha = 1, begin = 0, end = 1, option = "A")(n), main = "magma")
+pal(viridis_pal(alpha = 1, begin = 0, end = 1, option = "B")(n), main = "inferno")
+pal(viridis_pal(alpha = 1, begin = 0, end = 1, option = "C")(n), main = "plasma")
+pal(viridis_pal(alpha = 1, begin = 0, end = 1, option = "D")(n), main = "viridis")
+par(op)
+```
+
+
+```{r pals1,fig.width=8,fig.height=8,fig.cap="pals调色板1",message=FALSE,eval=FALSE}
+op <- par(mfrow=c(2,1),mar=c(0,3,2,0))
+library(pals)
+pals::pal.bands(coolwarm, parula, ocean.haline, cubicl, kovesi.rainbow,
+          ocean.phase, brewer.paired(12), stepped,
+          main="Colormap suggestions")
+
+# Qualtitative
+pals::pal.bands(brewer.accent(8), brewer.dark2(8), brewer.paired(12), brewer.pastel1(9),
+          brewer.pastel2(8), brewer.set1(9), brewer.set2(8), brewer.set3(10),
+          labels=c("brewer.accent", "brewer.dark2", "brewer.paired", "brewer.pastel1",
+                   "brewer.pastel2", "brewer.set1", "brewer.set2", "brewer.set3"),
+          main="Brewer qualitative")
+par(op)
+```
+
+```{r pals2,fig.width=8,fig.height=8,fig.cap="pals调色板2",message=FALSE,eval=FALSE}
+op <- par(mfrow=c(2,1),mar=c(0,3,2,0))
+# Sequential
+pals::pal.bands(brewer.blues, brewer.bugn, brewer.bupu, brewer.gnbu, brewer.greens,
+          brewer.greys, brewer.oranges, brewer.orrd, brewer.pubu, brewer.pubugn,
+          brewer.purd, brewer.purples, brewer.rdpu, brewer.reds, brewer.ylgn,
+          brewer.ylgnbu, brewer.ylorbr, brewer.ylorrd,
+          main="Brewer sequential")
+
+# Diverging
+pals::pal.bands(brewer.brbg, brewer.piyg, brewer.prgn, brewer.puor, brewer.rdbu,
+          brewer.rdgy, brewer.rdylbu, brewer.rdylgn, brewer.spectral,
+          main="Brewer diverging")
+par(op)
+```
+
+```{r colortools1,fig.width=6,fig.height=6,fig.cap="colortools调色板1"}
+colortools::pals()
+```
+
+```{r colortools2,fig.width=6,fig.height=6,results='hide',fig.cap="colortools调色板2"}
+colortools::wheel(colortools::pals("fish")[1], bg = "white")
+```
+
+
+```{r colorspace,fig.width=8,fig.height=8,fig.cap="colorspace调色板"}
+library(colorspace)
+## a few useful diverging HCL palettes
+op <- par(mar = c(0,0,2,0), mfrow = c(16, 2))
+
+pal(diverge_hcl(16), main = "diverging HCL palettes")
+pal(diverge_hcl(16, h = c(246, 40), c = 96, l = c(65, 90)))
+pal(diverge_hcl(16, h = c(130, 43), c = 100, l = c(70, 90)))
+pal(diverge_hcl(16, h = c(180, 70), c = 70, l = c(90, 95)))
+
+pal(diverge_hcl(16, h = c(180, 330), c = 59, l = c(75, 95)))
+pal(diverge_hcl(16, h = c(128, 330), c = 98, l = c(65, 90)))
+pal(diverge_hcl(16, h = c(255, 330), l = c(40, 90)))
+pal(diverge_hcl(16, c = 100, l = c(50, 90), power = 1))
+
+## sequential palettes
+pal(sequential_hcl(16), main= "sequential palettes")
+pal(heat_hcl(16, h = c(0, -100), l = c(75, 40), c = c(40, 80), power = 1))
+pal(terrain_hcl(16, c = c(65, 0), l = c(45, 95), power = c(1/3, 1.5)))
+pal(heat_hcl(16, c = c(80, 30), l = c(30, 90), power = c(1/5, 1.5)))
+
+## compare base and colorspace palettes
+## (in color and desaturated)
+## diverging red-blue colors
+pal(diverge_hsv(16), main = "diverging red-blue colors")
+pal(diverge_hcl(16, c = 100, l = c(50, 90)))
+pal(desaturate(diverge_hsv(16)))
+pal(desaturate(diverge_hcl(16, c = 100, l = c(50, 90))))
+
+## diverging cyan-magenta colors
+pal(cm.colors(16), main = "diverging cyan-magenta colors")
+pal(diverge_hcl(16, h = c(180, 330), c = 59, l = c(75, 95)))
+pal(desaturate(cm.colors(16)))
+pal(desaturate(diverge_hcl(16, h = c(180, 330), c = 59, l = c(75, 95))))
+
+## heat colors
+pal(heat.colors(16), main = "heat colors")
+pal(heat_hcl(16))
+pal(desaturate(heat.colors(16)))
+pal(desaturate(heat_hcl(16)))
+
+## terrain colors
+pal(terrain.colors(16), main = "terrain colors")
+pal(terrain_hcl(16))
+pal(desaturate(terrain.colors(16)))
+pal(desaturate(terrain_hcl(16)))
+
+pal(rainbow_hcl(16, start = 30, end = 300), main = "dynamic")
+pal(rainbow_hcl(16, start = 60, end = 240), main = "harmonic")
+pal(rainbow_hcl(16, start = 270, end = 150), main = "cold")
+pal(rainbow_hcl(16, start = 90, end = -30), main = "warm")
+
+par(op)
+```
+
+```{r RColorBrewer,fig.height=8,fig.cap="RColorBrewer调色板"}
+op <- par(mar=c(0,4,0,0))
+RColorBrewer::display.brewer.all()
+par(op)
+```
+
+```{r yarrr, fig.width = 8, fig.height = 7,fig.cap="yarrr调色板"}
+yarrr::piratepal(palette = "all")
+```
+
+```{r dichromat,fig.height=4,fig.width=6,fig.cap="dichromat调色板适用于色盲人群"}
+library(dichromat) 
+op <- par(mar=c(0,0,2,0),mfrow = c(9,2))
+for(i in seq(17)){
+	pal(colorschemes[[i]], main =  names(colorschemes)[i])
+} 
+par(op)
+```
+
+```{r colormap,fig.width=10,fig.height=12,results='hide',fig.align='center',fig.cap="colormap调色板"}
+library(colormap)
+color_map <- function(colorname, border = "light gray"){ 
+	col <- colormap_pal(colormap=colorname)(25)
+	n <- length(col)
+	plot(0, 0, type="n", xlim = c(0, 1), ylim = c(0, 1),
+		axes = FALSE, xlab = "", ylab = "")
+	rect(0:(n-1)/n, 0, 1:n/n, 1, col = col, border = border)
+	text(.5,.5,labels = colorname)
+}
+op <- par(mfrow = c(22,2),mar = c(0, 0, 1, 0))
+invisible( lapply(unlist(colormaps),color_map) )
+par(op)
+```
 
 ## 读图
 
