@@ -15,7 +15,12 @@ addons:
     packages:
       - ghostscript
       - fonts-liberation
-      
+      - libwebp-dev
+      - libgsl0ldbl
+      - dieharder
+      - libdieharder3
+      - libdieharder-dev
+
 before_install:
   - npm install netlify-cli -g
   - tlmgr update --all --self
