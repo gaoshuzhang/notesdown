@@ -34,6 +34,14 @@ knitr::opts_chunk$set(
 
 \mainmatter
 
+
+# 数学符号说明 {#notations}
+
+- $\mathcal{S,P,G}$
+- $S \not= \emptyset$
+- $S \not= \varnothing$
+- $\mathbb{R,C}$
+
 # 基础知识 {#elements}
 
 ## 配色
