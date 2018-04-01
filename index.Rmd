@@ -1,5 +1,5 @@
 --- 
-title: "A Book Example"
+title: "A Book of Notes"
 author: "黄湘云"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
@@ -51,12 +51,22 @@ cat(paste0(contribs$uname, collapse = ", "))
 cat(".\n")
 ```
 
+非常感谢谁谁以及谁谁对我的帮助。艾玛，要不是他们神一样的队友，我两年前就写完这本书了。
+
+```{block2, type='flushright', html.tag='p'}
+张三  
+于 A 村某角落
+```
+
 ## 本书结构 {#outline}
 
 第一章：数学符号说明
 第二章：基础知识
 
 - R语言基础、高级技巧
+
+你好，世界。我写了一本书。这本书是这样的，第 \@ref(colors) 章介绍了啥啥，第 \@ref(plot) 章说了啥啥，然后是啥啥……
+
 
 
 ## 后记 {#colophon}
@@ -68,16 +78,18 @@ cat(".\n")
 
 ## 软件信息 {#session}
 
-系统安装的 R 包有：
-
-```{r}
-.packages(TRUE)
-```
+我用了两个 R 包编译这本书，分别是 **knitr**\index{knitr} [@Dynamic2015CRC] 和 **bookdown**\index{bookdown} [@bookdown2016CRC]。以下是我的 R 进程信息：
 
 R 软件运行环境：
 
 ```{r}
 devtools::session_info()
+```
+
+系统安装的 R 包有：
+
+```{r}
+.packages(TRUE)
 ```
 
 
