@@ -2,6 +2,10 @@
 
 # (APPENDIX) 附录 {-}
 
+```{r setup, include = FALSE}
+source("common.R")
+```
+
 # 编译 C++ 文件
 
 如何充分利用 Rcpp 包
@@ -13,4 +17,11 @@
 # 网站资源
 
 
+# 数学符号说明 {#notations}
 
+- $\mathcal{S,P,G}$
+- $S \not= \varnothing$
+- $\mathbb{R,C},\mathscr{P,F,D,A,B,C}$
+- $\mathbf{A,B,C},\mathsf{A,B,C},\mathit{A,B,C}$
+- $\mathrm{A,B,C}$ 
+- $\mathfrak{A,B,C}$

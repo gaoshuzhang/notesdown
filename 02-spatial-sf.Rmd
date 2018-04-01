@@ -1,5 +1,8 @@
 # 空间数据 {#spatial}
 
+```{r setup, include = FALSE}
+source("common.R")
+```
 
 ## 分析与可视化
 

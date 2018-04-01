@@ -1,5 +1,9 @@
 # 贝叶斯与 MCMC {#bayes}
 
+```{r setup, include = FALSE}
+source("common.R")
+```
+
 ## 贝叶斯计算
 
 ### MCMC

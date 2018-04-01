@@ -1,5 +1,9 @@
 # 动画
 
+```{r setup, include = FALSE}
+source("common.R")
+```
+
 Some _significant_ applications are demonstrated in this chapter.
 
 ## JS 动画

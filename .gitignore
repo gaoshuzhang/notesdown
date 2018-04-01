@@ -41,4 +41,5 @@ _book/
 _bookdown_files/
 packages.bib
 manual/
-*tikz/
+*tikzDictionary/
+*.rds

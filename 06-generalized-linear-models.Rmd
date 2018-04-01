@@ -1,5 +1,9 @@
 # 广义线性模型 {#glm}
 
+```{r setup, include = FALSE}
+source("common.R")
+```
+
 ## 参数估计
 
 ### 最小二乘估计

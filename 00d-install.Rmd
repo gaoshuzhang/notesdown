@@ -1,0 +1,59 @@
+# 安装 R 和 扩展包 {#install}
+
+```{r setup, include = FALSE}
+source("common.R")
+```
+
+## RDieHarder
+
+安装依赖库
+
+```bash
+sudo apt-get update && sudo apt-get install -y libgsl-dev libdieharder-dev
+```
+
+安装并加载 RDieHarder 包
+
+```{r}
+if (!"RDieHarder" %in% list.files(.libPaths())) install.packages("RDieHarder")
+library(RDieHarder) # 加载
+```
+
+RDieHarder [@R-RDieHarder] 由 Dirk Eddelbuettel 开发，将 Robert G. Brown 的工作介绍给 R 用户
+
+```{r}
+if (!"purrr" %in% list.files(.libPaths())) install.packages("purrr")
+library(purrr)
+dieharderGenerators() %>% head
+```
+
+```{r}
+dieharderTests() %>% head
+```
+
+
+```{r run-length-hist, fig.cap='游程直方图', fig.showtext=TRUE}
+set.seed(2018) 
+n <- 2^24
+x <- runif(n,0,1)
+delta <- 0.01
+len <- diff(c(0,which(x < delta),n+1))-1
+ylim <- seq( 0, 1800, by = 300)
+xlim <- seq( 0, 100, by = 20)
+p <- hist(len[len < 101], breaks = -1:100+0.5, plot = FALSE)
+par(mar = c(2,2,.5,.5))
+plot(p, xlab = '间距', ylab = '频数', axes = FALSE, 
+     col = "lightblue", border = "white", main = "")	 
+axis( 1, labels = xlim, at = xlim, las = 1) # x 轴
+axis( 2, labels = ylim, at = ylim, las = 0) # y 轴
+box(col="gray")
+# 添加线性回归线
+xx <- seq.int(from = 0, to = 100, by = 1)
+xy <- p$counts
+options(digits = 2)
+fit <- lm(xy~xx)
+abline(fit, col = 'red')
+b = coef(fit)
+# mtext(paste0( "Y = ", paste0(paste0(b[1], b[2]),"x") ), side = 3, cex = 2)
+```
+

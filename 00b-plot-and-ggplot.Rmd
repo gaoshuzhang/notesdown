@@ -1,0 +1,98 @@
+# 绘图 {#plot}
+
+```{r setup, include = FALSE}
+source("common.R")
+```
+
+## tikz 图形
+
+如图 \@ref(fig:latex-tikz) 所示
+
+```{r latex-tikz, engine='tikz', out.width='90%', fig.ext=if (knitr:::is_latex_output()) 'pdf' else 'png', fig.cap='tikz 图形', engine.opts = list(template = "tikz/tikz2pdf.tex")}
+\begin{tikzpicture}[scale=.7]
+\draw [fill=gray!30,very thick] (0,-1) rectangle (5,1);
+\draw [very thick] (5, 0) -- (13,0);
+\node [below] at (2,-1) {\large Hello};
+\node [below, align=center] at (0,-1) {\large Two\\ lines};
+\end{tikzpicture}
+```
+
+## 位图
+
+
+## 矢量图
+
+图片导入，导出，转化，批量转化
+
+导入 SVG 格式的图片, rsvg [@R-rsvg] 批量转化 svg 文件为 pdf 文件
+
+```{r rsvg, eval = (!"webp" %in% .packages(TRUE))}
+install.packages(c("webp","rsvg"), dependencies = TRUE)
+```
+
+```r
+library(rsvg)
+tmp <- "figure/Ink" # svgs 存放目录
+input_paths <- paste0(tmp, "/", list.files(tmp))
+output_paths <- paste0("figure/pdf", "/", gsub("svg", "pdf", list.files(tmp)))
+
+for (i in seq(length(list.files(tmp)))) {
+  rsvg_pdf(input_paths[i], file = output_paths[i])
+}
+```
+
+pdftools [@R-pdftools] 文本提取，渲染和转化 PDF 文档
+
+```{r, eval= (!"pdftools" %in% .packages(TRUE))}
+install.packages("pdftools")
+```
+
+
+magick 的简单使用
+
+```{r, eval= (!"magick" %in% .packages(TRUE))}
+install.packages("magick")
+```
+
+插入 Inkscape 图标，如图
+
+```{r inkscape-logo, eval = knitr::is_latex_output(),fig.cap="Inkscape 图标"}
+library(magick)
+magick::image_read_svg(path = "figures/inkscape.svg")
+```
+
+`r if (knitr::is_html_output()) '
+![](figures/inkscape.svg)'
+`
+
+
+## 优化
+
+optipng 是一个非常好的图片压缩、优化工具
+
+现在，我们设置 chunk 选项 `optipng` 为非空(non-`NULL`)的值，例如，`''` 去激活这个 hook （益辉称之为钩子，这里勾的是 optipng 这个图片优化工具）
+
+```{r use-optipng, optipng='',fig.cap="优化"}
+library(methods)
+library(ggplot2)
+set.seed(123)
+qplot(rnorm(1e3), rnorm(1e3))
+```
+
+同一幅图，但是没有优化
+
+```{r no-optipng, ref.label='use-optipng',fig.cap="没有优化"}
+```
+
+同一幅图，但是使用最高级别的优化 (传递 `-o7` 参数给 `optipng`):
+
+```{r optipng-o7, ref.label='use-optipng', optipng='-o7',fig.cap="最强优化"}
+```
+
+## 裁剪
+
+pdfcrop 可将 PDF 图片中留白的部分裁去，再也不用纠结 par 了
+
+```{r pdfcrop, fig.cap="pdfcrop 裁剪白边", crop = TRUE}
+knitr::include_graphics(path = "figures/map_usa_unemp.pdf")
+```
