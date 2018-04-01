@@ -23,6 +23,7 @@ comment
 courier
 csquotes
 ctable
+ctex
 datetime
 diagbox
 doi
@@ -38,6 +39,8 @@ eurosym
 everypage
 fancybox
 fancyvrb
+fandol
+filehook
 float
 floatrow
 fmtcount
@@ -62,6 +65,7 @@ lineno
 lipsum
 listings
 lm
+lm-math
 logreq
 manfnt
 marvosym
@@ -112,6 +116,7 @@ tex4ht
 textcase
 threeparttable
 thumbpdf
+tikz
 times
 titlesec
 titling
@@ -124,6 +129,7 @@ txfonts
 ucs
 ulem
 underscore
+unicode-math
 upquote
 varwidth
 vmargin
@@ -132,16 +138,11 @@ xargs
 xcolor
 xcomment
 xetex
+xecjk
 xltxtra
 xstring
 xtab
 xunicode
 zapfchan
 zapfding
-ctex
-fandol
-filehook
-lm-math
-unicode-math
-xecjk
 zhnumber
