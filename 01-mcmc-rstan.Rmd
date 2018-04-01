@@ -34,10 +34,15 @@ options(mc.cores = parallel::detectCores())
 
 安装 brms
 
-```{r, eval = ("brms" %in% .packages(TRUE))}
+```{r, eval = (!"brms" %in% .packages(TRUE))}
 install.packages("brms", dependencies = TRUE)
 ```
 
+安装 rstanarm
+
+```{r, eval = (!"rstanarm" %in% .packages(TRUE))}
+install.packages("rstanarm", dependencies = TRUE)
+```
 
 1. Bayesian Data Analysis <https://github.com/avehtari/BDA_R_demos>
 Bayesian Data Analysis, 3rd ed by Gelman, Carlin, Stern, Dunson, Vehtari, and Rubin (BDA3).
