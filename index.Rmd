@@ -17,7 +17,6 @@ classoption: "hyperref, a4paper, UTF8, zihao = -4, linespread = 1.3"
 description: "这是一个笔记，搜集了很多博客内容"
 ---
 
-
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(
   comment = "#>",
@@ -30,6 +29,7 @@ knitr::opts_chunk$set(
   fig.asp = 0.618,  # 1 / phi
   fig.show = "hold"
 )
+knitr::knit_hooks$set(optipng = hook_optipng)
 options(
   tikzMetricsDictionary = "tikz/dictionary/",
   tikzDefaultEngine = "xetex",
@@ -58,8 +58,11 @@ knitr::knit_hooks$set(tikz2png = function(before, options, envir) {
 
 \mainmatter
 
+# 前言 {#preface}
 
-# 致谢 {#intro-ack}
+## 作者 {#author}
+
+## 致谢 {#intro-ack}
 
 虚位以待壮士
 
@@ -79,9 +82,21 @@ cat(paste0(contribs$uname, collapse = ", "))
 cat(".\n")
 ```
 
-# 后记 {#colophon}
+## 组织结构 {#outline}
+
+第一章：数学符号说明
+第二章：基础知识
+
+- R语言基础、高级技巧
+
+
+## 后记 {#colophon}
 
 这本书是在 RStudio IDE 内用 R Markdown 写的，knitr 和 pandoc 将 R Markdown 转化为 html 和 pdf，这个网站是通过 travis-ci 自动发布到 netlify，完整的源文件存放在 github 上。
+
+
+
+
 
 # 数学符号说明 {#notations}
 
@@ -579,23 +594,44 @@ invisible( lapply(unlist(colormaps),color_map) )
 par(op)
 ```
 
-## 文件管理
-
-### 文本管理
-
-创建、删除、移动、复制
+## 文件操作
 
 ### 文本
 
 代码
 纯文本
-网页
+创建、删除、移动、复制
 
 ### 图片
 
+#### 优化
 
-- 位图
-- 矢量图
+optipng 是一个非常好的图片压缩、优化工具
+
+现在，我们设置 chunk 选项 `optipng` 为非空(non-`NULL`)的值，例如，`''` 去激活这个 hook （益辉称之为钩子，这里勾的是 optipng 这个图片优化工具）
+
+```{r use-optipng, optipng='',fig.cap="优化"}
+library(methods)
+library(ggplot2)
+set.seed(123)
+qplot(rnorm(1e3), rnorm(1e3))
+```
+
+同一幅图，但是没有优化
+
+```{r no-optipng, ref.label='use-optipng',fig.cap="没有优化"}
+```
+
+同一幅图，但是使用最高级别的优化 (传递 `-o7` 参数给 `optipng`):
+
+```{r optipng-o7, ref.label='use-optipng', optipng='-o7',fig.cap="最强优化"}
+```
+
+
+#### 位图
+
+
+#### 矢量图
 
 图片导入，导出，转化，批量转化
 
@@ -639,6 +675,10 @@ magick::image_read_svg(path = "figures/inkscape.svg")
 `r if (knitr::is_html_output()) '
 ![](figures/inkscape.svg)'
 `
+
+## 安装 R 包
+
+### RDieHarder
 
 安装依赖库
 
