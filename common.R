@@ -7,7 +7,7 @@ knitr::opts_chunk$set(
   comment = "#>",
   collapse = TRUE,
   echo = TRUE,
-  # cache = TRUE,
+  cache = TRUE,
   citation.bibtex.max=999,
   out.width = "70%",
   fig.align = 'center',
