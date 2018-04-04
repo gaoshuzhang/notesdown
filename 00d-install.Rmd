@@ -25,18 +25,18 @@ sudo apt-get update && sudo apt-get install -y libgsl-dev libdieharder-dev
 
 安装并加载 RDieHarder 包
 
-```{r}
+```r
 if (!"RDieHarder" %in% list.files(.libPaths())) install.packages("RDieHarder")
 ```
 
 RDieHarder [@R-RDieHarder] 由 Dirk Eddelbuettel 开发，将 Robert G. Brown 的工作介绍给 R 用户
 
-```{r}
+```r
 if (! "magrittr" %in% list.files(.libPaths())) install.packages("magrittr")
 ```
 
 
-```{r}
+```r
 library(magrittr)
 library(RDieHarder)
 dieharderGenerators() %>% head()

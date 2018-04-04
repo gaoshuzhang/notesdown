@@ -78,27 +78,20 @@ standard 61966).
 
 rgb 产生一种颜色，如 `rgb(255, 0, 0, maxColorValue = 255)` 的颜色是 `"#FF0000"` ，这是一串16进制数，每两个一组，那么一组有 $16^2 = 256$ 种组合，整个一串有 $256^3 = 16777216$ 种组合，这就是RGB表达的所有颜色。用色轮示意，如图 \@ref(fig:RGBwheel)
 
-```{r RGBwheel,fig.cap="RGB 色轮"}
-op <- par(mar=c(0,0,0,0))
-n <- 1000
-pie(rep(1,times = n),labels = "", col = rainbow(n), border = FALSE)
-par(op)
+```{r RGBwheel,fig.cap="RGB 色轮", crop = TRUE}
+pie(rep(1, times = 255), labels = "", col = rainbow(255), border = FALSE)
 ```
+colorRampPalette 自制调色板
 
 ```{r custom,fig.cap="colorRampPalette自制调色板"}
-# colorRampPalette自制调色板
-op <- par(mfrow = c(3, 1),mar = c(0.1, 0.1, 0.5, 0.1),xaxs = "i", yaxs = "i")
+op <- par(mfrow = c(3, 1), mar = c(0.1, 0.1, 0.5, 0.1), xaxs = "i", yaxs = "i")
 n <- 1000
 mycolors <- colorRampPalette(c("blue", "orangeRed"))(n)
 barplot(rep(1, times = n), col = mycolors, border = mycolors, axes = FALSE)
-box()
 mycolors <- colorRampPalette(c("darkgreen", "yellow", "orangered"))(n)
 barplot(rep(1, times = n), col = mycolors, border = mycolors, axes = FALSE)
-box()
-mycolors <- colorRampPalette(c("blue", "white", "darkgreen", "yellow", "orangered"), bias = 1.2)(n)
+mycolors <- colorRampPalette(c("blue", "white", "orangered"), bias = 1.2)(n)
 barplot(rep(1, times = n), col = mycolors, border = mycolors, axes = FALSE)
-box()
-par(op)
 ```
 
 ### HSL
@@ -120,14 +113,13 @@ rgb and rgb2hsv for RGB to HSV conversion;
 hsv函数通过设置色调、饱和度和亮度获得颜色，三个值都是0-1的相对量
 
 ```{r hsv,fig.cap="色相、饱和度和亮度"}
-op <- par(mfcol = c(11, 121), mar = c(0, 0, 0, 0), xaxs = "i", yaxs = "i")
+par(mfcol = c(11, 121), mar = c(0, 0, 0, 0), xaxs = "i", yaxs = "i")
 x <- seq(0, 10) / 10
 ndx <- expand.grid(x, x, x)
 mycolor <- hsv(ndx[, 3], ndx[, 2], ndx[, 1])
 for (i in 1:nrow(ndx)) {
   barplot(1, col = mycolor[i], border = mycolor[i], axes = FALSE)
 }
-par(op)
 ```
 
 RGB HSV HSL 都是不连续的颜色空间，缺点
@@ -186,7 +178,7 @@ rgb2hsv(173,216,230,maxColorValue = 255) # RGB to HSV
 选色为什么这么难
 
 ```{r select-color,fig.cap="源起",fig.height=12}
-op <- par(mar = c(1, 2, 1, 0), mfrow = c(4, 2))
+op <- par(mar = c(1, 2, 1, 0), mfrow = c(3, 2))
 set.seed(1234)
 barplot(sample(seq(8), 8, replace = FALSE), col = palette(), border = "white")
 set.seed(1234)
@@ -195,8 +187,6 @@ set.seed(1234)
 barplot(sample(seq(8), 8, replace = FALSE), col = gray.colors(8), border = "white")
 set.seed(1234)
 barplot(sample(seq(8), 8, replace = FALSE), col = "lightblue", border = "white")
-barplot(seq(8), col = gray.colors(8), border = "white")
-barplot(seq(8), col = "lightblue", border = "white")
 barplot(sample(seq(8), 8, replace = FALSE), col = colorspace::sequential_hcl(8), border = "white")
 barplot(sample(seq(8), 8, replace = FALSE),
   col = colorspace::diverge_hcl(8, h = c(130, 43), c = 100, l = c(70, 90)), border = "white"
@@ -219,9 +209,9 @@ R预置的灰色有224种，挑出其中的调色板
 grep( "^gr(a|e)y" , grep("gr(a|e)y" , colors() ,value = TRUE),value = TRUE,invert = TRUE)
 ```
 
-```{r gray1,fig.width=8,fig.height=1.5,fig.cap="灰度调色板"}
+```{r gray1,fig.width=8,fig.height=1.5,fig.cap="灰度调色板",out.width="100%"}
 gray_colors <- paste0(rep(c("slategray", "darkslategray"), each = 4), seq(4))
-op <- par(mar = c(0, 0, 2, 0))
+op <- par(mar = c(0, 0, 3, 0))
 pal(gray_colors, main = toString(gray_colors), cex.main = .9)
 par(op)
 ```
@@ -313,7 +303,7 @@ demo.pal(n)
 par(op)
 ```
 
-```{r democolors,fig.width=8,fig.height=11,fig.align='center',fig.cap="grDevices调色板2"}
+```{r democolors,fig.width=8,fig.height=11,fig.align='center',fig.cap="grDevices调色板2",out.width="100%"}
 op <- par(mfrow =c(33,1),mar=c(0,0,.8,0))
  for( i in seq(32)) {
 	  pal( colors()[ (1+20*(i-1)) : (20*i) ] ,main = paste(1+20*(i-1),"to", 20*i))

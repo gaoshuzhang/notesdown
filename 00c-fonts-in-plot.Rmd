@@ -143,7 +143,7 @@ loadfonts() # 加载字体
 
 使用 fontcm 包，一个小 demo 如下
 
-```{r fontcm-demo,fig.cap="默认风格与fontcm", dev='png'}
+```r
 library(fontcm)
 p <- qplot(c(1, 5), c(1, 5)) +
   xlab("Made with CM fonts") + ylab("Made with CM fonts") +
