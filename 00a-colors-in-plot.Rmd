@@ -79,8 +79,10 @@ standard 61966).
 rgb 产生一种颜色，如 `rgb(255, 0, 0, maxColorValue = 255)` 的颜色是 `"#FF0000"` ，这是一串16进制数，每两个一组，那么一组有 $16^2 = 256$ 种组合，整个一串有 $256^3 = 16777216$ 种组合，这就是RGB表达的所有颜色。用色轮示意，如图 \@ref(fig:RGBwheel)
 
 ```{r RGBwheel,fig.cap="RGB 色轮", crop = TRUE}
+par(mar = rep(0,4))
 pie(rep(1, times = 255), labels = "", col = rainbow(255), border = FALSE)
 ```
+
 colorRampPalette 自制调色板
 
 ```{r custom,fig.cap="colorRampPalette自制调色板"}
