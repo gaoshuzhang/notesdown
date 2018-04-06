@@ -69,8 +69,8 @@ cat(".\n")
 
 这本书是在 [RStudio IDE](https://www.rstudio.com/products/rstudio/download/) 内用 [R Markdown](https://rmarkdown.rstudio.com/) 写的， [Git](https://git-scm.com/) 控制版本， [bookdown](https://bookdown.org/yihui/bookdown/) 组织书籍， [knitr](https://yihui.name/knitr/) 和 [pandoc](http://pandoc.org) 将 R Markdown 源文件转化为 html 和 pdf，这个网站是通过 [travis-ci](https://travis-ci.org/) 自动发布到 [netlify](https://www.netlify.com/)，完整的源文件存放在 [github](https://github.com/XiangyunHuang/bookdown-chinese) 上。All content is licensed under the [Creative Commons Attribution Non Commercial Share Alike 3.0 license](https://creativecommons.org/licenses/by-nc-sa/3.0/)
 
+[sourceserifpro](https://ctan.org/pkg/sourceserifpro) 作为默认英文字体
 
-[sourceserifpro](https://ctan.org/pkg/sourceserifpro) 作为默认英文字体， [inconsolata](http://levien.com/type/myfonts/inconsolata.html) 作为等宽字体 (monospace font) 用于代码显示
 
 ## 软件信息 {#session}
 
