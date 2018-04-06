@@ -23,6 +23,11 @@ source("common.R")
 - [Max Woolf 的博客](http://minimaxir.com/)
 - [Yan Holtz 的 ggplot2 图库](https://www.r-graph-gallery.com/)
 
+## 书单 {#books}
+
+- [Pro Git 中文第二版](https://git-scm.com/book/zh/v2)
+
+
 # 数学符号说明 {#notations}
 
 - $\mathcal{S,P,G}$
