@@ -36,7 +36,7 @@ surf (peaks);
 peaks(50)
 print -dpswrite -PPS_printer
 
-
+%% images/peaks-inc
 hf = figure (1);
 surf (peaks);
 print (hf, "peaks.pdf", "-dpdflatexstandalone");
