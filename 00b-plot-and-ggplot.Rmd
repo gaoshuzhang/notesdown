@@ -31,6 +31,32 @@ b = coef(fit)
 # mtext(paste0( "Y = ", paste0(paste0(b[1], b[2]),"x") ), side = 3, cex = 2)
 ```
 
+## ggplot
+
+rattle 下载量时序图
+
+```{r log,fig.width=12,fig.height=6,out.width="100%"}
+library(ggplot2)
+install.packages(c("cranlogs","ggthemes"))
+library(cranlogs)
+library(ggthemes)
+pkgs_down <- cran_downloads(package = "rattle", from = Sys.Date() - 365 * 5, to = Sys.Date())
+ggplot(pkgs_down, aes(x = date, y = count, colour = package)) +
+  geom_line() +
+  geom_point(size = 1.5) +
+  scale_x_date(date_breaks = "1 year", date_labels = "%Y") +
+  ylim(c(0, 1500)) +
+  scale_colour_brewer(palette = "Set1") +
+  # scale_color_fivethirtyeight("") +
+  # theme_fivethirtyeight() +
+  labs(
+    subtitle = paste("最近更新日期:", Sys.Date()),
+    title = "Rattle 最近5年每日下载量",
+    caption = " 数据源: http://cran-logs.rstudio.com/ "
+  ) +
+  theme(legend.position = "none", text = element_text(family = "source-han-serif-cn"))
+```
+
 
 ## tikz 图形
 
