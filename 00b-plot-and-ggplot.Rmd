@@ -35,7 +35,7 @@ b = coef(fit)
 
 rattle 下载量时序图
 
-```{r log,fig.width=12,fig.height=6,out.width="100%"}
+```{r log,fig.width=12,fig.height=6,out.width="100%",fig.showtext=TRUE}
 library(ggplot2)
 install.packages(c("cranlogs","ggthemes"))
 library(cranlogs)
