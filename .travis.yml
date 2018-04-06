@@ -37,6 +37,7 @@ before_install:
 
 script:
   - Rscript -e 'bookdown::render_book("index.Rmd", output_format = "all")'
+  - Rscript -e 'bookdown::calibre("_book/bookdown-demo.epub", "mobi")' 
 
 deploy:
   provider: script
