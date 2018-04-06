@@ -29,6 +29,9 @@ source("common.R")
 - [Advanced R 第二版](https://adv-r.hadley.nz/) Hadley Wickham 著
 - [Geocomputation with R](https://geocompr.robinlovelace.net/) Robin Lovelace, Jakub Nowosad, Jannes Muenchow 著
 - [R Markdown: The Definitive Guide](https://bookdown.org/yihui/rmarkdown/) Yihui Xie, J. J. Allaire, Garrett Grolemund 著
+- [bookdown: Authoring Books and Technical Documents with R Markdown](https://bookdown.org/yihui/bookdown/) Yihui Xie 著
+- [blogdown: Creating Websites with R Markdown](https://bookdown.org/yihui/blogdown/) Yihui Xie, Amber Thomas, Alison Presmanes Hill 著
+
 
 # 数学符号说明 {#notations}
 
