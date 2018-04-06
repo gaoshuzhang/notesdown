@@ -4,6 +4,10 @@ Version: 1.0.0
 Authors@R: c(
   person("Xiangyun", "Huang", , "xiangyunfaith@outlook.com", c("aut", "cre"))
   )
+Maintainer: Xiangyun Huang <xiangyunfaith@outlook.com>
+Description: bookdown-chinese
+BugReports: https://github.com/XiangyunHuang/bookdown-chinese/issues
+License: MIT + file LICENSE
 URL: https://github.com/XiangyunHuang/bookdown-chinese
 Depends: 
     R (>= 3.1.0)
@@ -13,3 +17,10 @@ Imports:
     rticles,
     svglite,
     gridExtra
+Remotes: 
+    hadley/emo,
+    hadley/lineprof,
+    hadley/lobstr,
+    tidyverse/ggplot2,
+    leonawicz/mapmate,
+    dgrtwo/gganimate
