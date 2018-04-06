@@ -16,6 +16,12 @@ source("common.R")
 
 # 网站资源
 
+## 博客列表 {#blogger}
+
+- [Eugene Joh 的博客](https://incidental-ideas.org/)
+- [Ilya Kashnitsky 的博客](https://ikashnitsky.github.io/)
+- [Max Woolf 的博客](http://minimaxir.com/)
+- [Yan Holtz 的 ggplot2 图库](https://www.r-graph-gallery.com/)
 
 # 数学符号说明 {#notations}
 

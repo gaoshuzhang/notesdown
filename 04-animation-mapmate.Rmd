@@ -4,9 +4,6 @@
 source("common.R")
 ```
 
-- [Eugene Joh 的博客](https://incidental-ideas.org/)
-- [Ilya Kashnitsky 的博客](https://ikashnitsky.github.io/)
-
 ## JS 动画
 
 ## mapmate
