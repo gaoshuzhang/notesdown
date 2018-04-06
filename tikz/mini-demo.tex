@@ -1,0 +1,14 @@
+\documentclass[tikz]{standalone}
+\usepackage{tikz}
+\begin{document}
+\begin{tikzpicture}[domain=0:4]
+  \draw[very thin,color=gray] (-0.1,-1.1) grid (3.9,3.9);
+  \draw[->] (-0.2,0) -- (4.2,0) node[right] {$x$};
+  \draw[->] (0,-1.2) -- (0,4.2) node[above] {$f(x)$};
+  \draw[color=red]     plot (\x,\x)             node[right] {$f(x) =x$};
+  % \x r 表示弧度
+  \draw[color=blue]    plot (\x,{cos(\x r)})    node[right] {$f(x) = \cos x$};
+  \draw[color=green]   plot (\x,{(\x r)^0.1*sin(\x r)})    node[right] {$f(x) = x^{\frac{1}{10}} \sin x$};  
+  \draw[color=orange]  plot (\x,{0.05*exp(\x)}) node[right] {$f(x) = \frac{1}{20} \mathrm e^x$};
+\end{tikzpicture}
+\end{document}

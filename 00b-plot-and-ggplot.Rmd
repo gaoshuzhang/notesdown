@@ -32,10 +32,9 @@ b = coef(fit)
 ```
 
 
-
 ## tikz 图形
 
-如图 \@ref(fig:latex-tikz) 所示
+如图 \@ref(fig:latex-tikz) 所示，模板存放在 `tikz/tikz2pdf.tex`
 
 ```{r latex-tikz, engine='tikz', out.width='90%', fig.ext=if (knitr:::is_latex_output()) 'pdf' else 'png', fig.cap='tikz 图形', engine.opts = list(template = "tikz/tikz2pdf.tex")}
 \begin{tikzpicture}[scale=.7]
@@ -45,6 +44,17 @@ b = coef(fit)
 \node [below, align=center] at (0,-1) {\large Two\\ lines};
 \end{tikzpicture}
 ```
+
+单独的 tikz 图形
+
+```{r import-tikze-code}
+cat(readLines("tikz/mini-demo.tex", encoding = "UTF-8"), sep = "\n")
+```
+
+```{r mini-tikz-demo}
+knitr::include_graphics(path = "tikz/mini-demo.pdf")
+```
+
 
 ## 位图
 
