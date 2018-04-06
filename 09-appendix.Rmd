@@ -25,8 +25,9 @@ source("common.R")
 
 ## 书单 {#books}
 
-- [Pro Git 中文第二版](https://git-scm.com/book/zh/v2)
-
+- [Pro Git 中文第二版](https://git-scm.com/book/zh/v2) Scott Chacon, Ben Straub 著
+- [Advanced R 第二版](https://adv-r.hadley.nz/) Hadley Wickham 著
+- [Geocomputation with R](https://geocompr.robinlovelace.net/) Robin Lovelace, Jakub Nowosad, Jannes Muenchow 著
 
 # 数学符号说明 {#notations}
 
