@@ -4,7 +4,7 @@
 source("common.R")
 ```
 
-Some _significant_ applications are demonstrated in this chapter.
+- [Eugene Joh 的博客](https://incidental-ideas.org/)
 
 ## JS 动画
 
