@@ -12,7 +12,7 @@ new_session: yes
 
 rmd_files: [
   "index.Rmd",
-  "01-install.Rmd",
+  "01-setup.Rmd",
   "02-base-system.Rmd",
   "03-colors-in-plot.Rmd",
   "04-plot-and-ggplot.Rmd",              
