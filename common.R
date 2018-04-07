@@ -15,7 +15,7 @@ if (!all(c("source-han-sans-cn", "source-han-serif-cn") %in% showtextdb::font_in
   showtextdb::font_install(showtextdb::source_han_serif("CN"));
   showtextdb::font_install(showtextdb::source_han_sans("CN"));
 }
-
+extrafont::font_install("fontcm")
 extrafont::loadfonts()
 
 if(!"xkcd" %in% extrafont::fonts()){
@@ -23,7 +23,6 @@ if(!"xkcd" %in% extrafont::fonts()){
   extrafont::font_import(paths = "~/.fonts",pattern = "[X/x]kcd", prompt = FALSE)
   extrafont::loadfonts()
 }
-
 
 knitr::opts_chunk$set(
   comment = "#>",

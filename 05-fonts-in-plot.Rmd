@@ -1,4 +1,4 @@
-# 字体
+# 字体 {#fonts}
 
 ```{r setup, include = FALSE}
 source("common.R")
