@@ -29,7 +29,7 @@ install.packages("rbokeh", repos = c(deltarho = "http://packages.deltarho.org", 
                  lib = R.home("site-library"))
 ```
 
-```{block2, type='rmdcaution'}
+```{block2, type='rmdwarning'}
 一行命令安装 cran 上所有的 R 包，可千万别这么搞哈
 ```
 
@@ -37,6 +37,8 @@ install.packages("rbokeh", repos = c(deltarho = "http://packages.deltarho.org", 
 install.packages(setdiff(available.packages()[,1],
                          .packages(all.available = TRUE)))
 ```
+
+
 
 - 安装 Bioconductor 上的 R 包
 
@@ -54,16 +56,12 @@ devtools::install_github("bokeh/rbokeh")
 - 依赖问题：主要针对离线安装和源码编译安装
 - 平台问题：有些 R 包只能装在 Linux 操作系统上
 - 软件问题：有些 R 包要求相应 R 软件版本
-- 特定库依赖：如 **RDieHarder** \index{RDieHarder}包就依赖 `libgsl-dev` 和 `libdieharder-dev`库
+- 特定库依赖：如 **RDieHarder** \index{RDieHarder} 包就依赖 `libgsl-dev` 和 `libdieharder-dev` 库
 
 所以我们需要查看以下信息
 
 ```{r}
-Sys.info()
-```
-
-```{r}
-version
+sessionInfo()
 ```
 
 有时候甚至是
@@ -73,7 +71,7 @@ devtools::session_info("showtext")
 ```
 
 ```{block2, type='rmdnote'}
-推荐 `devtools::session_info("包名")` 而不是 `sessionInfo()`，尤其在遇到因为版本不对而带来错误的时候，如 <https://d.cosx.org/d/419765-showtext>
+推荐 `devtools::session_info("package")` 而不是 `sessionInfo()`，尤其在遇到因为版本不对而带来错误的时候，如 <https://d.cosx.org/d/419765-showtext>
 ```
 
 ## 复杂依赖
