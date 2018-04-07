@@ -146,7 +146,7 @@ knitr::include_graphics("figures/ggplot_cm_embed.png")
 tikz 源于 LaTeX 宏包，在 R 语言绘图的世界里，对基础图形有很好的支持，如图 \@ref(fig:tikz-demo)
 先测试一下
 
-```{r test-tikz-device}
+```{r test-tikz-device,fig.showtext=FALSE}
 tikzDevice::tikzTest()
 ```
 
