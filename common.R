@@ -19,10 +19,13 @@ extrafont::font_install("fontcm")
 extrafont::loadfonts()
 
 if(!"xkcd" %in% extrafont::fonts()){
+  if(!file.exists("~/.fonts")) { system("mkdir ~/.fonts") }
   download.file("http://simonsoftware.se/other/xkcd.ttf", dest = "~/.fonts/xkcd.ttf", mode = "wb")
   extrafont::font_import(paths = "~/.fonts",pattern = "[X/x]kcd", prompt = FALSE)
   extrafont::loadfonts()
 }
+extrafont::fonts() # registered with pdfFonts()
+sysfonts::font_families() # List available font families
 
 knitr::opts_chunk$set(
   comment = "#>",

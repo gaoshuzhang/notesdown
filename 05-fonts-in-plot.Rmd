@@ -39,7 +39,7 @@ ggplot(iris, aes(Sepal.Length, Sepal.Width)) +
 
 用 ggplot2 画个简单地图，地图数据在 mapdata 包 [@R-mapdata]，如图 \@ref(fig:map-Fiji-earthquake) 所示
 
-```{r map-Fiji-earthquake, fig.showtext=TRUE,fig.cap="斐济地震带"}
+```{r map-Fiji-earthquake, fig.cap="斐济地震带"}
 library(maps)
 library(mapdata)
 FijiMap <- map_data("worldHires", region = "Fiji")
