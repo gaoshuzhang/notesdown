@@ -42,3 +42,27 @@ pdf(file = 'figures/ggplot_cm.pdf',width = 8,height = 4)
 grid.arrange(p1,p2, nrow = 1, ncol = 2)
 dev.off()
 extrafont::embed_fonts("figures/ggplot_cm.pdf", outfile = "figures/ggplot_cm_embed.pdf")
+
+# tikz 之复杂公式
+library(tikzDevice)
+tf <- file.path(getwd(), "figures/linear.tex")
+tikz(tf, width = 6, height = 5.5, pointsize = 30, standAlone = TRUE)
+x <- rnorm(10)
+y <- x + rnorm(5, sd = 0.25)
+model <- lm(y ~ x)
+rsq <- summary(model)$r.squared
+rsq <- signif(rsq, 4)
+plot(x, y, main = "Hello \\LaTeX!", xlab = "$x$", ylab = "$y$", 
+     sub = "$\\mathcal{N}(\\mathbf{x};\\mu,\\Sigma)$")
+abline(model, col = "red")
+mtext(paste("Linear model: $R^{2}=", rsq, "$"), line = 0.5)
+legend("bottomright", legend = paste0("$y = ", 
+                                      round(coef(model)[2], 3),
+                                      "x +", 
+                                      round(coef(model)[1], 3), 
+                                      "$"
+), 
+bty = "n")
+
+dev.off()
+tinytex::latexmk(file = "figures/linear.tex")

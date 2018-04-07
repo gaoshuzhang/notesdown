@@ -143,16 +143,23 @@ knitr::include_graphics("figures/ggplot_cm_embed.png")
 
 ## tikzDevice
 
-tikz 源于 LaTeX 宏包，在 R 语言绘图的世界里，对基础图形有很好的支持，如图 \@ref(fig:tikz-demo)
+tikz 源于 LaTeX 宏包，在 R 语言绘图的世界里，对基础图形有很好的支持，如图 `r ifelse(knitr::is_html_output(),'\\@ref(fig:tikz-demo-png)','\\@ref(fig:tikz-demo)') `
 先测试一下
 
-```{r test-tikz-device,fig.showtext=FALSE}
+```{r test-tikz-device}
 tikzDevice::tikzTest()
 ```
 
 坐标轴标签，标题，图例等位置都支持数学公式
 
-```{r tikz-demo, dev='tikz', fig.cap="线性模型",fig.showtext=FALSE}
+```{r tikz-demo, eval = knitr::is_latex_output(), fig.cap="线性模型",echo=FALSE}
+knitr::include_graphics(path = "figures/linear.pdf")
+```
+```{r tikz-demo-png, eval = knitr::is_html_output(), fig.cap="线性模型",echo=FALSE}
+knitr::include_graphics(path = "figures/linear.png")
+```
+
+```r
 x <- rnorm(10)
 y <- x + rnorm(5, sd = 0.25)
 model <- lm(y ~ x)
@@ -229,10 +236,10 @@ par(op)
 # tinytex::latexmk(file = "figures/binormal.tex")
 ```
 
-```{r plot3d-tikz, eval = knitr::is_latex_output(),echo=FALSE}
+```{r plot3d-tikz, eval = knitr::is_latex_output(), fig.cap="tikz 复杂公式",echo=FALSE}
 knitr::include_graphics(path = "figures/binormal.pdf")
 ```
-```{r plot3d-tikz-png, eval = knitr::is_html_output(),echo=FALSE}
+```{r plot3d-tikz-png, eval = knitr::is_html_output(), fig.cap="tikz 复杂公式",echo=FALSE}
 knitr::include_graphics(path = "figures/binormal.png")
 ```
 
