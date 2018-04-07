@@ -1,0 +1,157 @@
+Octave is now configured for x86_64-pc-linux-gnu
+
+  Source directory:              .
+  Installation prefix:           /usr/local
+  C compiler:                    gcc -std=gnu11  -pthread -fopenmp  -Wall -W -Wformat -Wpointer-arith -Wmissing-prototypes -Wstrict-prototypes -Wwrite-strings -Wcast-align -Wcast-qual -g -O2
+  C++ compiler:                  g++ -std=gnu++11  -pthread -fopenmp  -Wall -W -Wold-style-cast -Wformat -Wpointer-arith -Wwrite-strings -Wcast-align -Wcast-qual -g -O2
+  Fortran compiler:              gfortran -g -O2
+  Fortran libraries:              -L/usr/lib/gcc/x86_64-redhat-linux/4.8.5 -L/usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../../../lib64 -L/lib/../lib64 -L/usr/lib/../lib64 -L/usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../.. -lgfortran -lm -lquadmath
+  Lex libraries:                 
+  LIBS:                          -lutil -lm  
+  Extra LDFLAGS:                 
+
+  AMD CPPFLAGS:                  
+  AMD LDFLAGS:                   
+  AMD libraries:                 -lamd
+  ARPACK CPPFLAGS:               
+  ARPACK LDFLAGS:                
+  ARPACK libraries:              
+  BLAS libraries:                -lblas
+  BZ2 CPPFLAGS:                  
+  BZ2 LDFLAGS:                   
+  BZ2 libraries:                 -lbz2
+  CAMD CPPFLAGS:                 
+  CAMD LDFLAGS:                  
+  CAMD libraries:                -lcamd
+  CARBON libraries:              
+  CCOLAMD CPPFLAGS:              
+  CCOLAMD LDFLAGS:               
+  CCOLAMD libraries:             -lccolamd
+  CHOLMOD CPPFLAGS:              
+  CHOLMOD LDFLAGS:               
+  CHOLMOD libraries:             -lcholmod
+  COLAMD CPPFLAGS:               
+  COLAMD LDFLAGS:                
+  COLAMD libraries:              -lcolamd
+  CURL CPPFLAGS:                 
+  CURL LDFLAGS:                  
+  CURL libraries:                -lcurl
+  CXSPARSE CPPFLAGS:             
+  CXSPARSE LDFLAGS:              
+  CXSPARSE libraries:            -lcxsparse
+  DL libraries:                  -ldl
+  FFTW3 CPPFLAGS:                
+  FFTW3 LDFLAGS:                 
+  FFTW3 libraries:               -lfftw3_threads -lfftw3 -lm  
+  FFTW3F CPPFLAGS:               
+  FFTW3F LDFLAGS:                
+  FFTW3F libraries:              -lfftw3f_threads -lfftw3f -lm  
+  FLTK CPPFLAGS:                 
+  FLTK LDFLAGS:                  -lfltk_gl
+  FLTK libraries:                
+  fontconfig CPPFLAGS:           -I/usr/include/freetype2  
+  fontconfig libraries:          -lfontconfig -lfreetype  
+  FreeType2 CPPFLAGS:            -I/usr/include/freetype2  
+  FreeType2 libraries:           -lfreetype  
+  GLPK CPPFLAGS:                 
+  GLPK LDFLAGS:                  
+  GLPK libraries:                -lglpk
+  HDF5 CPPFLAGS:                 
+  HDF5 LDFLAGS:                  
+  HDF5 libraries:                -lhdf5
+  Java home:                     /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.161-0.b14.el7_4.x86_64
+  Java JVM path:                 /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.161-0.b14.el7_4.x86_64/jre/lib/amd64/server
+  Java CPPFLAGS:                 -I/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.161-0.b14.el7_4.x86_64/include -I/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.161-0.b14.el7_4.x86_64/include/linux
+  Java libraries:                
+  LAPACK libraries:              -llapack
+  LLVM CPPFLAGS:                 
+  LLVM LDFLAGS:                  
+  LLVM libraries:                
+  Magick++ CPPFLAGS:             -I/usr/include/GraphicsMagick  
+  Magick++ LDFLAGS:              
+  Magick++ libraries:            -lGraphicsMagick++ -lGraphicsMagick  
+  OPENGL libraries:              -lGL -lGLU
+  OSMesa CPPFLAGS:               
+  OSMesa LDFLAGS:                
+  OSMesa libraries:              -lOSMesa
+  PCRE CPPFLAGS:                 
+  PCRE libraries:                -lpcre
+  PortAudio CPPFLAGS:            -I/usr/include/alsa  
+  PortAudio LDFLAGS:             
+  PortAudio libraries:           -lportaudio -lm -lpthread -lasound  
+  PTHREAD flags:                 -pthread
+  PTHREAD libraries:             
+  QHULL CPPFLAGS:                
+  QHULL LDFLAGS:                 
+  QHULL libraries:               -lqhull -lm  
+  QRUPDATE CPPFLAGS:             
+  QRUPDATE LDFLAGS:              
+  QRUPDATE libraries:            -lqrupdate
+  Qt CPPFLAGS:                   -I/usr/include/QtCore -I/usr/include/QtGui -I/usr/include/QtNetwork -I/usr/include/QtOpenGL  
+  Qt LDFLAGS:                    
+  Qt libraries:                  -lQtNetwork -lQtOpenGL -lQtGui -lQtCore   -lqscintilla2
+  Qt moc:                        moc-qt4 
+  Qt uic:                        uic-qt4 
+  Qt rcc:                        rcc 
+  Qt lrelease:                   lrelease-qt4 
+  READLINE libraries:            -lreadline
+  Sndfile CPPFLAGS:              
+  Sndfile LDFLAGS:               
+  Sndfile libraries:             -lsndfile  
+  SuiteSparse config libraries:  -lsuitesparseconfig
+  TERM libraries:                -lncurses
+  UMFPACK CPPFLAGS:              
+  UMFPACK LDFLAGS:               
+  UMFPACK libraries:             -lumfpack
+  X11 include flags:             
+  X11 libraries:                 -lX11
+  Z CPPFLAGS:                    
+  Z LDFLAGS:                     
+  Z libraries:                   -lz
+
+  Default pager:                 less
+  gnuplot:                       gnuplot
+
+  Build Octave Qt GUI:                yes
+  JIT compiler for loops:             no
+  Build Java interface:               yes
+  Do internal array bounds checking:  no
+  Build static libraries:             no
+  Build shared libraries:             yes
+  Dynamic Linking:                    yes (dlopen)
+  Include support for GNU readline:   yes
+  64-bit array dims and indexing:     no
+  OpenMP SMP multithreading:          yes
+  Build cross tools:                  no
+  Build docs:                         no
+  Truncate intermediate FP results:   yes
+
+configure: WARNING: 
+
+I didn't find makeinfo, which is required for reading documentation.
+You may install a copy later for Octave to use.
+
+configure: WARNING: 
+
+I didn't find texi2dvi, but it's only a problem if you need to
+reconstruct the DVI version of the manual
+
+configure: WARNING: 
+
+I didn't find icotool, but it's only a problem if you need to
+reconstruct octave-logo.ico, which is the case if you're building from
+VCS sources.
+
+configure: WARNING: 
+
+I didn't find rsvg-convert, but it's only a problem if you need to
+reconstruct octave-logo-*.png, which is the case if you're building
+from VCS sources.
+
+configure: WARNING: ARPACK not found.  The eigs function will be disabled.
+configure: WARNING: building documentation disabled because makeinfo was not found; make dist will fail
+configure: WARNING: JAVA_HOME environment variable not initialized.  Auto-detection will proceed but is unreliable.
+configure: 
+configure: NOTE: Libraries or auxiliary programs may be skipped if they are
+configure: NOTE: not found OR if they are missing required features on your
+configure: NOTE: system. 

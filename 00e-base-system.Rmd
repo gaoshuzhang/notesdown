@@ -93,3 +93,63 @@ for(nu in nus) lines(x, besselI(x, nu = nu), col = nu + 2)
 legend(0, 6, legend = paste("nu=", nus), col = nus + 2, lwd = 1)
 ```
 
+
+## 抽样分布 {#distribution}
+
+多元t分布函数
+
+The multivariate $t$ distribution (MVT) is given by
+$$T(\mathbf{a},\mathbf{b},\Sigma,\nu)=\frac{2^{1-\frac{\nu}{2}}}{\Gamma(\frac{\nu}{2}) } \int_{0}^{\infty} s^{\nu-1}e^{-\frac{s^2}{2}} \Phi(\frac{s\mathbf{a}}{\sqrt{\nu}},\frac{s\mathbf{b}}{\sqrt{\nu}},\Sigma)ds $$
+
+multivariate normal distribution function (MVN) 
+$$ \Phi(\mathbf{a},\mathbf{b},\Sigma)=\frac{1}{\sqrt{|\Sigma|(2\pi)^m}} \int_{a_1}^{b_1}\!\int_{a_2}^{b_2}\!\cdots\!\int_{a_m}^{b_m} e^{-\frac{1}{2}x^\top\Sigma^{-1}x}dx$$
+$x=(x_1,x_2,\dots,x_m)^\top,-\infty \le a_i \le b_i \le \infty$ for all $i,$ and $\Sigma$ is a positive semi-definite symmetric $m \times m$ matrix
+
+多元$t$分布分位数计算
+
+```r
+library(mvtnorm)
+library(matrixcalc)
+n <- c(26, 24, 20, 33, 32)
+V <- diag(1 / n)
+df <- 130
+C <- matrix(c(
+  1, 1, 1, 0, 0, -1, 0, 0, 1, 0,
+  0, -1, 0, 0, 1, 0, 0, 0, -1, -1,
+  0, 0, -1, 0, 0
+), ncol = 5)
+cv <- C %*% V %*% t(C) ## covariance matrix
+dv <- t(1 / sqrt(diag(cv)))
+cr <- cv * (t(dv) %*% dv) ## correlation matrix
+delta <- rep(0, 5)
+Tn <- qmvt(0.95,
+  df = df, delta = delta, corr = cr,
+  abseps = 0.0001, maxpts = 100000, tail = "both"
+)
+Tn
+```
+
+计算多元正态分布的概率
+
+```r
+sigma <- read.csv(file = "data/sigma.csv", header = F, sep = ",")
+mat <- matrix(0, nrow = nrow(sigma), ncol = ncol(sigma))
+sigma <- as.matrix(sigma)
+attributes(sigma) <- attributes(mat)
+# str(sigma)
+# is.symmetric.matrix(sigma)
+# is.positive.definite(sigma)
+m <- nrow(sigma)
+Fn <- pmvnorm(
+  lower = rep(-Inf, m), upper = rep(0, m),
+  mean = rep(0, m), sigma = sigma
+)
+Fn
+```
+
+## 统计计算 {#stats-computing}
+
+
+## 数值优化 {#optimation}
+
+
