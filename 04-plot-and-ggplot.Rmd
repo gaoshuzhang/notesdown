@@ -9,6 +9,10 @@ Pkgs <- c(
 if (length(setdiff(Pkgs, .packages(TRUE))) > 0) {
   install.packages(setdiff(Pkgs, .packages(TRUE)))
 }
+library(showtext)
+# Install Source Han Sans/Serif font (by default Simplified Chinese)
+font_install(source_han_serif("CN")) # 思源宋体
+font_install(source_han_sans("CN"))  # 思源黑体
 ```
 
 

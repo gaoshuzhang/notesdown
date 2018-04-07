@@ -2,10 +2,12 @@
 
 ```{r setup, include = FALSE}
 source("common.R")
+Pkgs <- c(
+  "maps", "mapdata", "mapproj", "xkcd", "extrafont", "fontcm"
+)
+if (length(setdiff(Pkgs, .packages(TRUE))) > 0) 
+  install.packages(setdiff(Pkgs, .packages(TRUE)))
 library(showtext)
-# Install Source Han Sans/Serif font (by default Simplified Chinese)
-font_install(source_han_serif("CN")) # 思源宋体
-font_install(source_han_sans("CN"))  # 思源黑体
 ```
 
 字体设置包括自定义中文字体、英文字体和数学公式。
@@ -36,13 +38,7 @@ ggplot(iris, aes(Sepal.Length, Sepal.Width)) +
     )
 ```
 
-用 ggplot2 画个简单地图，地图数据在 mapdata 包 [@R-mapdata]
-
-```{r install-spatial, eval = (!"mapproj" %in% .packages(TRUE))}
-install.packages(c("maps", "mapdata", "mapproj"), dependencies = TRUE)
-```
-
-如图 \@ref(fig:map-Fiji-earthquake) 所示
+用 ggplot2 画个简单地图，地图数据在 mapdata 包 [@R-mapdata]，如图 \@ref(fig:map-Fiji-earthquake) 所示
 
 ```{r map-Fiji-earthquake, fig.showtext=TRUE,fig.cap="斐济地震带"}
 library(maps)
@@ -90,19 +86,12 @@ par(op)
 
 ## xkcd
 
-这篇文章主要使用 ggplot2 包[@Wickham2016]绘图，为了好玩我们还使用 xkcd 字体，先下载和加载 xkcd 包[@R-xkcd]，它提供一个 gg 风格的图层`theme_xkcd()`
-
-```{r xkcd-setup, eval=(!"xkcd" %in% .packages(TRUE))}
-install.packages("xkcd",dependencies = TRUE)
-```
-
-下载和注册 xkcd 字体
+这篇文章主要使用 ggplot2 包[@Wickham2016]绘图，为了好玩我们还使用 xkcd 字体，先下载和加载 xkcd 包[@R-xkcd]，它提供一个 gg 风格的图层`theme_xkcd()`，下载和注册 xkcd 字体
 
 ```{r download-xkcd, eval= (!'xkcd' %in% extrafont::fonts())}
 download.file("http://simonsoftware.se/other/xkcd.ttf",
   dest = "xkcd.ttf", mode = "wb"
 )
-system("mkdir ~/.fonts")
 system("cp xkcd.ttf ~/.fonts")
 library(extrafont)
 font_import(pattern = "[X/x]kcd", prompt = FALSE)
@@ -134,10 +123,8 @@ knitr::include_graphics("figures/xkcd_embed.pdf")
 
 安装 fontcm 包[@R-fontcm]处理数学公式，下载 fontcm 包^[<https://github.com/wch/fontcm>] 和相关字体
 
-```{r download-fontcm, eval=(!"fontcm" %in% .packages(TRUE))}
+```{r download-fontcm}
 library(extrafont)
-install.packages("fontcm",dependencies = TRUE)
-# 或 font_install('fontcm') 
 loadfonts() # 加载字体
 ```
 
@@ -188,11 +175,6 @@ knitr::include_graphics("figures/ggplot_cm_embed.png")
 ## tikzDevice
 
 tikz 源于 LaTeX 宏包，在 R 语言绘图的世界里，对基础图形有很好的支持，如图 \@ref(fig:tikz-demo)
-
-```{r install-tikzDevice, eval = (!"tikzDevice" %in% .packages(TRUE))}
-install.packages("tikzDevice")
-```
-
 先测试一下
 
 ```{r test-tikz-device}
@@ -221,7 +203,6 @@ legend("bottomright", legend = paste0("$y = ",
 ```
 
 虽然复杂图片也可直接用 tikz 制作但是，尺寸等细节不好调整（我还没找到合适的方法），比较合适的做法可能是，独立制作图，然后作为图片插入，以一个颇具复杂度的图片为例，如图 \@ref(fig:plot3d-tikz)
-
 
 ```{r plot3d-tikz, dev='tikz',fig.cap="tikz 之复杂公式", fig.asp = 0.85}
 # 代码来自  http://www.ejwagenmakers.com/misc/Plotting_3d_in_R.pdf
