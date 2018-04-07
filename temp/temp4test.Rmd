@@ -7,7 +7,43 @@ output:
 
 ```{r setup, include=FALSE}
 source(file = "../common.R")
+knitr::opts_chunk$set(engine.path = list(
+  octave = '/usr/bin/octave-cli',
+  python = '/usr/bin/python'
+))
 ```
+
+ standard normal distribution (mean = 0, standard deviation = 1)
+
+```{octave}
+stdnormal_rnd(1,5)
+```
+
+$\mu = 2, \sigma = 4$ standard deviation sigma
+
+```{octave}
+%% copy from https://stackoverflow.com/questions/13735096/python-vs-octave-random-generator
+function state = mtstate(seed)
+state = uint32(zeros(625,1));
+state(1) = uint32(seed);
+for i=1:623,
+   tmp = uint64(1812433253)*uint64(bitxor(state(i),bitshift(state(i),-30)))+i;
+   state(i+1) = uint32(bitand(tmp,uint64(intmax('uint32'))));
+end
+state(625) = 1;
+end
+
+rand('state',mtstate(4));
+rand(1,5)
+rand('state',mtstate(4));
+rand(1,5)
+```
+
+
+```{python}
+help('modules')
+```
+
 
 ```{r tikz-demo, dev='tikz', fig.cap="Linear",fig.showtext=FALSE}
 x <- rnorm(10)

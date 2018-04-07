@@ -23,6 +23,7 @@ addons:
       - libdieharder-dev
       - libpoppler-cpp-dev
       - libv8-3.14-dev
+      - octave
 
 before_install:
   - curl -o ~/.fonts/Inconsolata-Bold.ttf https://raw.githubusercontent.com/google/fonts/master/ofl/inconsolata/Inconsolata-Bold.ttf 

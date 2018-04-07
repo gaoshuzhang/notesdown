@@ -38,8 +38,13 @@ knitr::opts_chunk$set(
   fig.width = 6,
   # fig.showtext = TRUE, # too danger
   fig.asp = 0.618,  # 1 / phi
-  fig.show = "hold"
+  fig.show = "hold",
+  engine.path = list(
+    octave = '/usr/bin/octave-cli',
+    python = '/usr/bin/python'
+  )
 )
+
 # library(knitr)
 # knitr::knit_hooks$set(optipng = hook_optipng, pdfcrop = hook_pdfcrop)
 library(knitr)
