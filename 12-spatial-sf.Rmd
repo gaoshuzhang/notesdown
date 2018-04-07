@@ -12,3 +12,4 @@ Here is a review of existing methods.
 ## sf
 
 
+- Intro to Geospatial Data with R <http://www.datacarpentry.org/r-raster-vector-geospatial/>

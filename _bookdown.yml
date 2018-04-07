@@ -12,23 +12,23 @@ new_session: yes
 
 rmd_files: [
   "index.Rmd",
-  "00a-colors-in-plot.Rmd",
-  "00b-plot-and-ggplot.Rmd",
-
-  "00c-fonts-in-plot.Rmd",
-  "00d-install.Rmd",
-
-  "01-mcmc-rstan.Rmd",
-  "02-spatial-sf.Rmd",
-  "03-network-igraph.Rmd",
-
-  "04-animation-mapmate.Rmd",
-  "05-spatio-temporal-visualization.Rmd",
-
-  "06-generalized-linear-models.Rmd",
-  "07-mixed-models.Rmd",
-  "08-generalized-additive-models.Rmd",
-
-  "09-appendix.Rmd",
-  "10-references.Rmd",
+  "01-install.Rmd",
+  "02-base-system.Rmd",
+  "03-colors-in-plot.Rmd",
+  "04-plot-and-ggplot.Rmd",              
+  "05-fonts-in-plot.Rmd",
+  "06-optimation.Rmd",  
+  "07-statistical-computing.Rmd",         
+  
+  "10-mcmc-rstan.Rmd", 
+  
+  "12-spatial-sf.Rmd",                    
+  "13-network-igraph.Rmd",               
+  "14-animation-mapmate.Rmd",             
+  "15-spatio-temporal-visualization.Rmd",
+  "16-generalized-linear-models.Rmd",     
+  "17-mixed-models.Rmd",                 
+  "18-generalized-additive-models.Rmd",   
+  "19-appendix.Rmd",                     
+  "20-references.Rmd",
 ]
