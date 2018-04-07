@@ -1,5 +1,9 @@
 # R 语言基础 {#base-system}
 
+```{r setup, include = FALSE}
+source("common.R")
+```
+
 ## 基本运算 {#math-operator}
 
 - 阶乘 $n! = 1\times 2\times 3\cdots n$ 
@@ -16,6 +20,7 @@ $C_{5}^{3} = \frac{5 \times 4 \times 3}{3 \times 2 \times 1}$
 ```{r}
 choose(5,3)
 ```
+
 - 伽马函数
 
 $\Gamma(x) = \int_{0}^{\infty} t^{x-1}\exp(-t)dt$
