@@ -1,7 +1,29 @@
 library(methods)
-
 set.seed(2018)
 options(digits = 3)
+
+Pkgs <- c(
+  "showtext", "sysfonts", "showtextdb",
+  "fontcm",
+  "tikzDevice", "filehash", "png",
+  "xkcd", "extrafontdb", "Rttf2pt1","extrafont"
+)
+if (length(setdiff(Pkgs, .packages(TRUE))) > 0) 
+  install.packages(setdiff(Pkgs, .packages(TRUE)))
+
+if (!all(c("source-han-sans-cn", "source-han-serif-cn") %in% showtextdb::font_installed())) {
+  showtextdb::font_install(showtextdb::source_han_serif("CN"));
+  showtextdb::font_install(showtextdb::source_han_sans("CN"));
+}
+
+extrafont::loadfonts()
+
+if(!"xkcd" %in% extrafont::fonts()){
+  download.file("http://simonsoftware.se/other/xkcd.ttf", dest = "~/.fonts/xkcd.ttf", mode = "wb")
+  extrafont::font_import(paths = "~/.fonts",pattern = "[X/x]kcd", prompt = FALSE)
+  extrafont::loadfonts()
+}
+
 
 knitr::opts_chunk$set(
   comment = "#>",
@@ -12,6 +34,7 @@ knitr::opts_chunk$set(
   out.width = "70%",
   fig.align = 'center',
   fig.width = 6,
+  fig.showtext = TRUE,
   fig.asp = 0.618,  # 1 / phi
   fig.show = "hold"
 )

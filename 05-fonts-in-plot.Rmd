@@ -3,11 +3,10 @@
 ```{r setup, include = FALSE}
 source("common.R")
 Pkgs <- c(
-  "maps", "mapdata", "mapproj", "xkcd", "extrafont", "fontcm"
+  "maps", "mapdata", "mapproj"
 )
 if (length(setdiff(Pkgs, .packages(TRUE))) > 0) 
   install.packages(setdiff(Pkgs, .packages(TRUE)))
-library(showtext)
 ```
 
 字体设置包括自定义中文字体、英文字体和数学公式。
@@ -16,13 +15,13 @@ library(showtext)
 
 下载和安装 showtext 包[@Qiu2015]，下载并加载思源字体
 
-```{r font-setup, eval= (!"showtext" %in% .packages(TRUE))}
+```r
 install.packages("showtext",dependencies = TRUE)
 ```
 
 showtext 包可以调用系统字体，图\@ref(fig:demo-ggplot2)使用5号思源宋体，英文和数字使用 serif 字体。详细的使用文档可以看 [showtext 的开发页面](https://github.com/yixuan/showtext)
 
-```{r demo-ggplot2, fig.showtext = TRUE,fig.cap="showtext包处理图里的中文"}
+```{r demo-ggplot2, fig.cap="showtext包处理图里的中文"}
 library(ggplot2)
 ggplot(iris, aes(Sepal.Length, Sepal.Width)) +
   geom_point(aes(colour = Species)) +
@@ -86,29 +85,13 @@ par(op)
 
 ## xkcd
 
-这篇文章主要使用 ggplot2 包[@Wickham2016]绘图，为了好玩我们还使用 xkcd 字体，先下载和加载 xkcd 包[@R-xkcd]，它提供一个 gg 风格的图层`theme_xkcd()`，下载和注册 xkcd 字体
-
-```{r download-xkcd, eval= (!'xkcd' %in% extrafont::fonts())}
-download.file("http://simonsoftware.se/other/xkcd.ttf",
-  dest = "xkcd.ttf", mode = "wb"
-)
-system("cp xkcd.ttf ~/.fonts")
-library(extrafont)
-font_import(pattern = "[X/x]kcd", prompt = FALSE)
-if (.Platform$OS.type != "unix") {
-  ## Register fonts for Windows bitmap output
-  loadfonts(device = "win")
-} else {
-  loadfonts() # 加载字体
-}
-fonts() # 查看可用的字体
-```
-
-图 `r ifelse(knitr::is_html_output(),'\\@ref(fig:xkcd-demo)','\\@ref(fig:xkcd-embed)') ` 是一个简单使用 xkcd 字体的例子
+这篇文章主要使用 ggplot2 包[@Wickham2016]绘图，为了好玩我们还使用 xkcd 字体，先下载和加载 xkcd 包[@R-xkcd]，它提供一个 gg 风格的图层`theme_xkcd()`，图 `r ifelse(knitr::is_html_output(),'\\@ref(fig:xkcd-demo)','\\@ref(fig:xkcd-embed)') ` 是一个简单使用 xkcd 字体的例子
 
 ```{r xkcd-demo, fig.cap = "xkcd 风的图", eval = knitr::is_html_output()}
-# pdf(file = 'figures/xkcd.pdf',width = 6,height = 4)
+library(ggplot2)
+library(extrafont)
 library(xkcd)
+# pdf(file = 'figures/xkcd.pdf',width = 6,height = 4)
 ggplot(aes(mpg, wt), data = mtcars) + geom_point() +
     theme_xkcd()
 # dev.off()
@@ -121,14 +104,7 @@ knitr::include_graphics("figures/xkcd_embed.pdf")
 
 ## fontcm
 
-安装 fontcm 包[@R-fontcm]处理数学公式，下载 fontcm 包^[<https://github.com/wch/fontcm>] 和相关字体
-
-```{r download-fontcm}
-library(extrafont)
-loadfonts() # 加载字体
-```
-
-使用 fontcm 包，一个小 demo 如下
+安装 fontcm 包[@R-fontcm]处理数学公式，下载 fontcm 包^[<https://github.com/wch/fontcm>] 和相关字体，使用 fontcm 包，一个小 demo 如下
 
 ```r
 library(fontcm)
@@ -166,7 +142,7 @@ dev.off()
 
 ```{r embed,eval=FALSE}
 # Embed the fonts
-embed_fonts("figures/ggplot_cm.pdf", outfile = "figures/ggplot_cm_embed.pdf")
+extrafont::embed_fonts("figures/ggplot_cm.pdf", outfile = "figures/ggplot_cm_embed.pdf")
 ```
 ```{r fontcm-ggplot, echo=FALSE,fig.cap="fontcm 处理数学公式"}
 knitr::include_graphics("figures/ggplot_cm_embed.png")
