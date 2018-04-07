@@ -4,7 +4,7 @@
 source("common.R")
 Pkgs <- c(
   "showtext", "cranlogs", "ggthemes", "webp", "rsvg",
-  "pdftools", "magick", "tikzDevice"
+  "pdftools", "magick"
 )
 if (length(setdiff(Pkgs, .packages(TRUE))) > 0) {
   install.packages(setdiff(Pkgs, .packages(TRUE)))
