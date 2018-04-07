@@ -131,7 +131,7 @@ grid.arrange(p1,p2, nrow = 1, ncol = 2)
 
 使用 ghostscript 嵌入数学字体，最终效果如图\@ref(fig:fontcm-ggplot)所示，
 
-```{r embed,eval=FALSE}
+```{r embed-fonts,eval=FALSE}
 # Embed the fonts
 extrafont::embed_fonts("figures/ggplot_cm.pdf", outfile = "figures/ggplot_cm_embed.pdf")
 ```
@@ -150,7 +150,7 @@ tikzDevice::tikzTest()
 
 坐标轴标签，标题，图例等位置都支持数学公式
 
-```{r tikz-demo, dev='tikz', fig.cap="线性模型",fig.showtext=FALSE}
+```{r tikz-demo, dev='tikz', fig.cap="线性模型"}
 x <- rnorm(10)
 y <- x + rnorm(5, sd = 0.25)
 model <- lm(y ~ x)
@@ -171,7 +171,7 @@ legend("bottomright", legend = paste0("$y = ",
 
 虽然复杂图片也可直接用 tikz 制作但是，尺寸等细节不好调整（我还没找到合适的方法），比较合适的做法可能是，独立制作图，然后作为图片插入，以一个颇具复杂度的图片为例，如图 \@ref(fig:plot3d-tikz)
 
-```{r plot3d-tikz, dev='tikz',fig.cap="tikz 之复杂公式", fig.asp = 0.85,fig.showtext=FALSE}
+```{r plot3d-tikz, dev='tikz',fig.cap="tikz 之复杂公式", fig.asp = 0.85}
 # 代码来自  http://www.ejwagenmakers.com/misc/Plotting_3d_in_R.pdf
 # 3-D plots
 mu1 <- 0 # setting the expected value of x1
