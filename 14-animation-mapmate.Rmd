@@ -1,4 +1,4 @@
-# 动画
+# 动画 {#animotion}
 
 ```{r setup, include = FALSE}
 source("common.R")

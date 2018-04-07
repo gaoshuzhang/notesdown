@@ -13,6 +13,69 @@ source("common.R")
 3. 环境限制：CentOS 6/7 或者红帽系统，自带的R版本比较落后
 4. 微软提供的一套 MSR （这里不需要编译）
 
+## 安装 R 包
+
+
+- 从指定的镜像站点安装（源头）
+
+```r
+install.packages("ggplot2",repos = "https://mirrors.tuna.tsinghua.edu.cn/CRAN/")
+```
+
+- 再指定安装的位置（本地）
+
+```r
+install.packages("rbokeh", repos = c(deltarho = "http://packages.deltarho.org", getOption("repos")),
+                 lib = R.home("site-library"))
+```
+
+```{block2, type='rmdcaution'}
+一行命令安装 cran 上所有的 R 包，可千万别这么搞哈
+```
+
+```r
+install.packages(setdiff(available.packages()[,1],
+                         .packages(all.available = TRUE)))
+```
+
+- 安装 Bioconductor 上的 R 包
+
+```r
+source("https://bioconductor.org/biocLite.R")
+BiocInstaller::biocLite("ggtree")
+```
+
+- 安装Github上的R包
+
+```r
+devtools::install_github("bokeh/rbokeh")
+```
+
+- 依赖问题：主要针对离线安装和源码编译安装
+- 平台问题：有些 R 包只能装在 Linux 操作系统上
+- 软件问题：有些 R 包要求相应 R 软件版本
+- 特定库依赖：如 **RDieHarder** \index{RDieHarder}包就依赖 `libgsl-dev` 和 `libdieharder-dev`库
+
+所以我们需要查看以下信息
+
+```{r}
+Sys.info()
+```
+
+```{r}
+version
+```
+
+有时候甚至是
+
+```{r}
+devtools::session_info("showtext")
+```
+
+```{block2, type='rmdnote'}
+推荐 `devtools::session_info("包名")` 而不是 `sessionInfo()`，尤其在遇到因为版本不对而带来错误的时候，如 <https://d.cosx.org/d/419765-showtext>
+```
+
 ## 复杂依赖
 
 ### RDieHarder

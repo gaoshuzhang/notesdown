@@ -1,5 +1,9 @@
 # 统计计算 {#stats-computing}
 
+```{r setup, include=FALSE}
+source("common.R")
+```
+
 ## 抽样分布 {#distribution}
 
 多元t分布函数
