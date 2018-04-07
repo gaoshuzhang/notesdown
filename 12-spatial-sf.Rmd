@@ -1,0 +1,15 @@
+# 空间数据 {#spatial}
+
+```{r setup, include = FALSE}
+source("common.R")
+```
+
+## 分析与可视化
+
+Here is a review of existing methods.
+
+
+## sf
+
+
+- Intro to Geospatial Data with R <http://www.datacarpentry.org/r-raster-vector-geospatial/>

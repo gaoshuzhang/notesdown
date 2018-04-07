@@ -1,0 +1,55 @@
+\cleardoublepage 
+
+# (APPENDIX) 附录 {-}
+
+```{r setup, include = FALSE}
+source("common.R")
+```
+
+# 编译 C++ 文件
+
+如何充分利用 Rcpp 包
+
+
+# R 历史
+
+
+# 网站资源
+
+## 博客列表 {#blogger}
+
+- [Eugene Joh 的博客](https://incidental-ideas.org/)
+- [Ilya Kashnitsky 的博客](https://ikashnitsky.github.io/)
+- [Max Woolf 的博客](http://minimaxir.com/)
+- [Yan Holtz 的 ggplot2 图库](https://www.r-graph-gallery.com/)
+
+- [Jianghao Wang (王江浩)](https://jianghao.github.io)
+
+## 书单 {#books}
+
+- [Pro Git 中文第二版](https://git-scm.com/book/zh/v2) Scott Chacon, Ben Straub 著
+- [Advanced R 第二版](https://adv-r.hadley.nz/) Hadley Wickham 著
+- [Geocomputation with R](https://geocompr.robinlovelace.net/) Robin Lovelace, Jakub Nowosad, Jannes Muenchow 著
+- [R Markdown: The Definitive Guide](https://bookdown.org/yihui/rmarkdown/) Yihui Xie, J. J. Allaire, Garrett Grolemund 著
+- [bookdown: Authoring Books and Technical Documents with R Markdown](https://bookdown.org/yihui/bookdown/) Yihui Xie 著
+- [blogdown: Creating Websites with R Markdown](https://bookdown.org/yihui/blogdown/) Yihui Xie, Amber Thomas, Alison Presmanes Hill 著
+- [R: A Language and Environment for Statistical Computing](https://xiangyun.netlify.com/pdf/refman.pdf) The R Core Team 著
+- [LaTeX2e unofficial reference manual](http://tug.ctan.org/tex-archive/info/latex2e-help-texinfo/latex2e.html) [pdf 版](https://xiangyun.netlify.com/pdf/latex2e.pdf)
+
+设个目标，锻炼一下编码能力，关于统计计算和可视化尽可能提供两个方案，至少包含基础 R 包的实现
+
+```{r base-r}
+Pkgs <- sapply(list.files(R.home("library")), function(x)
+  packageDescription(pkg = x, fields = "Priority"))
+names(Pkgs[Pkgs == "base" & !is.na(Pkgs)])
+```
+
+
+# 数学符号说明 {#notations}
+
+- $\mathcal{S,P,G}$
+- $S \not= \varnothing$
+- $\mathbb{R,C},\mathscr{P,F,D,A,B,C}$
+- $\mathbf{A,B,C},\mathsf{A,B,C},\mathit{A,B,C}$
+- $\mathrm{A,B,C}$ 
+- $\mathfrak{A,B,C}$

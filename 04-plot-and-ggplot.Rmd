@@ -1,0 +1,163 @@
+# 绘图 {#plot}
+
+```{r setup, include = FALSE}
+source("common.R")
+Pkgs <- c(
+  "showtext", "cranlogs", "ggthemes", "webp", "rsvg",
+  "pdftools", "magick", "tikzDevice"
+)
+if (length(setdiff(Pkgs, .packages(TRUE))) > 0) {
+  install.packages(setdiff(Pkgs, .packages(TRUE)))
+}
+```
+
+
+## 基础绘图系统 {#base-plot}
+
+```{r run-length-hist, fig.cap='游程直方图', fig.showtext=TRUE}
+set.seed(2018) 
+n <- 2^24
+x <- runif(n,0,1)
+delta <- 0.01
+len <- diff(c(0,which(x < delta),n+1))-1
+ylim <- seq( 0, 1800, by = 300)
+xlim <- seq( 0, 100, by = 20)
+p <- hist(len[len < 101], breaks = -1:100+0.5, plot = FALSE)
+par(mar = c(2,2,.5,.5))
+plot(p, xlab = '间距', ylab = '频数', axes = FALSE, 
+     col = "lightblue", border = "white", main = "")	 
+axis( 1, labels = xlim, at = xlim, las = 1) # x 轴
+axis( 2, labels = ylim, at = ylim, las = 0) # y 轴
+box(col="gray")
+# 添加线性回归线
+xx <- seq.int(from = 0, to = 100, by = 1)
+xy <- p$counts
+options(digits = 2)
+fit <- lm(xy~xx)
+abline(fit, col = 'red')
+b = coef(fit)
+# mtext(paste0( "Y = ", paste0(paste0(b[1], b[2]),"x") ), side = 3, cex = 2)
+```
+
+## ggplot
+
+rattle 下载量时序图
+
+```{r log,fig.width=12,fig.height=6,out.width="100%",fig.showtext=TRUE}
+library(ggplot2)
+library(cranlogs)
+library(ggthemes)
+pkgs_down <- cran_downloads(package = "rattle", from = Sys.Date() - 365 * 5, to = Sys.Date())
+ggplot(pkgs_down, aes(x = date, y = count, colour = package)) +
+  geom_line() +
+  geom_point(size = 1.5) +
+  scale_x_date(date_breaks = "1 year", date_labels = "%Y") +
+  ylim(c(0, 1500)) +
+  scale_colour_brewer(palette = "Set1") +
+  # scale_color_fivethirtyeight("") +
+  # theme_fivethirtyeight() +
+  labs(
+    subtitle = paste("最近更新日期:", Sys.Date()),
+    title = "Rattle 最近5年每日下载量",
+    caption = " 数据源: http://cran-logs.rstudio.com/ "
+  ) +
+  theme(legend.position = "none", text = element_text(family = "source-han-serif-cn"))
+```
+
+
+## tikz 图形
+
+如图 \@ref(fig:latex-tikz) 所示，模板存放在 `tikz/tikz2pdf.tex`
+
+```{r latex-tikz, engine='tikz', out.width='90%', fig.ext=if (knitr:::is_latex_output()) 'pdf' else 'png', fig.cap='tikz 图形', engine.opts = list(template = "tikz/tikz2pdf.tex")}
+\begin{tikzpicture}[scale=.7]
+\draw [fill=gray!30,very thick] (0,-1) rectangle (5,1);
+\draw [very thick] (5, 0) -- (13,0);
+\node [below] at (2,-1) {\large Hello};
+\node [below, align=center] at (0,-1) {\large Two\\ lines};
+\end{tikzpicture}
+```
+
+单独的 tikz 图形
+
+```{r import-tikze-code}
+cat(readLines("tikz/mini-demo.tex", encoding = "UTF-8"), sep = "\n")
+```
+
+```{r mini-tikz-demo}
+knitr::include_graphics(path = "tikz/mini-demo.pdf")
+```
+
+
+## 位图
+
+
+## 矢量图
+
+图片导入，导出，转化，批量转化
+
+导入 SVG 格式的图片, rsvg [@R-rsvg] 批量转化 svg 文件为 pdf 文件
+
+```r
+library(rsvg)
+tmp <- "figure/Ink" # svgs 存放目录
+input_paths <- paste0(tmp, "/", list.files(tmp))
+output_paths <- paste0("figure/pdf", "/", gsub("svg", "pdf", list.files(tmp)))
+
+for (i in seq(length(list.files(tmp)))) {
+  rsvg_pdf(input_paths[i], file = output_paths[i])
+}
+```
+
+pdftools [@R-pdftools] 文本提取，渲染和转化 PDF 文档
+
+```r
+install.packages("pdftools")
+```
+
+
+magick 的简单使用
+
+```r
+install.packages("magick")
+```
+
+插入 Inkscape 图标，如图
+
+```{r inkscape-logo, eval = knitr::is_latex_output(),fig.cap="Inkscape 图标"}
+magick::image_read_svg(path = "figures/inkscape.svg")
+```
+
+`r if (knitr::is_html_output()) '
+![](figures/inkscape.svg)'
+`
+
+
+## 优化
+
+optipng 是一个非常好的图片压缩、优化工具
+
+现在，我们设置 chunk 选项 `optipng` 为非空(non-`NULL`)的值，例如，`''` 去激活这个 hook （益辉称之为钩子，这里勾的是 optipng 这个图片优化工具）
+
+```{r use-optipng, optipng='',fig.cap="优化"}
+set.seed(123)
+qplot(rnorm(1e3), rnorm(1e3))
+```
+
+同一幅图，但是没有优化
+
+```{r no-optipng, ref.label='use-optipng',fig.cap="没有优化"}
+```
+
+同一幅图，但是使用最高级别的优化 (传递 `-o7` 参数给 `optipng`):
+
+```{r optipng-o7, ref.label='use-optipng', optipng='-o7',fig.cap="最强优化"}
+```
+
+## 裁剪
+
+pdfcrop 可将 PDF 图片中留白的部分裁去，再也不用纠结 par 了
+
+```{r pdfcrop, fig.cap="pdfcrop 裁剪白边", crop = TRUE}
+knitr::include_graphics(path = "figures/map_usa_unemp.pdf")
+```

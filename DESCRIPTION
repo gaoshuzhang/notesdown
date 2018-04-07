@@ -1,9 +1,13 @@
-Package: bookdown-chinese
+Package: notebook
 Title: bookdown demo for Chinese book
-Version: 1.0.0
+Version: 0.0.1
 Authors@R: c(
   person("Xiangyun", "Huang", , "xiangyunfaith@outlook.com", c("aut", "cre"))
   )
+Maintainer: Xiangyun Huang <xiangyunfaith@outlook.com>
+Description: a book of notes
+BugReports: https://github.com/XiangyunHuang/bookdown-chinese/issues
+License: MIT + file LICENSE
 URL: https://github.com/XiangyunHuang/bookdown-chinese
 Depends: 
     R (>= 3.1.0)
@@ -13,3 +17,7 @@ Imports:
     rticles,
     svglite,
     gridExtra
+Remotes: 
+    tidyverse/ggplot2,
+    leonawicz/mapmate,
+    dgrtwo/gganimate

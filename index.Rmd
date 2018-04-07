@@ -19,6 +19,10 @@ description: "这是一个笔记，搜集了很多博客内容"
 
 \mainmatter
 
+```{r setup, include = FALSE}
+source("common.R")
+```
+
 # 前言 {#preface}
 
 咳咳，不知道写什么
@@ -67,25 +71,25 @@ cat(".\n")
 
 ## 后记 {#colophon}
 
-这本书是在 RStudio IDE 内用 R Markdown 写的，knitr 和 pandoc 将 R Markdown 转化为 html 和 pdf，这个网站是通过 travis-ci 自动发布到 netlify，完整的源文件存放在 github 上。
+这本书是在 [RStudio IDE](https://www.rstudio.com/products/rstudio/download/) 内用 [R Markdown](https://rmarkdown.rstudio.com/) 写的， [Git](https://git-scm.com/) 控制版本， [bookdown](https://bookdown.org/yihui/bookdown/) 组织书籍， [knitr](https://yihui.name/knitr/) 和 [pandoc](http://pandoc.org) 将 R Markdown 源文件转化为 html 和 pdf，这个网站是通过 [travis-ci](https://travis-ci.org/) 自动发布到 [netlify](https://www.netlify.com/)，完整的源文件存放在 [github](https://github.com/XiangyunHuang/bookdown-chinese) 上。All content is licensed under the [Creative Commons Attribution Non Commercial Share Alike 3.0 license](https://creativecommons.org/licenses/by-nc-sa/3.0/)
+
+[sourceserifpro](https://ctan.org/pkg/sourceserifpro) 作为默认英文字体，[inconsolata](http://levien.com/type/myfonts/inconsolata.html) 作为等宽字体 (monospace
+font) 用于代码显示，R 包名称在文中以粗体显示
 
 
 ## 软件信息 {#session}
 
-我用了两个 R 包编译这本书，分别是 **knitr**\index{knitr} [@Dynamic2015CRC] 和 **bookdown**\index{bookdown} [@bookdown2016CRC]。以下是我的 R 进程信息：
+我用了两个 R 包编译这本书，分别是 **knitr**\index{knitr} [@Dynamic2015CRC] 和 **bookdown**\index{bookdown} [@bookdown2016CRC]。绘图使用的中文字体是思源宋体和思源黑体，使用 **showtext**\index{showtext} 包安装和调用，使用 **tikzDevice**\index{tikzDevice} 和 **fontcm**\index{fontcm} 处理其中的数学公式，使用 **xkcd**\index{xkcd} 设置漫画手写体风格，每一章开头除了共同设置，还有安装本章节需要的 R 包。详细设置如下
 
-R 软件运行环境：
+```{r}
+cat(readLines("common.R", encoding = "UTF-8"), sep = "\n")
+```
+
+以下是我的 R 进程信息：
 
 ```{r}
 devtools::session_info()
 ```
-
-系统安装的 R 包有：
-
-```{r}
-.packages(TRUE)
-```
-
 
 ```{r include=FALSE}
 # automatically create a bib database for R packages
