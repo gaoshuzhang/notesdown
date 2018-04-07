@@ -24,6 +24,7 @@ addons:
       - libdieharder-dev
       - libpoppler-cpp-dev
       - libv8-3.14-dev
+      - calibre
 
 before_install:
   - npm install netlify-cli -g
