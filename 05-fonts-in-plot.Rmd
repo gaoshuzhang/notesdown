@@ -113,9 +113,9 @@ p <- qplot(c(1, 5), c(1, 5)) +
 # Equation
 eq <- "italic(sum(frac(1, n*'!'), n==0, infinity) ==
        lim(bgroup('(', 1 + frac(1, n), ')')^n, n %->% infinity))"
-# Without the new fonts
+# 默认字体
 p1 <- p + annotate("text", x = 3, y = 3, parse = TRUE, label = eq) # fig 1
-# With the new fonts
+# 使用 CM Roman 字体
 p2 <- p + annotate("text",
   x = 3, y = 3, parse = TRUE,
   family = "CM Roman", label = eq
@@ -126,7 +126,9 @@ p2 <- p + annotate("text",
     axis.title.y = element_text(face = "bold")
   ) # fig 2
 library(gridExtra)
+# pdf(file = 'figures/ggplot_cm.pdf',width = 8,height = 4)
 grid.arrange(p1,p2, nrow = 1, ncol = 2)
+# dev.off()
 ```
 
 使用 ghostscript 嵌入数学字体，最终效果如图\@ref(fig:fontcm-ggplot)所示，
@@ -169,9 +171,9 @@ legend("bottomright", legend = paste0("$y = ",
        bty = "n")
 ```
 
-虽然复杂图片也可直接用 tikz 制作但是，尺寸等细节不好调整（我还没找到合适的方法），比较合适的做法可能是，独立制作图，然后作为图片插入，以一个颇具复杂度的图片为例，如图 \@ref(fig:plot3d-tikz)
+虽然复杂图片也可直接用 tikz 制作但是，尺寸等细节不好调整（我还没找到合适的方法），比较合适的做法可能是，独立制作图，然后作为图片插入，以一个颇具复杂度的图片为例，如图 `r ifelse(knitr::is_html_output(),'\\@ref(fig:plot3d-tikz-png)','\\@ref(fig:plot3d-tikz)') ` 所示
 
-```{r plot3d-tikz, dev='tikz',fig.cap="tikz 之复杂公式", fig.asp = 0.85}
+```r
 # 代码来自  http://www.ejwagenmakers.com/misc/Plotting_3d_in_R.pdf
 # 3-D plots
 mu1 <- 0 # setting the expected value of x1
@@ -208,7 +210,6 @@ facetcol <- cut(zfacet, nbcol)
 # 使用 tikzDevice 打造出版级的效果图
 # library(tikzDevice)
 # tf <- file.path(getwd(), "figures/binormal.tex")
-
 # tikz(tf, width = 6, height = 5.5, pointsize = 30, standAlone = TRUE)
 op <- par(mar = c(2, 3, 3, 0.5))
 persp(x1, x2, z,
@@ -225,7 +226,13 @@ mtext("$\\mu_1 = 0,\\mu_2 = 0,\\sigma_{11} = 10,\\sigma_{22} = 10,\\sigma_{12} =
 mtext("$f(\\mathsf{x}) = \\frac{1}{2\\pi\\sqrt{\\sigma_{11}\\sigma_{22}(1-\\rho^2)}}\\exp\\big\\{-\\frac{1}{2(1-\\rho^2)}[\\frac{(x_1 - \\mu_1)^2}{\\sigma_{11}} - 2\\rho\\frac{(x_1 - \\mu_1)(x_2 - \\mu_2)}{\\sqrt{\\sigma_{11}}\\sqrt{\\sigma_{22}}} + \\frac{(x_2 - \\mu_2)^2}{\\sigma_{22}}]\\big\\}$", side = 1)
 par(op)
 # dev.off()
-
 # tinytex::latexmk(file = "figures/binormal.tex")
+```
+
+```{r plot3d-tikz, eval = knitr::is_latex_output(),echo=FALSE}
+knitr::include_graphics(path = "figures/binormal.pdf")
+```
+```{r plot3d-tikz-png, eval = knitr::is_html_output(),echo=FALSE}
+knitr::include_graphics(path = "figures/binormal.png")
 ```
 
