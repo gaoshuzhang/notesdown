@@ -7,11 +7,6 @@
 \providecommand{\LyX}{\textcolor[RGB]{0,127,255}{L}\kern-.1667em\lower.25em\hbox{\textcolor[RGB]{255,191,0}{Y}}\kern-.125em\textcolor[RGB]{203,51,0}{X}\@} % LyX logo
 
 %%----------begin copy from https://github.com/rstudio/bookdown-----------------%%
-
-\usepackage{booktabs}
-\usepackage{longtable}
-\usepackage[bf,singlelinecheck=off]{caption}
-
 \usepackage{framed,color}
 \definecolor{shadecolor}{RGB}{248,248,248}
 
@@ -21,8 +16,8 @@
 \renewcommand{\floatpagefraction}{0.75}
 
 \renewenvironment{quote}{\begin{VF}}{\end{VF}}
-\let\oldhref\href
-\renewcommand{\href}[2]{#2\footnote{\url{#1}}}
+% \let\oldhref\href
+% \renewcommand{\href}[2]{#2\footnote{\url{#1}}}
 
 \ifxetex
   \usepackage{letltxmacro}
