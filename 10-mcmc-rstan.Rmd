@@ -68,7 +68,7 @@ Stan 提供的R语言接口 rstan 包 [@R-rstan] 及其扩展 StanHeaders 包 [@
 安装 rstan
 
 ```{r install-rstan, eval = (!"rstan" %in% .packages(TRUE))}
-install.packages("rstan", dependencies = TRUE)
+install.packages("rstan")
 ```
 
 加载 rstan,如果你的电脑配置有多核处理器，内存也充足，那么可以考虑使用并行方式去估计你的模型参数，
@@ -82,13 +82,13 @@ options(mc.cores = parallel::detectCores())
 安装 brms
 
 ```{r install-brms, eval = (!"brms" %in% .packages(TRUE))}
-install.packages("brms", dependencies = TRUE)
+install.packages("brms")
 ```
 
 安装 rstanarm
 
 ```{r install-rstanarm, eval = (!"rstanarm" %in% .packages(TRUE))}
-install.packages("rstanarm", dependencies = TRUE)
+install.packages("rstanarm")
 ```
 
 1. Bayesian Data Analysis <https://github.com/avehtari/BDA_R_demos>
