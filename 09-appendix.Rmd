@@ -23,6 +23,8 @@ source("common.R")
 - [Max Woolf 的博客](http://minimaxir.com/)
 - [Yan Holtz 的 ggplot2 图库](https://www.r-graph-gallery.com/)
 
+- [Jianghao Wang (王江浩)](https://jianghao.github.io)
+
 ## 书单 {#books}
 
 - [Pro Git 中文第二版](https://git-scm.com/book/zh/v2) Scott Chacon, Ben Straub 著
