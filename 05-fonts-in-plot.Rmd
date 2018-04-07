@@ -152,7 +152,7 @@ tikzDevice::tikzTest()
 
 坐标轴标签，标题，图例等位置都支持数学公式
 
-```{r tikz-demo, dev='tikz', fig.cap="线性模型"}
+```{r tikz-demo, dev='tikz', fig.cap="线性模型",fig.showtext=FALSE}
 x <- rnorm(10)
 y <- x + rnorm(5, sd = 0.25)
 model <- lm(y ~ x)
