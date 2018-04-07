@@ -3,6 +3,7 @@ set.seed(2018)
 options(digits = 3)
 
 Pkgs <- c(
+  "reticulate",
   "showtext", "sysfonts", "showtextdb",
   "fontcm",
   "tikzDevice", "filehash", "png",
