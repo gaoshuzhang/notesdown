@@ -2,10 +2,6 @@
 
 ```{r setup, include = FALSE}
 source("common.R")
-```
-
-
-```{r color-pakages}
 Pkgs <- c(
   "colorspace", "scales", "palr", "colortools", "colormap",
   "dichromat", "yarrr", "colorRamps", "ColorPalette", "viridisLite", "pals"

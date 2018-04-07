@@ -2,6 +2,10 @@
 
 ```{r setup, include = FALSE}
 source("common.R")
+library(showtext)
+# Install Source Han Sans/Serif font (by default Simplified Chinese)
+font_install(source_han_serif("CN")) # 思源宋体
+font_install(source_han_sans("CN"))  # 思源黑体
 ```
 
 字体设置包括自定义中文字体、英文字体和数学公式。
@@ -12,10 +16,6 @@ source("common.R")
 
 ```{r font-setup, eval= (!"showtext" %in% .packages(TRUE))}
 install.packages("showtext",dependencies = TRUE)
-library(showtext)
-# Install Source Han Sans/Serif font (by default Simplified Chinese)
-font_install(source_han_serif("CN")) # 思源宋体
-font_install(source_han_sans("CN"))  # 思源黑体
 ```
 
 showtext 包可以调用系统字体，图\@ref(fig:demo-ggplot2)使用5号思源宋体，英文和数字使用 serif 字体。详细的使用文档可以看 [showtext 的开发页面](https://github.com/yixuan/showtext)
