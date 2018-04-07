@@ -87,26 +87,25 @@ par(op)
 
 这篇文章主要使用 ggplot2 包[@Wickham2016]绘图，为了好玩我们还使用 xkcd 字体，先下载和加载 xkcd 包[@R-xkcd]，它提供一个 gg 风格的图层`theme_xkcd()`，图 `r ifelse(knitr::is_html_output(),'\\@ref(fig:xkcd-demo)','\\@ref(fig:xkcd-embed)') ` 是一个简单使用 xkcd 字体的例子
 
-```{r xkcd-demo, fig.cap = "xkcd 风的图", eval = knitr::is_html_output()}
+```{r xkcd-embed,fig.cap = "xkcd 风的图", eval= knitr::is_latex_output(),dev='cairo_pdf'}
 library(ggplot2)
 library(extrafont)
 library(xkcd)
-# pdf(file = 'figures/xkcd.pdf',width = 6,height = 4)
+# cairo_pdf(file = 'figures/xkcd.pdf',width = 6,height = 4)
 ggplot(aes(mpg, wt), data = mtcars) + geom_point() +
     theme_xkcd()
 # dev.off()
-# embed_fonts("figures/xkcd.pdf", outfile = "figures/xkcd_embed.pdf")
 ```
 
-```{r xkcd-embed,fig.cap = "xkcd 风的图", eval= knitr::is_latex_output(), echo=FALSE}
-knitr::include_graphics("figures/xkcd_embed.pdf")
+```{r xkcd-demo,fig.cap = "xkcd 风的图", eval= knitr::is_html_output(), echo=FALSE}
+knitr::include_graphics("figures/xkcd_embed.png")
 ```
 
 ## fontcm
 
 安装 fontcm 包[@R-fontcm]处理数学公式，下载 fontcm 包^[<https://github.com/wch/fontcm>] 和相关字体，使用 fontcm 包，一个小 demo 如下
 
-```r
+```{r fontcm-demo, dev='cairo_pdf',fig.width=8,fig.height=4,out.width="100%",fig.cap="fontcm 处理数学公式"}
 library(fontcm)
 p <- qplot(c(1, 5), c(1, 5)) +
   xlab("Made with CM fonts") + ylab("Made with CM fonts") +
@@ -130,14 +129,6 @@ library(gridExtra)
 grid.arrange(p1,p2, nrow = 1, ncol = 2)
 ```
 
-保存成图片
-
-```r
-pdf(file = 'figures/ggplot_cm.pdf',width = 8,height = 4)
-grid.arrange(p1,p2, nrow = 1, ncol = 2)
-dev.off()
-```
-
 使用 ghostscript 嵌入数学字体，最终效果如图\@ref(fig:fontcm-ggplot)所示，
 
 ```{r embed,eval=FALSE}
@@ -159,7 +150,7 @@ tikzDevice::tikzTest()
 
 坐标轴标签，标题，图例等位置都支持数学公式
 
-```{r tikz-demo, dev='tikz', fig.cap="线性模型"}
+```{r tikz-demo, dev='tikz', fig.cap="线性模型",fig.showtext=FALSE}
 x <- rnorm(10)
 y <- x + rnorm(5, sd = 0.25)
 model <- lm(y ~ x)
@@ -180,7 +171,7 @@ legend("bottomright", legend = paste0("$y = ",
 
 虽然复杂图片也可直接用 tikz 制作但是，尺寸等细节不好调整（我还没找到合适的方法），比较合适的做法可能是，独立制作图，然后作为图片插入，以一个颇具复杂度的图片为例，如图 \@ref(fig:plot3d-tikz)
 
-```{r plot3d-tikz, dev='tikz',fig.cap="tikz 之复杂公式", fig.asp = 0.85}
+```{r plot3d-tikz, dev='tikz',fig.cap="tikz 之复杂公式", fig.asp = 0.85,fig.showtext=FALSE}
 # 代码来自  http://www.ejwagenmakers.com/misc/Plotting_3d_in_R.pdf
 # 3-D plots
 mu1 <- 0 # setting the expected value of x1
