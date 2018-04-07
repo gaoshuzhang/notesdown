@@ -87,7 +87,7 @@ par(op)
 
 这篇文章主要使用 ggplot2 包[@Wickham2016]绘图，为了好玩我们还使用 xkcd 字体，先下载和加载 xkcd 包[@R-xkcd]，它提供一个 gg 风格的图层`theme_xkcd()`，图 `r ifelse(knitr::is_html_output(),'\\@ref(fig:xkcd-demo)','\\@ref(fig:xkcd-embed)') ` 是一个简单使用 xkcd 字体的例子
 
-```{r xkcd-embed,fig.cap = "xkcd 风的图", eval= knitr::is_latex_output()}
+```{r xkcd-embed,fig.cap = "xkcd 风的图", eval= knitr::is_latex_output(),dev='cairo_pdf'}
 library(ggplot2)
 library(extrafont)
 library(xkcd)
@@ -105,7 +105,7 @@ knitr::include_graphics("figures/xkcd_embed.png")
 
 安装 fontcm 包[@R-fontcm]处理数学公式，下载 fontcm 包^[<https://github.com/wch/fontcm>] 和相关字体，使用 fontcm 包，一个小 demo 如下
 
-```{r fontcm-demo, fig.width=8,fig.height=4,out.width="100%",fig.cap="fontcm 处理数学公式"}
+```{r fontcm-demo,fig.cap="fontcm 处理数学公式"}
 library(fontcm)
 p <- qplot(c(1, 5), c(1, 5)) +
   xlab("Made with CM fonts") + ylab("Made with CM fonts") +

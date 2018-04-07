@@ -16,7 +16,6 @@ addons:
       - ghostscript
       - imagemagick
       - optipng
-      - fonts-liberation
       - libwebp-dev
       - libgsl0ldbl
       - dieharder
@@ -24,11 +23,6 @@ addons:
       - libdieharder-dev
       - libpoppler-cpp-dev
       - libv8-3.14-dev
-      - calibre
-      - librsvg2-bin
-      - librsvg2-dev
-      - libbatik-java
-      - libxmlgraphics-commons-java
 
 before_install:
   - curl -o ~/.fonts/Inconsolata-Bold.ttf https://raw.githubusercontent.com/google/fonts/master/ofl/inconsolata/Inconsolata-Bold.ttf 
@@ -41,7 +35,6 @@ before_install:
 
 script:
   - Rscript -e 'bookdown::render_book("index.Rmd", output_format = "all")'
-  - Rscript -e 'bookdown::calibre("_book/bookdown-demo.epub", "mobi")' 
 
 deploy:
   provider: script
