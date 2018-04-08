@@ -43,6 +43,15 @@ knitr::opts_chunk$set(
 2. 网罗精美的案例，学习之，应用之
 3. 挑选感兴趣的新技能，钻研之
 4. 学习心得和体会，尤其是那些年的淌坑经历
+5. 从使用者到开发者蜕变，先啃一下 Hadley Wickham 的几本书： 
+    + The tidyverse style guide/A style guide for the R language <http://style.tidyverse.org/>
+    + Advanced R <https://adv-r.hadley.nz/>
+    + R packages <http://r-pkgs.had.co.nz/>
+    + R for Data Science <http://r4ds.had.co.nz/>
+6. 要写书搭网站，先看一下 Yihui Xie 的书
+    + bookdown: Authoring Books and Technical Documents with R Markdown <https://bookdown.org/yihui/bookdown/>
+    + blogdown: Creating Websites with R Markdown <https://bookdown.org/yihui/blogdown/>
+    + R Markdown: The Definitive Guide <https://bookdown.org/yihui/rmarkdown/>
 
 ## 作者 {#author}
 
