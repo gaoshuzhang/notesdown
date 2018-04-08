@@ -35,7 +35,6 @@ knitr::opts_chunk$set(
   )
 ```
 
-
 # 前言 {#preface}
 
 目标：
@@ -47,9 +46,14 @@ knitr::opts_chunk$set(
 
 ## 作者 {#author}
 
-我是黄湘云，硕士
+我是黄湘云，硕士，南方人，2017年6月开始混迹于 Github ，虽然2015年就注册了，但是一直没有用起来，后来有了直接的刚需（因为工作需要嘛），全是自学和靠大牛指点，偶尔参加一些技术大会，沙龙，周边学校也去听讲座，对学术大牛心里充满无限敬仰，多亏 [qiaozhang1993](https://github.com/qiaozhang1993) 搜集各大高校的讲座信息并时常分享于我。
 
-- 主页 <https://xiangyun.netlify.com/>
+本科学过 Photoshop 接触过 AI 和 AE，后来学了 R 这些就淡忘了，但是图层这个概念却一直记忆犹新，因为图层在 ggplot2 中是一个很关键的概念。
+
+Python 喊着要学，已经叫唤两年了，今年打算学个入门。
+Mxnet、Xgboost 和 Stan 也是要学的，下半年正式入职京东了，另外一个可能要学的是 [INLA](http://www.r-inla.org) 专用于处理空间广义线性混合效应模型，这个会在混合效应模型的相关章节予以介绍。
+
+- 个人主页 <https://xiangyun.netlify.com/>
 - Github <https://github.com/XiangyunHuang>
 
 ## 致谢 {#intro-ack}
@@ -63,7 +67,6 @@ contribs <- read.delim("contribs.txt", header = FALSE,
   stringsAsFactors = FALSE)[-1, ]
 names(contribs) <- c("n", "name")
 
-
 contribs <- contribs[order(contribs$name), ]
 contribs$uname <- ifelse(!grepl(" ", contribs$name), 
   paste0("\\@", contribs$name), contribs$name)
@@ -76,8 +79,8 @@ cat(".\n")
 非常感谢谁谁以及谁谁对我的帮助。
 
 ```{block2, type='flushright', html.tag='p'}
-张三  
-于 A 村某角落
+黄湘云  
+于矿大宝源公寓
 ```
 
 ## 本书结构 {#outline}
