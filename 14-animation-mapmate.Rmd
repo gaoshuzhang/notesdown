@@ -1,4 +1,4 @@
-# 动画 {#animotion}
+# 动画 {#animotion-mapmate}
 
 ```{r setup, include = FALSE}
 source("common.R")

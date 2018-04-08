@@ -1,4 +1,4 @@
-# 贝叶斯与 MCMC {#bayes}
+# 贝叶斯与 MCMC {#bayes-mcmc}
 
 ```{r setup, include = FALSE}
 source("common.R")

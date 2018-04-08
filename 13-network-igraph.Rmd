@@ -1,4 +1,4 @@
-# 网络数据 {#network}
+# 网络数据 {#network-igraph}
 
 ```{r setup, include = FALSE}
 source("common.R")
