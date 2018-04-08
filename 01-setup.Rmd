@@ -116,10 +116,31 @@ library(sparklyr)
 spark_install(version = "2.2.0", hadoop_version = "2.7")
 ```
 
-### clickhouse2r
+### clickhouse-r
 
+这是一个存放在Github上的包，随着 ClikHouse 在大厂的流行，此包也受到越来越多的关注
+与数据仓库如何连接，如何查询数据，背后的接口 DBI 如何使用，实例化一个新的接口（如 clickhouse2r ）
+
+- <https://github.com/hannesmuehleisen/clickhouse-r>
+- 壮士！交给你个任务，基于 clickhouse 的 odbc 驱动 <https://github.com/yandex/clickhouse-odbc> 写了 R 包如何，顺带介绍 clickhouse ，再给统计之都投篇稿子，在明年的 R 会给个相关报告。名字 r4clickhouse 还是 clickhouse4r 呢
 
 ### reticulate
 
 Python 与 R 交互
 
+### INLA 
+
+具有非常多的依赖关系，除了 CRAN 还有来自 bioconductor 的包，介绍 <http://www.r-inla.org/events/newtutorialsonspatialmodelsininla>
+
+```r
+install.packages("INLA", 
+    repos="https://www.math.ntnu.no/inla/R/testing")
+```
+
+### mxnet
+
+依赖也是很多，主要在于 GPU 版如何安装使用
+
+### tensorflow
+
+同样地，依赖也是很多，主要在于 GPU 版如何安装使用
