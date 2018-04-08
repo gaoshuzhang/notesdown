@@ -45,6 +45,16 @@ help('modules')
 ```
 
 
+```{r xkcd-embed,fig.cap = "xkcd", fig.ext=if (knitr:::is_latex_output()) 'pdf' else 'png', dev= if (knitr:::is_latex_output()) 'cairo_pdf' else 'png'}
+library(extrafont)
+library(xkcd)
+# cairo_pdf(file = 'figures/xkcd.pdf',width = 6,height = 4)
+ggplot(aes(mpg, wt), data = mtcars) + geom_point() +
+    theme_xkcd()
+# dev.off()
+```
+
+
 ```{r tikz-demo, dev='tikz', fig.cap="Linear",fig.showtext=FALSE}
 x <- rnorm(10)
 y <- x + rnorm(5, sd = 0.25)

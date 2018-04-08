@@ -80,13 +80,11 @@ legend("top", leg.txt, horiz = TRUE, fill = colors)
 
 这篇文章主要使用 ggplot2 包[@Wickham2016]绘图，为了好玩我们还使用 xkcd 字体，先下载和加载 xkcd 包[@R-xkcd]，它提供一个 gg 风格的图层`theme_xkcd()`，图 \@ref(fig:xkcd-embed) 是一个简单使用 xkcd 字体的例子
 
-```{r xkcd-embed,fig.cap = "xkcd 风的图", fig.ext=if (knitr:::is_latex_output()) 'pdf' else 'png'}
+```{r xkcd-embed,fig.cap = "xkcd 风的图", fig.ext=if (knitr:::is_latex_output()) 'pdf' else 'png', dev= if (knitr:::is_latex_output()) 'cairo_pdf' else 'png'}
 library(extrafont)
 library(xkcd)
-# cairo_pdf(file = 'figures/xkcd.pdf',width = 6,height = 4)
 ggplot(aes(mpg, wt), data = mtcars) + geom_point() +
     theme_xkcd()
-# dev.off()
 ```
 
 ## fontcm
