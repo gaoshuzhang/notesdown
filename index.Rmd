@@ -21,6 +21,21 @@ description: "这是一个笔记，搜集了很多博客内容"
 
 \mainmatter
 
+```{r}
+knitr::opts_chunk$set(
+  comment = "#>",
+  collapse = TRUE,
+  echo = TRUE,
+  out.width = "70%",
+  fig.align = 'center',
+  fig.width = 6,
+  # fig.showtext = TRUE, # too danger
+  fig.asp = 0.618,  # 1 / phi
+  fig.show = "hold"
+  )
+```
+
+
 # 前言 {#preface}
 
 咳咳，不知道写什么
@@ -36,12 +51,14 @@ description: "这是一个笔记，搜集了很多博客内容"
 
 虚位以待壮士
 
+
 ```{r contribs, results = "asis", echo = FALSE}
 # copy from https://github.com/hadley/adv-r/edit/master/Introduction.Rmd
 # contribs <- system("git --no-pager shortlog -ns > contribs.txt", intern = T)
 contribs <- read.delim("contribs.txt", header = FALSE, 
   stringsAsFactors = FALSE)[-1, ]
 names(contribs) <- c("n", "name")
+
 
 contribs <- contribs[order(contribs$name), ]
 contribs$uname <- ifelse(!grepl(" ", contribs$name), 

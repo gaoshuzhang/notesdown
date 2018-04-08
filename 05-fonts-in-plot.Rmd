@@ -13,13 +13,7 @@ if (length(setdiff(Pkgs, .packages(TRUE))) > 0)
 
 ## showtext 
 
-下载和安装 showtext 包[@Qiu2015]，下载并加载思源字体
-
-```r
-install.packages("showtext",dependencies = TRUE)
-```
-
-showtext 包可以调用系统字体，图\@ref(fig:demo-ggplot2)使用5号思源宋体，英文和数字使用 serif 字体。详细的使用文档可以看 [showtext 的开发页面](https://github.com/yixuan/showtext)
+showtext 包[@Qiu2015]可以调用系统字体，图\@ref(fig:demo-ggplot2)使用5号思源宋体，英文和数字使用 serif 字体。详细的使用文档可以看 [showtext 的开发页面](https://github.com/yixuan/showtext)
 
 ```{r demo-ggplot2, fig.cap="showtext包处理图里的中文",fig.showtext=TRUE}
 library(ggplot2)
@@ -72,7 +66,7 @@ leg.txt <- c("<2%", "2-4%", "4-6%", "6-8%", "8-10%", ">10%")
 cnty.fips <- county.fips$fips[match(map("county", plot=FALSE)$names,
                                     county.fips$polyname)]
 colorsmatched <- unemp$colorBuckets[match(cnty.fips, unemp$fips)]
-op <- par(mar=c(0,0,2,0))
+par(mar=c(0,0,2,0))
 # draw map
 map("county", col = colors[colorsmatched], fill = TRUE, resolution = 0,
     lty = 0, projection = "polyconic")
@@ -80,25 +74,19 @@ map("state", col = "white", fill = FALSE, add = TRUE, lty = 1, lwd = 0.2,
     projection="polyconic")
 title("unemployment by county, 2009")
 legend("top", leg.txt, horiz = TRUE, fill = colors)
-par(op)  
 ```
 
 ## xkcd
 
-这篇文章主要使用 ggplot2 包[@Wickham2016]绘图，为了好玩我们还使用 xkcd 字体，先下载和加载 xkcd 包[@R-xkcd]，它提供一个 gg 风格的图层`theme_xkcd()`，图 `r ifelse(knitr::is_html_output(),'\\@ref(fig:xkcd-demo)','\\@ref(fig:xkcd-embed)') ` 是一个简单使用 xkcd 字体的例子
+这篇文章主要使用 ggplot2 包[@Wickham2016]绘图，为了好玩我们还使用 xkcd 字体，先下载和加载 xkcd 包[@R-xkcd]，它提供一个 gg 风格的图层`theme_xkcd()`，图 \@ref(fig:xkcd-embed) 是一个简单使用 xkcd 字体的例子
 
-```{r xkcd-embed,fig.cap = "xkcd 风的图", eval= knitr::is_latex_output(),dev='cairo_pdf'}
-library(ggplot2)
+```{r xkcd-embed,fig.cap = "xkcd 风的图", fig.ext=if (knitr:::is_latex_output()) 'pdf' else 'png'}
 library(extrafont)
 library(xkcd)
 # cairo_pdf(file = 'figures/xkcd.pdf',width = 6,height = 4)
 ggplot(aes(mpg, wt), data = mtcars) + geom_point() +
     theme_xkcd()
 # dev.off()
-```
-
-```{r xkcd-demo,fig.cap = "xkcd 风的图", eval= knitr::is_html_output(), echo=FALSE}
-knitr::include_graphics("figures/xkcd_embed.png")
 ```
 
 ## fontcm
