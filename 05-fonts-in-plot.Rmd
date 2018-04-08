@@ -13,9 +13,9 @@ if (length(setdiff(Pkgs, .packages(TRUE))) > 0)
 
 ## showtext 
 
-showtext 包[@Qiu2015]可以调用系统字体，图\@ref(fig:demo-ggplot2)使用5号思源宋体，英文和数字使用 serif 字体。详细的使用文档可以看 [showtext 的开发页面](https://github.com/yixuan/showtext)
+showtext 包[@Qiu2015]可以调用系统字体，图\@ref(fig:iris-ggplot2)使用5号思源宋体，英文和数字使用 serif 字体。详细的使用文档可以看 [showtext 的开发页面](https://github.com/yixuan/showtext)
 
-```{r demo-ggplot2, fig.cap="showtext包处理图里的中文",fig.showtext=TRUE}
+```{r iris-ggplot2, fig.cap="showtext包处理图里的中文",fig.showtext=TRUE}
 library(ggplot2)
 ggplot(iris, aes(Sepal.Length, Sepal.Width)) +
   geom_point(aes(colour = Species)) +
@@ -80,7 +80,7 @@ legend("top", leg.txt, horiz = TRUE, fill = colors)
 
 这篇文章主要使用 ggplot2 包[@Wickham2016]绘图，为了好玩我们还使用 xkcd 字体，先下载和加载 xkcd 包[@R-xkcd]，它提供一个 gg 风格的图层`theme_xkcd()`，图 \@ref(fig:xkcd-embed) 是一个简单使用 xkcd 字体的例子
 
-```{r xkcd-embed,fig.cap = "xkcd 风的图", fig.ext=if (knitr:::is_latex_output()) 'pdf' else 'png', dev= if (knitr:::is_latex_output()) 'cairo_pdf' else 'png'}
+```{r xkcd-embed,fig.cap = "xkcd 风的图"}
 library(extrafont)
 library(xkcd)
 ggplot(aes(mpg, wt), data = mtcars) + geom_point() +
@@ -145,81 +145,14 @@ knitr::include_graphics(path = "figures/linear.pdf")
 knitr::include_graphics(path = "figures/linear.png")
 ```
 
-```r
-x <- rnorm(10)
-y <- x + rnorm(5, sd = 0.25)
-model <- lm(y ~ x)
-rsq <- summary(model)$r.squared
-rsq <- signif(rsq, 4)
-plot(x, y, main = "Hello \\LaTeX!", xlab = "$x$", ylab = "$y$", 
-     sub = "$\\mathcal{N}(\\mathbf{x};\\mu,\\Sigma)$")
-abline(model, col = "red")
-mtext(paste("Linear model: $R^{2}=", rsq, "$"), line = 0.5)
-legend("bottomright", legend = paste0("$y = ", 
-                                     round(coef(model)[2], 3),
-                                     "x +", 
-                                     round(coef(model)[1], 3), 
-                                     "$"
-                                     ), 
-       bty = "n")
+```{r tikz-linear-regression-code}
+cat(readLines("code/tikz-linear-regression.R", encoding = "UTF-8"), sep = "\n")
 ```
 
 虽然复杂图片也可直接用 tikz 制作但是，尺寸等细节不好调整（我还没找到合适的方法），比较合适的做法可能是，独立制作图，然后作为图片插入，以一个颇具复杂度的图片为例，如图 `r ifelse(knitr::is_html_output(),'\\@ref(fig:plot3d-tikz-png)','\\@ref(fig:plot3d-tikz)') ` 所示
 
-```r
-# 代码来自  http://www.ejwagenmakers.com/misc/Plotting_3d_in_R.pdf
-# 3-D plots
-mu1 <- 0 # setting the expected value of x1
-mu2 <- 0 # setting the expected value of x2
-s11 <- 10 # setting the variance of x1
-s12 <- 15 # setting the covariance between x1 and x2
-s22 <- 10 # setting the variance of x2
-rho <- 0.5 # setting the correlation coefficient between x1 and x2
-x1 <- seq(-10, 10, length = 41) # generating the vector series x1
-x2 <- x1 # copying x1 to x2
-f <- function(x1, x2) {
-  term1 <- 1 / (2 * pi * sqrt(s11 * s22 * (1 - rho^2)))
-  term2 <- -1 / (2 * (1 - rho^2))
-  term3 <- (x1 - mu1)^2 / s11
-  term4 <- (x2 - mu2)^2 / s22
-  term5 <- -2 * rho * ((x1 - mu1) * (x2 - mu2)) / (sqrt(s11) * sqrt(s22))
-  term1 * exp(term2 * (term3 + term4 - term5))
-} # setting up the function of the multivariate normal density
-z <- outer(x1, x2, f) # calculating the density values
-nrz <- nrow(z)
-ncz <- ncol(z)
-# Create a function interpolating colors in the range of specified colors
-# jet.colors <- colorRampPalette( c("blue", "green") )
-# Generate the desired number of colors from this palette
-nbcol <- 100
-# color <- jet.colors(nbcol)
-color <- viridisLite::viridis(100)
-# Compute the z-value at the facet centres
-zfacet <- z[-1, -1] + z[-1, -ncz] + z[-nrz, -1] + z[-nrz, -ncz]
-# Recode facet z-values into color indices
-facetcol <- cut(zfacet, nbcol)
-# persp 坐标轴标签不支持表达式 ?persp
-
-# 使用 tikzDevice 打造出版级的效果图
-# library(tikzDevice)
-# tf <- file.path(getwd(), "figures/binormal.tex")
-# tikz(tf, width = 6, height = 5.5, pointsize = 30, standAlone = TRUE)
-op <- par(mar = c(2, 3, 3, 0.5))
-persp(x1, x2, z,
-  xlab = "$x_{1}$",
-  ylab = "$x_{2}$",
-  zlab = "$f(\\mathsf{x})$",
-  main = "Two dimensional Normal Distribution",
-  col = color[facetcol], border = NA, theta = 30, phi = 20,
-  r = 50, d = 0.1, expand = 0.5, ltheta = 90, lphi = 180,
-  shade = 0.1, ticktype = "detailed", nticks = 5, box = TRUE
-) # produces the 3-D plot
-# adding a text line to the graph
-mtext("$\\mu_1 = 0,\\mu_2 = 0,\\sigma_{11} = 10,\\sigma_{22} = 10,\\sigma_{12} = 15, \\rho = 0.5$", side = 3)
-mtext("$f(\\mathsf{x}) = \\frac{1}{2\\pi\\sqrt{\\sigma_{11}\\sigma_{22}(1-\\rho^2)}}\\exp\\big\\{-\\frac{1}{2(1-\\rho^2)}[\\frac{(x_1 - \\mu_1)^2}{\\sigma_{11}} - 2\\rho\\frac{(x_1 - \\mu_1)(x_2 - \\mu_2)}{\\sqrt{\\sigma_{11}}\\sqrt{\\sigma_{22}}} + \\frac{(x_2 - \\mu_2)^2}{\\sigma_{22}}]\\big\\}$", side = 1)
-par(op)
-# dev.off()
-# tinytex::latexmk(file = "figures/binormal.tex")
+```{r tikz-persp-3d-code}
+cat(readLines("code/tikz-persp-3d.R", encoding = "UTF-8"), sep = "\n")
 ```
 
 ```{r plot3d-tikz, eval = knitr::is_latex_output(), fig.cap="tikz 复杂公式",echo=FALSE}

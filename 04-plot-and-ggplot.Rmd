@@ -93,15 +93,18 @@ ggplot(pkgs_down, aes(x = date, y = count, colour = package)) +
 \end{tikzpicture}
 ```
 
-单独的 tikz 图形
+一幅纯 tikz 代码绘制的图形，代码如下
 
 ```{r import-tikze-code}
 cat(readLines("tikz/mini-demo.tex", encoding = "UTF-8"), sep = "\n")
 ```
 
-```{r mini-tikz-demo}
+```{r mini-tikz-demo,echo=FALSE,fig.cap="一幅迷你 tikz 图形"}
 knitr::include_graphics(path = "tikz/mini-demo.pdf")
 ```
+
+
+
 
 
 ## 位图
@@ -173,6 +176,6 @@ qplot(rnorm(1e3), rnorm(1e3))
 
 pdfcrop 可将 PDF 图片中留白的部分裁去，再也不用纠结 par 了
 
-```{r pdfcrop, fig.cap="pdfcrop 裁剪白边", crop = TRUE}
+```{r pdfcrop, fig.cap="pdfcrop 裁剪白边", crop = TRUE,echo=FALSE}
 knitr::include_graphics(path = "figures/map_usa_unemp.pdf")
 ```
