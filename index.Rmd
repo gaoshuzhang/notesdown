@@ -21,7 +21,7 @@ description: "这是一个笔记，搜集了很多博客内容"
 
 \mainmatter
 
-```{r}
+```{r setup,include=FALSE}
 knitr::opts_chunk$set(
   comment = "#>",
   collapse = TRUE,
@@ -29,7 +29,7 @@ knitr::opts_chunk$set(
   out.width = "70%",
   fig.align = 'center',
   fig.width = 6,
-  # fig.showtext = TRUE, # too danger
+  # fig.showtext = TRUE, # too danger especially in tikz
   fig.asp = 0.618,  # 1 / phi
   fig.show = "hold"
   )
@@ -38,19 +38,23 @@ knitr::opts_chunk$set(
 
 # 前言 {#preface}
 
-咳咳，不知道写什么
+目标：
+
+1. 把平时遇到的问题分类汇总形成一本笔记，用以时常查看和更新。
+2. 网罗精美的案例，学习之，应用之
+3. 挑选感兴趣的新技能，钻研之
+4. 学习心得和体会，尤其是那些年的淌坑经历
 
 ## 作者 {#author}
 
 我是黄湘云，硕士
 
-主页 <https://xiangyun.netlify.com/>
-
+- 主页 <https://xiangyun.netlify.com/>
+- Github <https://github.com/XiangyunHuang>
 
 ## 致谢 {#intro-ack}
 
 虚位以待壮士
-
 
 ```{r contribs, results = "asis", echo = FALSE}
 # copy from https://github.com/hadley/adv-r/edit/master/Introduction.Rmd

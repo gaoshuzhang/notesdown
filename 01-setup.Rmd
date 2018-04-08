@@ -119,3 +119,7 @@ spark_install(version = "2.2.0", hadoop_version = "2.7")
 ### clickhouse2r
 
 
+### reticulate
+
+Python 与 R 交互
+

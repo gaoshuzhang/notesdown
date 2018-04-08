@@ -42,7 +42,7 @@ b = coef(fit)
 
 还你一个清爽的世界，统计之都文章 [漫谈条形图](https://cosx.org/2017/10/discussion-about-bar-graph/)
 
-```{r}
+```{r beautiful-barplot}
 data(NCI60,package ="ISLR") # 加载数据
 myData <- sort(table(NCI60$labs), decreasing = TRUE)
 par(mar=c(2,7,1,1))
