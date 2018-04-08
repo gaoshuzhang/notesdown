@@ -83,7 +83,7 @@ cat(".\n")
 于矿大宝源公寓
 ```
 
-## 本书结构 {#outline}
+## 结构 {#outline}
 
 第一章：数学符号说明
 第二章：基础知识
@@ -102,7 +102,7 @@ cat(".\n")
 font) 用于代码显示，R 包名称在文中以粗体显示
 
 
-## 软件信息 {#session}
+## 软件 {#session}
 
 我用了两个 R 包编译这本书，分别是 **knitr**\index{knitr} [@Dynamic2015CRC] 和 **bookdown**\index{bookdown} [@bookdown2016CRC]。绘图使用的中文字体是思源宋体和思源黑体，使用 **showtext**\index{showtext} 包安装和调用，使用 **tikzDevice**\index{tikzDevice} 和 **fontcm**\index{fontcm} 处理其中的数学公式，使用 **xkcd**\index{xkcd} 设置漫画手写体风格，每一章开头除了共同设置，还有安装本章节需要的 R 包。详细设置如下
 
