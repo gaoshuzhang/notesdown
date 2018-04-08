@@ -3,8 +3,9 @@
 ```{r setup, include = FALSE}
 source("common.R")
 Pkgs <- c(
-  "showtext", "cranlogs", "ggthemes", "webp", "rsvg",
-  "pdftools", "magick"
+  "cranlogs", "ggthemes", "webp", "rsvg",
+  "pdftools", "magick",
+  "ISLR"
 )
 if (length(setdiff(Pkgs, .packages(TRUE))) > 0) {
   install.packages(setdiff(Pkgs, .packages(TRUE)))
@@ -16,7 +17,7 @@ if (length(setdiff(Pkgs, .packages(TRUE))) > 0) {
 
 ```{r run-length-hist, fig.cap='游程直方图', fig.showtext=TRUE}
 set.seed(2018) 
-n <- 2^24
+n <- 2^16
 x <- runif(n,0,1)
 delta <- 0.01
 len <- diff(c(0,which(x < delta),n+1))-1
@@ -38,6 +39,20 @@ abline(fit, col = 'red')
 b = coef(fit)
 # mtext(paste0( "Y = ", paste0(paste0(b[1], b[2]),"x") ), side = 3, cex = 2)
 ```
+
+还你一个清爽的世界，统计之都文章 [漫谈条形图](https://cosx.org/2017/10/discussion-about-bar-graph/)
+
+```{r}
+data(NCI60,package ="ISLR") # 加载数据
+myData <- sort(table(NCI60$labs), decreasing = TRUE)
+par(mar=c(2,7,1,1))
+barCenters <- barplot(myData,col = "lightblue",axes = FALSE,
+axisnames=FALSE,horiz=TRUE,border ="white")
+text(y = barCenters, x = par("usr")[3],
+adj = 1, labels = names(myData), xpd = TRUE)
+axis(1, labels = seq(0,9,by=1), at = seq(0,9,by=1), las = 1 , col = "gray")
+```
+
 
 ## ggplot
 

@@ -15,6 +15,8 @@ source("common.R")
 
 ## 安装 RStudio IDE
 
+下载 <https://www.rstudio.com/products/rstudio/download/>
+
 - 桌面版
 
 1. window
@@ -85,8 +87,6 @@ devtools::session_info("showtext")
 推荐 `devtools::session_info("package")` 而不是 `sessionInfo()`，尤其在遇到因为版本不对而带来错误的时候，如 <https://d.cosx.org/d/419765-showtext>
 ```
 
-复杂依赖
-
 ### RDieHarder 包
 
 在安装 **RDieHarder** \index{RDieHarder} 包之前需要安装依赖库，并且这个 R 包目前只能在 Linux/Mac 系统上安装 
@@ -108,8 +108,13 @@ dieharderTests() %>% head()
 
 RDieHarder \index{RDieHarder} [@R-RDieHarder] 由 [Dirk Eddelbuettel](http://dirk.eddelbuettel.com) 开发，将 [Robert G. Brown](http://www.phy.duke.edu/~rgb/General/dieharder.php) 的工作介绍给 R 用户
 
-### SparkR
+### SparkR 和 sparklyr
 
+```r
+library(sparklyr)
+# spark_available_versions()
+spark_install(version = "2.2.0", hadoop_version = "2.7")
+```
 
 ### clickhouse2r
 
