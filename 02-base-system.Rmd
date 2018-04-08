@@ -4,7 +4,7 @@
 source("common.R")
 ```
 
-## 基本运算 {#math-operator}
+## 数学运算 {#math-operator}
 
 - 阶乘 $n! = 1\times 2\times 3\cdots n$ 
 - 双阶乘 $(2n+1)!! = 1 \times 3\times 5 \times \cdots \times (2n+1), n = 0,1,2,\cdots$
@@ -92,4 +92,7 @@ plot(x, x, ylim = c(0, 6), ylab = "", type = "n",
 for(nu in nus) lines(x, besselI(x, nu = nu), col = nu + 2)
 legend(0, 6, legend = paste("nu=", nus), col = nus + 2, lwd = 1)
 ```
+
+## 数据操作
+
 
