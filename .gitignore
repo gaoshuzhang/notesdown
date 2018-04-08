@@ -45,3 +45,4 @@ manual/
 *.rds
 *_cache/
 *_files/
+temp/
