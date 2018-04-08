@@ -138,16 +138,15 @@ knitr::include_graphics(path = paste0("figures/ggplot_cm_embed", if(knitr::is_la
 
 ## tikzDevice
 
-tikz 源于 LaTeX 宏包，在 R 语言绘图的世界里，对基础图形有很好的支持，如图 \@ref(fig:tikz-demo) 所示
 先测试一下
 
 ```{r test-tikz-device}
 tikzDevice::tikzTest()
 ```
 
-坐标轴标签，标题，图例等位置都支持数学公式，既然含有数学公式，就得设置 `dev = 'tikz'` 和 `fig.ext = 'tex'`，并且只产生 PDF 格式图片，除非研究一个钩子（见 `common.R` 文件），遇到这种情况再将 PDF 转化为 PNG 格式
+tikz 源于 LaTeX 宏包，在 R 语言绘图的世界里，对基础图形有很好的支持，如图 \@ref(fig:tikz-demo) 所示，坐标轴标签，标题，图例等位置都支持数学公式，既然含有数学公式，就得设置 `dev = 'tikz'` 和 `fig.ext = 'tex'`，并且只产生 PDF 格式图片，除非研究一个钩子（见 `common.R` 文件），遇到这种情况再将 PDF 转化为 PNG 格式
 
-```{r tikz-demo, dev = 'tikz', fig.cap = "线性回归模型", fig.ext = 'tex', eval = knitr::is_latex_output()}
+```{r tikz-linear, dev = 'tikz', fig.cap = "线性回归模型", fig.ext = 'tex', eval = knitr::is_latex_output()}
 x <- rnorm(10)
 y <- x + rnorm(5, sd = 0.25)
 model <- lm(y ~ x)

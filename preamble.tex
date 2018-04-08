@@ -1,10 +1,11 @@
 \usepackage[default]{sourceserifpro}
 \usepackage{amsfonts} % \mathbb \mathfrak
 \usepackage{mathrsfs} % \mathscr
+\usepackage{makeidx}
+\makeindex
 
+\setmonofont{Inconsolata}
 \RecustomVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\},formatcom=\xeCJKVerbAddon}
-\providecommand{\pbdR}{\textcolor[RGB]{0,87,0}{p}\textcolor[RGB]{171,0,0}{b}\textcolor[RGB]{171,126,0}{d}\textcolor[RGB]{43,116,236}{R}} % pbdR logo
-\providecommand{\LyX}{\textcolor[RGB]{0,127,255}{L}\kern-.1667em\lower.25em\hbox{\textcolor[RGB]{255,191,0}{Y}}\kern-.125em\textcolor[RGB]{203,51,0}{X}\@} % LyX logo
 
 %%----------begin copy from https://github.com/rstudio/bookdown-----------------%%
 \usepackage{framed,color}
@@ -83,21 +84,6 @@
   {\begin{rmdblock}{warning}}
   {\end{rmdblock}}
 
-\urlstyle{tt}
-
-\usepackage{amsthm}
-\makeatletter
-\def\thm@space@setup{%
-  \thm@preskip=8pt plus 2pt minus 4pt
-  \thm@postskip=\thm@preskip
-}
-\makeatother
-
 %%----------end copy from https://github.com/rstudio/bookdown-----------------%%
-
-\usepackage{makeidx}
-\makeindex
-
-\setmonofont{Inconsolata}
 
 \frontmatter

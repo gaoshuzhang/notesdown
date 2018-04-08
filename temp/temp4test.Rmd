@@ -1,16 +1,14 @@
 ---
-title: "Untitled"
+title: "测试文档"
 output: 
   pdf_document: 
     latex_engine: xelatex
+    extra_dependencies:
+      ctex: UTF8
 ---
 
 ```{r setup, include=FALSE}
 source(file = "../common.R")
-knitr::opts_chunk$set(engine.path = list(
-  octave = '/usr/bin/octave-cli',
-  python = '/usr/bin/python'
-))
 ```
 
  standard normal distribution (mean = 0, standard deviation = 1)
@@ -48,10 +46,8 @@ help('modules')
 ```{r xkcd-embed,fig.cap = "xkcd"}
 library(extrafont)
 library(xkcd)
-# cairo_pdf(file = 'figures/xkcd.pdf',width = 6,height = 4)
 ggplot(aes(mpg, wt), data = mtcars) + geom_point() +
     theme_xkcd()
-# dev.off()
 ```
 
 
@@ -61,7 +57,7 @@ knitr::include_graphics(path = paste0("../figures/binormal", if(knitr::is_latex_
 
 
 
-```{r tikz-demo, dev='tikz', fig.cap="Linear",fig.showtext=FALSE,eval=FALSE}
+```{r tikz-demo, dev='tikz', fig.cap="Linear",fig.ext='tex'}
 x <- rnorm(10)
 y <- x + rnorm(5, sd = 0.25)
 model <- lm(y ~ x)
