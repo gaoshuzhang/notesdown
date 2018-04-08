@@ -155,3 +155,5 @@ configure:
 configure: NOTE: Libraries or auxiliary programs may be skipped if they are
 configure: NOTE: not found OR if they are missing required features on your
 configure: NOTE: system. 
+
+> 在 CentOS 7 最新版下编译的

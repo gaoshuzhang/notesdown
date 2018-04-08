@@ -118,3 +118,38 @@ sudo yum install  stack hugo code hostapd dnsmasq ntfs-3g qbittorrent wine yum-u
 
 ImageMagick-devel GraphicsMagick gnuplot gmp-devel gperftools-devel qhull-devel qhull-devel gperf glpk-devel GraphicsMagick++ GraphicsMagick-c++ arpack-devel fltk-devel gl2ps gl2ps-devel mesa-libOSMesa-devel mesa-libOSMesa qrupdate-devel arpack arpack-devel arpack-static suitesparse suitesparse-devel libsndfile-devel libsndfile GraphicsMagick-devel GraphicsMagick GraphicsMagick-c++ GraphicsMagick-c++-devel hdf5-devel hdf5 portaudio-devel portaudio qt-devel qscintilla-devel arpack fftw fftw-devel
 ```
+
+gonme 桌面需要比较好的硬件支持，用起来才不会有笨重的感觉，建议还是使用 fedora 软件比较新，很多不需要自己去编译，比较划算 
+
+centos 7 下安装 octave 3.8.2 的依赖，如果自己编译最新版 octave 
+
+```
+GraphicsMagick.x86_64 0:1.3.28-1.el7
+GraphicsMagick-c++.x86_64 0:1.3.28-1.el7
+arpack.x86_64 0:3.1.3-2.el7
+atlas.x86_64 0:3.10.1-12.el7
+blas.x86_64 0:3.4.2-8.el7
+dejavu-sans-fonts.noarch 0:2.33-6.el7
+epstool.x86_64 0:3.08-4.el7
+fftw-libs-double.x86_64 0:3.3.3-8.el7
+fftw-libs-single.x86_64 0:3.3.3-8.el7
+fltk.x86_64 0:1.3.4-1.el7
+gd.x86_64 0:2.0.35-26.el7
+gl2ps.x86_64 0:1.3.8-2.el7
+glpk.x86_64 0:4.52.1-2.el7
+gnuplot.x86_64 0:4.6.2-3.el7
+gnuplot-common.x86_64 0:4.6.2-3.el7
+hdf5.x86_64 0:1.8.12-10.el7
+lapack.x86_64 0:3.4.2-8.el7
+libaec.x86_64 0:1.0.2-1.el7
+libmng.x86_64 0:1.0.10-14.el7
+pciutils.x86_64 0:3.5.1-2.el7
+qhull.x86_64 0:2003.1-20.el7
+qrupdate.x86_64 0:1.1.2-3.el7
+qscintilla.x86_64 0:2.8-1.el7
+qt.x86_64 1:4.8.5-15.el7_4
+qt-settings.noarch 0:19-23.5.el7.centos
+qt-x11.x86_64 1:4.8.5-15.el7_4
+suitesparse.x86_64 0:4.0.2-10.el7
+tbb.x86_64 0:4.1-9.20130314.el7
+```

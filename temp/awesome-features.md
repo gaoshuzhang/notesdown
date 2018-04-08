@@ -20,6 +20,16 @@ cat(readLines(rticles::ctex_template()) ,sep = "\n")
 
 2. 如何基于 ctexart 写新的文档类，如 [Rob J Hyndman](https://github.com/robjhyndman) 莫纳什大学博士学位论文模板 <https://github.com/robjhyndman/MonashThesis>
 
+
+3. 我的工作环境 
+
+- rocker/geospatial 基于最新版 Debian 的 docker 为了与  travis-ci 环境一致 （实际是基于 ubuntu 14.04.5 的 docker） 很多测试需要在此 docker 内进行，如 tikz 和 octave 的图形，也是为了方便，要知道 windows 下做这个事情比较麻烦，依赖，该死的依赖
+
+- PuTTY + FileZila = Xshell
+
+https://www.putty.org/
+https://filezilla-project.org/
+
 - 附录：学习心得，knitr 、 Pandoc 、 R Markdown
 
 0. 掌握 bookdown 相关工具
