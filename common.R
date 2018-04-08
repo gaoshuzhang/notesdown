@@ -43,8 +43,8 @@ knitr::opts_chunk$set(
   # fig.showtext = TRUE, # too danger
   fig.asp = 0.618, # 1 / phi
   fig.show = "hold",
-  fig.ext = if (knitr:::is_latex_output()) "pdf" else "png",
-  dev = if (knitr:::is_latex_output()) "cairo_pdf" else "png",
+  fig.ext = if (knitr::is_latex_output()) "pdf" else "png",
+  dev = if (knitr::is_latex_output()) "cairo_pdf" else "png",
   engine.path = list(
     octave = "/usr/bin/octave-cli",
     python = "/usr/bin/python"

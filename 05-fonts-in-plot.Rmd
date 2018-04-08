@@ -11,6 +11,8 @@ if (length(setdiff(Pkgs, .packages(TRUE))) > 0)
 
 字体设置包括自定义中文字体、英文字体和数学公式。
 
+> 启用showtext 包处理中文，在网页版文档中，png 图片中的字体会变很小
+
 ## showtext 
 
 showtext 包[@Qiu2015]可以调用系统字体，图\@ref(fig:iris-ggplot2)使用5号思源宋体，英文和数字使用 serif 字体。详细的使用文档可以看 [showtext 的开发页面](https://github.com/yixuan/showtext)
@@ -56,22 +58,28 @@ ggplot(FijiMap, aes(x = long, y = lat)) +
 
 用 base plot 画地图，如图 \@ref(fig:maps-unemp-plot) 所示
 
-```{r maps-unemp-plot, fig.cap="2009年美国各城镇失业率",fig.width=8,fig.height=6}
-library(mapproj) 	
+```{r maps-unemp-plot, fig.cap="2009年美国各城镇失业率",fig.width=8,fig.height=6,out.width="100%"}
+library(mapproj)
 data(unemp)
 data(county.fips)
 colors <- c("#F1EEF6", "#D4B9DA", "#C994C7", "#DF65B0", "#DD1C77", "#980043")
 unemp$colorBuckets <- as.numeric(cut(unemp$unemp, c(0, 2, 4, 6, 8, 10, 100)))
 leg.txt <- c("<2%", "2-4%", "4-6%", "6-8%", "8-10%", ">10%")
-cnty.fips <- county.fips$fips[match(map("county", plot=FALSE)$names,
-                                    county.fips$polyname)]
+cnty.fips <- county.fips$fips[match(
+  map("county", plot = FALSE)$names,
+  county.fips$polyname
+)]
 colorsmatched <- unemp$colorBuckets[match(cnty.fips, unemp$fips)]
-par(mar=c(0,0,2,0))
+par(mar = c(0, 0, 2, 0))
 # draw map
-map("county", col = colors[colorsmatched], fill = TRUE, resolution = 0,
-    lty = 0, projection = "polyconic")
-map("state", col = "white", fill = FALSE, add = TRUE, lty = 1, lwd = 0.2,
-    projection="polyconic")
+map("county",
+  col = colors[colorsmatched], fill = TRUE, resolution = 0,
+  lty = 0, projection = "polyconic"
+)
+map("state",
+  col = "white", fill = FALSE, add = TRUE, lty = 1, lwd = 0.2,
+  projection = "polyconic"
+)
 title("unemployment by county, 2009")
 legend("top", leg.txt, horiz = TRUE, fill = colors)
 ```
@@ -96,7 +104,7 @@ library(fontcm)
 p <- qplot(c(1, 5), c(1, 5)) +
   xlab("Made with CM fonts") + ylab("Made with CM fonts") +
   ggtitle("Made with CM fonts")
-# Equation
+# 公式
 eq <- "italic(sum(frac(1, n*'!'), n==0, infinity) ==
        lim(bgroup('(', 1 + frac(1, n), ')')^n, n %->% infinity))"
 # 默认字体
@@ -110,26 +118,27 @@ p2 <- p + annotate("text",
     text = element_text(size = 16, family = "CM Roman"),
     axis.title.x = element_text(face = "italic"),
     axis.title.y = element_text(face = "bold")
-  ) # fig 2
+  )
 library(gridExtra)
-# pdf(file = 'figures/ggplot_cm.pdf',width = 8,height = 4)
 grid.arrange(p1,p2, nrow = 1, ncol = 2)
-# dev.off()
 ```
 
 使用 ghostscript 嵌入数学字体，最终效果如图\@ref(fig:fontcm-ggplot)所示，
 
-```{r embed-fonts,eval=FALSE}
-# Embed the fonts
+```r 
+pdf(file = 'figures/ggplot_cm.pdf',width = 8,height = 4)
+grid.arrange(p1,p2, nrow = 1, ncol = 2)
+dev.off()
+# 嵌入字体
 extrafont::embed_fonts("figures/ggplot_cm.pdf", outfile = "figures/ggplot_cm_embed.pdf")
 ```
-```{r fontcm-ggplot, echo=FALSE,fig.cap="fontcm 处理数学公式"}
+```{r fontcm-ggplot, echo=FALSE,fig.cap="fontcm 处理数学公式",dpi = 300}
 knitr::include_graphics("figures/ggplot_cm_embed.png")
 ```
 
 ## tikzDevice
 
-tikz 源于 LaTeX 宏包，在 R 语言绘图的世界里，对基础图形有很好的支持，如图 `r ifelse(knitr::is_html_output(),'\\@ref(fig:tikz-demo-png)','\\@ref(fig:tikz-demo)') `
+tikz 源于 LaTeX 宏包，在 R 语言绘图的世界里，对基础图形有很好的支持，如图 \@ref(fig:tikz-demo) 所示
 先测试一下
 
 ```{r test-tikz-device}
@@ -138,27 +147,23 @@ tikzDevice::tikzTest()
 
 坐标轴标签，标题，图例等位置都支持数学公式
 
-```{r tikz-demo, eval = knitr::is_latex_output(), fig.cap="线性模型",echo=FALSE}
-knitr::include_graphics(path = "figures/linear.pdf")
+
+```{r tikz-demo, fig.cap="tikz 之线性回归", echo = FALSE,dpi=300}
+knitr::include_graphics(path = paste0("figures/linear", if(knitr::is_latex_output()) ".pdf" else ".png"))
 ```
-```{r tikz-demo-png, eval = knitr::is_html_output(), fig.cap="线性模型",echo=FALSE}
-knitr::include_graphics(path = "figures/linear.png")
-```
+
 
 ```{r tikz-linear-regression-code}
 cat(readLines("code/tikz-linear-regression.R", encoding = "UTF-8"), sep = "\n")
 ```
 
-虽然复杂图片也可直接用 tikz 制作但是，尺寸等细节不好调整（我还没找到合适的方法），比较合适的做法可能是，独立制作图，然后作为图片插入，以一个颇具复杂度的图片为例，如图 `r ifelse(knitr::is_html_output(),'\\@ref(fig:plot3d-tikz-png)','\\@ref(fig:plot3d-tikz)') ` 所示
+虽然复杂图片也可直接用 tikz 制作但是，尺寸等细节不好调整（我还没找到合适的方法），比较合适的做法可能是，独立制作图，然后作为图片插入，以一个颇具复杂度的图片为例，如图 \@ref(fig:plot3d-tikz) 所示
 
 ```{r tikz-persp-3d-code}
 cat(readLines("code/tikz-persp-3d.R", encoding = "UTF-8"), sep = "\n")
 ```
 
-```{r plot3d-tikz, eval = knitr::is_latex_output(), fig.cap="tikz 复杂公式",echo=FALSE}
-knitr::include_graphics(path = "figures/binormal.pdf")
-```
-```{r plot3d-tikz-png, eval = knitr::is_html_output(), fig.cap="tikz 复杂公式",echo=FALSE}
-knitr::include_graphics(path = "figures/binormal.png")
+```{r plot3d-tikz, fig.cap="tikz 之复杂公式", echo = FALSE}
+knitr::include_graphics(path = paste0("figures/binormal", if(knitr::is_latex_output()) ".pdf" else ".png"))
 ```
 

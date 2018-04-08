@@ -45,7 +45,7 @@ help('modules')
 ```
 
 
-```{r xkcd-embed,fig.cap = "xkcd", fig.ext=if (knitr:::is_latex_output()) 'pdf' else 'png', dev= if (knitr:::is_latex_output()) 'cairo_pdf' else 'png'}
+```{r xkcd-embed,fig.cap = "xkcd"}
 library(extrafont)
 library(xkcd)
 # cairo_pdf(file = 'figures/xkcd.pdf',width = 6,height = 4)
@@ -55,7 +55,13 @@ ggplot(aes(mpg, wt), data = mtcars) + geom_point() +
 ```
 
 
-```{r tikz-demo, dev='tikz', fig.cap="Linear",fig.showtext=FALSE}
+```{r plot3d-tikz, fig.cap="tikz", echo = FALSE}
+knitr::include_graphics(path = paste0("../figures/binormal", if(knitr::is_latex_output()) ".pdf" else ".png"))
+```
+
+
+
+```{r tikz-demo, dev='tikz', fig.cap="Linear",fig.showtext=FALSE,eval=FALSE}
 x <- rnorm(10)
 y <- x + rnorm(5, sd = 0.25)
 model <- lm(y ~ x)
