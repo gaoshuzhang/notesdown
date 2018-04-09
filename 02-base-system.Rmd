@@ -11,9 +11,10 @@ source("common.R")
 ```{r}
 A = matrix(c(1,2,2,3),nrow =2)
 # 矩阵每个元素平方
-A^2
+A^2 # Hadamard 积
 
 2^A
+exp(A)
 
 A %*% A
 crossprod(A,A) # 交叉积 t(x) %*% y
@@ -68,14 +69,6 @@ diag(A) # 取矩阵的对角元素
 diag(diag(A)) # 对角矩阵
 ```
 
-矩阵下三角
-
-```{r}
-lower.tri(A)
-upper.tri(A) # 矩阵上三角
-A[lower.tri(A)]
-```
-
 条件数
 
 ```{r}
@@ -119,16 +112,24 @@ QR分解
 
 ```{r}
 qr.default(A)
-qr.X(A)
-qr.Q(A)
-qr.R(A)
+qr.X(qr.default(A))
+qr.Q(qr.default(A))
+qr.R(qr.default(A))
+
+qr.Q(qr.default(A)) %*% qr.R(qr.default(A))
 ```
 
-Moore-Penrose generalized inverse 广义逆
+Moore-Penrose generalized inverse 广义逆，如果 A 可逆则，广义逆就是逆
 
 ```{r}
 library(MASS)
 ginv(A)
+A %*% ginv(A) %*% A
+ginv(A) %*% A %*% ginv(A)
+t(A %*% ginv(A))
+A %*% ginv(A)
+t(ginv(A) %*% A)
+ginv(A) %*% A
 ```
 
 `ginv` 函数实现
@@ -160,8 +161,35 @@ LU 分解、Jordan分解
 矩阵的秩
 
 ```{r}
-
+qr(A)$rank # or qr.default(A)$rank
 ```
+
+矩阵下三角
+
+row 和 col
+
+```{r}
+row(A)
+col(A)
+A[row(A)]
+```
+
+
+```{r}
+lower.tri(A)
+upper.tri(A) # 矩阵上三角
+A[lower.tri(A)]
+A[lower.tri(A)] <- 0 # 获得上三角矩阵
+A
+A[row(A) < col(A)] <- 0
+A
+```
+
+- Householder 变换 <https://www.wikiwand.com/en/Householder_transformation>
+- Givens 旋转 <https://www.wikiwand.com/en/Givens_rotation>
+- 帽子矩阵在统计中的应用 回归与方差分析 [@David1978Hat]
+
+
 
 
 
