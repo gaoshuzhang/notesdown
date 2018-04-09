@@ -91,6 +91,23 @@ names(Pkgs[Pkgs == "base" & !is.na(Pkgs)])
 
 # 软件
 
+## Octave
+
+安装新版 Octave，详情请见 <https://wiki.octave.org/Octave_for_Debian_systems>
+
+```bash
+sudo apt-add-repository ppa:octave/stable
+sudo apt-get update
+sudo apt-get install octave
+```
+
+```{bash}
+which octave
+octave --version
+```
+
+
+
 ## LaTeX 
 
 列出 tex 版本及其他信息
