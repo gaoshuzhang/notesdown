@@ -6,32 +6,181 @@ source("common.R")
 
 ## 数学运算 {#math-operator}
 
-
-幂运算
+### 矩阵运算
 
 ```{r}
 A = matrix(c(1,2,2,3),nrow =2)
+# 矩阵每个元素平方
 A^2
+
 2^A
+
 A %*% A
 crossprod(A,A) # 交叉积 t(x) %*% y
 tcrossprod(A,A) # x %*% t(y)
+
 A %o% A # 外积运算
 outer(A,A,FUN = "*")
 
-A %x% A # 直积
+A %x% A # 直积/克罗内克积
 kronecker(A, A, FUN = "*")
 ```
 
-伴随矩阵、逆、广义逆、特征值及分解、奇异值及分解
-条件数、范数、QR分解、
+```{r}
+det(A) # 行列式
+```
+
+逆
+
+```{r}
+solve(A)
+```
+
+特征值及分解
+
+```{r}
+eigen(A)
+```
+
+伴随矩阵 $A*A^{\star} = A^{\star} *A = |A|*I, A^{\star} = |A|*A^{-1}$
+
+```{r}
+det(A)*solve(A)
+```
+
+单位矩阵
+
+```{r}
+diag(rep(3))
+```
+
+全1矩阵，借助外积运算
+
+```{r}
+rep(1,3) %o% rep(1,3) # 3 阶
+```
+
+
+对角矩阵
+
+```{r}
+diag(A) # 取矩阵的对角元素
+diag(diag(A)) # 对角矩阵
+```
+
+矩阵下三角
+
+```{r}
+lower.tri(A)
+upper.tri(A) # 矩阵上三角
+A[lower.tri(A)]
+```
+
+条件数
+
+```{r}
+library(Matrix)
+base::rcond(A)
+kappa(A)
+Matrix::rcond(Hilbert(6))
+Matrix::rcond(A)
+```
+
+Cholesky 分解
+
+```{r}
+# Compute the Choleski factorization of a real symmetric positive-definite square matrix.
+chol(A + diag(rep(1,2)))
+# Inverse from Choleski (or QR) Decomposition
+Matrix::chol2inv(A + diag(rep(1,2)))
+```
+
+
+奇异值及分解
+
+```{r}
+svd(A)
+svd(A)$d
+```
+
+线性方程组
+
+```{r}
+B <- Hilbert(6)
+b <- rowSums(B)
+# 不求逆解方程组
+solve(B,b) 
+
+# 求逆解方程组
+solve(B) %*% b
+```
+
+QR分解
+
+```{r}
+qr.default(A)
+qr.X(A)
+qr.Q(A)
+qr.R(A)
+```
+
+Moore-Penrose generalized inverse 广义逆
+
+```{r}
+library(MASS)
+ginv(A)
+```
+
+`ginv` 函数实现
+
+```r
+# The function is currently defined as
+function(X, tol = sqrt(.Machine$double.eps))
+{
+## Generalized Inverse of a Matrix
+  dnx <- dimnames(X)
+  if(is.null(dnx)) dnx <- vector("list", 2)
+  s <- svd(X)
+  nz <- s$d > tol * s$d[1]
+  structure(
+    if(any(nz)) s$v[, nz] %*% (t(s$u[, nz])/s$d[nz]) else X,
+    dimnames = dnx[2:1])
+}
+```
+
+向量和矩阵的范数，其他操作看 Matrix 包 [@R-Matrix] ，尤其关于稀疏矩阵计算部分
+
+```{r}
+library(Matrix)
+norm(A)
+```
+
+LU 分解、Jordan分解
+
+矩阵的秩
+
+```{r}
+
+```
+
+
+
+### 特殊函数
 
 - 阶乘 $n! = 1\times 2\times 3\cdots n$ 
 - 双阶乘 $(2n+1)!! = 1 \times 3\times 5 \times \cdots \times (2n+1), n = 0,1,2,\cdots$
 
 ```{r}
-factorial(5)
+factorial(5) # 阶乘
+seq(from = 1, to = 5, length.out = 3)
+prod(seq(from = 1, to = 5, length.out = 3)) # 连乘 双阶乘
+
+seq(5)
+cumprod(seq(5)) # 累积
+cumsum(seq(5)) # 累和
 ```
+
+此外还有 `cummax` 和 `cummin`
 
 - 组合数 $C_{n}^{k} = \frac{n(n-1)…(n-k+1)}{k!}$
 
@@ -114,5 +263,42 @@ legend(0, 6, legend = paste("nu=", nus), col = nus + 2, lwd = 1)
 ```
 
 ## 数据操作
+
+### 集合运算
+
+
+### 正则匹配
+
+以 CRAN 日志数据为例
+
+### order 和 sort
+
+
+### which
+
+向量和矩阵中的操作
+
+### by
+
+
+### with 和 within
+
+
+### apply 
+
+### aggregate
+
+### Map 和 Reduce
+
+### embed
+
+### split 和 cut
+
+findInterval
+
+## 文件管理
+
+
+
 
 
