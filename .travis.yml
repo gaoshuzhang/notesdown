@@ -28,8 +28,7 @@ addons:
 before_install:
   - curl -o ~/.fonts/Inconsolata-Bold.ttf https://raw.githubusercontent.com/google/fonts/master/ofl/inconsolata/Inconsolata-Bold.ttf 
   - curl -o ~/.fonts/Inconsolata-Regular.ttf https://raw.githubusercontent.com/google/fonts/master/ofl/inconsolata/Inconsolata-Regular.ttf
-  - fc-cache -f -v
-  - fc-list :lang=en | sort
+  - fc-cache -fsv ~/.fonts
   - npm install netlify-cli -g
   - tlmgr update --all --self
   - tlmgr install $(cat TeXLive.pkgs | tr '\n' ' ') || true
