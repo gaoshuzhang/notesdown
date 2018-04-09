@@ -26,25 +26,20 @@ addons:
       - libv8-3.14-dev
 
 before_install:
+  # upgrade to latest python 2.7.*
   - sudo add-apt-repository -y ppa:jonathonf/python-2.7
-  - sudo apt-get --yes --force-yes update -qq
-  - sudo apt-get install --yes python2.7
-  # install tmap dependencies
-  - sudo apt-get install --yes libprotobuf-dev protobuf-compiler libv8-3.14-dev
   # install tmap dependencies; for 16.04 libjq-dev this ppa is needed:
   - sudo add-apt-repository -y ppa:opencpu/jq
-  - sudo apt-get --yes --force-yes update -qq
-  - sudo apt-get install libjq-dev
-  # units/udunits2 dependency:
-  - sudo apt-get install --yes libudunits2-dev
   # sf dependencies/spatial stack:
-  - sudo add-apt-repository ppa:ubuntugis/ubuntugis-unstable --yes
-  - sudo apt-get --yes --force-yes update -qq
-  - sudo apt-get install --yes libproj-dev libgeos-dev libgdal-dev
+  - sudo add-apt-repository -y ppa:ubuntugis/ubuntugis-unstable
   # latest octave
   - sudo apt-add-repository -y ppa:octave/stable
-  - sudo apt-get --yes --force-yes update -qq
-  - sudo apt-get install --yes octave
+  - sudo apt-get --yes --force-yes update -qq  
+  # install tmap dependencies
+  - sudo apt-get install --yes python2.7 octave libprotobuf-dev \
+         protobuf-compiler libjq-dev libudunits2-dev \
+         libproj-dev libgeos-dev libgdal-dev
+  - sudo apt autoremove
   # monofont for code set
   - curl -o ~/.fonts/Inconsolata-Bold.ttf https://raw.githubusercontent.com/google/fonts/master/ofl/inconsolata/Inconsolata-Bold.ttf 
   - curl -o ~/.fonts/Inconsolata-Regular.ttf https://raw.githubusercontent.com/google/fonts/master/ofl/inconsolata/Inconsolata-Regular.ttf
