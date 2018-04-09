@@ -101,18 +101,18 @@ sudo apt-get update
 sudo apt-get install octave
 ```
 
-```{bash}
-which octave
-octave --version
+```{r}
+Sys.which("octave")
+system("octave --version")
 ```
 
 ## Python
 
 Python 版本和位置
 
-```{bash}
-which python
-python --version
+```{r}
+Sys.which("python")
+system("python --version")
 ```
 
 升级 Python
@@ -129,14 +129,12 @@ sudo apt-get upgrade
 help('modules')
 ```
 
-
-
 ## LaTeX 
 
 列出 tex 版本及其他信息
 
 ```{bash}
-tex -v
+pdftex -v
 ```
 
 ```{bash}
@@ -149,11 +147,11 @@ xetex -v
 
 安装的中英文字体
 
-```{bash}
+```{r}
 # 英文字体
-fc-list :lang=en-us | sort
+system("fc-list :lang=en-us | sort")
 # 中文字体
-fc-list :lang=zh-cn | sort
+system("fc-list :lang=zh-cn | sort")
 ```
 
 已经安装 TeX 包
@@ -172,10 +170,11 @@ rmarkdown::pandoc_available()
 
 pandoc 版本
 
-```{bash}
-pandoc -v
-which pandoc
+```{r}
+Sys.which("pandoc")
+system("pandoc -v")
 ```
+
 
 ## rtools
 
