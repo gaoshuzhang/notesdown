@@ -26,10 +26,10 @@ rmd_files: [
   "09-inla-INLA.Rmd",
   "10-mcmc-rstan.Rmd",
 
-  "11-geostatistics-PrevMap.Rmd",
-  "12-spatial-sf.Rmd",
+  "11-geostatistics.Rmd",
+  "12-spatial.Rmd",
 
-  "13-network-igraph.Rmd",
+  "13-network.Rmd",
   "14-animation.Rmd",
 
   "16-generalized-linear-models.Rmd",
