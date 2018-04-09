@@ -30,9 +30,8 @@ rmd_files: [
   "12-spatial-sf.Rmd",
 
   "13-network-igraph.Rmd",
-  "14-animation-mapmate.Rmd",
-  "14-animation-rgl.Rmd",
-  
+  "14-animation.Rmd",
+
   "16-generalized-linear-models.Rmd",
   "17-mixed-models.Rmd",
   "18-generalized-additive-models.Rmd",

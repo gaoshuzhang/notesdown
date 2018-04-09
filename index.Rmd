@@ -102,9 +102,9 @@ cat(".\n")
 你好，世界。我写了一本书。这本书是这样的，第 \@ref(colors) 章介绍了啥啥，第 \@ref(plot) 章说了啥啥，然后是啥啥……
 
 - 第 \@ref(bayes-mcmc) 章介绍 rstan 
-- 第 \@ref(spatial-sf) 章介绍 sf
-- 第 \@ref(network-igraph) 章介绍 igraph
-- 第 \@ref(animotion-mapmate) 章介绍 mapmate
+- 第 \@ref(spatial) 章介绍 sf
+- 第 \@ref(network) 章介绍 igraph
+- 第 \@ref(animotion) 章介绍 animation、mapmate、rgl
 
 
 ## 后记 {#colophon}

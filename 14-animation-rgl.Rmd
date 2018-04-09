@@ -1,9 +1,0 @@
-# 三维动画 {#animotion-rgl}
-
-```{r setup, include = FALSE}
-source("common.R")
-```
-
-## rgl
-
-真三维

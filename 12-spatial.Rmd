@@ -1,4 +1,4 @@
-# 空间数据 {#spatial-sf}
+# 空间数据 {#spatial}
 
 ```{r setup, include = FALSE}
 source("common.R")

@@ -1,4 +1,4 @@
-# 动画 {#animotion-mapmate}
+# 动画 {#animotion}
 
 ```{r setup, include = FALSE}
 source("common.R")
@@ -6,10 +6,18 @@ source("common.R")
 
 ## JS 动画
 
+## svg 动画
+
+svgViewR <https://aaronolsen.github.io/tutorials/visualization3d.html>
+
 ## mapmate
 
 
 ```{r install-mapmate, eval = (!"mapmate" %in% .packages(TRUE))}
 devtools::install_github("leonawicz/mapmate")
 ```
+
+## rgl
+
+真三维
 
