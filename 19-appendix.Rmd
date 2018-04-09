@@ -89,7 +89,7 @@ names(Pkgs[Pkgs == "base" & !is.na(Pkgs)])
 - $\mathrm{A,B,C}$ 
 - $\mathfrak{A,B,C}$
 
-# 软件
+# 其他软件信息 {#detail}
 
 ## Octave
 
@@ -106,6 +106,22 @@ which octave
 octave --version
 ```
 
+## Python
+
+Python 版本和位置
+
+```{bash}
+which python
+python --version
+```
+
+升级 Python
+
+```bash
+sudo add-apt-repository ppa:fkrull/deadsnakes-python2.7  
+sudo apt-get update  
+sudo apt-get upgrade  
+```
 
 
 ## LaTeX 
