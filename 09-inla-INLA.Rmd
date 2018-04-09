@@ -2,6 +2,17 @@
 
 ```{r setup, include=FALSE}
 source("common.R")
+## try http:// if https:// URLs are not supported
+source("https://bioconductor.org/biocLite.R")
+Pkgs <- c(
+  "INLA", "Rgraphviz", "graph"
+)
+if (length(setdiff(Pkgs, .packages(TRUE))) > 0) {
+  biocLite(c("Rgraphviz", "graph"), ask = FALSE)
+  install.packages("INLA", repos = c(getOption("repos"),
+    INLA = "https://inla.r-inla-download.org/R/stable"
+  ), dep = TRUE)
+}
 ```
 
 
