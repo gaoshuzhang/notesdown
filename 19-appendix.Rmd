@@ -134,6 +134,7 @@ pandoc 版本
 
 ```{bash}
 pandoc -v
+which pandoc
 ```
 
 ## rtools
