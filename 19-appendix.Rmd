@@ -29,6 +29,7 @@ plt.ylabel('volts (mV)')
 plt.savefig('math-in-plot.png', bbox_inches='tight',dpi=300)
 plt.savefig('math-in-plot.pdf', bbox_inches='tight')
 ```
+
 - dpi 分辨率，越大图像越清晰，对矢量图形无效
 - bbox\_inches 去除图形周边空白区域
 
@@ -78,6 +79,7 @@ names(Pkgs[Pkgs == "base" & !is.na(Pkgs)])
 ```
 
 
+
 # 数学符号说明 {#notations}
 
 - $\mathcal{S,P,G}$
@@ -86,3 +88,97 @@ names(Pkgs[Pkgs == "base" & !is.na(Pkgs)])
 - $\mathbf{A,B,C},\mathsf{A,B,C},\mathit{A,B,C}$
 - $\mathrm{A,B,C}$ 
 - $\mathfrak{A,B,C}$
+
+# 软件
+
+## LaTeX 
+
+列出 tex 版本及其他信息
+
+```{bash}
+tex -v
+```
+
+```{bash}
+bibtex -v
+```
+
+```{bash}
+xetex -v
+```
+
+安装的中英文字体
+
+```{bash}
+# 英文字体
+fc-list :lang=en-us | sort
+# 中文字体
+fc-list :lang=zh-cn | sort
+```
+
+已经安装 TeX 包
+
+```{bash}
+tlmgr list --only-installed
+```
+
+## pandoc
+
+pandoc 在 R Markdown 中是否可用
+
+```{r}
+rmarkdown::pandoc_available()
+```
+
+pandoc 版本
+
+```{bash}
+pandoc -v
+```
+
+## rtools
+
+rtools 是否可用
+
+```{r}
+devtools::find_rtools()
+```
+
+算个小栗子
+
+```{r rtools}
+fx <- inline::cxxfunction( signature(x = "integer", y = "numeric" ) , '
+	return ScalarReal( INTEGER(x)[0] * REAL(y)[0] ) ;
+' )
+fx( 2L, 5 ) 
+```
+
+
+## R
+
+列出已经安装的 r 包
+
+```{r}
+devtools::session_info(installed.packages()[, "Package"])
+```
+
+可用的图形设备
+
+```{r}
+capabilities()
+```
+
+其他软件信息
+
+```{r}
+extSoftVersion()
+```
+
+pdf 设备可用的字体信息
+
+```{r}
+names(pdfFonts())
+```
+
+
+> 此节附录最后可以删掉
