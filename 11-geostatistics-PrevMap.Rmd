@@ -1,0 +1,25 @@
+# 地统计分析 {#geostatistics}
+
+```{r setup, include = FALSE}
+source("common.R")
+Pkgs <- c(
+  "PrevMap"
+)
+if (length(setdiff(Pkgs, .packages(TRUE))) > 0) {
+  install.packages(setdiff(Pkgs, .packages(TRUE)))
+}
+```
+
+## 分析与可视化
+
+Here is a review of existing methods.
+
+
+## PrevMap
+
+```{r}
+library(PrevMap)
+```
+
+
+- Intro to Geospatial Data with R <http://www.datacarpentry.org/r-raster-vector-geospatial/>

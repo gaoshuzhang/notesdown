@@ -1,0 +1,14 @@
+# 集成嵌套拉普拉斯 {#inla}
+
+```{r setup, include=FALSE}
+source("common.R")
+```
+
+
+## 高斯-马尔科夫随机场
+
+
+## INLA
+
+随机偏微分方程，高维积分，拉普拉斯近似
+

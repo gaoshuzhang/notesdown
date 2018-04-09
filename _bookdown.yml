@@ -13,22 +13,30 @@ new_session: yes
 rmd_files: [
   "index.Rmd",
   "01-setup.Rmd",
+  
   "02-base-system.Rmd",
   "03-colors-in-plot.Rmd",
-  "04-plot-and-ggplot.Rmd",              
+  "04-plot-and-ggplot.Rmd",
   "05-fonts-in-plot.Rmd",
-  "06-optimation.Rmd",  
-  "07-statistical-computing.Rmd",         
+
+  "06-numerical-optimation.Rmd",
+  "07-statistical-computing.Rmd",
   
-  "10-mcmc-rstan.Rmd", 
+  "08-random-process.Rmd",
+  "09-inla-INLA.Rmd",
+  "10-mcmc-rstan.Rmd",
+
+  "11-geostatistics-PrevMap.Rmd"
+  "12-spatial-sf.Rmd",
+
+  "13-network-igraph.Rmd",
+  "14-animation-mapmate.Rmd",
+  "14-animation-rgl.Rmd",
   
-  "12-spatial-sf.Rmd",                    
-  "13-network-igraph.Rmd",               
-  "14-animation-mapmate.Rmd",             
-  "15-spatio-temporal-visualization.Rmd",
-  "16-generalized-linear-models.Rmd",     
-  "17-mixed-models.Rmd",                 
-  "18-generalized-additive-models.Rmd",   
-  "19-appendix.Rmd",                     
+  "16-generalized-linear-models.Rmd",
+  "17-mixed-models.Rmd",
+  "18-generalized-additive-models.Rmd",
+
+  "19-appendix.Rmd",
   "20-references.Rmd",
 ]

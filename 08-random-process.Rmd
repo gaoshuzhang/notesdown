@@ -1,0 +1,16 @@
+# 随机过程 {#random-process}
+
+```{r setup, include=FALSE}
+source("common.R")
+```
+
+## 随机游走
+
+
+## 遍历定理
+
+
+## M-H 算法
+
+
+## Gibbs 算法
