@@ -26,12 +26,6 @@ rand('state',mtstate(4));
 rand(1,5)
 ```
 
-可用的 python 模块
-
-```{python}
-help('modules')
-```
-
 
 ## 统计分布 {#distribution}
 

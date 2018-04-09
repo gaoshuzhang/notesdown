@@ -123,6 +123,13 @@ sudo apt-get update
 sudo apt-get upgrade  
 ```
 
+可用的 python 模块
+
+```{python}
+help('modules')
+```
+
+
 
 ## LaTeX 
 
