@@ -124,6 +124,33 @@ spark_install(version = "2.2.0", hadoop_version = "2.7")
 - <https://github.com/hannesmuehleisen/clickhouse-r>
 - 壮士！交给你个任务，基于 clickhouse 的 odbc 驱动 <https://github.com/yandex/clickhouse-odbc> 写了 R 包如何，顺带介绍 clickhouse ，再给统计之都投篇稿子，在明年的 R 会给个相关报告。名字 r4clickhouse 还是 clickhouse4r 呢
 
+[ClickHouse](https://clickhouse.yandex/) 独辟蹊径，基于 C++ 的实现，数据查询速度超级快，官网介绍碾压大量传统数据库。还有不少接口，其中还有 R 的 <https://github.com/hannesmuehleisen/clickhouse-r> 
+
+- 安装
+
+```r
+devtools::install_github("hannesmuehleisen/clickhouse-r")
+```
+
+- 使用
+
+```r
+library(DBI)
+con <- dbConnect(clickhouse::clickhouse(), host="localhost", port=8123L, user="default", password="")
+dbWriteTable(con, "mtcars", mtcars)
+dbListTables(con)
+dbGetQuery(con, "SELECT COUNT(*) FROM mtcars")
+d <- dbReadTable(con, "mtcars")
+dbDisconnect(con)
+```
+
+发现它和 knitr  里的 SQL 钩子，都用 DBI 这个R包  <https://github.com/rstats-db/DBI>
+
+```{r clickhouse,fig.cap="ClickHouse与R"}
+knitr::include_graphics(path = "images/clickhouse.png")
+```
+
+
 ### reticulate
 
 Python 与 R 交互

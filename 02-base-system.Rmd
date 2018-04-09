@@ -6,6 +6,26 @@ source("common.R")
 
 ## 数学运算 {#math-operator}
 
+
+幂运算
+
+```{r}
+A = matrix(c(1,2,2,3),nrow =2)
+A^2
+2^A
+A %*% A
+crossprod(A,A) # 交叉积 t(x) %*% y
+tcrossprod(A,A) # x %*% t(y)
+A %o% A # 外积运算
+outer(A,A,FUN = "*")
+
+A %x% A # 直积
+kronecker(A, A, FUN = "*")
+```
+
+伴随矩阵、逆、广义逆、特征值及分解、奇异值及分解
+条件数、范数、QR分解、
+
 - 阶乘 $n! = 1\times 2\times 3\cdots n$ 
 - 双阶乘 $(2n+1)!! = 1 \times 3\times 5 \times \cdots \times (2n+1), n = 0,1,2,\cdots$
 
