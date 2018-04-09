@@ -200,6 +200,12 @@ fx( 2L, 5 )
 列出已经安装的 r 包
 
 ```{r}
+.packages(TRUE)
+```
+
+R 包及其版本信息
+
+```{r}
 devtools::session_info(installed.packages()[, "Package"])
 ```
 
