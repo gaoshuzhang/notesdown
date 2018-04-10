@@ -37,13 +37,20 @@ det(A) # 行列式
 solve(A)
 ```
 
-特征值及分解
+特征值及分解 $A = V \Lambda V^{-1}$ 求解矩阵 A 的 n 次方
 
 ```{r}
 eigen(A)
+
+eigen(A)$vectors %*% diag(eigen(A)$values) %*% solve(eigen(A)$vectors)
 ```
 
 伴随矩阵 $A*A^{\star} = A^{\star} *A = |A|*I, A^{\star} = |A|*A^{-1}$
+
+- $|A^{\star}| = |A|^{n-1}, A \in \mathbb{R}^{n\times n},n \geq 2$
+- $(A^{\star})^{\star} = |A|^{n-2}A, A \in \mathbb{R}^{n\times n},n \geq 2 $
+- $(A^{\star})^{\star}$ A 的 n 次伴随是？
+
 
 ```{r}
 det(A)*solve(A)

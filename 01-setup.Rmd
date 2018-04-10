@@ -43,13 +43,13 @@ install.packages("rbokeh", repos = c(deltarho = "http://packages.deltarho.org", 
 ```
 
 ```{block2, type='rmdwarning'}
-一行命令安装 cran 上所有的 R 包，可千万别这么搞哈
+> 一行命令安装 cran 上所有的 R 包，可千万别这么搞哈
+> ```r
+> install.packages(setdiff(available.packages()[,1],
+>                         .packages(all.available = TRUE)))
+> ```
 ```
 
-```r
-install.packages(setdiff(available.packages()[,1],
-                         .packages(all.available = TRUE)))
-```
 
 
 
