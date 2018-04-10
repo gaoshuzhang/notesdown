@@ -4,7 +4,7 @@ bookdown::gitbook:
     toc:
       collapse: section
       before: |
-        <li><a href="./">A Book of Notes</a></li>
+        <li><a href="./">R语言笔记</a></li>
       after: |
         <li><a href="https://www.netlify.com/" target="blank">Published with netlify</a></li>
     download: ["pdf", "epub"]
