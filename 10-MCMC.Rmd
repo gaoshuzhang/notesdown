@@ -10,13 +10,26 @@ if (length(setdiff(Pkgs, .packages(TRUE))) > 0) {
 }
 ```
 
-## 贝叶斯计算
+从 WinBUGS\index{WinBUGS} 到 OpenBUGS\index{OpenBUGS}，从 JAGS\index{JAGS} 到 Stan\index{Stan}，BUGS\index{BUGS}的发展从未停止过，Stan^[<http://mc-stan.org/>] 是一个统计建模和高性能统计计算平台。
 
-### MCMC
+## BUGS
 
 最大后验估计，贝叶斯分层模型
 
-### pystan
+## Stan
+
+```{r insert-logos,out.width="20%",fig.cap="Stan 家族",echo=FALSE}
+knitr::include_graphics(path = paste0(
+  "images/",
+  paste0(
+    c("stan_logo", "rstan_logo", "pystan_logo"),
+    if (knitr::is_latex_output()) ".eps" else ".svg"
+  )
+))
+```
+
+
+### PyStan
 
 ```python
 # 整合 Python 语言到 R Mrakdown 
@@ -64,28 +77,13 @@ np.mean(eta, axis=0)
 # plt.show()
 ```
 
-### Stan
-
-
-```{r insert-logos,out.width="33%",fig.cap=c("Stan","RStan","PyStan")}
-knitr::include_graphics(path = paste0(
-  "images/",
-  paste0(
-    c("stan_logo", "rstan_logo", "pystan_logo"),
-    if (knitr::is_latex_output()) ".eps" else ".svg"
-  )
-))
-```
-
-
-
-从 WinBUGS\index{WinBUGS} 到 OpenBUGS\index{OpenBUGS}，从 JAGS\index{JAGS} 到 Stan\index{Stan}，BUGS\index{BUGS}的发展从未停止过，Stan^[<http://mc-stan.org/>] 是一个统计建模和高性能统计计算平台。
+### RStan
 
 Stan 提供的R语言接口 rstan 包 [@R-rstan] 及其扩展 StanHeaders 包 [@R-StanHeaders] 、bayesplot包 [@R-bayesplot] 、brms 包 [@brms2017JSS]、 rstanarm 包 [@R-rstanarm]以及 rstan 的 wiki^[<https://github.com/stan-dev/rstan/wiki>] 及其在空间广义线性混合效应模型的参数估计和预测中的应用。
 
 加载 rstan,如果你的电脑配置有多核处理器，内存也充足，那么可以考虑使用并行方式去估计你的模型参数，
 
-```{r setup-rstan, eval = ("rstan" %in% .packages(TRUE))}
+```{r setup-rstan}
 library(rstan)
 rstan_options(auto_write = TRUE)
 options(mc.cores = parallel::detectCores())
