@@ -66,6 +66,19 @@ np.mean(eta, axis=0)
 
 ### Stan
 
+
+```{r}
+knitr::include_graphics(path = paste0(
+  "images/",
+  paste0(
+    c("stan_logo", "rstan_logo", "pystan_logo"),
+    if (knitr::is_latex_output()) ".eps" else ".svg"
+  )
+))
+```
+
+
+
 从 WinBUGS\index{WinBUGS} 到 OpenBUGS\index{OpenBUGS}，从 JAGS\index{JAGS} 到 Stan\index{Stan}，BUGS\index{BUGS}的发展从未停止过，Stan^[<http://mc-stan.org/>] 是一个统计建模和高性能统计计算平台。
 
 Stan 提供的R语言接口 rstan 包 [@R-rstan] 及其扩展 StanHeaders 包 [@R-StanHeaders] 、bayesplot包 [@R-bayesplot] 、brms 包 [@brms2017JSS]、 rstanarm 包 [@R-rstanarm]以及 rstan 的 wiki^[<https://github.com/stan-dev/rstan/wiki>] 及其在空间广义线性混合效应模型的参数估计和预测中的应用。

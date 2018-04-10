@@ -48,7 +48,7 @@ eigen(A)$vectors %*% diag(eigen(A)$values) %*% solve(eigen(A)$vectors)
 伴随矩阵 $A*A^{\star} = A^{\star} *A = |A|*I, A^{\star} = |A|*A^{-1}$
 
 - $|A^{\star}| = |A|^{n-1}, A \in \mathbb{R}^{n\times n},n \geq 2$
-- $(A^{\star})^{\star} = |A|^{n-2}A, A \in \mathbb{R}^{n\times n},n \geq 2 $
+- $(A^{\star})^{\star} = |A|^{n-2}A, A \in \mathbb{R}^{n\times n},n \geq 2$
 - $(A^{\star})^{\star}$ A 的 n 次伴随是？
 
 
