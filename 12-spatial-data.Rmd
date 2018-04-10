@@ -1,7 +1,6 @@
 # 空间数据分析 {#spatial}
 
 ```{r setup, include = FALSE}
-source("common.R")
 Pkgs <- c(
   "sf", "tmap", "rgdal", "PrevMap"
 )

@@ -1,7 +1,6 @@
 # 字体 {#fonts}
 
 ```{r setup, include = FALSE}
-source("common.R")
 Pkgs <- c(
   "maps", "mapdata", "mapproj"
 )

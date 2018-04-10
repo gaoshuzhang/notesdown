@@ -1,4 +1,4 @@
-book_filename: "bookdown-demo"
+book_filename: "notebook"
 delete_merged_file: true
 language:
   label:
@@ -9,31 +9,32 @@ language:
     chapter_name: ["第 ", " 章"]
 
 new_session: yes
+before_chapter_script: ["common.R"]
 
 rmd_files: [
   "index.Rmd",
+
   "01-setup.Rmd",
+  "02-base.Rmd",
+
+  "03-plot.Rmd",
+  "04-color.Rmd",
+  "05-font.Rmd",
+  "06-animation.Rmd",
   
-  "02-base-system.Rmd",
-  "03-colors-in-plot.Rmd",
-  "04-plot-and-ggplot.Rmd",
-  "05-fonts-in-plot.Rmd",
-
-  "06-numerical-optimation.Rmd",
-  "07-statistical-computing.Rmd",
+  "07-optimation.Rmd",
+  "08-computing.Rmd",
   
-  "08-GP.Rmd",
-  "09-INLA.Rmd",
-  "10-MCMC.Rmd",
+  "09-gp.Rmd",
+  "10-mcmc.Rmd",
+  "11-inla.Rmd",
 
-  "12-spatial.Rmd",
+  "12-spatial-data.Rmd",
+  "13-network-data.Rmd",
 
-  "13-network.Rmd",
-  "14-animation.Rmd",
-
-  "16-generalized-linear-models.Rmd",
-  "17-mixed-models.Rmd",
-  "18-generalized-additive-models.Rmd",
+  "16-glm.Rmd",
+  "17-mm.Rmd",
+  "18-gam.Rmd",
 
   "19-appendix.Rmd",
   "20-references.Rmd",

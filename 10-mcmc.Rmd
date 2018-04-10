@@ -1,7 +1,6 @@
 # 贝叶斯与 MCMC {#mcmc}
 
 ```{r setup, include = FALSE}
-source("common.R")
 Pkgs <- c(
   "rstan", "rstanarm", "brms"
 )

@@ -3,7 +3,6 @@
 # 安装和配置 {#install}
 
 ```{r setup, include = FALSE}
-source("common.R")
 Pkgs <- c(
   "RDieHarder", "magrittr"
 )

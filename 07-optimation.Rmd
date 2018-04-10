@@ -2,11 +2,6 @@
 
 # 数值优化 {#optimation}
 
-```{r setup, include=FALSE}
-source("common.R")
-```
-
-
 ## 测试函数
 
 $$f(x,y) = 3*(1-x)*\mathrm{e}^{-x^2 - (y+1)^2} - 10*(\frac{x}{5} - x^3 - y^5)*\mathrm{e}^{-x^2-y^2} - \frac{1}{3}*\mathrm{e}^{-(x+1)^2-y^2}$$

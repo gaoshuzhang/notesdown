@@ -1,7 +1,6 @@
 # 配色 {#colors}
 
 ```{r setup, include = FALSE}
-source("common.R")
 Pkgs <- c(
   "colorspace", "scales", "palr", "colortools", "colormap",
   "dichromat", "yarrr", "colorRamps", "ColorPalette", "viridisLite", "pals"

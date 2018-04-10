@@ -1,7 +1,6 @@
 # 集成嵌套拉普拉斯 {#inla}
 
 ```{r setup, include=FALSE}
-source("common.R")
 ## try http:// if https:// URLs are not supported
 source("https://bioconductor.org/biocLite.R")
 Pkgs <- c(

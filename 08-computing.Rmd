@@ -1,8 +1,4 @@
-# 统计计算 {#stats-computing}
-
-```{r setup, include=FALSE}
-source("common.R")
-```
+# 统计计算 {#computing}
 
 ## 随机数
 

@@ -1,8 +1,4 @@
-# R 语言基础 {#base-system}
-
-```{r setup, include = FALSE}
-source("common.R")
-```
+# R 语言基础 {#base}
 
 ## 数学运算 {#math-operator}
 

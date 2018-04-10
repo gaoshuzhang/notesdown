@@ -1,9 +1,5 @@
 # 广义可加模型 {#gam}
 
-```{r setup, include = FALSE}
-source("common.R")
-```
-
 ## 一般广义可加模型
 
 
