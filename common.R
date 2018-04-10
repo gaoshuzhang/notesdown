@@ -94,4 +94,4 @@ options(
 #  knitcitations::write.bibtex(citation(x), 
 #                            file = 'skeleton.bib', append = TRUE)
 # }
-# invisible(lapply(pkgs,citeFun)) 
+# invisible(lapply(pkgs,citeFun))
