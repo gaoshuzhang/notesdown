@@ -1,4 +1,4 @@
-# 配色 {#colors}
+# 配色 {#color}
 
 ```{r setup, include = FALSE}
 Pkgs <- c(
