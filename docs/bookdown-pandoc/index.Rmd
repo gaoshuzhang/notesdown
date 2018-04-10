@@ -7,11 +7,7 @@ documentclass: ctexbook
 bibliography: [book.bib, packages.bib]
 biblio-style: apalike
 link-citations: yes
-mathspec: no
 graphics: yes
-tables: yes
-lof: yes
-lot: yes
 description: "如何使用 Pandoc 模板写中文"
 ---
 
@@ -38,10 +34,11 @@ knitr::opts_chunk$set(
 
 这里设置 `mathspec: yes` 目的是加载 `\usepackage{mathspec}` 而不是默认的 `\usepackage{unicode-math}`，这样一来，要想继续使用中文，就得在导言区，即 `preamble.tex` 加上 `\usepackage{ctex}`，如果直接使用 `documentclass: ctexbook` 会报错，说与 `fonspec` 包冲突
 
+> 模板中注释掉 `\usepackage{unicode-math}`
+
 在文章插入 eps 格式的图片会报错，无法生成，这是一个坑
 
-
-```{r insert-logos,out.width="25%",fig.cap="Stan 家族",echo=T,eval=F}
+```{r insert-logos,out.width="25%",fig.cap="Stan 家族",echo=T,eval=T}
 knitr::include_graphics(path = paste0(
   "images/",
   paste0(
