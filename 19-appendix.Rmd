@@ -155,11 +155,14 @@ xetex -v
 
 安装的中英文字体
 
-```{r}
-# 英文字体
-system("fc-list :lang=en-us | sort")
+```{bash}
 # 中文字体
-system("fc-list :lang=zh-cn | sort")
+fc-list :lang=zh-cn | sort
+```
+
+```{bash}
+# 英文字体
+fc-list :lang=en-us | sort
 ```
 
 已经安装 TeX 包
@@ -183,6 +186,9 @@ Sys.which("pandoc")
 system("pandoc -v")
 ```
 
+```{bash}
+pandoc -v
+```
 
 ## rtools
 

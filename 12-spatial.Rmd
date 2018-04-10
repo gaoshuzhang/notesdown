@@ -1,4 +1,4 @@
-# 空间数据 {#spatial}
+# 空间数据分析 {#spatial}
 
 ```{r setup, include = FALSE}
 source("common.R")
