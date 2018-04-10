@@ -67,7 +67,7 @@ np.mean(eta, axis=0)
 ### Stan
 
 
-```{r}
+```{r insert-logos,out.width="33%",fig.cap=c("Stan","RStan","PyStan")}
 knitr::include_graphics(path = paste0(
   "images/",
   paste0(
