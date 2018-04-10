@@ -22,11 +22,10 @@ rmd_files: [
   "06-numerical-optimation.Rmd",
   "07-statistical-computing.Rmd",
   
-  "08-random-process.Rmd",
-  "09-inla-INLA.Rmd",
-  "10-mcmc-rstan.Rmd",
+  "08-GP.Rmd",
+  "09-INLA.Rmd",
+  "10-MCMC.Rmd",
 
-  "11-geostatistics.Rmd",
   "12-spatial.Rmd",
 
   "13-network.Rmd",

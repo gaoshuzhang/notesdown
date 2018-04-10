@@ -3,7 +3,7 @@
 ```{r setup, include = FALSE}
 source("common.R")
 Pkgs <- c(
-  "sf", "tmap", "rgdal"
+  "sf", "tmap", "rgdal", "PrevMap"
 )
 if (length(setdiff(Pkgs, .packages(TRUE))) > 0) {
   install.packages(setdiff(Pkgs, .packages(TRUE)))
@@ -23,3 +23,10 @@ library(sf)
 
 
 - Intro to Geospatial Data with R <http://www.datacarpentry.org/r-raster-vector-geospatial/>
+
+## PrevMap
+
+```{r}
+library(PrevMap)
+```
+

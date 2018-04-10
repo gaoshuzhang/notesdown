@@ -19,7 +19,7 @@ if (length(setdiff(Pkgs, .packages(TRUE))) > 0) {
 ## 高斯-马尔科夫随机场
 
 
-## INLA
+## 贝叶斯近似推断
 
 随机偏微分方程，高维积分，拉普拉斯近似
 
