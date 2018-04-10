@@ -80,3 +80,18 @@ options(
 #     system(sprintf('convert %s %s %s', options$tikz2png, fig, sub('\\.pdf$', '.png', fig)))
 #   }
 # })
+
+
+# devtools::install_github('rmcelreath/glmer2stan')
+# names(knitr::knit_engines$get())
+# create a bib file for the R packages used in this document
+
+# pkgs <- c('base', 'rmarkdown', 'rstan', 'knitr', 'rstan', 'brms','glmer2stan','loo',
+#          'bayesplot', 'rstanarm', 'StanHeaders','shinystan','rstantools')
+# knitr::write_bib(pkgs, file = 'skeleton.bib')
+
+# citeFun <- function(x){
+#  knitcitations::write.bibtex(citation(x), 
+#                            file = 'skeleton.bib', append = TRUE)
+# }
+# invisible(lapply(pkgs,citeFun)) 
