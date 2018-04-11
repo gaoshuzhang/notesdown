@@ -12,7 +12,7 @@ new_session: yes
 before_chapter_script: ["common.R"]
 
 rmd_files: [
-  "index.Rmd",
+#  "index.Rmd",
 
   "01-setup.Rmd",
   "02-base.Rmd",
