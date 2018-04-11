@@ -12,10 +12,10 @@ new_session: yes
 before_chapter_script: ["common.R"]
 
 rmd_files: [
-#  "index.Rmd",
+  "index.Rmd",
 
   "01-setup.Rmd",
-  "02-base.Rmd",
+  "02-foundation.Rmd",
 
   "03-plot.Rmd",
   "04-color.Rmd",
@@ -27,7 +27,7 @@ rmd_files: [
   
   "09-gp.Rmd",
   "10-mcmc.Rmd",
-  "11-inla.Rmd",
+  "11-r-inla.Rmd",
 
   "12-spatial-data.Rmd",
   "13-network-data.Rmd",
