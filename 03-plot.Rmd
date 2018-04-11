@@ -4,7 +4,9 @@
 Pkgs <- c(
   "cranlogs", "ggthemes", "webp", "rsvg",
   "pdftools", "magick",
-  "ISLR"
+  "ISLR",
+  "tidyverse","ggrepel",
+  "leaflet","rbokeh","plotly","highcharter"
 )
 if (length(setdiff(Pkgs, .packages(TRUE))) > 0) {
   install.packages(setdiff(Pkgs, .packages(TRUE)))
@@ -12,7 +14,11 @@ if (length(setdiff(Pkgs, .packages(TRUE))) > 0) {
 ```
 
 
-## 基础绘图系统 {#base-plot}
+```bash
+sudo apt-get install libwebp-dev libpoppler-cpp-dev
+```
+
+## plot {#base}
 
 ```{r run-length-hist, fig.cap='游程直方图', fig.showtext=TRUE}
 set.seed(2018) 
@@ -41,7 +47,7 @@ b = coef(fit)
 
 还你一个清爽的世界，统计之都文章 [漫谈条形图](https://cosx.org/2017/10/discussion-about-bar-graph/)
 
-```{r beautiful-barplot}
+```{r beautiful-barplot,fig.cap="条形图"}
 data(NCI60,package ="ISLR") # 加载数据
 myData <- sort(table(NCI60$labs), decreasing = TRUE)
 par(mar=c(2,7,1,1))
@@ -53,11 +59,11 @@ axis(1, labels = seq(0,9,by=1), at = seq(0,9,by=1), las = 1 , col = "gray")
 ```
 
 
-## ggplot
+## ggplot {#ggplot}
 
 rattle 下载量时序图
 
-```{r log,fig.width=12,fig.height=6,out.width="100%",fig.showtext=TRUE}
+```{r log,fig.width=8,fig.height=4,fig.showtext=TRUE,dpi=96}
 library(ggplot2)
 library(cranlogs)
 library(ggthemes)
@@ -75,11 +81,36 @@ ggplot(pkgs_down, aes(x = date, y = count, colour = package)) +
     title = "Rattle 最近5年每日下载量",
     caption = " 数据源: http://cran-logs.rstudio.com/ "
   ) +
-  theme(legend.position = "none", text = element_text(family = "source-han-serif-cn"))
+  theme_minimal(base_size = 10.54, base_family = "source-han-serif-cn")
+```
+
+给线条添加注释和标签，这个功能有时候比图例更加漂亮
+
+```{r add-label-ggrepel, fig.cap="添加标签"}
+# 出自 https://gist.github.com/EmilHvitfeldt/acb849a6135a21426c260850cf0f461b
+# Horizontal annotations with ggrepel and ggplot2
+library(tidyverse)
+library(ggrepel)
+data <- tibble(x = seq_len(100),
+               y = cumsum(rnorm(100)))
+
+anno_data <- data %>%
+  filter(x %% 25 == 10) %>%
+  mutate(text = "text")
+
+data %>%
+  ggplot(aes(x, y)) +
+  geom_line() +
+  geom_label_repel(aes(label = text), 
+                   data = anno_data,
+                   direction = "y",
+                   nudge_y = c(-5, 5, 5, 5)) +
+  theme_minimal()
 ```
 
 
-## tikz 图形
+
+## tikz {#tikz}
 
 如图 \@ref(fig:latex-tikz) 所示，模板存放在 `tikz/tikz2pdf.tex`
 
@@ -99,10 +130,32 @@ cat(readLines("tikz/mini-demo.tex", encoding = "UTF-8"), sep = "\n")
 ```
 
 ```{r mini-tikz-demo,echo=FALSE,fig.cap="一幅迷你 tikz 图形"}
-knitr::include_graphics(path = "tikz/mini-demo.pdf")
+knitr::include_graphics(path = "tikz/mini-demo.png")
 ```
 
 
+## JS
+
+基于 JS 动态库的 R 包 leaflet [@R-leaflet]， rbokeh [@R-rbokeh] 和 plotly [@R-plotly] ，我比较喜欢 highcharter [@R-highcharter]，美观高效，还活跃开发中。
+
+```{r highcharter, eval= knitr::is_html_output(), fig.cap="highcharter 图形"}
+library("highcharter")
+data(diamonds, mpg, package = "ggplot2")
+
+hchart(mpg, "scatter", hcaes(x = displ, y = hwy, group = class))
+```
+
+
+```{r rbokeh, eval = knitr::is_html_output(), fig.cap="rbokeh 图形"}
+library(rbokeh)
+figure() %>% ly_points(1:10)
+```
+
+
+```{r plotly, eval = knitr::is_html_output(), fig.cap="plotly 图形"}
+library(plotly)
+plot_ly(z = ~volcano, type = "surface")
+```
 
 
 

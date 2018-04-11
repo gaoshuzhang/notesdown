@@ -38,7 +38,7 @@ if (length(setdiff(Pkgs, .packages(TRUE))) > 0)
 - 从指定的镜像站点安装（源头）
 
 ```{r,eval=FALSE}
-install.packages("ggplot2", repos = "https://mirrors.tuna.tsinghua.edu.cn/CRAN/")
+install.packages("rbokeh", repos = "https://mirrors.tuna.tsinghua.edu.cn/CRAN/")
 ```
 
 - 再指定安装的位置（本地）
@@ -57,7 +57,7 @@ install.packages("rbokeh",
 
 ```{r,eval=FALSE}
 source("https://bioconductor.org/biocLite.R")
-BiocInstaller::biocLite("ggtree")
+BiocInstaller::biocLite("rbokeh")
 ```
 
 - 安装Github上的R包

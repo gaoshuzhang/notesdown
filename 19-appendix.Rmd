@@ -44,6 +44,12 @@ knitr::include_graphics(path = paste0("figures/math-in-plot", if(knitr::is_latex
 
 如何充分利用 Rcpp 包
 
+# Git
+
+
+- Using Git and GitHub with R, Rstudio, and R Markdown <https://github.com/jennybc/happy-git-with-r>
+
+
 
 # R 历史
 
