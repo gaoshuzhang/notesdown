@@ -5,19 +5,19 @@ Authors@R: c(
   person("Xiangyun", "Huang", , "xiangyunfaith@outlook.com", c("aut", "cre"))
   )
 Maintainer: Xiangyun Huang <xiangyunfaith@outlook.com>
-Description: a book of notes
+Description: a book of notes, a lot of things about learning r.
 BugReports: https://github.com/XiangyunHuang/bookdown-chinese/issues
 License: MIT + file LICENSE
 URL: https://github.com/XiangyunHuang/bookdown-chinese
 Depends: 
-    R (>= 3.1.0)
+    R (>= 3.3.0)
 Imports: 
     bookdown,
     knitr,
     rticles,
     svglite,
     gridExtra
-Remotes: 
+Remotes:
     tidyverse/ggplot2,
     leonawicz/mapmate,
     dgrtwo/gganimate
