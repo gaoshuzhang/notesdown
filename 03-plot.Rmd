@@ -48,14 +48,18 @@ b = coef(fit)
 还你一个清爽的世界，统计之都文章 [漫谈条形图](https://cosx.org/2017/10/discussion-about-bar-graph/)
 
 ```{r beautiful-barplot,fig.cap="条形图"}
-data(NCI60,package ="ISLR") # 加载数据
+data(NCI60, package = "ISLR") # 加载数据
 myData <- sort(table(NCI60$labs), decreasing = TRUE)
-par(mar=c(2,7,1,1))
-barCenters <- barplot(myData,col = "lightblue",axes = FALSE,
-axisnames=FALSE,horiz=TRUE,border ="white")
-text(y = barCenters, x = par("usr")[3],
-adj = 1, labels = names(myData), xpd = TRUE)
-axis(1, labels = seq(0,9,by=1), at = seq(0,9,by=1), las = 1 , col = "gray")
+par(mar = c(2, 7, 1, 1))
+barCenters <- barplot(myData,
+  col = "lightblue", axes = FALSE,
+  axisnames = FALSE, horiz = TRUE, border = "white"
+)
+text(
+  y = barCenters, x = par("usr")[3],
+  adj = 1, labels = names(myData), xpd = TRUE
+)
+axis(1, labels = seq(0, 9, by = 1), at = seq(0, 9, by = 1), las = 1, col = "gray")
 ```
 
 
@@ -63,7 +67,7 @@ axis(1, labels = seq(0,9,by=1), at = seq(0,9,by=1), las = 1 , col = "gray")
 
 rattle 下载量时序图
 
-```{r log,fig.showtext=TRUE, dev = if(knitr::is_html_output()) 'svg' else if(knitr::is_latex_output()) 'cairo_pdf' else 'png'}
+```{r log,fig.showtext=TRUE}
 library(ggplot2)
 library(cranlogs)
 library(ggthemes)
@@ -91,8 +95,10 @@ ggplot(pkgs_down, aes(x = date, y = count, colour = package)) +
 # Horizontal annotations with ggrepel and ggplot2
 library(tidyverse)
 library(ggrepel)
-data <- tibble(x = seq_len(100),
-               y = cumsum(rnorm(100)))
+data <- tibble(
+  x = seq_len(100),
+  y = cumsum(rnorm(100))
+)
 
 anno_data <- data %>%
   filter(x %% 25 == 10) %>%
@@ -101,10 +107,11 @@ anno_data <- data %>%
 data %>%
   ggplot(aes(x, y)) +
   geom_line() +
-  geom_label_repel(aes(label = text), 
-                   data = anno_data,
-                   direction = "y",
-                   nudge_y = c(-5, 5, 5, 5)) +
+  geom_label_repel(aes(label = text),
+    data = anno_data,
+    direction = "y",
+    nudge_y = c(-5, 5, 5, 5)
+  ) +
   theme_minimal()
 ```
 
@@ -138,7 +145,7 @@ knitr::include_graphics(path = "tikz/mini-demo.png")
 
 基于 JS 动态库的 R 包 leaflet [@R-leaflet]， rbokeh [@R-rbokeh] 和 plotly [@R-plotly] ，我比较喜欢 highcharter [@R-highcharter]，美观高效，还活跃开发中。
 
-```{r highcharter, eval= knitr::is_html_output(), fig.cap="highcharter 图形"}
+```{r highcharter, eval= knitr::is_html_output(), fig.cap="highcharter 图形",cache=FALSE}
 library("highcharter")
 data(diamonds, mpg, package = "ggplot2")
 
@@ -146,7 +153,7 @@ hchart(mpg, "scatter", hcaes(x = displ, y = hwy, group = class))
 ```
 
 
-```{r rbokeh, eval = knitr::is_html_output(), fig.cap="rbokeh 图形",warning=FALSE,message=FALSE}
+```{r rbokeh, eval = knitr::is_html_output(), fig.cap="rbokeh 图形",warning=FALSE,message=FALSE,cache=FALSE}
 library(rbokeh)
 h <- figure(width = 600, height = 400) %>%
   ly_hist(eruptions, data = faithful, breaks = 40, freq = FALSE) %>%
@@ -155,7 +162,7 @@ h
 ```
 
 
-```{r plotly, eval = knitr::is_html_output(), fig.cap="plotly 图形"}
+```{r plotly, eval = knitr::is_html_output(), fig.cap="plotly 图形",cache=FALSE}
 library(plotly)
 plot_ly(z = ~volcano, type = "surface")
 ```

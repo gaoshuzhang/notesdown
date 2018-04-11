@@ -9,7 +9,7 @@ svgViewR <https://aaronolsen.github.io/tutorials/visualization3d.html>
 ## mapmate
 
 
-```{r install-mapmate, eval = (!"mapmate" %in% .packages(TRUE))}
+```r
 devtools::install_github("leonawicz/mapmate")
 ```
 
