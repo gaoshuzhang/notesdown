@@ -63,7 +63,7 @@ axis(1, labels = seq(0,9,by=1), at = seq(0,9,by=1), las = 1 , col = "gray")
 
 rattle 下载量时序图
 
-```{r log,fig.width=8,fig.height=4,fig.showtext=TRUE,dpi=96}
+```{r log,fig.showtext=TRUE, dev = if(knitr::is_html_output()) 'svg' else if(knitr::is_latex_output()) 'cairo_pdf' else 'png'}
 library(ggplot2)
 library(cranlogs)
 library(ggthemes)
@@ -146,9 +146,12 @@ hchart(mpg, "scatter", hcaes(x = displ, y = hwy, group = class))
 ```
 
 
-```{r rbokeh, eval = knitr::is_html_output(), fig.cap="rbokeh 图形"}
+```{r rbokeh, eval = knitr::is_html_output(), fig.cap="rbokeh 图形",warning=FALSE,message=FALSE}
 library(rbokeh)
-figure() %>% ly_points(1:10)
+h <- figure(width = 600, height = 400) %>%
+  ly_hist(eruptions, data = faithful, breaks = 40, freq = FALSE) %>%
+  ly_density(eruptions, data = faithful)
+h
 ```
 
 
