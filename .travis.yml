@@ -57,6 +57,8 @@ before_install:
   - tlmgr install $(cat TeXLive.pkgs | tr '\n' ' ') || true
 
 script:
+  - Rscript -e 'devtools::install_github("leonawicz/mapmate")'
+  - Rscript -e 'devtools::install_github("dgrtwo/gganimate")'
   - Rscript -e 'bookdown::render_book("index.Rmd", output_format = "all")'
 
 deploy:
