@@ -40,7 +40,7 @@ knitr::include_graphics(path = paste0("figures/math-in-plot", if(knitr::is_latex
 ```
 
 
-# 编译 C++ 文件
+# 编译 C++ 文件 {#cpp}
 
 如何充分利用 Rcpp 包
 
@@ -51,10 +51,10 @@ knitr::include_graphics(path = paste0("figures/math-in-plot", if(knitr::is_latex
 
 
 
-# R 历史
+# R 历史 {#history}
 
 
-# 网站资源
+# 网站资源 {#website}
 
 ## 主页 {#homepage}
 
@@ -65,6 +65,9 @@ knitr::include_graphics(path = paste0("figures/math-in-plot", if(knitr::is_latex
 - [Jianghao Wang (王江浩)](https://jianghao.github.io)
 - [Xinpeng Chen](https://chenxinpeng.github.io/)
 - [Arthur Charpentier](https://freakonometrics.github.io) 法语 精算 or [Arthur Charpentier](https://freakonometrics.hypotheses.org)
+- [François Husson](https://francoishusson.wordpress.com/) 多元统计分析
+- [Jean-Paul Fox](http://www.jean-paulfox.com/) Bayesian response modeling
+- [Julian faraway](https://farawaystatistics.wordpress.com) INLA [When Small Data beats Big Data](http://people.bath.ac.uk/jjf23/papers/smallvbig.pdf)
 
 - [Yihui Xie](https://yihui.name/)
 - [Beilei Bian](http://statsjoke.me)
@@ -102,10 +105,15 @@ knitr::include_graphics(path = paste0("figures/math-in-plot", if(knitr::is_latex
 - [when-will-evolution-outperform-local-search](https://blog.evorithmics.org/2016/01/31/when-will-evolution-outperform-local-search/) 进化何时跑赢局部搜索 爱可可爱生活--进化如何跑赢局部搜索
 - [Game of Thrones network analysis](https://shirinsplayground.netlify.com/2018/03/got_network/) 权利的游戏 网络
 
+
 - [The R-INLA project and Bayesian computing with INLA](http://www.r-inla.org/)
 - [Geographic Data Science in Python](https://data.cdrc.ac.uk/dataset/geographic-data-science-in-python)
 - [Spatial](https://data.cdrc.ac.uk/)
 - [r-spatial](https://www.r-spatial.org/)
+- [Fast GeoSpatial Analysis in Python](http://matthewrocklin.com/blog/work/2017/09/21/accelerating-geopandas-1)
+- [Spatial Data in R: New Directions](https://edzer.github.io/UseR2017/) Edzer Pebesma
+- [A gentle INLA tutorial](https://www.precision-analytics.ca/blog-1/inla)
+
 
 ## 书单 {#books}
 
@@ -126,6 +134,10 @@ Pkgs <- sapply(list.files(R.home("library")), function(x)
 names(Pkgs[Pkgs == "base" & !is.na(Pkgs)])
 ```
 
+- [Statistical Rethinking](http://xcelab.net/rm/statistical-rethinking/)  Richard McElreath 著
+- [Regression Modeling Strategies](http://biostat.mc.vanderbilt.edu/wiki/Main/RmS) Frank E Harrell Jr 著
+- [Applied Predictive Modeling](http://appliedpredictivemodeling.com/) Max Kuhn and Kjell Johnson 著
+- [Forecasting: Principles and Practice](https://www.otexts.org/fpp2/) Rob J Hyndman and George Athanasopoulos 著
 
 
 # 数学符号说明 {#notations}
