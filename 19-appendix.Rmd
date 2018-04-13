@@ -63,6 +63,25 @@ knitr::include_graphics(path = paste0("figures/math-in-plot", if(knitr::is_latex
 - [Max Woolf 的博客](http://minimaxir.com/)
 - [Yan Holtz 的 ggplot2 图库](https://www.r-graph-gallery.com/)
 - [Jianghao Wang (王江浩)](https://jianghao.github.io)
+- [Xinpeng Chen](https://chenxinpeng.github.io/)
+- [Arthur Charpentier](https://freakonometrics.github.io) 法语 精算 or [Arthur Charpentier](https://freakonometrics.hypotheses.org)
+
+- [Yihui Xie](https://yihui.name/)
+- [Beilei Bian](http://statsjoke.me)
+- [Miao Yu](https://yufree.cn/)
+- [Ce Gao](http://gaocegege.com/Blog/)
+- [Lchiffon](http://langdawei.com/)
+- [Nan Xiao](https://nanx.me/)
+- [Xuening Zhu](https://xueningzhu.github.io/)
+- [Guangchuang YU](https://guangchuangyu.github.io/)
+- [Qiang Kou](http://qkou.info/)
+- [Yixuan Qiu-cn](https://yixuan.cos.name/cn/) or [Yixuan Qiu-en](https://statr.me/)
+- [Tao Gao](https://joegaotao.github.io/)
+- [Xunmo Yang](https://tcya.xyz/)
+- [Yalei Du](http://yalei.name/)
+- [Junchen Feng](http://www.fengjunchen.com/)
+- [Sizhe Liu](http://www.bjt.name/)
+- [Liyun Chen](http://www.loyhome.com/)
 
 ## 博客 {#blogger}
 
@@ -71,12 +90,9 @@ knitr::include_graphics(path = paste0("figures/math-in-plot", if(knitr::is_latex
 - [Spatial Models in Stan: Intrinsic Auto-Regressive Models for Areal Data](http://mc-stan.org/users/documentation/case-studies/icar_stan.html) 空间模型之 Stan 实现 [slides](https://github.com/stan-dev/stancon_talks/blob/master/2018/Invited-Talks/Morris.pdf)
 - [Easily Make Multi-tabbed .xlsx Files with openxlsx](https://trinkerrstuff.wordpress.com/2018/02/14/easily-make-multi-tabbed-xlsx-files-with-openxlsx/) Map 函数
 - [Deep learning at rstudio::conf 2018](https://rviews.rstudio.com/2018/02/14/deep-learning-rstudio-conf-2018/) 深度学习与R语言,J.J.作为 RStudio 的 CEO 推动 tensorflow 在 R 中的使用，两个幻灯片值得好好看，J.J. 介绍 tensorflow Javier Luraschi介绍tf的部署
-
 - netlify travis-ci blog 搭建 blogdown <https://bookdown.org/yihui/blogdown>
 - [An Introduction to Spatial Econometrics in R](http://www.econ.uiuc.edu/~lab/workshop/Spatial_in_R.html) spatial econometric analysis 空间经济分析 可考虑翻译一下 <https://ignaciomsarmiento.github.io/2017/02/07/An-Introduction-to-Spatial-Econometrics-in-R>
-
 - [Data Visualization Shiny Apps](https://ignaciomsarmiento.github.io/software.html) 数据可视化核密度估计 In this app I identify crime hotspots using a bivariate density estimation strategy
-
 - [Putting the Macron in Māori: Accented text in R Graphics](https://www.stat.auckland.ac.nz/~paul/Reports/maori/maori.html) Paul Murrell 图形中嵌入重音字符
 - [color in plot](https://www.stat.auckland.ac.nz/~paul/Talks/colour.pdf) Paul Murrell 配色
 - [Using Computer Modern Fonts in R Graphics](https://www.stat.auckland.ac.nz/~paul/R/CM/CMR.html) Paul Murrell 图形中嵌入数学字体
@@ -86,7 +102,10 @@ knitr::include_graphics(path = paste0("figures/math-in-plot", if(knitr::is_latex
 - [when-will-evolution-outperform-local-search](https://blog.evorithmics.org/2016/01/31/when-will-evolution-outperform-local-search/) 进化何时跑赢局部搜索 爱可可爱生活--进化如何跑赢局部搜索
 - [Game of Thrones network analysis](https://shirinsplayground.netlify.com/2018/03/got_network/) 权利的游戏 网络
 
-
+- [The R-INLA project and Bayesian computing with INLA](http://www.r-inla.org/)
+- [Geographic Data Science in Python](https://data.cdrc.ac.uk/dataset/geographic-data-science-in-python)
+- [Spatial](https://data.cdrc.ac.uk/)
+- [r-spatial](https://www.r-spatial.org/)
 
 ## 书单 {#books}
 
