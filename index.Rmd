@@ -124,7 +124,6 @@ ext <- if(knitr::is_html_output()) ".svg" else if(knitr::is_latex_output()) ".pd
 knitr::include_graphics(path = paste0("diagrams/00-workflow", ext))
 ```
 
-
 [sourceserifpro](https://ctan.org/pkg/sourceserifpro) 设为默认英文字体，[inconsolata](http://levien.com/type/myfonts/inconsolata.html) 用于代码显示，R 包名称在文中以粗体显示，代码块输出 `#>` 以区分普通的代码注释 `#`
 
 ```{r, echo=TRUE,comment=NA, eval = knitr::is_html_output(),results='markup'}
