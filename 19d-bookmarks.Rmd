@@ -49,7 +49,7 @@
 - [when-will-evolution-outperform-local-search](https://blog.evorithmics.org/2016/01/31/when-will-evolution-outperform-local-search/) 进化何时跑赢局部搜索 爱可可爱生活--进化如何跑赢局部搜索
 - [Game of Thrones network analysis](https://shirinsplayground.netlify.com/2018/03/got_network/) 权利的游戏 网络
 - [Using Git and GitHub with R, Rstudio, and R Markdown](https://github.com/jennybc/happy-git-with-r)
-
+- [如何用Markdown写论文](http://blog.sciencenet.cn/blog-377709-1088215.html)
 
 - [The R-INLA project and Bayesian computing with INLA](http://www.r-inla.org/)
 - [Geographic Data Science in Python](https://data.cdrc.ac.uk/dataset/geographic-data-science-in-python)
