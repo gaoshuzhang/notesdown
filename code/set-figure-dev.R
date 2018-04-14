@@ -20,3 +20,24 @@ centre(x, "trimmed")
 # 1. 先手动转化保存，看看有没有自动转的方法
 
 if(knitr::is_html_output()) 'svg' else if(knitr::is_latex_output()) 'cairo_pdf' else 'png'
+
+
+
+
+# CJK 字体支持
+
+cairo_pdf(file = "cjk.pdf",width=3,height=1)
+svg(file = "cjk.svg",width=3,height=1)
+library(grid)
+grid.text("\u4F60\u597D",
+          y = 2 / 3,
+          gp = gpar(fontfamily = "CNS1")
+)
+grid.text(
+  "is 'hello' in (Traditional) Chinese",
+  y = 1 / 3
+)
+dev.off()
+
+
+

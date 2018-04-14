@@ -8,6 +8,35 @@ if (length(setdiff(Pkgs, .packages(TRUE))) > 0)
   install.packages(setdiff(Pkgs, .packages(TRUE)))
 ```
 
+## CJK 字体
+
+windows 下，支持 `pdf`，`cairo_pdf` 和 `svg` 设备，如 `cairo_pdf(file = "cjk.pdf",width=3,height=1)`
+
+```{r cjk,fig.width=3,fig.height=1,out.width="100%"}
+library(grid)
+grid.text("\u4F60\u597D",
+  y = 2 / 3,
+  gp = gpar(fontfamily = "CNS1")
+)
+grid.text(
+  "is 'hello' in (Traditional) Chinese",
+  y = 1 / 3
+)
+```
+
+参考文献 <https://cran.r-project.org/doc/Rnews/Rnews_2006-2.pdf> Non-Standard Fonts in PostScript and PDF Graphics 一节
+
+grDevices 包提供了如下函数，用于 postscript 和 pdf 图形设备，嵌入字体借助了 [Ghostscript](https://www.ghostscript.com/) 其下载地址 <https://github.com/ArtifexSoftware/ghostpdl-downloads/releases/download/gs923/gs923w64.exe>
+
+以及 PDF 阅读器 MuPDF <https://www.mupdf.com/>
+
+```r
+postscriptFonts(...)
+pdfFonts(...)
+embedFonts
+```
+
+
 字体设置包括自定义中文字体、英文字体和数学公式。
 
 > 启用showtext 包处理中文，在网页版文档中，png 图片中的字体会变很小

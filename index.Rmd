@@ -107,7 +107,7 @@ cat(".\n")
 - 第 \@ref(network) 章介绍 igraph
 - 第 \@ref(animotion) 章介绍 animation、mapmate、rgl
 
-## 数学符号说明 {#notation}
+## 记号 {#notation}
 
 - $\mathcal{S,P,G}$
 - $S \not= \varnothing$
