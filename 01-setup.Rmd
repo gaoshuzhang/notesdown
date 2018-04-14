@@ -19,7 +19,7 @@ if (length(setdiff(Pkgs, .packages(TRUE))) > 0)
 3. 环境限制：CentOS 6/7 或者红帽系统，自带的R版本比较落后
 4. 微软提供的一套 MSR （这里不需要编译）
 
-## 安装 RStudio IDE
+## 安装 RStudio
 
 下载 <https://www.rstudio.com/products/rstudio/download/>
 
