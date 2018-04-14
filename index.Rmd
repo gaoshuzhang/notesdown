@@ -126,7 +126,7 @@ cat(".\n")
 
 [sourceserifpro](https://ctan.org/pkg/sourceserifpro) 设为默认英文字体，[inconsolata](http://levien.com/type/myfonts/inconsolata.html) 用于代码显示，R 包名称在文中以粗体显示，代码块输出 `#>` 以区分普通的代码注释 `#`
 
-Travis-CI\index{Travis-CI} 根据 Git\index{Git} 提交记录触发 knitr [@xie2015] 和 Pandoc\index{Pandoc} 编译 R Markdown^[<https://rmarkdown.rstudio.com/>] 源文件，生成 HTML 和 PDF 格式文档，并推送至 [GitHub Pages](https://pages.github.com/)，Travis-CI 还提供一个指示器报告编译的状态 `r if(knitr::is_html_output()) "[![Build Status](https://travis-ci.org/XiangyunHuang/bookdown-chinese.svg?branch=master)](https://travis-ci.org/XiangyunHuang/bookdown-chinese)"`
+Travis-CI\index{Travis-CI} 根据 Git\index{Git} 提交记录触发 knitr [@Dynamic2015CRC] 和 Pandoc\index{Pandoc} 编译 R Markdown^[<https://rmarkdown.rstudio.com/>] 源文件，生成 HTML 和 PDF 格式文档，并推送至 [GitHub Pages](https://pages.github.com/)，Travis-CI 还提供一个指示器报告编译的状态 `r if(knitr::is_html_output()) "[![Build Status](https://travis-ci.org/XiangyunHuang/bookdown-chinese.svg?branch=master)](https://travis-ci.org/XiangyunHuang/bookdown-chinese)"`
 
 生成 PDF 文档使用了 TinyTeX\index{TinyTeX} 发行版^[<https://yihui.name/tinytex/>] 和来自 rticles [@R-rticles] 的模板，一个基于 Pandoc\index{Pandoc} 的 LaTeX\index{LaTeX} 模板，两个美元符号包含的就是变量，变量基本上是 LaTeX 包的设置选项。
 
