@@ -109,7 +109,7 @@ cat(".\n")
 ## 记号 {#notation}
 
 - $\mathcal{S,P,G}$
-- $S \not= \varnothing$
+- $S \neq \varnothing$
 - $\mathbb{R,C},\mathscr{P,F,D,A,B,C}$
 - $\mathbf{A,B,C},\mathsf{A,B,C},\mathit{A,B,C}$
 - $\mathrm{A,B,C}$ 
