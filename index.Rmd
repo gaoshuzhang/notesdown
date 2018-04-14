@@ -1,6 +1,6 @@
 --- 
-title: "R 语言笔记大全"
-subtitle: "不仅仅是R语言哦"
+title: "R 语言笔记"
+subtitle: "R in the Jungle"
 author: "黄湘云"
 date: "`r Sys.time()`"
 site: bookdown::bookdown_site
@@ -34,6 +34,8 @@ knitr::opts_chunk$set(
   fig.asp = 0.618, # 1 / phi
   fig.show = "hold"
 )
+is_on_travis = identical(Sys.getenv("TRAVIS"), "true")
+is_online = curl::has_internet()
 ```
 
 # 前言 {#preface}
@@ -54,6 +56,8 @@ knitr::opts_chunk$set(
     + blogdown: Creating Websites with R Markdown <https://bookdown.org/yihui/blogdown/>
     + R Markdown: The Definitive Guide <https://bookdown.org/yihui/rmarkdown/>
 
+> 这是一本面向小众群体的笔记，没有太多的基础语法介绍，假设你已经达到入门级别了，也学过线性代数和数理统计，这本笔记还处在很早期的阶段	。
+	
 ## 作者 {#author}
 
 我是黄湘云，即将毕业的硕士研究生，跟随导师学习数理统计，主修 R 语言， 顺便学了点统计， 南方人， 2017年6月开始混迹于 Github ， 虽然2015年就注册了， 但是一直没有用起来， 后来有了直接的刚需（因为工作需要嘛）， 全是自学和靠大牛指点， 偶尔参加一些技术大会和沙龙， 周边学校也去听讲座， 对学术大牛心里充满无限敬仰， 多亏 [qiaozhang1993](https://github.com/qiaozhang1993) 搜集各大高校的讲座信息并时常分享于我。
@@ -118,9 +122,19 @@ cat(".\n")
 
 ## 后记 {#colophon}
 
-这本书是在 [RStudio IDE](https://www.rstudio.com/products/rstudio/download/) 内用 [R Markdown](https://rmarkdown.rstudio.com/) 写的， [Git](https://git-scm.com/) 控制版本， [bookdown](https://bookdown.org/yihui/bookdown/) 组织书籍， [knitr](https://yihui.name/knitr/) 和 [pandoc](http://pandoc.org) 将 R Markdown 源文件转化为 html 和 pdf，这个网站是通过 [travis-ci](https://travis-ci.org/) 自动发布到 [netlify](https://www.netlify.com/)，完整的源文件存放在 [github](https://github.com/XiangyunHuang/bookdown-chinese) 上。All content is licensed under the [Creative Commons Attribution Non Commercial Share Alike 3.0 license](https://creativecommons.org/licenses/by-nc-sa/3.0/)
+这本书是在 [RStudio IDE](https://www.rstudio.com/products/rstudio/download/) 内用 [R Markdown](https://rmarkdown.rstudio.com/) 写的， [Git](https://git-scm.com/) 控制版本， [bookdown](https://bookdown.org/yihui/bookdown/) 组织书籍， [knitr](https://yihui.name/knitr/) 和 [pandoc](http://pandoc.org) 将 R Markdown 源文件转化为 html 和 pdf，这个网站是通过 [travis-ci](https://travis-ci.org/) 自动发布到 [netlify](https://www.netlify.com/)，完整的源文件存放在 [github](https://github.com/XiangyunHuang/bookdown-chinese) 上。
 
 [sourceserifpro](https://ctan.org/pkg/sourceserifpro) 设为默认英文字体，[inconsolata](http://levien.com/type/myfonts/inconsolata.html) 用于代码显示，R 包名称在文中以粗体显示，代码块输出 `#>` 以区分普通的代码注释 `#`
+
+Travis-CI\index{Travis-CI} 根据 Git\index{Git} 提交记录触发 knitr [@xie2015] 和 Pandoc\index{Pandoc} 编译 R Markdown^[<https://rmarkdown.rstudio.com/>] 源文件，生成 HTML 和 PDF 格式文档，并推送至 [GitHub Pages](https://pages.github.com/)，Travis-CI 还提供一个指示器报告编译的状态 `r if(knitr::is_html_output()) "[![Build Status](https://travis-ci.org/XiangyunHuang/bookdown-chinese.svg?branch=master)](https://travis-ci.org/XiangyunHuang/bookdown-chinese)"`
+
+生成 PDF 文档使用了 TinyTeX\index{TinyTeX} 发行版^[<https://yihui.name/tinytex/>] 和来自 rticles [@R-rticles] 的模板，一个基于 Pandoc\index{Pandoc} 的 LaTeX\index{LaTeX} 模板，两个美元符号包含的就是变量，变量基本上是 LaTeX 包的设置选项。
+
+```{r, echo=FALSE,comment=NA, eval = knitr::is_html_output()}
+cat(readLines(con = rticles::ctex_template(), encoding = "UTF-8"), sep = "\n")
+```
+
+本书采用 [知识共享署名-非商业性使用-禁止演绎 4.0 国际许可协议](https://creativecommons.org/licenses/by-nc-nd/4.0/) 许可，项目中代码使用 [MIT 协议](https://github.com/XiangyunHuang/bookdown-chinese/blob/master/LICENSE) 开源，The version of the book you are reading now was built on `r Sys.Date()` and was built `r if(is_on_travis) "on [Travis](https://travis-ci.org/XiangyunHuang/bookdown-chinese)" else "locally"`.
 
 
 ## 软件 {#session}

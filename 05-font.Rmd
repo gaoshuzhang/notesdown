@@ -12,7 +12,7 @@ if (length(setdiff(Pkgs, .packages(TRUE))) > 0)
 
 windows 下，支持 `pdf`，`cairo_pdf` 和 `svg` 设备，如 `cairo_pdf(file = "cjk.pdf",width=3,height=1)`
 
-```{r cjk,fig.width=3,fig.height=1,out.width="100%"}
+```{r cjk,fig.width=3,fig.height=1,out.width="100%",fig.cap = "CJK 字体支持"}
 library(grid)
 grid.text("\u4F60\u597D",
   y = 2 / 3,

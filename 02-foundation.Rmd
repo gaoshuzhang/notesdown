@@ -1,4 +1,4 @@
-# R 语言基础 {#base}
+# 基础 {#base}
 
 ## 数学运算 {#math-operator}
 
