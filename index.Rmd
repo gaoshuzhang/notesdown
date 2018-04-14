@@ -1,7 +1,7 @@
 --- 
 title: "R 语言笔记"
 author: "黄湘云"
-date: "`r Sys.time()`"
+date: "`r format(Sys.time(), tz = 'Asia/Taipei', usetz = TRUE)`"
 site: bookdown::bookdown_site
 geometry: margin=1.18in
 documentclass: ctexbook
