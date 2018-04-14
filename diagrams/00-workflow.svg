@@ -1,571 +1,104 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
-
-<svg
-   xmlns:dc="http://purl.org/dc/elements/1.1/"
-   xmlns:cc="http://creativecommons.org/ns#"
-   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-   xmlns:svg="http://www.w3.org/2000/svg"
-   xmlns="http://www.w3.org/2000/svg"
-   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="210mm"
-   height="85mm"
-   viewBox="0 0 210 85"
-   version="1.1"
-   id="svg8"
-   inkscape:version="0.92.3 (2405546, 2018-03-11)"
-   sodipodi:docname="workflow.svg">
-  <defs
-     id="defs2">
-    <marker
-       inkscape:stockid="Arrow1Lend"
-       orient="auto"
-       refY="0.0"
-       refX="0.0"
-       id="Arrow1Lend"
-       style="overflow:visible;"
-       inkscape:isstock="true">
-      <path
-         id="path8267"
-         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
-         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1;fill:#000000;fill-opacity:1"
-         transform="scale(0.8) rotate(180) translate(12.5,0)" />
-    </marker>
-    <inkscape:path-effect
-       effect="bspline"
-       id="path-effect8262"
-       is_visible="true"
-       weight="33.333333"
-       steps="2"
-       helper_size="0"
-       apply_no_weight="true"
-       apply_with_weight="true"
-       only_selected="false" />
-    <meshgradient
-       inkscape:collect="always"
-       id="meshgradient8210"
-       gradientUnits="userSpaceOnUse"
-       x="0"
-       y="212">
-      <meshrow
-         id="meshrow8212">
-        <meshpatch
-           id="meshpatch8214">
-          <stop
-             path="c 70,0  140,0  210,0"
-             style="stop-color:#ffffff;stop-opacity:1"
-             id="stop8216" />
-          <stop
-             path="c 0,28.3333  0,56.6667  0,85"
-             style="stop-color:#000000;stop-opacity:1"
-             id="stop8218" />
-          <stop
-             path="c -70,0  -140,0  -210,0"
-             style="stop-color:#ffffff;stop-opacity:1"
-             id="stop8220" />
-          <stop
-             path="c 0,-28.3333  0,-56.6667  0,-85"
-             style="stop-color:#000000;stop-opacity:1"
-             id="stop8222" />
-        </meshpatch>
-      </meshrow>
-    </meshgradient>
-    <marker
-       inkscape:stockid="Arrow1Lend"
-       orient="auto"
-       refY="0"
-       refX="0"
-       id="Arrow1Lend-9"
-       style="overflow:visible"
-       inkscape:isstock="true">
-      <path
-         inkscape:connector-curvature="0"
-         id="path8267-6"
-         d="M 0,0 5,-5 -12.5,0 5,5 Z"
-         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1.00000003pt;stroke-opacity:1"
-         transform="matrix(-0.8,0,0,-0.8,-10,0)" />
-    </marker>
-    <inkscape:path-effect
-       effect="bspline"
-       id="path-effect8262-9"
-       is_visible="true"
-       weight="33.333333"
-       steps="2"
-       helper_size="0"
-       apply_no_weight="true"
-       apply_with_weight="true"
-       only_selected="false" />
-    <marker
-       inkscape:stockid="Arrow1Lend"
-       orient="auto"
-       refY="0"
-       refX="0"
-       id="Arrow1Lend-7"
-       style="overflow:visible"
-       inkscape:isstock="true">
-      <path
-         inkscape:connector-curvature="0"
-         id="path8267-2"
-         d="M 0,0 5,-5 -12.5,0 5,5 Z"
-         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1.00000003pt;stroke-opacity:1"
-         transform="matrix(-0.8,0,0,-0.8,-10,0)" />
-    </marker>
-    <inkscape:path-effect
-       effect="bspline"
-       id="path-effect8262-8"
-       is_visible="true"
-       weight="33.333333"
-       steps="2"
-       helper_size="0"
-       apply_no_weight="true"
-       apply_with_weight="true"
-       only_selected="false" />
-    <marker
-       inkscape:stockid="Arrow1Lend"
-       orient="auto"
-       refY="0"
-       refX="0"
-       id="Arrow1Lend-0"
-       style="overflow:visible"
-       inkscape:isstock="true">
-      <path
-         inkscape:connector-curvature="0"
-         id="path8267-8"
-         d="M 0,0 5,-5 -12.5,0 5,5 Z"
-         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1.00000003pt;stroke-opacity:1"
-         transform="matrix(-0.8,0,0,-0.8,-10,0)" />
-    </marker>
-    <inkscape:path-effect
-       effect="bspline"
-       id="path-effect8262-7"
-       is_visible="true"
-       weight="33.333333"
-       steps="2"
-       helper_size="0"
-       apply_no_weight="true"
-       apply_with_weight="true"
-       only_selected="false" />
-    <marker
-       inkscape:stockid="Arrow1Lend"
-       orient="auto"
-       refY="0"
-       refX="0"
-       id="Arrow1Lend-0-0"
-       style="overflow:visible"
-       inkscape:isstock="true">
-      <path
-         inkscape:connector-curvature="0"
-         id="path8267-8-7"
-         d="M 0,0 5,-5 -12.5,0 5,5 Z"
-         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1.00000003pt;stroke-opacity:1"
-         transform="matrix(-0.8,0,0,-0.8,-10,0)" />
-    </marker>
-    <inkscape:path-effect
-       effect="bspline"
-       id="path-effect8262-7-5"
-       is_visible="true"
-       weight="33.333333"
-       steps="2"
-       helper_size="0"
-       apply_no_weight="true"
-       apply_with_weight="true"
-       only_selected="false" />
-    <marker
-       inkscape:stockid="Arrow1Lend"
-       orient="auto"
-       refY="0"
-       refX="0"
-       id="Arrow1Lend-0-3"
-       style="overflow:visible"
-       inkscape:isstock="true">
-      <path
-         inkscape:connector-curvature="0"
-         id="path8267-8-4"
-         d="M 0,0 5,-5 -12.5,0 5,5 Z"
-         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1.00000003pt;stroke-opacity:1"
-         transform="matrix(-0.8,0,0,-0.8,-10,0)" />
-    </marker>
-    <inkscape:path-effect
-       effect="bspline"
-       id="path-effect8262-7-1"
-       is_visible="true"
-       weight="33.333333"
-       steps="2"
-       helper_size="0"
-       apply_no_weight="true"
-       apply_with_weight="true"
-       only_selected="false" />
-    <marker
-       inkscape:stockid="Arrow1Lend"
-       orient="auto"
-       refY="0"
-       refX="0"
-       id="Arrow1Lend-0-4"
-       style="overflow:visible"
-       inkscape:isstock="true">
-      <path
-         inkscape:connector-curvature="0"
-         id="path8267-8-0"
-         d="M 0,0 5,-5 -12.5,0 5,5 Z"
-         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1.00000003pt;stroke-opacity:1"
-         transform="matrix(-0.8,0,0,-0.8,-10,0)" />
-    </marker>
-    <inkscape:path-effect
-       effect="bspline"
-       id="path-effect8262-7-8"
-       is_visible="true"
-       weight="33.333333"
-       steps="2"
-       helper_size="0"
-       apply_no_weight="true"
-       apply_with_weight="true"
-       only_selected="false" />
-  </defs>
-  <sodipodi:namedview
-     id="base"
-     pagecolor="#ffffff"
-     bordercolor="#666666"
-     borderopacity="1.0"
-     inkscape:pageopacity="0.0"
-     inkscape:pageshadow="2"
-     inkscape:zoom="1.5599631"
-     inkscape:cx="471.95548"
-     inkscape:cy="195.78521"
-     inkscape:document-units="mm"
-     inkscape:current-layer="layer1"
-     showgrid="false"
-     inkscape:window-width="1920"
-     inkscape:window-height="990"
-     inkscape:window-x="-11"
-     inkscape:window-y="-11"
-     inkscape:window-maximized="1"
-     showguides="true"
-     inkscape:guide-bbox="true"
-     inkscape:object-paths="true" />
-  <metadata
-     id="metadata5">
-    <rdf:RDF>
-      <cc:Work
-         rdf:about="">
-        <dc:format>image/svg+xml</dc:format>
-        <dc:type
-           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
-      </cc:Work>
-    </rdf:RDF>
-  </metadata>
-  <g
-     inkscape:label="Layer 1"
-     inkscape:groupmode="layer"
-     id="layer1"
-     transform="translate(0,-212)">
-    <g
-       id="g12515">
-      <g
-         style="fill-opacity:1;fill:url(#meshgradient8210)"
-         id="g6853">
-        <g
-           style="fill-opacity:1.0"
-           id="g4641"
-           transform="translate(0,5)">
-          <circle
-             r="15"
-             style="fill:#b3b3b3;stroke-width:0.10230733;fill-opacity:1.0"
-             cy="247"
-             cx="15"
-             id="path14" />
-          <text
-             id="text4556"
-             y="244.74493"
-             x="7.0593996"
-             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.13843012px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:lining-nums;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1.0;stroke:none;stroke-width:0.12846075"
-             xml:space="preserve"><tspan
-               style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.13843012px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:lining-nums;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;stroke-width:0.12846075;fill-opacity:1.0"
-               y="244.74493"
-               x="7.0593996"
-               id="tspan4554"
-               sodipodi:role="line">    R</tspan><tspan
-               id="tspan4558"
-               style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52777767px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:lining-nums;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;stroke-width:0.12846075;fill-opacity:1.0"
-               y="251.16797"
-               x="7.0593996"
-               sodipodi:role="line">(RStudio)</tspan></text>
-        </g>
-        <circle
-           id="path14-1"
-           cx="65"
-           cy="252"
-           style="fill:#b3b3b3;stroke-width:0.10230733;fill-opacity:1.0"
-           r="15" />
-        <text
-           xml:space="preserve"
-           style="font-style:normal;font-weight:normal;font-size:6.67796659px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1.0;stroke:none;stroke-width:0.16694915"
-           x="54.051373"
-           y="256.13156"
-           id="text4577"><tspan
-             sodipodi:role="line"
-             id="tspan4575"
-             x="54.051373"
-             y="256.13156"
-             style="font-size:3.52777767px;stroke-width:0.16694915;fill-opacity:1.0">R Markdown</tspan></text>
-        <text
-           xml:space="preserve"
-           style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1.0;stroke:none;stroke-width:0.26458332"
-           x="60.086815"
-           y="249.75972"
-           id="text4581"><tspan
-             sodipodi:role="line"
-             id="tspan4579"
-             x="60.086815"
-             y="249.75972"
-             style="font-size:4.93888903px;stroke-width:0.26458332;fill-opacity:1.0">编辑</tspan></text>
-        <circle
-           id="path14-4"
-           cx="115.00001"
-           cy="227"
-           style="fill:#b3b3b3;stroke-width:0.10230731;fill-opacity:1.0"
-           r="15" />
-        <circle
-           id="path14-4-9"
-           cx="155"
-           cy="227"
-           style="fill:#b3b3b3;stroke-width:0.10230731;fill-opacity:1.0"
-           r="15" />
-        <circle
-           id="path14-4-8"
-           cx="195"
-           cy="227"
-           style="fill:#b3b3b3;stroke-width:0.10230732;fill-opacity:1.0"
-           r="15" />
-        <circle
-           id="path14-4-88"
-           cx="115"
-           cy="282"
-           style="fill:#b3b3b3;stroke-width:0.10230733;fill-opacity:1.0"
-           r="15" />
-        <circle
-           id="path14-4-2"
-           cx="155"
-           cy="282"
-           style="fill:#b3b3b3;stroke-width:0.10230732;fill-opacity:1.0"
-           r="15" />
-        <circle
-           id="path14-4-6"
-           cx="195"
-           cy="282"
-           style="fill:#b3b3b3;stroke-width:0.10230731;fill-opacity:1.0"
-           r="15" />
-        <g
-           style="fill-opacity:1.0"
-           id="g4770">
-          <text
-             id="text4700"
-             y="225.44647"
-             x="109.11227"
-             style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1.0;stroke:none;stroke-width:0.26458332"
-             xml:space="preserve"><tspan
-               style="font-size:6.3499999px;stroke-width:0.26458332;fill-opacity:1.0"
-               y="225.44647"
-               x="109.11227"
-               id="tspan4698"
-               sodipodi:role="line">推送</tspan></text>
-          <text
-             id="text4704"
-             y="233.67102"
-             x="111.03133"
-             style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1.0;stroke:none;stroke-width:0.26458332"
-             xml:space="preserve"><tspan
-               style="font-size:5.64444447px;stroke-width:0.26458332;fill-opacity:1.0"
-               y="233.67102"
-               x="111.03133"
-               id="tspan4702"
-               sodipodi:role="line">Git</tspan></text>
-          <text
-             id="text4708"
-             y="224.89818"
-             x="149.41252"
-             style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1.0;stroke:none;stroke-width:0.26458332"
-             xml:space="preserve"><tspan
-               style="font-size:6.3499999px;stroke-width:0.26458332;fill-opacity:1.0"
-               y="224.89818"
-               x="149.41252"
-               id="tspan4706"
-               sodipodi:role="line">编译</tspan></text>
-          <text
-             id="text4712"
-             y="233.12273"
-             x="144.34073"
-             style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1.0;stroke:none;stroke-width:0.26458332"
-             xml:space="preserve"><tspan
-               style="font-size:4.93888903px;stroke-width:0.26458332;fill-opacity:1.0"
-               y="233.12273"
-               x="144.34073"
-               id="tspan4710"
-               sodipodi:role="line">Travis-CI</tspan></text>
-          <text
-             id="text4716"
-             y="224.76111"
-             x="189.43864"
-             style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1.0;stroke:none;stroke-width:0.26458332"
-             xml:space="preserve"><tspan
-               style="font-size:6.3499999px;stroke-width:0.26458332;fill-opacity:1.0"
-               y="224.76111"
-               x="189.43864"
-               id="tspan4714"
-               sodipodi:role="line">部署</tspan></text>
-          <text
-             id="text4720"
-             y="232.84857"
-             x="187.9308"
-             style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1.0;stroke:none;stroke-width:0.26458332"
-             xml:space="preserve"><tspan
-               style="font-size:4.93888903px;stroke-width:0.26458332;fill-opacity:1.0"
-               y="232.84857"
-               x="187.9308"
-               id="tspan4718"
-               sodipodi:role="line">Netlify</tspan></text>
-          <text
-             id="text4724"
-             y="279.72845"
-             x="107.05613"
-             style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1.0;stroke:none;stroke-width:0.26458332"
-             xml:space="preserve"><tspan
-               style="font-size:6.3499999px;stroke-width:0.26458332;fill-opacity:1.0"
-               y="279.72845"
-               x="107.05613"
-               id="tspan4722"
-               sodipodi:role="line">knitr</tspan></text>
-          <text
-             id="text4728"
-             y="288.36426"
-             x="109.11227"
-             style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1.0;stroke:none;stroke-width:0.26458332"
-             xml:space="preserve"><tspan
-               style="font-size:4.93888903px;stroke-width:0.26458332;fill-opacity:1.0"
-               y="288.36426"
-               x="109.11227"
-               id="tspan4726"
-               sodipodi:role="line">.md</tspan></text>
-          <text
-             id="text4732"
-             y="279.86554"
-             x="144.88904"
-             style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1.0;stroke:none;stroke-width:0.26458332"
-             xml:space="preserve"><tspan
-               style="font-size:6.3499999px;stroke-width:0.26458332;fill-opacity:1.0"
-               y="279.86554"
-               x="144.88904"
-               id="tspan4730"
-               sodipodi:role="line">Pandoc</tspan></text>
-          <text
-             id="text4736"
-             y="287.953"
-             x="143.24413"
-             style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1.0;stroke:none;stroke-width:0.26458332"
-             xml:space="preserve"><tspan
-               style="font-size:4.93888903px;stroke-width:0.26458332;fill-opacity:1.0"
-               y="287.953"
-               x="143.24413"
-               id="tspan4734"
-               sodipodi:role="line">.tex/.html</tspan></text>
-          <text
-             id="text4740"
-             y="278.90601"
-             x="181.62534"
-             style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1.0;stroke:none;stroke-width:0.26458332"
-             xml:space="preserve"><tspan
-               style="font-size:6.3499999px;stroke-width:0.26458332;fill-opacity:1.0"
-               y="278.90601"
-               x="181.62534"
-               id="tspan4738"
-               sodipodi:role="line">XeLaTeX</tspan></text>
-          <text
-             id="text4744"
-             y="287.40469"
-             x="189.30156"
-             style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1.0;stroke:none;stroke-width:0.26458332"
-             xml:space="preserve"><tspan
-               style="font-size:4.93888903px;stroke-width:0.26458332;fill-opacity:1.0"
-               y="287.40469"
-               x="189.30156"
-               id="tspan4742"
-               sodipodi:role="line">.pdf</tspan></text>
-        </g>
-        <text
-           xml:space="preserve"
-           style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1.0;stroke:none;stroke-width:0.26458332"
-           x="-49.433983"
-           y="246.76073"
-           id="text4803"
-           transform="rotate(-30)"><tspan
-             sodipodi:role="line"
-             id="tspan4801"
-             x="-49.433983"
-             y="246.76073"
-             style="font-size:8.46666622px;stroke-width:0.26458332;fill-opacity:1.0">远程</tspan></text>
-        <text
-           xml:space="preserve"
-           style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1.0;stroke:none;stroke-width:0.26458332"
-           x="247.21971"
-           y="138.37889"
-           id="text4807"
-           transform="rotate(45)"><tspan
-             sodipodi:role="line"
-             id="tspan4805"
-             x="247.21971"
-             y="138.37889"
-             style="font-size:8.46666622px;stroke-width:0.26458332;fill-opacity:1.0">本地</tspan></text>
-      </g>
-      <path
-         inkscape:original-d="m 29.972061,254.5 h 20.23774"
-         inkscape:path-effect="#path-effect8262"
-         inkscape:connector-curvature="0"
-         id="path8260"
-         d="m 29.972061,254.5 c 0,0 20.23774,0 20.23774,0"
-         style="opacity:0.75;fill:none;stroke:#000000;stroke-width:0.372466;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:3;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Arrow1Lend)" />
-      <path
-         inkscape:original-d="M 78.445457,245.36593 100.54754,233.01475"
-         inkscape:path-effect="#path-effect8262-9"
-         inkscape:connector-curvature="0"
-         id="path8260-0"
-         d="m 78.445457,245.36593 c 0,0 22.102083,-12.35118 22.102083,-12.35118"
-         style="opacity:0.75;fill:none;stroke:#000000;stroke-width:0.46210966;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:3;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Arrow1Lend-9)" />
-      <path
-         inkscape:original-d="m 78.277237,259.29607 21.06166,19.09779"
-         inkscape:path-effect="#path-effect8262-8"
-         inkscape:connector-curvature="0"
-         id="path8260-08"
-         d="m 78.277237,259.29607 c 0,0 21.06166,19.09779 21.06166,19.09779"
-         style="opacity:0.75;fill:none;stroke:#000000;stroke-width:0.52200848;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:3;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Arrow1Lend-7)" />
-      <path
-         inkscape:original-d="m 129.98881,226.42042 h 10.45641"
-         inkscape:path-effect="#path-effect8262-7"
-         inkscape:connector-curvature="0"
-         id="path8260-1"
-         d="m 129.98881,226.42042 c 0,0 10.45641,0 10.45641,0"
-         style="opacity:0.75;fill:none;stroke:#000000;stroke-width:0.26772982;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:3;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Arrow1Lend-0)" />
-      <path
-         inkscape:original-d="m 169.95694,225.86427 h 10.45641"
-         inkscape:path-effect="#path-effect8262-7-5"
-         inkscape:connector-curvature="0"
-         id="path8260-1-0"
-         d="m 169.95694,225.86427 c 0,0 10.45641,0 10.45641,0"
-         style="opacity:0.75;fill:none;stroke:#000000;stroke-width:0.26772982;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:3;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Arrow1Lend-0-0)" />
-      <path
-         inkscape:original-d="m 129.99406,282.42221 h 10.45641"
-         inkscape:path-effect="#path-effect8262-7-1"
-         inkscape:connector-curvature="0"
-         id="path8260-1-4"
-         d="m 129.99406,282.42221 c 0,0 10.45641,0 10.45641,0"
-         style="opacity:0.75;fill:none;stroke:#000000;stroke-width:0.26772982;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:3;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Arrow1Lend-0-3)" />
-      <path
-         inkscape:original-d="m 169.99982,282.07332 h 10.45641"
-         inkscape:path-effect="#path-effect8262-7-8"
-         inkscape:connector-curvature="0"
-         id="path8260-1-8"
-         d="m 169.99982,282.07332 c 0,0 10.45641,0 10.45641,0"
-         style="opacity:0.75;fill:none;stroke:#000000;stroke-width:0.26772982;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:3;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Arrow1Lend-0-4)" />
-    </g>
+<svg width="210mm" height="85mm" version="1.1" viewBox="0 0 210 85" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+ <defs>
+  <marker id="marker6237" overflow="visible" orient="auto">
+   <path transform="scale(.8) rotate(180) translate(12.5)" d="m0 0 5-5-17.5 5 17.5 5-5-5z" fill-rule="evenodd" stroke="#000" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker5891" overflow="visible" orient="auto">
+   <path transform="scale(.8) rotate(180) translate(12.5)" d="m0 0 5-5-17.5 5 17.5 5-5-5z" fill-rule="evenodd" stroke="#000" stroke-width="1pt"/>
+  </marker>
+  <marker id="Arrow1Lend" overflow="visible" orient="auto">
+   <path transform="scale(.8) rotate(180) translate(12.5)" d="m0 0 5-5-17.5 5 17.5 5-5-5z" fill-rule="evenodd" stroke="#000" stroke-width="1pt"/>
+  </marker>
+  <marker id="Arrow1Lend-0" overflow="visible" orient="auto">
+   <path transform="matrix(-.8 0 0 -.8 -10 0)" d="m0 0 5-5-17.5 5 17.5 5z" fill-rule="evenodd" stroke="#000" stroke-width="1pt"/>
+  </marker>
+  <marker id="Arrow1Lend-0-0" overflow="visible" orient="auto">
+   <path transform="matrix(-.8 0 0 -.8 -10 0)" d="m0 0 5-5-17.5 5 17.5 5z" fill-rule="evenodd" stroke="#000" stroke-width="1pt"/>
+  </marker>
+  <marker id="Arrow1Lend-0-3" overflow="visible" orient="auto">
+   <path transform="matrix(-.8 0 0 -.8 -10 0)" d="m0 0 5-5-17.5 5 17.5 5z" fill-rule="evenodd" stroke="#000" stroke-width="1pt"/>
+  </marker>
+  <marker id="Arrow1Lend-0-4" overflow="visible" orient="auto">
+   <path transform="matrix(-.8 0 0 -.8 -10 0)" d="m0 0 5-5-17.5 5 17.5 5z" fill-rule="evenodd" stroke="#000" stroke-width="1pt"/>
+  </marker>
+  <meshgradient id="meshgradient902" x="0" y="212" gradientUnits="userSpaceOnUse">
+   <meshrow>
+    <meshpatch>
+     <stop stop-color="#fff" path="c 70,0  140,0  210,0"/>
+     <stop path="c 0,28.3333  0,56.6667  0,85"/>
+     <stop stop-color="#fff" path="c -70,0  -140,0  -210,0"/>
+     <stop path="c 0,-28.3333  0,-56.6667  0,-85"/>
+    </meshpatch>
+   </meshrow>
+  </meshgradient>
+  <meshgradient id="meshgradient916" x="0" y="212" gradientUnits="userSpaceOnUse">
+   <meshrow>
+    <meshpatch>
+     <stop stop-color="#fff" path="c 70,0  140,0  210,0"/>
+     <stop path="c 0,28.3333  0,56.6667  0,85"/>
+     <stop stop-color="#fff" path="c -70,0  -140,0  -210,0"/>
+     <stop path="c 0,-28.3333  0,-56.6667  0,-85"/>
+    </meshpatch>
+   </meshrow>
+  </meshgradient>
+ </defs>
+ <metadata>
+  <rdf:RDF>
+   <cc:Work rdf:about="">
+    <dc:format>image/svg+xml</dc:format>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:title/>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <g transform="translate(0,-212)">
+  <g>
+   <g transform="translate(0,5)">
+    <circle cx="15" cy="247" r="15" fill="#b3b3b3" stroke-width=".10231"/>
+    <text x="7.0593996" y="244.74493" fill="#000000" font-family="sans-serif" letter-spacing="0px" stroke-width=".12846" word-spacing="0px" style="font-feature-settings:normal;font-variant-caps:normal;font-variant-ligatures:normal;font-variant-numeric:lining-nums;line-height:1.25" xml:space="preserve"><tspan x="7.0593996" y="244.74493" font-size="5.1384px" style="font-feature-settings:normal;font-variant-caps:normal;font-variant-ligatures:normal;font-variant-numeric:lining-nums">    R</tspan><tspan x="7.0593996" y="251.16797" font-size="3.5278px" style="font-feature-settings:normal;font-variant-caps:normal;font-variant-ligatures:normal;font-variant-numeric:lining-nums">(RStudio)</tspan></text>
+   </g>
+   <circle cx="65" cy="252" r="15" fill="#b3b3b3" stroke-width=".10231"/>
+   <text x="54.051373" y="256.13156" fill="#000000" font-family="sans-serif" font-size="6.678px" letter-spacing="0px" stroke-width=".16695" word-spacing="0px" style="line-height:1.25" xml:space="preserve"><tspan x="54.051373" y="256.13156" font-size="3.5278px" stroke-width=".16695">R Markdown</tspan></text>
+   <text x="60.086815" y="249.75972" fill="#000000" font-family="sans-serif" font-size="10.583px" letter-spacing="0px" stroke-width=".26458" word-spacing="0px" style="line-height:1.25" xml:space="preserve"><tspan x="60.086815" y="249.75972" font-size="4.9389px" stroke-width=".26458">编辑</tspan></text>
   </g>
+  <g fill="#b3b3b3">
+   <circle cx="115" cy="227" r="15" stroke-width=".10231"/>
+   <circle cx="155" cy="227" r="15" stroke-width=".10231"/>
+   <circle cx="195" cy="227" r="15" stroke-width=".10231"/>
+   <circle cx="115" cy="282" r="15" stroke-width=".10231"/>
+   <circle cx="155" cy="282" r="15" stroke-width=".10231"/>
+   <circle cx="195" cy="282" r="15" stroke-width=".10231"/>
+  </g>
+  <g fill="#000000" font-family="sans-serif" font-size="10.583px" letter-spacing="0px" stroke-width=".26458" word-spacing="0px">
+   <text x="109.11227" y="225.44647" style="line-height:1.25" xml:space="preserve"><tspan x="109.11227" y="225.44647" font-size="6.35px" stroke-width=".26458">推送</tspan></text>
+   <text x="111.03133" y="233.67102" style="line-height:1.25" xml:space="preserve"><tspan x="111.03133" y="233.67102" font-size="5.6444px" stroke-width=".26458">Git</tspan></text>
+   <text x="149.41252" y="224.89818" style="line-height:1.25" xml:space="preserve"><tspan x="149.41252" y="224.89818" font-size="6.35px" stroke-width=".26458">编译</tspan></text>
+   <text x="144.34073" y="233.12273" style="line-height:1.25" xml:space="preserve"><tspan x="144.34073" y="233.12273" font-size="4.9389px" stroke-width=".26458">Travis-CI</tspan></text>
+   <text x="189.43864" y="224.76111" style="line-height:1.25" xml:space="preserve"><tspan x="189.43864" y="224.76111" font-size="6.35px" stroke-width=".26458">部署</tspan></text>
+   <text x="187.9308" y="232.84857" style="line-height:1.25" xml:space="preserve"><tspan x="187.9308" y="232.84857" font-size="4.9389px" stroke-width=".26458">Netlify</tspan></text>
+   <text x="107.05613" y="279.72845" style="line-height:1.25" xml:space="preserve"><tspan x="107.05613" y="279.72845" font-size="6.35px" stroke-width=".26458">knitr</tspan></text>
+   <text x="109.11227" y="288.36426" style="line-height:1.25" xml:space="preserve"><tspan x="109.11227" y="288.36426" font-size="4.9389px" stroke-width=".26458">.md</tspan></text>
+   <text x="144.88904" y="279.86554" style="line-height:1.25" xml:space="preserve"><tspan x="144.88904" y="279.86554" font-size="6.35px" stroke-width=".26458">Pandoc</tspan></text>
+   <text x="143.24413" y="287.953" style="line-height:1.25" xml:space="preserve"><tspan x="143.24413" y="287.953" font-size="4.9389px" stroke-width=".26458">.tex/.html</tspan></text>
+   <text x="181.62534" y="278.90601" style="line-height:1.25" xml:space="preserve"><tspan x="181.62534" y="278.90601" font-size="6.35px" stroke-width=".26458">XeLaTeX</tspan></text>
+   <text x="189.30156" y="287.40469" style="line-height:1.25" xml:space="preserve"><tspan x="189.30156" y="287.40469" font-size="4.9389px" stroke-width=".26458">.pdf</tspan></text>
+   <text transform="rotate(-30)" x="-49.433983" y="246.76073" style="line-height:1.25" xml:space="preserve"><tspan x="-49.433983" y="246.76073" font-size="8.4667px" stroke-width=".26458">远程</tspan></text>
+   <text transform="rotate(25)" x="183.25558" y="214.40605" style="line-height:1.25" xml:space="preserve"><tspan x="183.25558" y="214.40605" font-size="8.4667px" stroke-width=".26458">本地</tspan></text>
+  </g>
+  <g fill="none" stroke="#000">
+   <g stroke-linejoin="round" stroke-miterlimit="3">
+    <path d="m29.972 254.5h20.238" marker-end="url(#Arrow1Lend)" opacity=".75" stroke-width=".37247"/>
+    <g stroke-width=".26773">
+     <path d="m129.99 226.42h10.456" marker-end="url(#Arrow1Lend-0)" opacity=".75"/>
+     <path d="m169.96 225.86h10.456" marker-end="url(#Arrow1Lend-0-0)" opacity=".75"/>
+     <path d="m129.99 282.42h10.456" marker-end="url(#Arrow1Lend-0-3)" opacity=".75"/>
+     <path d="m170 282.07h10.456" marker-end="url(#Arrow1Lend-0-4)" opacity=".75"/>
+    </g>
+   </g>
+   <path d="m78.294 245.05 22.427-13.459" marker-end="url(#marker5891)" stroke-width=".26458px"/>
+   <path d="m76.688 261.4 25.475 12.839" marker-end="url(#marker6237)" stroke-width=".26458px"/>
+  </g>
+ </g>
 </svg>
