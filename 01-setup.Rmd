@@ -171,7 +171,7 @@ install.packages("INLA",
 
 同样地，依赖也是很多，主要在于 GPU 版如何安装使用
 
-# 小技巧 {#tricks}
+## 小技巧 {#tricks}
 
 1. 设置 Notepad++ 为 Git Bash 默认编辑器
 
@@ -191,3 +191,36 @@ Windows下配置 Git 中 ssh-agent 自动启动 <https://lfkid.github.io/>
 这种让 Git 的 ssh-agent 常驻内存貌似不合理，占内存嘛
 
 设置 ssh 和 store 保存应该比较好
+
+
+2. 打开 bookdown 项目出来警告
+
+如图 \@ref(fig:yaml-load) 所示，目前只出现在 Windows 平台下
+
+```{r yaml-load,echo=FALSE,fig.cap="YAML 扫描错误"}
+knitr::include_graphics(path = "diagrams/ymal-load-error.png")
+```
+
+直观来看，是字符串 string 本身需要转化为 UTF8（其实是需要YAML区域都变成UTF8），有关详细介绍见 <http://biostat.mc.vanderbilt.edu/wiki/Main/YamlR#yaml.load> 和 <https://github.com/viking/r-yaml>
+
+```{r,echo=TRUE}
+yaml::yaml.load
+```
+
+先看个简单的
+
+```{r}
+yaml::yaml.load('你好')
+```
+
+开发者用如下方式避免一个警告 [issues #47](https://github.com/viking/r-yaml/issues/47)
+
+```{r}
+yaml::yaml.load("!expr paste('orange')", handlers = list(expr = function(x) eval(parse(text = x))))
+```
+
+要么等着 YAML 更新，要么等着 bookdown 或 rmarkdown 更新，目前还是在 rocker 下编辑吧，看着红红的警告信息，心里有点烦。
+
+- <https://github.com/viking/r-yaml/issues/6>
+- <https://github.com/rstudio/rmarkdown/issues/420>
+- <https://github.com/rstudio/config/issues/12>
