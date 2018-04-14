@@ -170,3 +170,24 @@ install.packages("INLA",
 ### tensorflow
 
 同样地，依赖也是很多，主要在于 GPU 版如何安装使用
+
+# 小技巧 {#tricks}
+
+1. 设置 Notepad++ 为 Git Bash 默认编辑器
+
+图 \@ref(fig:notepad-git) 所示^[<http://readorskip.com/2016/09/12/Using-Notepad-to-Write-Git-Commit-Messages/>]
+
+```{r notepad-git,fig.cap="Notepad++ 与 Git"}
+knitr::include_graphics(path = "images/git-vim-commit-message.png")
+```
+
+在 Git Bash 中输入下面一行
+
+```bash
+git config --global core.editor "'c:\Program Files\Notepad++\notepad++.exe' -multiInst -notabbar -nosession -noPlugin '$*'"
+```
+
+Windows下配置 Git 中 ssh-agent 自动启动 <https://lfkid.github.io/>
+这种让 Git 的 ssh-agent 常驻内存貌似不合理，占内存嘛
+
+设置 ssh 和 store 保存应该比较好

@@ -66,7 +66,7 @@ Mxnet、Xgboost 和 Stan 也是要学的，下半年正式入职京东了，另�
 - 个人主页 <https://xiangyun.netlify.com/>
 - Github <https://github.com/XiangyunHuang>
 
-## 致谢 {#intro-ack}
+## 致谢 {#ack}
 
 虚位以待壮士
 
@@ -107,6 +107,14 @@ cat(".\n")
 - 第 \@ref(network) 章介绍 igraph
 - 第 \@ref(animotion) 章介绍 animation、mapmate、rgl
 
+## 数学符号说明 {#notation}
+
+- $\mathcal{S,P,G}$
+- $S \not= \varnothing$
+- $\mathbb{R,C},\mathscr{P,F,D,A,B,C}$
+- $\mathbf{A,B,C},\mathsf{A,B,C},\mathit{A,B,C}$
+- $\mathrm{A,B,C}$ 
+- $\mathfrak{A,B,C}$
 
 ## 后记 {#colophon}
 

@@ -1,0 +1,130 @@
+# 其它软件工具 {#tools}
+
+```{r include=FALSE}
+system <- function(...) cat(base::system(..., intern = TRUE), sep = '\n')
+```
+
+## Octave
+
+安装新版 Octave，详情请见 <https://wiki.octave.org/Octave_for_Debian_systems>
+
+```bash
+sudo apt-add-repository ppa:octave/stable
+sudo apt-get update
+sudo apt-get install octave
+```
+
+```{r}
+Sys.which("octave")
+system("octave --version")
+```
+
+
+## Python
+
+Python 版本和位置
+
+```{r}
+Sys.which("python")
+system("python --version")
+```
+
+
+升级 Python
+
+```bash
+sudo add-apt-repository ppa:fkrull/deadsnakes-python2.7  
+sudo apt-get update  
+```
+
+可用的 python 模块
+
+```{python}
+help('modules')
+```
+
+## LaTeX 
+
+列出 tex 版本及其他信息
+
+```{r collapse=TRUE}
+system('pdflatex --version')
+```
+
+安装的中英文字体
+
+```{bash}
+# 中文字体
+fc-list :lang=zh-cn | sort
+```
+
+```{bash}
+# 英文字体
+fc-list :lang=en-us | sort
+```
+
+已经安装 TeX 包
+
+```{bash}
+tlmgr list --only-installed
+```
+
+## pandoc
+
+pandoc 在 R Markdown 中是否可用
+
+```{r}
+rmarkdown::pandoc_available()
+```
+
+pandoc 版本
+
+```{r}
+Sys.which("pandoc")
+system("pandoc -v")
+```
+
+## rtools
+
+rtools 是否可用
+
+```{r}
+devtools::find_rtools()
+```
+
+算个小栗子
+
+```{r rtools}
+fx <- inline::cxxfunction( signature(x = "integer", y = "numeric" ) , '
+	return ScalarReal( INTEGER(x)[0] * REAL(y)[0] ) ;
+' )
+fx( 2L, 5 ) 
+```
+
+
+## R
+
+列出已经安装的 R 包
+
+```{r}
+.packages(TRUE)
+```
+
+可用的图形设备
+
+```{r}
+capabilities()
+```
+
+其他软件信息
+
+```{r}
+extSoftVersion()
+```
+
+pdf 设备可用的字体信息
+
+```{r}
+names(pdfFonts())
+```
+

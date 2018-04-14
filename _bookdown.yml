@@ -37,5 +37,8 @@ rmd_files: [
   "18-gam.Rmd",
 
   "19-appendix.Rmd",
+  "19b-matplotlib.Rmd",
+  "19c-tools.Rmd",
+  "19d-bookmarks.Rmd",
   "20-references.Rmd",
 ]
