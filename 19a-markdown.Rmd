@@ -1,0 +1,11 @@
+# Markdown 
+
+- 图片引用
+
+如图 \@ref(fig:id1) 所示
+
+![work2](diagrams/00-workflow.png){#fig:id1 width=80% }
+
+- 表格交叉引用
+
+- 参考文献交叉引用
