@@ -4,10 +4,10 @@ sudo: required
 cache:
   packages: true
   directories:
-  - _bookdown_files
-  - $HOME/.npm
-  - $HOME/texlive
-  - $HOME/.fonts
+    - _bookdown_files
+    - $HOME/.npm
+    - $HOME/texlive
+    - $HOME/.fonts
 
 pandoc_version: 2.1.3
 
@@ -61,15 +61,15 @@ script:
   - Rscript -e 'devtools::install_github("dgrtwo/gganimate")'
   - Rscript -e 'bookdown::render_book("index.Rmd", output_format = "all")'
 
-#deploy:
-#  provider: script
-#  script: netlify deploy -t $NETLIFY_PAT
-#  skip_cleanup: true
-
 deploy:
-  provider: pages
+  provider: script
+  script: netlify deploy -t $NETLIFY_PAT
   skip_cleanup: true
-  github_token: $GITHUB_TOKEN
-  on:
-    branch: master
-  local_dir: _book
+
+# deploy:
+  # provider: pages
+  # skip_cleanup: true
+  # github_token: $GITHUB_TOKEN
+  # on:
+    # branch: master
+  # local_dir: _book
