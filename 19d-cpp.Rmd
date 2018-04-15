@@ -8,3 +8,14 @@ Pkgs <- sapply(list.files(R.home("library")), function(x)
   packageDescription(pkg = x, fields = "Priority"))
 names(Pkgs[Pkgs == "base" & !is.na(Pkgs)])
 ```
+
+计算程序运行时间
+
+```{r}
+.proctime00 <- proc.time()
+s <- 0
+for (i in seq(1000)) {
+  s <- s + i
+}
+proc.time() - .proctime00
+```
