@@ -29,6 +29,7 @@
 - [Junchen Feng](http://www.fengjunchen.com/)
 - [Sizhe Liu](http://www.bjt.name/)
 - [Liyun Chen](http://www.loyhome.com/)
+- [Peng Zhao](http://www.pzhao.org/zh/)
 
 ## 博客 {#blogger}
 
@@ -51,6 +52,8 @@
 - [Game of Thrones network analysis](https://shirinsplayground.netlify.com/2018/03/got_network/) 权利的游戏 网络
 - [Using Git and GitHub with R, Rstudio, and R Markdown](https://github.com/jennybc/happy-git-with-r)
 - [如何用Markdown写论文](http://blog.sciencenet.cn/blog-377709-1088215.html)
+- [blogdown和Github搭建网站](https://aurora-mareviv.github.io/talesofr/2018/02/r-blogdown-setup-in-github-2/)
+
 
 - [The R-INLA project and Bayesian computing with INLA](http://www.r-inla.org/)
 - [Geographic Data Science in Python](https://data.cdrc.ac.uk/dataset/geographic-data-science-in-python)
@@ -76,6 +79,7 @@
 - [Regression Modeling Strategies](http://biostat.mc.vanderbilt.edu/wiki/Main/RmS) Frank E Harrell Jr 著
 - [Applied Predictive Modeling](http://appliedpredictivemodeling.com/) Max Kuhn and Kjell Johnson 著
 - [Forecasting: Principles and Practice](https://www.otexts.org/fpp2/) Rob J Hyndman and George Athanasopoulos 著
+- [Applied Regression Analysis and Generalized Linear Models](https://socialsciences.mcmaster.ca/jfox/) 及书评 [JASA-review](https://socialsciences.mcmaster.ca/jfox/Books/Applied-Regression-2E/JASA-review.pdf) 附录、样章和书评位于目录 docs/John-Fox
 
 
 > 此节附录最后可以删掉

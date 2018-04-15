@@ -39,7 +39,21 @@ is_online = curl::has_internet()
 
 # 前言 {#preface}
 
-> 这是一本面向小众群体的笔记，没有太多的基础语法介绍，假设你已经达到入门级别了，也学过线性代数和数理统计，这本笔记还处在很早期的阶段。
+```{block2, type='rmdnote'}
+这是一本面向小众群体的笔记，没有太多的基础语法介绍，假设你已经达到入门级别了，也学过线性代数和数理统计，这本笔记还处在很早期的阶段。
+```
+
+> 荃者所以在鱼，得鱼而忘荃；蹄者所以在兔；得兔而忘蹄；言者所以在意，得意而忘言。吾安得夫忘言之人而与之言哉！
+
+```{block2, type='flushright', html.tag='p'}
+-- 取自《庄子·杂篇·物》
+```
+
+> The fish trap exists because of the fish; once you've gotten the fish, you can forget the trap. The rabbit snare exists because of the rabbit; once you've gotten the rabbit, you can forget the snare. Words exist because of meaning; once you've gotten the meaning, you can forget the words. Where can I find a man who has forgotten words so I can have a word with him ? ^[Translated by [Eric D. Kolaczyk](http://math.bu.edu/people/kolaczyk/teach.html)]
+
+```{block2, type='flushright', html.tag='p'}
+-- Chuang Tzu
+```
 
 1. 把平时遇到的问题分类汇总形成一本笔记，用以时常查看和更新。
 2. 网罗精美的案例，学习之，应用之
