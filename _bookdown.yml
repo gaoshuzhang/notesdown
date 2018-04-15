@@ -13,7 +13,7 @@ before_chapter_script: ["common.R"]
 
 rmd_files: [
   "index.Rmd",
-
+  # 基础篇
   "01-setup.Rmd",
   "02-foundation.Rmd",
 
@@ -21,7 +21,7 @@ rmd_files: [
   "04-color.Rmd",
   "05-font.Rmd",
   "06-animation.Rmd",
-  
+  # 进阶篇 
   "07-optimation.Rmd",
   "08-computing.Rmd",
   
@@ -31,15 +31,17 @@ rmd_files: [
 
   "12-spatial-data.Rmd",
   "13-network-data.Rmd",
+  # 高级篇
+  "15-glm.Rmd",
+  "16-mm.Rmd",
+  "17-gam.Rmd",
 
-  "16-glm.Rmd",
-  "17-mm.Rmd",
-  "18-gam.Rmd",
-
-  "19-appendix.Rmd",
+  "18-appendix.Rmd",
+  # 附录
   "19a-markdown.Rmd",
   "19b-matplotlib.Rmd",
   "19c-tools.Rmd",
-  "19d-bookmarks.Rmd",
+  "19d-cpp.Rmd",  
+  "19e-bookmarks.Rmd",
   "20-references.Rmd",
 ]
