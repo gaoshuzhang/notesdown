@@ -13,7 +13,6 @@ if (length(setdiff(Pkgs, .packages(TRUE))) > 0) {
 }
 ```
 
-
 ```bash
 sudo apt-get install libwebp-dev libpoppler-cpp-dev
 ```
