@@ -31,3 +31,12 @@ plt.savefig('math-in-plot.pdf', bbox_inches='tight')
 ```{r python-matplotlib, echo = FALSE, fig.cap = "图里的数学公式"}
 knitr::include_graphics(path = paste0("figures/math-in-plot", if(knitr::is_latex_output()) ".pdf" else ".png"))
 ```
+
+需要用 gs 嵌入字体才可以
+
+```bash
+# Needed only on Windows - run once per R session
+# Adjust the path to match your installation of Ghostscript
+Sys.setenv(R_GSCMD = "C:/Program Files/gs/gs9.23/bin/gswin64c.exe")
+embedFonts(file="math-in-plot.pdf",outfile="math-in-plot-embed.pdf")
+```

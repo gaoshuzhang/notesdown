@@ -128,3 +128,12 @@ pdf 设备可用的字体信息
 names(pdfFonts())
 ```
 
+## 容器
+
+### rocker
+
+
+### Singularity
+
+- <https://github.com/bwlewis/r-and-singularity>
+- <http://singularity.lbl.gov/>
