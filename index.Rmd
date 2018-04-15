@@ -134,7 +134,6 @@ cat(".\n")
 这本书是在 [RStudio](https://www.rstudio.com/products/rstudio/download/) 内用 [R Markdown](https://rmarkdown.rstudio.com/) 写的， [Git](https://git-scm.com/) 控制版本， [bookdown](https://bookdown.org/yihui/bookdown/) 组织书籍， [knitr](https://yihui.name/knitr/) 将 R Markdown 源文件转化为 Markdown 文件， [Pandoc](http://pandoc.org) \index{Pandoc}再将 Markdown 文件转化为 HTML 文档，转化为 PDF 文档需要 TinyTeX\index{TinyTeX} 发行版^[<https://yihui.name/tinytex/>] 和来自 **rticles** [@R-rticles] 的模板（一个基于 Pandoc 的 LaTeX 模板，两个美元符号包含的就是变量，变量基本上是 LaTeX 包的设置选项）。这个网站是通过 [Travis-CI](https://travis-ci.org/) 推送到 [Netlify](https://www.netlify.com/)，然后自动部署，这个过程即所谓的连续部署，如图\@ref(fig:workflow)所示。Travis-CI 还提供一个指示器报告编译的状态 `r if(knitr::is_html_output()) "[![Build Status](https://travis-ci.org/XiangyunHuang/bookdown-chinese.svg?branch=master)](https://travis-ci.org/XiangyunHuang/bookdown-chinese)"`，完整的源文件存放在 [Github](https://github.com/XiangyunHuang/bookdown-chinese) 上。
 
 ```{r workflow, echo=FALSE, fig.cap="书籍写作流程"}
-ext <- if(knitr::is_html_output()) ".svg" else if(knitr::is_latex_output()) ".pdf" else ".png"
 knitr::include_graphics(path = paste0("diagrams/00-workflow", ext))
 ```
 

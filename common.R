@@ -50,6 +50,7 @@ knitr::opts_chunk$set(
     python = "/usr/bin/python"
   )
 )
+ext <- if(knitr::is_html_output()) ".svg" else if(knitr::is_latex_output()) ".pdf" else ".png"
 
 # library(knitr)
 # knitr::knit_hooks$set(optipng = hook_optipng, pdfcrop = hook_pdfcrop)

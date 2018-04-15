@@ -38,7 +38,10 @@ knitr::opts_chunk$set(
 
 在文章插入 eps 格式的图片会报错，无法生成，这是一个坑
 
-```{r insert-logos,out.width="25%",fig.cap="Stan 家族",echo=T,eval=T}
+`r if(knitr::is_html_output()) "最后欣赏来自官网的几个作品^[图片来自 <https://inkscape.org/en/gallery/>]" `
+
+
+```{r insert-logos,out.width="25%",fig.cap="Stan 家族 \\url{https://inkscape.org}",echo=T,eval=T}
 knitr::include_graphics(path = paste0(
   "images/",
   paste0(

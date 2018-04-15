@@ -188,29 +188,31 @@ for (i in seq(length(list.files(tmp)))) {
 }
 ```
 
-pdftools [@R-pdftools] 文本提取，渲染和转化 PDF 文档
+- pdftools [@R-pdftools] 用于文本提取，渲染和转化 PDF 文档
 
-```r
-install.packages("pdftools")
+- magick 的简单使用，如插入 Inkscape 图标，如图\@ref(fig:inkscape-logo)
+
+```{r inkscape-logo,fig.cap="Inkscape 图标", echo = FALSE}
+# magick::image_read_svg(path = "diagrams/inkscape.svg")
+knitr::include_graphics(path = paste0("diagrams/inkscape", ext))
 ```
 
+Inkscape^[<https://inkscape.org/zh/>] 是替代 Adobe Illustrator（简称 AI） 最佳工具，没有之一。开源免费，功能齐全，更新快，跨平台。尤其不用面临如图\@ref(fig:ai-error)所示的兼容性问题，说白了，就是厂家在不停地刷版本号，要用户掏钱升级，我早年间也是 Adobe 的忠实粉丝，通过校园先锋以学生身份买了好几套产品，后来看透了这一切，又找到了开源的 Inkscape \index{Inkscape}，现在我没有理由去升级 AI 了，我的电脑现在装的还都是 CS6 系列。
 
-magick 的简单使用
-
-```r
-install.packages("magick")
+```{r ai-error,fig.cap="兼容性错误", echo = FALSE}
+knitr::include_graphics(path = "diagrams/AICC.png")
 ```
 
-插入 Inkscape 图标，如图
+`r if(knitr::is_html_output()) "最后欣赏来自官网的几个作品^[图片来自 <https://inkscape.org/en/gallery/>]" `
 
-```{r inkscape-logo, eval = knitr::is_latex_output(),fig.cap="Inkscape 图标"}
-magick::image_read_svg(path = "figures/inkscape.svg")
+```{r ink-work,fig.cap="作品欣赏", echo = FALSE,out.width="45%", eval= knitr::is_html_output() }
+knitr::include_graphics(path = paste0(
+  "diagrams/",
+  paste0(
+    c("space-ink", "about-ink"), ".svg"
+  )
+))
 ```
-
-`r if (knitr::is_html_output()) '
-![](figures/inkscape.svg)'
-`
-
 
 ## 优化
 
