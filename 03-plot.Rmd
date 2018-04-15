@@ -192,7 +192,7 @@ for (i in seq(length(list.files(tmp)))) {
 
 - magick 的简单使用，如插入 Inkscape 图标，如图\@ref(fig:inkscape-logo)
 
-```{r inkscape-logo,fig.cap="Inkscape 图标", echo = FALSE}
+```{r inkscape-logo,fig.cap="Inkscape 图标", echo = FALSE, out.width="25%"}
 # magick::image_read_svg(path = "diagrams/inkscape.svg")
 knitr::include_graphics(path = paste0("diagrams/inkscape", ext))
 ```
