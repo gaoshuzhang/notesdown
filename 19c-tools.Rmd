@@ -137,3 +137,28 @@ names(pdfFonts())
 
 - <https://github.com/bwlewis/r-and-singularity>
 - <http://singularity.lbl.gov/>
+
+
+## 小工具
+
+
+-  webshot <https://github.com/wch/webshot>
+
+```r
+# 截图
+install.packages("webshot")
+webshot::install_phantomjs()
+# 截网页
+library(webshot)
+webshot("https://www.r-project.org/", "r.png")
+webshot("https://www.r-project.org/", "r.pdf") # Can also output to PDF
+# 截文档
+rmdshot("document.rmd", "document.png")
+# 截特定大小 GraphicsMagick (recommended) or ImageMagick installed
+# Can specify pixel dimensions for resize()
+webshot("https://www.r-project.org/", "r-small.png") %>%
+  resize("400x") %>%
+  shrink()
+```
+
+
