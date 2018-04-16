@@ -37,6 +37,7 @@ addons:
       - libgeos-dev 
       - libgdal-dev
       - python2.7
+      - python-tk
       - octave
       - proj-bin 
       - libpaper-utils
