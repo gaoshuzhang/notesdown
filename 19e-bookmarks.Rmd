@@ -131,7 +131,6 @@ R 语言
 - [ggplot2绘图库](http://www.sthda.com/english/)
 - [Highcharter 商业](http://jkunst.com/highcharter/)
 - [john-coene.com](http://john-coene.com/)
-- [Large File Support in Linux](http://users.suse.com/~aj/linux_lfs.html)
 - [Deep Learning in R – R Blog](http://www.rblog.uni-freiburg.de/2017/02/07/deep-learning-in-r/)
 - [Zelig 统计推断方法合集](https://zeligproject.org/)
 - [Paul Murrell's Home Page](https://www.stat.auckland.ac.nz/~paul/)
