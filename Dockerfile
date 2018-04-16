@@ -8,6 +8,7 @@ RUN apt-get update \
     ghostscript \
     imagemagick \
     optipng \
+	curl \
     libwebp-dev \
     libgsl-dev \
     dieharder \
@@ -38,9 +39,7 @@ RUN tlmgr update --all --self
 RUN tlmgr install $(cat TeXLive.pkgs | tr '\n' ' ') || true
 
 RUN Rscript -e "devtools::install_github('leonawicz/mapmate')"
-
 RUN Rscript -e "devtools::install_github('dgrtwo/gganimate')"
-
 RUN Rscript -e "bookdown::render_book('index.Rmd', output_format = 'all')"
 
 RUN mkdir /liftrroot/
