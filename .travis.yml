@@ -42,7 +42,7 @@ before_install:
   - sudo add-apt-repository -y ppa:jonathonf/python-2.7
   - sudo apt-get --yes --force-yes update -qq
   - sudo apt-get install --yes python2.7
-  - sudo apt-get install --yes python-requests python-tk python-pip
+  - sudo apt-get install --yes python-dev-all python-tk python-pip
   - pip install numpy matplotlib
   # install latest octave
   - sudo apt-add-repository -y ppa:octave/stable
