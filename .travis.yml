@@ -48,7 +48,7 @@ before_install:
   #- sudo apt-get --yes --force-yes update -qq
   - sudo apt-get install --yes python2.7
   # - sudo apt-get install --yes ca-certificates python-urllib3 python-requests python-tk python-pip python-chardet
-  - sudo apt-get install --yes python-pip python-tk
+  # - sudo apt-get install --yes python-pip python-tk
   - pip install numpy matplotlib
   # install latest octave
   #- sudo apt-add-repository -y ppa:octave/stable
