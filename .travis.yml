@@ -16,8 +16,8 @@ addons:
     sources:
       - sourceline: ppa:opencpu/jq
       - sourceline: ppa:ubuntugis/ubuntugis-unstable
-      # - sourceline: ppa:jonathonf/python-2.7
-      # - sourceline: ppa:octave/stable
+      - sourceline: ppa:jonathonf/python-2.7
+      - sourceline: ppa:octave/stable
     packages:
       - ghostscript
       - imagemagick
@@ -36,6 +36,7 @@ addons:
       - libproj-dev 
       - libgeos-dev 
       - libgdal-dev
+      - python2.7
       - octave
 
 before_install:
