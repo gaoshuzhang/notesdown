@@ -15,6 +15,7 @@ RUN apt-get update \
     libdieharder-dev \
     libpoppler-cpp-dev \
     libv8-3.14-dev \
+    python-dev \
     python-pip \
     python-tk \
     octave \
