@@ -38,9 +38,16 @@ addons:
       - libgdal-dev
       - python2.7
       - octave
+      - proj-bin 
+      - libpaper-utils
+      - gnuplot-x11
+      - gnuplot-qt 
+      - libatlas3-base
+      - libopenblas-base 
+      - pstoedit
 
 before_install:
-  - pip install numpy matplotlib
+  - sudo -H pip install numpy matplotlib
   # monofont for code set
   - curl -o ~/.fonts/Inconsolata-Bold.ttf https://raw.githubusercontent.com/google/fonts/master/ofl/inconsolata/Inconsolata-Bold.ttf 
   - curl -o ~/.fonts/Inconsolata-Regular.ttf https://raw.githubusercontent.com/google/fonts/master/ofl/inconsolata/Inconsolata-Regular.ttf
