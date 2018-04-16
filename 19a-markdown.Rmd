@@ -2,9 +2,11 @@
 
 - 图片引用
 
-如图 \@ref(fig:id1) 所示
+`r if(knitr::is_latex_output()) "如图 \\@ref(fig:id1) 所示"`
 
-![work2](diagrams/00-workflow.png){#fig:id1 width=80% }
+![工作流程图](diagrams/00-workflow.png){#fig:id1 width=70% }
+
+gitbook 这样网页又该如何引用这张图片呢？
 
 - 表格交叉引用
 
