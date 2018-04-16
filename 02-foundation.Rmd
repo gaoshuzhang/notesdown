@@ -1,11 +1,11 @@
-# 基础 {#base}
+# 基础 {#r-base}
 
 ## 数学运算 {#math-operator}
 
 ### 矩阵运算
 
 ```{r}
-A = matrix(c(1,2,2,3),nrow =2)
+A <- matrix(c(1, 2, 2, 3), nrow = 2)
 # 矩阵每个元素平方
 A^2 # Hadamard 积
 
@@ -13,11 +13,11 @@ A^2 # Hadamard 积
 exp(A)
 
 A %*% A
-crossprod(A,A) # 交叉积 t(x) %*% y
-tcrossprod(A,A) # x %*% t(y)
+crossprod(A, A) # 交叉积 t(x) %*% y
+tcrossprod(A, A) # x %*% t(y)
 
 A %o% A # 外积运算
-outer(A,A,FUN = "*")
+outer(A, A, FUN = "*")
 
 A %x% A # 直积/克罗内克积
 kronecker(A, A, FUN = "*")

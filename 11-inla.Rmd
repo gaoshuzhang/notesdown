@@ -1,12 +1,12 @@
-# 集成嵌套拉普拉斯 {#inla}
+# 集成嵌套拉普拉斯 {#r-inla}
 
 ```{r setup, include=FALSE}
-## try http:// if https:// URLs are not supported
-source("https://bioconductor.org/biocLite.R")
 Pkgs <- c(
   "INLA", "Rgraphviz", "graph"
 )
 if (length(setdiff(Pkgs, .packages(TRUE))) > 0) {
+  ## try http:// if https:// URLs are not supported
+  source("https://bioconductor.org/biocLite.R")
   biocLite(c("Rgraphviz", "graph"), ask = FALSE)
   install.packages("INLA", repos = c(getOption("repos"),
     INLA = "https://inla.r-inla-download.org/R/stable"

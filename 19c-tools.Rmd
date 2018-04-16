@@ -1,4 +1,4 @@
-# 其它软件工具 {#tools}
+# 其它软件工具 {#other-tools}
 
 ```{r include=FALSE}
 system <- function(...) cat(base::system(..., intern = TRUE), sep = '\n')
