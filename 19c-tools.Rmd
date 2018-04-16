@@ -162,4 +162,15 @@ webshot("https://www.r-project.org/", "r-small.png") %>%
   shrink()
 ```
 
+## apt 管理器
+
+适用于 Debian 和 Ubuntu 的软件包管理器
+
+## yum 管理器
+
+适用于 Fedora 和 CentOS 的软件包管理器
+
+## tlmgr 管理器
+
+基本使用已包含在 **tinytex** \index{tinytex}包 [@R-tinytex] 内
 
