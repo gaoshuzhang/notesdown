@@ -11,7 +11,7 @@ pip install numpy matplotlib
 
 默认使用 [STIX 数学字体](http://www.stixfonts.org/) 和 DejaVu Sans 英文字体，如图 \@ref(fig:math-matplotlib) 所示
 
-```{python math-matplotlib, fig.cap = "数学公式"}
+```{python math-matplotlib, fig.cap = "数学公式", dev = if(knitr::is_latex_output()) "pdf"}
 import numpy as np
 import matplotlib.pyplot as plt
 plt.switch_backend('agg') # Very Important in R Markdown
