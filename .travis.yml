@@ -40,8 +40,6 @@ addons:
       - octave
       - proj-bin 
       - libpaper-utils
-      - gnuplot-x11
-      - gnuplot-qt 
       - libatlas3-base
       - libopenblas-base 
       - pstoedit
