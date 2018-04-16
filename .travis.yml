@@ -58,7 +58,7 @@ before_install:
 
 script:
   # - Rscript -e 'update.packages(ask = FALSE)'
-  - Rscript -e 'devtools::install_github("tidyverse/ggplot2")'
+  # - Rscript -e 'devtools::install_github("tidyverse/ggplot2")'
   - Rscript -e 'devtools::install_github("leonawicz/mapmate")'
   - Rscript -e 'devtools::install_github("dgrtwo/gganimate")'
   - Rscript -e 'bookdown::render_book("index.Rmd", output_format = "all")'
