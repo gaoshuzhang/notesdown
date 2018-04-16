@@ -25,9 +25,9 @@ rmd_files: [
   "07-optimation.Rmd",
   "08-computing.Rmd",
   
-  "09-gp.Rmd",
-  "10-mcmc.Rmd",
-  "11-inla.Rmd",
+#  "09-gp.Rmd",
+#  "10-mcmc.Rmd",
+#  "11-inla.Rmd",
 
   "12-spatial.Rmd",
   "13-network.Rmd",
