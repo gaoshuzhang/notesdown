@@ -33,6 +33,10 @@ plt.show()
 - dpi 分辨率，越大图像越清晰，对矢量图形无效
 - bbox\_inches 去除图形周边空白区域
 
+```{block2, type='rmdnote'}
+Python 的 matplotlib 模块没有叫 `cairo_pdf` 的保存设备，所以此处设置为 `r dev = if(knitr::is_latex_output()) "pdf" else if(knitr::is_html_output()) "svg" else "png"`，它支持的图片格式有 eps, pdf, pgf, png, ps, raw, rgba, svg, svgz
+```
+
 Windows 下保存的 PDF 图片需要用 gs 嵌入字体才可以，不然会出现无法显示 XX 字体的错误，假设在 R 环境中，只需如下两行命令即可
 
 ```r
