@@ -2,11 +2,19 @@
 
 ## matplotlib
 
-```python
-# sudo apt-get install python-tk
-# pip install numpy matplotlib
+先安装必要的模块
+
+```bash
+sudo apt-get install -y python-tk python-pip
+pip install numpy matplotlib
+```
+
+默认使用 [STIX 数学字体](http://www.stixfonts.org/) 和 DejaVu Sans 英文字体，如图 \@ref(fig:math-matplotlib) 所示
+
+```{python math-matplotlib, fig.cap = "数学公式"}
 import numpy as np
 import matplotlib.pyplot as plt
+plt.switch_backend('agg') # Very Important in R Markdown
 t = np.arange(0.0, 2.0, 0.01)
 s = np.sin(2*np.pi*t)
 
@@ -17,26 +25,19 @@ plt.text(0.6, 0.6, r'$\mathcal{A}\mathrm{sin}(2 \omega t)$',
          fontsize=20)
 plt.xlabel('time (s)')
 plt.ylabel('volts (mV)')
-
-plt.savefig('math-in-plot.png', bbox_inches='tight',dpi=300)
-plt.savefig('math-in-plot.pdf', bbox_inches='tight')
+plt.show()
+# plt.savefig('math-in-plot.png', bbox_inches='tight', dpi = 300)
+# plt.savefig('math-in-plot.pdf', bbox_inches='tight')
 ```
 
 - dpi 分辨率，越大图像越清晰，对矢量图形无效
 - bbox\_inches 去除图形周边空白区域
 
+Windows 下保存的 PDF 图片需要用 gs 嵌入字体才可以，不然会出现无法显示 XX 字体的错误，假设在 R 环境中，只需如下两行命令即可
 
-默认使用 [STIX 数学字体](http://www.stixfonts.org/) 和 DejaVu Sans 英文字体，如图 \@ref(fig:python-matplotlib)
-
-```{r python-matplotlib, echo = FALSE, fig.cap = "图里的数学公式"}
-knitr::include_graphics(path = paste0("figures/math-in-plot", if(knitr::is_latex_output()) ".pdf" else ".png"))
-```
-
-需要用 gs 嵌入字体才可以
-
-```bash
+```r
 # Needed only on Windows - run once per R session
 # Adjust the path to match your installation of Ghostscript
 Sys.setenv(R_GSCMD = "C:/Program Files/gs/gs9.23/bin/gswin64c.exe")
-embedFonts(file="math-in-plot.pdf",outfile="math-in-plot-embed.pdf")
+embedFonts(file = "math-in-plot.pdf", outfile = "math-in-plot-embed.pdf")
 ```

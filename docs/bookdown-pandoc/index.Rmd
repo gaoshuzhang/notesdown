@@ -16,7 +16,6 @@ knitr::opts_chunk$set(
   comment = "#>",
   collapse = TRUE,
   echo = TRUE,
-  cache = TRUE,
   # citation.bibtex.max=999,
   out.width = "70%",
   fig.align = "center",
@@ -41,7 +40,7 @@ knitr::opts_chunk$set(
 `r if(knitr::is_html_output()) "最后欣赏来自官网的几个作品^[图片来自 <https://inkscape.org/en/gallery/>]" `
 
 
-```{r insert-logos,out.width="25%",fig.cap="Stan 家族 \\url{https://inkscape.org}",echo=T,eval=T}
+```{r insert-logos,out.width="25%",fig.cap="Stan 家族 \\url{https://inkscape.org}",echo=T,eval=F}
 knitr::include_graphics(path = paste0(
   "images/",
   paste0(
@@ -49,6 +48,26 @@ knitr::include_graphics(path = paste0(
     if (knitr::is_latex_output()) ".eps" else ".svg"
   )
 ))
+```
+
+
+如图 \@ref(fig:math-matplotlib) 所示
+
+```{python math-matplotlib,fig.cap = "数学公式"}
+import numpy as np
+import matplotlib.pyplot as plt
+plt.switch_backend('agg')
+t = np.arange(0.0, 2.0, 0.01)
+s = np.sin(2*np.pi*t)
+
+plt.plot(t,s)
+plt.title(r'$\alpha_i > \beta_i$', fontsize=20)
+plt.text(1, -0.6, r'$\sum_{i=0}^\infty x_i$', fontsize=20)
+plt.text(0.6, 0.6, r'$\mathcal{A}\mathrm{sin}(2 \omega t)$',
+         fontsize=20)
+plt.xlabel('time (s)')
+plt.ylabel('volts (mV)')
+plt.show()
 ```
 
 

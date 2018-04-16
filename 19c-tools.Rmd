@@ -2,7 +2,7 @@
 
 ```{r include=FALSE}
 system <- function(...) cat(base::system(..., intern = TRUE), sep = '\n')
-system2 <- function(...) cat(base::system2(...), sep = '\n')
+system2 <- function(...) cat(base::system2(..., stdout = TRUE), sep = "\n")
 ```
 
 ## Octave
@@ -27,7 +27,6 @@ Python 版本和位置
 
 ```{r}
 Sys.which("python")
-system("python --version")
 system2("python", args = "--version", stderr = TRUE)
 ```
 

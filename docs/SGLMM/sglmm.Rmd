@@ -32,10 +32,16 @@ classoption: "hyperref,a4paper,twoside,dvipsnames"
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(
-  echo = TRUE
+  echo = TRUE,
+  out.width = "70%",
+  fig.align = "center",
+  fig.width = 6,
+  # fig.showtext = TRUE, # too danger
+  fig.asp = 0.618, # 1 / phi
+  fig.show = "hold"  
 )
 system <- function(...) cat(base::system(..., intern = TRUE), sep = "\n")
-system2 <- function(...) cat(base::system2(...), sep = "\n")
+system2 <- function(...) cat(base::system2(..., stdout = TRUE), sep = "\n")
 ```
 
 # 引言
@@ -47,9 +53,19 @@ This is an R Markdown document. Markdown is a simple formatting syntax for autho
 
 When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
 
-```{python}
+先安装 python-pip
+
+```bash
+sudo apt-get install -y python-pip
+pip install numpy matplotlib
+```
+
+\@ref(fig:math-matplotlib)
+
+```{python math-matplotlib,fig.cap = "数学公式"}
 import numpy as np
 import matplotlib.pyplot as plt
+plt.switch_backend('agg')
 t = np.arange(0.0, 2.0, 0.01)
 s = np.sin(2*np.pi*t)
 
@@ -63,6 +79,11 @@ plt.ylabel('volts (mV)')
 plt.show()
 ```
 
+```{r}
+library(reticulate)
+os <- import("os")
+os$listdir(".")
+```
 
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.[@Bayesian2017ARSA]
 
@@ -72,6 +93,12 @@ system("gcc --version")
 system("g++ --version")
 system2("g++", args = "-v", stderr = TRUE)
 ```
+
+
+```{r}
+system2("python", args = "--version", stderr = TRUE)
+```
+
 
 插入图片
 
