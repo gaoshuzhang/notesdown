@@ -27,10 +27,10 @@ rmd_files: [
   
   "09-gp.Rmd",
   "10-mcmc.Rmd",
-  "11-r-inla.Rmd",
+  "11-inla.Rmd",
 
-  "12-spatial-data.Rmd",
-  "13-network-data.Rmd",
+  "12-spatial.Rmd",
+  "13-network.Rmd",
   # 高级篇
   "15-glm.Rmd",
   "16-mm.Rmd",

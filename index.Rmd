@@ -1,4 +1,4 @@
---- 
+---
 title: "R 语言笔记"
 author: "黄湘云"
 date: "`r format(Sys.time(), tz = 'Asia/Taipei', usetz = TRUE)`"
@@ -59,7 +59,7 @@ is_online = curl::has_internet()
 2. 网罗精美的案例，学习之，应用之
 3. 挑选感兴趣的新技能，钻研之
 4. 学习心得和体会，尤其是那些年的淌坑经历
-5. 从使用者到开发者蜕变，先啃一下 Hadley Wickham 的几本书： 
+5. 从使用者到开发者蜕变，先啃一下 Hadley Wickham 的几本书：
     + The tidyverse style guide/A style guide for the R language <http://style.tidyverse.org/>
     + Advanced R <https://adv-r.hadley.nz/>
     + R packages <http://r-pkgs.had.co.nz/>
@@ -86,12 +86,12 @@ Mxnet、Xgboost 和 Stan 也是要学的，下半年正式入职京东了，另�
 ```{r contribs, results = "asis", echo = FALSE}
 # copy from https://github.com/hadley/adv-r/edit/master/Introduction.Rmd
 # contribs <- system("git --no-pager shortlog -ns > contribs.txt", intern = T)
-contribs <- read.delim("contribs.txt", header = FALSE, 
+contribs <- read.delim("contribs.txt", header = FALSE,
   stringsAsFactors = FALSE)[-1, ]
 names(contribs) <- c("n", "name")
 
 contribs <- contribs[order(contribs$name), ]
-contribs$uname <- ifelse(!grepl(" ", contribs$name), 
+contribs$uname <- ifelse(!grepl(" ", contribs$name),
   paste0("\\@", contribs$name), contribs$name)
 
 cat("Thanks go to all contributers in alphabetical order: ")
@@ -115,7 +115,7 @@ cat(".\n")
 
 你好，世界。我写了一本书。这本书是这样的，第 \@ref(color) 章介绍了啥啥，第 \@ref(plot) 章说了啥啥，然后是啥啥……
 
-- 第 \@ref(mcmc) 章介绍 rstan 
+- 第 \@ref(mcmc) 章介绍 rstan
 - 第 \@ref(spatial) 章介绍 sf
 - 第 \@ref(network) 章介绍 igraph
 - 第 \@ref(animotion) 章介绍 animation、mapmate、rgl
@@ -126,12 +126,14 @@ cat(".\n")
 - $S \neq \varnothing$
 - $\mathbb{R,C},\mathscr{P,F,D,A,B,C}$
 - $\mathbf{A,B,C},\mathsf{A,B,C},\mathit{A,B,C}$
-- $\mathrm{A,B,C}$ 
+- $\mathrm{A,B,C}$
 - $\mathfrak{A,B,C}$
 
 ## 后记 {#colophon}
 
-这本书是在 [RStudio](https://www.rstudio.com/products/rstudio/download/) 内用 [R Markdown](https://rmarkdown.rstudio.com/) 写的， [Git](https://git-scm.com/) 控制版本， [bookdown](https://bookdown.org/yihui/bookdown/) 组织书籍， [knitr](https://yihui.name/knitr/) 将 R Markdown 源文件转化为 Markdown 文件， [Pandoc](http://pandoc.org) \index{Pandoc}再将 Markdown 文件转化为 HTML 文档，转化为 PDF 文档需要 TinyTeX\index{TinyTeX} 发行版^[<https://yihui.name/tinytex/>] 和来自 **rticles** [@R-rticles] 的模板（一个基于 Pandoc 的 LaTeX 模板，两个美元符号包含的就是变量，变量基本上是 LaTeX 包的设置选项）。这个网站是通过 [Travis-CI](https://travis-ci.org/) 推送到 [Netlify](https://www.netlify.com/)，然后自动部署，这个过程即所谓的连续部署，如图\@ref(fig:workflow)所示。Travis-CI 还提供一个指示器报告编译的状态 `r if(knitr::is_html_output()) "[![Build Status](https://travis-ci.org/XiangyunHuang/bookdown-chinese.svg?branch=master)](https://travis-ci.org/XiangyunHuang/bookdown-chinese)"`，完整的源文件存放在 [Github](https://github.com/XiangyunHuang/bookdown-chinese) 上。
+这本书是在 [RStudio](https://www.rstudio.com/products/rstudio/download/) 内用 [R Markdown](https://rmarkdown.rstudio.com/) 写的， [Git](https://git-scm.com/) 控制版本， [bookdown](https://bookdown.org/yihui/bookdown/) 组织书籍， [knitr](https://yihui.name/knitr/) 将 R Markdown 源文件转化为 Markdown 文件， [Pandoc](http://pandoc.org) \index{Pandoc}再将 Markdown 文件转化为 HTML 文档，转化为 PDF 文档需要 TinyTeX\index{TinyTeX} 发行版^[<https://yihui.name/tinytex/>] 和来自 **rticles** [@R-rticles] 的模板（一个基于 Pandoc 的 LaTeX 模板，两个美元符号包含的就是变量，变量基本上是 LaTeX 包的设置选项）。这个网站是通过 [Travis-CI](https://travis-ci.org/) 推送到 [Netlify](https://www.netlify.com/)，然后自动部署，这个过程即所谓的连续部署，如图\@ref(fig:workflow)所示。Travis-CI 还提供一个指示器报告编译的状态：
+ `r if(knitr::is_html_output()) "[![Build Status](https://travis-ci.org/XiangyunHuang/bookdown-chinese.svg?branch=master)](https://travis-ci.org/XiangyunHuang/bookdown-chinese)"`
+ 完整的源文件存放在 [Github](https://github.com/XiangyunHuang/bookdown-chinese) 上。
 
 ```{r workflow, echo=FALSE, fig.cap="书籍写作流程"}
 knitr::include_graphics(path = paste0("diagrams/00-workflow", ext))
