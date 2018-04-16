@@ -31,7 +31,11 @@ classoption: "hyperref,a4paper,twoside,dvipsnames"
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(
+  echo = TRUE
+)
+system <- function(...) cat(base::system(..., intern = TRUE), sep = "\n")
+system2 <- function(...) cat(base::system2(...), sep = "\n")
 ```
 
 # 引言
@@ -43,27 +47,34 @@ This is an R Markdown document. Markdown is a simple formatting syntax for autho
 
 When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
 
-```{r cars}
-summary(cars)
+```{python}
+import numpy as np
+import matplotlib.pyplot as plt
+t = np.arange(0.0, 2.0, 0.01)
+s = np.sin(2*np.pi*t)
+
+plt.plot(t,s)
+plt.title(r'$\alpha_i > \beta_i$', fontsize=20)
+plt.text(1, -0.6, r'$\sum_{i=0}^\infty x_i$', fontsize=20)
+plt.text(0.6, 0.6, r'$\mathcal{A}\mathrm{sin}(2 \omega t)$',
+         fontsize=20)
+plt.xlabel('time (s)')
+plt.ylabel('volts (mV)')
+plt.show()
 ```
 
-## Including Plots
-
-You can also embed plots, for example:
-
-```{r pressure, echo=FALSE}
-plot(pressure)
-```
 
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.[@Bayesian2017ARSA]
 
+```{r}
+Sys.which("gcc")
+system("gcc --version")
+system("g++ --version")
+system2("g++", args = "-v", stderr = TRUE)
+```
 
 插入图片
 
 ```{r,fig.cap="未优化"}
 knitr::include_graphics(path = "fig.pdf")
-```
-
-```{r,fig.cap="优化"}
-knitr::include_graphics(path = "fig-02.pdf")
 ```

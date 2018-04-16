@@ -2,6 +2,7 @@
 
 ```{r include=FALSE}
 system <- function(...) cat(base::system(..., intern = TRUE), sep = '\n')
+system2 <- function(...) cat(base::system2(...), sep = '\n')
 ```
 
 ## Octave
@@ -9,9 +10,9 @@ system <- function(...) cat(base::system(..., intern = TRUE), sep = '\n')
 安装新版 Octave，详情请见 <https://wiki.octave.org/Octave_for_Debian_systems>
 
 ```bash
-sudo apt-add-repository ppa:octave/stable
+sudo apt-add-repository -y ppa:octave/stable
 sudo apt-get update
-sudo apt-get install octave
+sudo apt-get install -y octave
 ```
 
 ```{r}
@@ -27,6 +28,7 @@ Python 版本和位置
 ```{r}
 Sys.which("python")
 system("python --version")
+system2("python", args = "--version", stderr = TRUE)
 ```
 
 
