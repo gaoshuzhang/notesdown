@@ -130,7 +130,7 @@ names(pdfFonts())
 ```
 
 
--  webshot <https://github.com/wch/webshot>
+- webshot <https://github.com/wch/webshot>
 
 ```r
 # 截图

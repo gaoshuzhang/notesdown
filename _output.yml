@@ -20,10 +20,10 @@ bookdown::pdf_book:
   latex_engine: xelatex
   citation_package: natbib
   keep_tex: no
-  pandoc_args: "--top-level-division=chapter"
+  pandoc_args: "--top-level-division=part"
   toc_depth: 3
   toc_bib: yes
-  toc_unnumbered: yes
+  toc_unnumbered: no
   toc_appendix: yes  
   base_format: rticles::ctex
 bookdown::epub_book: 
