@@ -1,4 +1,4 @@
-# 集成嵌套拉普拉斯 {#r-inla}
+# 近似推断 {#r-inla}
 
 ```{r setup, include=FALSE}
 Pkgs <- c(

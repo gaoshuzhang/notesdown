@@ -70,7 +70,7 @@ fc-list :lang=en-us | sort
 tlmgr list --only-installed
 ```
 
-## pandoc
+## Pandoc
 
 pandoc 在 R Markdown 中是否可用
 
@@ -85,7 +85,7 @@ Sys.which("pandoc")
 system("pandoc -v")
 ```
 
-## rtools
+## Rtools
 
 rtools 是否可用
 
@@ -158,6 +158,11 @@ webshot("https://www.r-project.org/", "r-small.png") %>%
 
 - <https://github.com/bwlewis/r-and-singularity>
 - <http://singularity.lbl.gov/>
+
+### Kubernetes
+
+Kubernetes 容器集群管理 <https://www.kubernetes.org.cn>
+参见高策的博客 <http://gaocegege.com>
 
 ## apt
 
