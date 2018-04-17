@@ -153,6 +153,8 @@ webshot("https://www.r-project.org/", "r-small.png") %>%
 
 ### rocker
 
+- Dockerfile <https://docs.docker.com/develop/develop-images/dockerfile_best-practices/>
+- build <https://docs.docker.com/engine/reference/builder/#usage>
 
 ### Singularity
 

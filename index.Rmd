@@ -120,7 +120,7 @@ cat(".\n")
 - 第 \@ref(spatial) 章介绍 sf
 - 第 \@ref(network) 章介绍 igraph
 
-## 记号 {#notation}
+## 记号 {#notation .unnumbered}
 
 - $\mathcal{S,P,G}$
 - $S \neq \varnothing$
@@ -135,7 +135,7 @@ cat(".\n")
 
  `r if(knitr::is_html_output()) "Travis-CI 还提供一个指示器报告编译的状态：[![Build Status](https://travis-ci.org/XiangyunHuang/bookdown-chinese.svg?branch=master)](https://travis-ci.org/XiangyunHuang/bookdown-chinese)"`
 
-```{r workflow, echo=FALSE, fig.cap="书籍写作流程"}
+```{r workflow, echo=FALSE}
 knitr::include_graphics(path = paste0("diagrams/00-workflow", ext))
 ```
 
@@ -159,7 +159,7 @@ cat(readLines("common.R", encoding = "UTF-8"), sep = "\n")
 devtools::session_info()
 ```
 
-## 许可
+## 许可 {.unnumbered}
 
 本书采用 [知识共享署名-非商业性使用-禁止演绎 4.0 国际许可协议](https://creativecommons.org/licenses/by-nc-nd/4.0/) 许可，请君自重，别没事儿拿去传个什么新浪爱问、百度文库以及 XX 经济论坛，项目中代码使用 [MIT 协议](https://github.com/XiangyunHuang/bookdown-chinese/blob/master/LICENSE) 开源，你正在阅读的是 `r Sys.Date()` 在 `r if(is_on_travis) "[Travis](https://travis-ci.org/XiangyunHuang/bookdown-chinese)" else "本地"` 构建的。
 
