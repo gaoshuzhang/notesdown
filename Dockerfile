@@ -4,10 +4,10 @@ MAINTAINER Xiangyun Huang <xiangyunfaith@outlook.com>
 
 # System dependencies for required R packages
 RUN yum update \
-  && yum install -y --no-install-recommends \
+  && yum install -y \
     epel-release
   && yum update \
-  && yum install -y --no-install-recommends \
+  && yum install -y \
     R \
     libcurl-devel \
     openssl-devel \
@@ -25,7 +25,7 @@ RUN yum update \
     mesa-libGLU-devel \
   
 # TinyTeX for PDF
-RUN Rscript -e "install.packages('rstan')"
+RUN Rscript -e "install.packages(c('devtools', 'bookdown', 'rstan'), repos = 'https://cran.rstudio.com')"
 
 RUN mkdir /liftrroot/
 WORKDIR /liftrroot/
