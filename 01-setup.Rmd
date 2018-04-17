@@ -1,6 +1,6 @@
 # (PART) 基础篇 {-}
 
-# 安装和配置 {#install}
+# 安装 {#install}
 
 ```{r setup, include = FALSE}
 Pkgs <- c(

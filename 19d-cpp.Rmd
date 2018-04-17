@@ -3,7 +3,7 @@
 - 如何充分利用 Rcpp 包
 - 设个目标，锻炼一下编码能力，关于统计计算和可视化尽可能提供两个方案，至少包含基础 R 包的实现
 
-```{r base-r}
+```{r base-packages}
 Pkgs <- sapply(list.files(R.home("library")), function(x)
   packageDescription(pkg = x, fields = "Priority"))
 names(Pkgs[Pkgs == "base" & !is.na(Pkgs)])

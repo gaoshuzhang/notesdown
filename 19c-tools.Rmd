@@ -1,4 +1,4 @@
-# 其它软件工具 {#other-tools}
+# 软件工具 {#other-tools}
 
 ```{r include=FALSE}
 system <- function(...) cat(base::system(..., intern = TRUE), sep = '\n')
@@ -129,19 +129,6 @@ pdf 设备可用的字体信息
 names(pdfFonts())
 ```
 
-## 容器
-
-### rocker
-
-
-### Singularity
-
-- <https://github.com/bwlewis/r-and-singularity>
-- <http://singularity.lbl.gov/>
-
-
-## 小工具
-
 
 -  webshot <https://github.com/wch/webshot>
 
@@ -162,15 +149,25 @@ webshot("https://www.r-project.org/", "r-small.png") %>%
   shrink()
 ```
 
-## apt 管理器
+## 容器
+
+### rocker
+
+
+### Singularity
+
+- <https://github.com/bwlewis/r-and-singularity>
+- <http://singularity.lbl.gov/>
+
+## apt
 
 适用于 Debian 和 Ubuntu 的软件包管理器
 
-## yum 管理器
+## yum
 
 适用于 Fedora 和 CentOS 的软件包管理器
 
-## tlmgr 管理器
+## tlmgr
 
 基本使用已包含在 **tinytex** \index{tinytex}包 [@R-tinytex] 内
 

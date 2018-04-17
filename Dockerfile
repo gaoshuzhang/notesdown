@@ -5,17 +5,13 @@ MAINTAINER Xiangyun Huang <xiangyunfaith@outlook.com>
 # System dependencies for required R packages
 RUN apt-get update \
   && apt-get install -y --no-install-recommends \
-    ghostscript \
     imagemagick \
     optipng \
-	curl \
-    libwebp-dev \
-    libgsl-dev \
+    curl \
     dieharder \
     libdieharder3 \
     libdieharder-dev \
     libpoppler-cpp-dev \
-    libv8-3.14-dev \
     python-dev \
     python-pip \
     python-tk \
@@ -23,10 +19,11 @@ RUN apt-get update \
     proj-bin \
     libpaper-utils \
     libatlas3-base \
-    libopenblas-base \
+    build-essential \
+    python-wheel \
     pstoedit
 
-RUN sudo -H pip install numpy matplotlib
+RUN pip install numpy matplotlib
 
 # TinyTeX for PDF
 RUN mkdir ~/.fonts
@@ -34,6 +31,9 @@ RUN mkdir ~/.fonts
 RUN curl -o ~/.fonts/Inconsolata-Bold.ttf https://raw.githubusercontent.com/google/fonts/master/ofl/inconsolata/Inconsolata-Bold.ttf
 RUN curl -o ~/.fonts/Inconsolata-Regular.ttf https://raw.githubusercontent.com/google/fonts/master/ofl/inconsolata/Inconsolata-Regular.ttf
 RUN fc-cache -fv ~/.fonts
+
+RUN git clone --depth=1 --branch=master https://github.com/XiangyunHuang/bookdown-chinese.git
+RUN cd bookdown-chinese
 
 RUN tlmgr update --all --self
 RUN tlmgr install $(cat TeXLive.pkgs | tr '\n' ' ') || true

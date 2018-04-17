@@ -1,4 +1,4 @@
-# 贝叶斯与 MCMC {#mcmc}
+# 随机模拟 {#mcmc}
 
 ```{r setup, include = FALSE}
 Pkgs <- c(

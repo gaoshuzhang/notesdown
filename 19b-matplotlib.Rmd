@@ -45,3 +45,13 @@ Windows 下保存的 PDF 图片需要用 gs 嵌入字体才可以，不然会出
 Sys.setenv(R_GSCMD = "C:/Program Files/gs/gs9.23/bin/gswin64c.exe")
 embedFonts(file = "math-in-plot.pdf", outfile = "math-in-plot-embed.pdf")
 ```
+
+## seaborn
+
+- seaborn: statistical data visualization <http://seaborn.pydata.org/>
+
+Seaborn is a Python visualization library based on matplotlib. It provides a high-level interface for drawing attractive statistical graphics.
+
+## bokeh
+
+- 主页 <https://bokeh.pydata.org/en/latest/>
