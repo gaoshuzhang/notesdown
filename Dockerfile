@@ -36,7 +36,7 @@ RUN mkdir ~/.fonts \
   && tlmgr install $(cat TeXLive.pkgs | tr '\n' ' ') || true \
   && Rscript -e "devtools::install_github('leonawicz/mapmate')" \
   && Rscript -e "devtools::install_github('dgrtwo/gganimate')" \
-  && Rscript -e "bookdown::render_book('index.Rmd', output_format = 'all')"
+  && Rscript -e "bookdown::render_book('index.Rmd')"
 
 RUN mkdir /liftrroot/
 WORKDIR /liftrroot/
