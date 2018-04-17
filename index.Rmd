@@ -20,7 +20,7 @@ description: "这是一个笔记，搜集了很多博客内容"
 
 \mainmatter
 
-```{r setup,include=FALSE}
+```{r setup, include = FALSE}
 knitr::opts_chunk$set(
   comment = "#>",
   collapse = TRUE,
@@ -37,21 +37,21 @@ is_on_travis = identical(Sys.getenv("TRAVIS"), "true")
 is_online = curl::has_internet()
 ```
 
-# 前言 {-}
+# 前言
 
 > 荃者所以在鱼，得鱼而忘荃；蹄者所以在兔；得兔而忘蹄；言者所以在意，得意而忘言。吾安得夫忘言之人而与之言哉！
 
-```{block2, type='flushright', html.tag='p'}
--- 取自《庄子·杂篇·物》
+```{block2, type = 'flushright', html.tag = 'p'}
+-- 摘自 《庄子·杂篇·物》
 ```
 
 > The fish trap exists because of the fish; once you've gotten the fish, you can forget the trap. The rabbit snare exists because of the rabbit; once you've gotten the rabbit, you can forget the snare. Words exist because of meaning; once you've gotten the meaning, you can forget the words. Where can I find a man who has forgotten words so I can have a word with him ? ^[Translated by [Eric D. Kolaczyk](http://math.bu.edu/people/kolaczyk/teach.html)]
 
-```{block2, type='flushright', html.tag='p'}
+```{block2, type = 'flushright', html.tag = 'p'}
 -- Chuang Tzu
 ```
 
-```{block2, type='rmdnote'}
+```{block2, type = 'rmdnote'}
 这是一本面向小众群体的笔记，没有太多的基础语法介绍，假设你已经达到入门级别了，也学过线性代数和数理统计，这本笔记还处在很早期的阶段。
 ```
 
@@ -70,7 +70,7 @@ is_online = curl::has_internet()
     + R Markdown: The Definitive Guide <https://bookdown.org/yihui/rmarkdown/>
 
 
-## 作者 {-}
+## 作者
 
 我是黄湘云，即将毕业的硕士研究生，跟随导师学习数理统计，主修 R 语言， 顺便学了点统计， 南方人， 2017年6月开始混迹于 Github ， 虽然2015年就注册了， 但是一直没有用起来， 后来有了直接的刚需（因为工作需要嘛）， 全是自学和靠大牛指点， 偶尔参加一些技术大会和沙龙， 周边学校也去听讲座， 对学术大牛心里充满无限敬仰， 多亏 [qiaozhang1993](https://github.com/qiaozhang1993) 搜集各大高校的讲座信息并时常分享于我。
 
@@ -79,7 +79,7 @@ is_online = curl::has_internet()
 Python 喊着要学，已经叫唤两年了，今年打算学个入门。
 Mxnet、Xgboost 和 Stan 也是要学的，下半年正式入职京东了，另外一个可能要学的是 [INLA](http://www.r-inla.org) 专用于处理空间广义线性混合效应模型，这个会在混合效应模型的相关章节予以介绍。
 
-## 致谢 {-}
+## 致谢
 
 虚位以待壮士
 
@@ -101,12 +101,12 @@ cat(".\n")
 
 非常感谢谁谁以及谁谁对我的帮助。
 
-```{block2, type='flushright', html.tag='p'}
+```{block2, type = 'flushright', html.tag = 'p'}
 黄湘云
 于矿大宝源公寓
 ```
 
-## 结构 {-}
+## 结构
 
 第一章：数学符号说明
 第二章：基础知识
@@ -120,7 +120,7 @@ cat(".\n")
 - 第 \@ref(spatial) 章介绍 sf
 - 第 \@ref(network) 章介绍 igraph
 
-## 记号 {-}
+## 记号
 
 - $\mathcal{S,P,G}$
 - $S \neq \varnothing$
@@ -129,31 +129,20 @@ cat(".\n")
 - $\mathrm{A,B,C}$
 - $\mathfrak{A,B,C}$
 
-## 后记 {-}
+## 后记
 
 这本书是在 [RStudio](https://www.rstudio.com/products/rstudio/download/) 内用 [R Markdown](https://rmarkdown.rstudio.com/) 写的， [Git](https://git-scm.com/) 控制版本， [bookdown](https://bookdown.org/yihui/bookdown/) 组织章节， [knitr](https://yihui.name/knitr/) 将 R Markdown 源文件转化为 Markdown 文件， [Pandoc](http://pandoc.org) \index{Pandoc} 再将 Markdown 文件转化为 HTML 文档，而要转化为 PDF 文档则另外需要 TinyTeX\index{TinyTeX} 发行版^[<https://yihui.name/tinytex/>] 和来自 **rticles** [@R-rticles] 包的模板（一个基于 Pandoc 的 LaTeX 模板，两个美元符号包含的就是变量，变量基本上是 LaTeX 包的设置选项）。这个网站是通过 [Travis-CI](https://travis-ci.org/) 把编译结果（即 `_book` 目录）推送到 [Netlify](https://www.netlify.com/)，实现部署。在 Travis-CI 和 Netlify 都与 Github 绑定的情况下，源代码一发生改变就会触发编译和部署，即持续集成和连续部署。
 
  `r if(knitr::is_html_output()) "Travis-CI 还提供一个指示器报告编译的状态：[![Build Status](https://travis-ci.org/XiangyunHuang/bookdown-chinese.svg?branch=master)](https://travis-ci.org/XiangyunHuang/bookdown-chinese)"`
 
-```{r workflow, echo=FALSE}
+```{r, echo = FALSE, fig.cap="书籍写作流程"}
+ext <- if (knitr::is_html_output()) ".svg" else if (knitr::is_latex_output()) ".pdf" else ".png"
 knitr::include_graphics(path = paste0("diagrams/00-workflow", ext))
 ```
 
 [sourceserifpro](https://ctan.org/pkg/sourceserifpro) 设为默认英文字体，[inconsolata](http://levien.com/type/myfonts/inconsolata.html) 用于代码显示，R 包名称在文中以粗体显示，代码块输出用 `#>` 表示，以区分普通的代码注释 `#`
 
-```{r, echo = TRUE, comment = NA, eval = knitr::is_html_output()}
-cat(readLines(con = rticles::ctex_template(), encoding = "UTF-8"), sep = "\n")
-```
-
-## 软件 {-}
-
-我用了两个 R 包编译这本书，分别是 **knitr**\index{knitr} [@Dynamic2015CRC] 和 **bookdown**\index{bookdown} [@bookdown2016CRC]。绘图使用的中文字体是思源宋体和思源黑体，使用 **showtext**\index{showtext} 包安装和调用，使用 **tikzDevice**\index{tikzDevice} 和 **fontcm**\index{fontcm} 处理其中的数学公式，使用 **xkcd**\index{xkcd} 设置漫画手写体风格，每一章开头除了共同设置，还有安装本章节需要的 R 包。其中，共同设置如下
-
-```{r, echo = TRUE, eval = knitr::is_html_output()}
-cat(readLines("common.R", encoding = "UTF-8"), sep = "\n")
-```
-
-以下是我的 R 进程信息：
+我用了两个 R 包编译这本书，分别是 **knitr**\index{knitr} [@Dynamic2015CRC] 和 **bookdown**\index{bookdown} [@bookdown2016CRC]。绘图使用的中文字体是思源宋体和思源黑体， **showtext**\index{showtext} 包安装和调用，**tikzDevice**\index{tikzDevice} 和 **fontcm**\index{fontcm} 处理其中的数学公式，**xkcd**\index{xkcd} 设置漫画手写体风格，以下是我的 R 进程信息：
 
 ```{r}
 devtools::session_info()
@@ -164,12 +153,11 @@ docker run --name book -d -p 8282:8787 -e ROOT=TRUE \
  -e USER=rstudio -e PASSWORD=cloud rocker/geospatial
 ```
 
-
-## 许可 {-}
+## 许可
 
 本书采用 [知识共享署名-非商业性使用-禁止演绎 4.0 国际许可协议](https://creativecommons.org/licenses/by-nc-nd/4.0/) 许可，请君自重，别没事儿拿去传个什么新浪爱问、百度文库以及 XX 经济论坛，项目中代码使用 [MIT 协议](https://github.com/XiangyunHuang/bookdown-chinese/blob/master/LICENSE) 开源，你正在阅读的是 `r Sys.Date()` 在 `r if(is_on_travis) "[Travis](https://travis-ci.org/XiangyunHuang/bookdown-chinese)" else "本地"` 构建的。
 
-```{r include=FALSE,cache=FALSE}
+```{r, include = FALSE, cache = FALSE}
 # automatically create a bib database for R packages
 knitr::write_bib(c(
   .packages(TRUE)
