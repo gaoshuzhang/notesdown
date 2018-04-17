@@ -40,8 +40,8 @@ rmd_files: [
   # 附录
   "19a-markdown.Rmd",
   "19b-matplotlib.Rmd",
-  "19c-tools.Rmd",
-  "19d-cpp.Rmd",  
+  "19c-cpp.Rmd",
+  "19d-tools.Rmd",
   "19e-bookmarks.Rmd",
   "20-references.Rmd",
 ]
