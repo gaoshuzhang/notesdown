@@ -97,7 +97,7 @@ sudo apt-get update && sudo apt-get install -y libgsl-dev libdieharder-dev
 
 安装并加载 **RDieHarder** \index{RDieHarder}包
 
-```{r RDieHarder}
+```{r}
 library(magrittr)
 library(RDieHarder)
 dieharderGenerators() %>% head()

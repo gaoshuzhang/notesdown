@@ -102,7 +102,7 @@ cat(".\n")
 非常感谢谁谁以及谁谁对我的帮助。
 
 ```{block2, type='flushright', html.tag='p'}
-黄湘云  
+黄湘云
 于矿大宝源公寓
 ```
 
@@ -141,7 +141,7 @@ knitr::include_graphics(path = paste0("diagrams/00-workflow", ext))
 
 [sourceserifpro](https://ctan.org/pkg/sourceserifpro) 设为默认英文字体，[inconsolata](http://levien.com/type/myfonts/inconsolata.html) 用于代码显示，R 包名称在文中以粗体显示，代码块输出用 `#>` 表示，以区分普通的代码注释 `#`
 
-```{r, echo = TRUE, comment = NA, eval = knitr::is_html_output(), results = 'markup'}
+```{r, echo = TRUE, comment = NA, eval = knitr::is_html_output()}
 cat(readLines(con = rticles::ctex_template(), encoding = "UTF-8"), sep = "\n")
 ```
 
