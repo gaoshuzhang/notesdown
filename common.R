@@ -58,6 +58,7 @@ library(knitr)
 # https://github.com/yihui/knitr-examples/blob/master/085-pdfcrop.Rnw
 knitr::knit_hooks$set(crop = hook_pdfcrop)
 options(
+#  repos = "https://mirrors.tuna.tsinghua.edu.cn/CRAN/",
   tikzDefaultEngine = "xetex",
   tikzXelatexPackages = c(
     getOption("tikzXelatexPackages"),

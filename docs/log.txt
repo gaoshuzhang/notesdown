@@ -1,0 +1,23 @@
+
+记录自拉取 docker 后开始编译运行需要的 R 包，系统依赖
+
+ed
+graphviz
+graphviz-dev
+gnupg
+
+安装其他软件和系统依赖，提前把R包安装好
+
+tlmgr 安装 TeX 包
+
+Pkgs <- c("nloptr","rstan","rstanarm","brms")
+
+install.packages(Pkgs, repo = "https://mirrors.tuna.tsinghua.edu.cn/CRAN/")
+
+db <- available.packages(contriburl = "https://inla.r-inla-download.org/R/stable/src/contrib")
+
+INLA_Pkgs <- tools::package_dependencies("INLA", db = db, which = "all")$INLA
+
+install.packages(INLA_Pkgs, repo = "https://mirrors.tuna.tsinghua.edu.cn/CRAN/")
+
+

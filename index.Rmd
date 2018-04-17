@@ -159,6 +159,12 @@ cat(readLines("common.R", encoding = "UTF-8"), sep = "\n")
 devtools::session_info()
 ```
 
+```bash
+docker run --name book -d -p 8282:8787 -e ROOT=TRUE \
+ -e USER=rstudio -e PASSWORD=cloud rocker/geospatial
+```
+
+
 ## 许可 {-}
 
 本书采用 [知识共享署名-非商业性使用-禁止演绎 4.0 国际许可协议](https://creativecommons.org/licenses/by-nc-nd/4.0/) 许可，请君自重，别没事儿拿去传个什么新浪爱问、百度文库以及 XX 经济论坛，项目中代码使用 [MIT 协议](https://github.com/XiangyunHuang/bookdown-chinese/blob/master/LICENSE) 开源，你正在阅读的是 `r Sys.Date()` 在 `r if(is_on_travis) "[Travis](https://travis-ci.org/XiangyunHuang/bookdown-chinese)" else "本地"` 构建的。
