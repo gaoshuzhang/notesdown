@@ -52,24 +52,6 @@ help('modules')
 system('pdflatex --version')
 ```
 
-安装的中英文字体
-
-```{bash}
-# 中文字体
-fc-list :lang=zh-cn | sort
-```
-
-```{bash}
-# 英文字体
-fc-list :lang=en-us | sort
-```
-
-已经安装 TeX 包
-
-```{bash}
-tlmgr list --only-installed
-```
-
 ## Pandoc
 
 pandoc 在 R Markdown 中是否可用

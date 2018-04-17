@@ -145,7 +145,7 @@ knitr::include_graphics(path = paste0("diagrams/00-workflow", ext))
 我用了两个 R 包编译这本书，分别是 **knitr**\index{knitr} [@Dynamic2015CRC] 和 **bookdown**\index{bookdown} [@bookdown2016CRC]。绘图使用的中文字体是思源宋体和思源黑体， **showtext**\index{showtext} 包安装和调用，**tikzDevice**\index{tikzDevice} 和 **fontcm**\index{fontcm} 处理其中的数学公式，**xkcd**\index{xkcd} 设置漫画手写体风格，以下是我的 R 进程信息：
 
 ```{r}
-devtools::session_info()
+sessionInfo()
 ```
 
 ```bash
