@@ -1,5 +1,3 @@
-# (PART) 基础篇 {-}
-
 # 安装 {#install}
 
 ```{r setup, include = FALSE}
