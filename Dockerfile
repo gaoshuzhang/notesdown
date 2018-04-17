@@ -21,9 +21,9 @@ RUN apt-get update \
     libatlas3-base \
     build-essential \
     python-wheel \
-    pstoedit
-
-RUN pip install numpy matplotlib
+    pstoedit \
+  && pip install numpy \
+    matplotlib
 
 # TinyTeX for PDF
 RUN mkdir ~/.fonts \
