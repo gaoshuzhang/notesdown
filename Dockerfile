@@ -26,21 +26,17 @@ RUN apt-get update \
 RUN pip install numpy matplotlib
 
 # TinyTeX for PDF
-RUN mkdir ~/.fonts
-
-RUN curl -o ~/.fonts/Inconsolata-Bold.ttf https://raw.githubusercontent.com/google/fonts/master/ofl/inconsolata/Inconsolata-Bold.ttf
-RUN curl -o ~/.fonts/Inconsolata-Regular.ttf https://raw.githubusercontent.com/google/fonts/master/ofl/inconsolata/Inconsolata-Regular.ttf
-RUN fc-cache -fv ~/.fonts
-
-RUN git clone --depth=1 --branch=master https://github.com/XiangyunHuang/bookdown-chinese.git
-RUN cd bookdown-chinese
-
-RUN tlmgr update --all --self
-RUN tlmgr install $(cat TeXLive.pkgs | tr '\n' ' ') || true
-
-RUN Rscript -e "devtools::install_github('leonawicz/mapmate')"
-RUN Rscript -e "devtools::install_github('dgrtwo/gganimate')"
-RUN Rscript -e "bookdown::render_book('index.Rmd', output_format = 'all')"
+RUN mkdir ~/.fonts \
+  && curl -o ~/.fonts/Inconsolata-Bold.ttf https://raw.githubusercontent.com/google/fonts/master/ofl/inconsolata/Inconsolata-Bold.ttf \
+  && curl -o ~/.fonts/Inconsolata-Regular.ttf https://raw.githubusercontent.com/google/fonts/master/ofl/inconsolata/Inconsolata-Regular.ttf \
+  && fc-cache -fv ~/.fonts \
+  && git clone --depth=1 --branch=master https://github.com/XiangyunHuang/bookdown-chinese.git \
+  && cd bookdown-chinese \
+  && tlmgr update --all --self \
+  && tlmgr install $(cat TeXLive.pkgs | tr '\n' ' ') || true \
+  && Rscript -e "devtools::install_github('leonawicz/mapmate')" \
+  && Rscript -e "devtools::install_github('dgrtwo/gganimate')" \
+  && Rscript -e "bookdown::render_book('index.Rmd', output_format = 'all')"
 
 RUN mkdir /liftrroot/
 WORKDIR /liftrroot/
