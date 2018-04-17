@@ -131,8 +131,7 @@ Stan models for state space time series
 <https://github.com/fonnesbeck/stan_workshop_2016>
 Bayesian Modeling using Stan in R (May/June 2016)
 
-6. Define Stan models using glmer-style (lme4) formulas
-<https://github.com/rmcelreath/glmer2stan>
+6. Define Stan models using glmer-style (lme4) formulas <https://github.com/rmcelreath/glmer2stan>
 
 7. Examples of working and non-working models, initially for ODCS 2016 in Boston.
 <https://github.com/sakrejda/stan-workshop>

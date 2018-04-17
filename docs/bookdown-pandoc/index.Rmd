@@ -16,17 +16,10 @@ knitr::opts_chunk$set(
   comment = "#>",
   collapse = TRUE,
   echo = TRUE,
-  cache = TRUE,
   # citation.bibtex.max=999,
   out.width = "70%",
   fig.align = "center",
-  fig.width = 6,
-  fig.ext = if (knitr::is_html_output()) "svg" else if (knitr::is_latex_output()) "pdf" else "png",
-  dev = if (knitr::is_html_output()) "svg" else if (knitr::is_latex_output()) "cairo_pdf" else "png",
-  engine.path = list(
-    octave = "/usr/bin/octave-cli",
-    python = "/usr/bin/python"
-  )  
+  fig.width = 6
 )
 # source("common.R")
 ```
@@ -43,29 +36,11 @@ knitr::opts_chunk$set(
 
 > 模板中注释掉 `\usepackage{unicode-math}`
 
-在文章插入 eps 格式的图片会报错，无法生成，这是一个坑
-
-默认使用 [STIX 数学字体](http://www.stixfonts.org/) 和 DejaVu Sans 英文字体，如图 \@ref(fig:math-matplotlib) 所示
-
-```{python math-matplotlib, fig.cap = "数学公式", dev = if(knitr::is_html_output()) "svg" else if(knitr::is_latex_output()) "pdf" else "png"}
-import numpy as np
-import matplotlib.pyplot as plt
-plt.switch_backend('agg') # Very Important in R Markdown
-t = np.arange(0.0, 2.0, 0.01)
-s = np.sin(2*np.pi*t)
-
-plt.plot(t,s)
-plt.title(r'$\alpha_i > \beta_i$', fontsize=20)
-plt.text(1, -0.6, r'$\sum_{i=0}^\infty x_i$', fontsize=20)
-plt.text(0.6, 0.6, r'$\mathcal{A}\mathrm{sin}(2 \omega t)$',
-         fontsize=20)
-plt.xlabel('time (s)')
-plt.ylabel('volts (mV)')
-plt.show()
-# plt.savefig('math-in-plot.png', bbox_inches='tight', dpi = 300)
-# plt.savefig('math-in-plot.pdf', bbox_inches='tight')
+```{r 00-pressure,fig.cap="压力曲线"}
+plot(pressure)
 ```
 
+如图 \@ref(fig:00-pressure)
 
 ```{r include=FALSE}
 # automatically create a bib database for R packages
