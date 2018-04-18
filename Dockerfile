@@ -3,11 +3,10 @@ FROM centos
 MAINTAINER Xiangyun Huang <xiangyunfaith@outlook.com>
 
 # System dependencies for required R packages
-RUN yum update \
-  && yum install -y \
-    epel-release
-  && yum update \
-  && yum install -y \
+RUN yum update
+RUN yum install -y epel-release
+RUN yum update
+RUN yum install -y \
     R \
     libcurl-devel \
     openssl-devel \
