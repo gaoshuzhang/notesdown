@@ -21,6 +21,15 @@ knitr::opts_chunk$set(
   fig.align = "center",
   fig.width = 6
 )
+knitr::knit_hooks$set(tikz2png = function(before, options, envir) {
+  # use this hook only for dev='tikz' and externalized tikz graphics
+  if (before || options$dev != 'tikz' || !options$external || options$fig.num == 0) return()
+  figs = knitr:::all_figs(options, ext = 'pdf')  # all figure names
+  # note the tikz2png option is the extra parameters passed to 'convert'
+  for (fig in figs) {
+    system(sprintf('convert %s %s %s', options$tikz2png, fig, sub('\\.pdf$', '.png', fig)))
+  }
+})
 # source("common.R")
 ```
 
@@ -35,6 +44,15 @@ knitr::opts_chunk$set(
 这里设置 `mathspec: yes` 目的是加载 `\usepackage{mathspec}` 而不是默认的 `\usepackage{unicode-math}`，这样一来，要想继续使用中文，就得在导言区，即 `preamble.tex` 加上 `\usepackage{ctex}`，如果直接使用 `documentclass: ctexbook` 会报错，说与 `fonspec` 包冲突
 
 > 模板中注释掉 `\usepackage{unicode-math}`
+
+
+```{r test-a, dev='tikz', fig.width=4.4, fig.height=3.3, tikz2png='-density 300'}
+(x=rnorm(20))
+par(mar = c(4.5, 4, .1, .1))
+hist(x, main='', xlab='$x$ (how the fonts look like here?)',
+  ylab='$\\hat{f}(x) = \\frac{1}{nh}\\sum_{i=1}^n \\cdots$')
+```
+
 
 ```{r 00-pressure,fig.cap="压力曲线"}
 plot(pressure)

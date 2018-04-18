@@ -139,6 +139,11 @@ cat(readLines("tikz/mini-demo.tex", encoding = "UTF-8"), sep = "\n")
 knitr::include_graphics(path = "tikz/mini-demo.png")
 ```
 
+```{r, dev='tikz', fig.width=4.4, fig.height=3.3, out.width="90%",eval = !knitr::is_html_output(),fig.ext='tex', tikz2png='-density 300',fig.cap='tikz 图形'}
+par(mar = c(4.5, 4, .1, .1))
+hist(x, main='', xlab='$x$ (how the fonts look like here?)',
+  ylab='$\\hat{f}(x) = \\frac{1}{nh}\\sum_{i=1}^n \\cdots$')
+```
 
 ## JS
 

@@ -42,6 +42,16 @@ knitr::opts_chunk$set(
 )
 system <- function(...) cat(base::system(..., intern = TRUE), sep = "\n")
 system2 <- function(...) cat(base::system2(..., stdout = TRUE), sep = "\n")
+
+knitr::knit_hooks$set(tikz2png = function(before, options, envir) {
+  # use this hook only for dev='tikz' and externalized tikz graphics
+  if (before || options$dev != 'tikz' || !options$external || options$fig.num == 0) return()
+  figs = knitr:::all_figs(options, ext = 'pdf')  # all figure names
+  # note the tikz2png option is the extra parameters passed to 'convert'
+  for (fig in figs) {
+    system(sprintf('convert %s %s %s', options$tikz2png, fig, sub('\\.pdf$', '.png', fig)))
+  }
+})
 ```
 
 # 引言
@@ -52,6 +62,13 @@ $$f(x) = \frac{1}{\sqrt{2\pi}\sigma}\mathrm{e}^{-\frac{(x - \mu)^2}{2 \sigma^2}}
 This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
 
 When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r, test-a, dev='tikz', fig.width=4.4, fig.height=3.3, tikz2png='-density 300'}
+(x=rnorm(20))
+par(mar = c(4.5, 4, .1, .1))
+hist(x, main='', xlab='$x$ (how the fonts look like here?)',
+  ylab='$\\hat{f}(x) = \\frac{1}{nh}\\sum_{i=1}^n \\cdots$')
+```
 
 先安装 python-pip
 

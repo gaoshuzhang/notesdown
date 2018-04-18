@@ -36,7 +36,7 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   echo = TRUE,
   cache = TRUE,
-  # citation.bibtex.max=999,
+  citation.bibtex.max=999,
   out.width = "70%",
   fig.align = "center",
   fig.width = 6,
@@ -52,12 +52,12 @@ knitr::opts_chunk$set(
 )
 ext <- if (knitr::is_html_output()) ".svg" else if (knitr::is_latex_output()) ".pdf" else ".png"
 
-# knitr::knit_hooks$set(optipng = hook_optipng, pdfcrop = hook_pdfcrop)
+knitr::knit_hooks$set(optipng = knitr::hook_optipng, pdfcrop = knitr::hook_pdfcrop)
 
 # https://github.com/yihui/knitr-examples/blob/master/085-pdfcrop.Rnw
-knitr::knit_hooks$set(crop = hook_pdfcrop)
+# knitr::knit_hooks$set(crop = hook_pdfcrop)
 options(
-#  repos = "https://mirrors.tuna.tsinghua.edu.cn/CRAN/",
+  repos = "https://mirrors.tuna.tsinghua.edu.cn/CRAN/",
   tikzDefaultEngine = "xetex",
   tikzXelatexPackages = c(
     getOption("tikzXelatexPackages"),
@@ -74,11 +74,11 @@ options(
 # https://github.com/yihui/knitr-examples/blob/master/047-tikz-png.Rnw
 knitr::knit_hooks$set(tikz2png = function(before, options, envir) {
   # use this hook only for dev='tikz' and externalized tikz graphics
-  if (before || options$dev != 'tikz' || !options$external || options$fig.num == 0) return()
-  figs = knitr:::all_figs(options, ext = 'pdf')  # all figure names
+  if (before || options$dev != "tikz" || !options$external || options$fig.num == 0) return()
+  figs <- knitr:::all_figs(options, ext = "pdf") # all figure names
   # note the tikz2png option is the extra parameters passed to 'convert'
   for (fig in figs) {
-    system(sprintf('convert %s %s %s', options$tikz2png, fig, sub('\\.pdf$', '.png', fig)))
+    system(sprintf("convert %s %s %s", options$tikz2png, fig, sub("\\.pdf$", ".png", fig)))
   }
 })
 
