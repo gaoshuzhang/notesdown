@@ -28,6 +28,9 @@ knitr::include_graphics(path = paste0(
 ```
 
 
+- [LOO for non-factorized normal models](https://github.com/paul-buerkner/non-factorized-loo)
+- [Playing with negative binomial multilevel models in Stan](https://github.com/seananderson/negbin-stan)
+
 ### PyStan 接口
 
 ```python
