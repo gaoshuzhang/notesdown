@@ -128,6 +128,7 @@ cat(".\n")
 - $\mathbf{A,B,C},\mathsf{A,B,C},\mathit{A,B,C}$
 - $\mathrm{A,B,C}$
 - $\mathfrak{A,B,C}$
+- $$X,Y,D, \mathbf{X,Y,D},\mathsf{X,Y,D},\mathit{X,Y,D},\mathrm{X,Y,D}$$
 
 ## 后记
 
@@ -155,7 +156,14 @@ docker run --name book -d -p 8282:8787 -e ROOT=TRUE \
  -e USER=rstudio -e PASSWORD=cloud rocker/geospatial
 ```
 
-主机端口号 8282，这里可以改成你自己喜欢的，虚拟机端口号 8787 对应 RStudio Server 默认端口，如果你想自己指定，就去修改 RStudio Server的配置文件。拉取的 Docker 镜像取名 book，由于要安装 rstan 和 rstanarm 包，编译的过程中需要比较大的内存空间，默认分配给 docker 的内存增加到 4 Gb
+主机端口号 8282，这里可以改成你自己喜欢的，虚拟机端口号 8787 对应 RStudio Server 默认端口，如果你想自己指定，就去修改 RStudio Server的配置文件。拉取的 Docker 镜像取名 book，这是方便以后启动 docker 时方便，只需
+
+```bash
+# 启动
+docker start book
+```
+
+由于要安装 rstan 和 rstanarm 包，编译的过程中需要比较大的内存空间，默认分配给 docker 的内存要增加到 4 Gb，也就装个软件，大一点的基于 stan 实现的模型，还是适合放在大机器上跑，笔电可以跑跑简单的模型，学习一下就可以了。
 
 
 ## 许可
