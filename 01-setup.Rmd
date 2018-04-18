@@ -61,22 +61,16 @@ RUN mkdir ~/.fonts \
 wqy-unibit-fonts wqy-microhei-fonts wqy-zenhei-fonts
 ```
 
+安装 RStudio 或者 RStudio Server 请看官网介绍
 
+-  <https://www.rstudio.com/products/rstudio/download/>
+-  <http://docs.rstudio.com/ide/server-pro/>
 
+* 安装 Microsoft R Open <https://mran.microsoft.com/documents/rro/installation#revorinst-lin>
+* 安装 Machine Learning Server
+    + [在线安装](https://docs.microsoft.com/en-us/machine-learning-server/install/machine-learning-server-linux-install)
+    + [离线安装](https://docs.microsoft.com/en-us/machine-learning-server/install/machine-learning-server-linux-offline)
 
-## 安装 RStudio
-
-下载 <https://www.rstudio.com/products/rstudio/download/>
-
-- 桌面版
-
-1. window
-2. linux
-
-- 服务器版
-
-1. 以 centos 为例
-2. 以 rocker 为例
 
 ## 安装 R 包
 
