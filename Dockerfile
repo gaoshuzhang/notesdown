@@ -6,8 +6,7 @@ MAINTAINER Xiangyun Huang <xiangyunfaith@outlook.com>
 RUN yum -y update
 RUN yum install -y epel-release
 RUN yum -y update
-RUN yum install -y \
-    R \
+RUN yum install -y R \
     libcurl-devel \
     openssl-devel \
     libssh2-devel \
@@ -21,7 +20,7 @@ RUN yum install -y \
     tclx \
     tclx-devel \
     mesa-libGLU \
-    mesa-libGLU-devel \
+    mesa-libGLU-devel
   
 RUN Rscript -e "install.packages(c('devtools', 'bookdown'), repos = 'https://cran.rstudio.com')"
 
