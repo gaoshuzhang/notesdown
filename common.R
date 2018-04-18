@@ -52,9 +52,8 @@ knitr::opts_chunk$set(
 )
 ext <- if (knitr::is_html_output()) ".svg" else if (knitr::is_latex_output()) ".pdf" else ".png"
 
-# library(knitr)
 # knitr::knit_hooks$set(optipng = hook_optipng, pdfcrop = hook_pdfcrop)
-library(knitr)
+
 # https://github.com/yihui/knitr-examples/blob/master/085-pdfcrop.Rnw
 knitr::knit_hooks$set(crop = hook_pdfcrop)
 options(
@@ -73,24 +72,19 @@ options(
   )
 )
 # https://github.com/yihui/knitr-examples/blob/master/047-tikz-png.Rnw
-# knitr::knit_hooks$set(tikz2png = function(before, options, envir) {
-#   # use this hook only for dev='tikz' and externalized tikz graphics
-#   if (before || options$dev != 'tikz' || !options$external || options$fig.num == 0) return()
-#   figs = knitr:::all_figs(options, ext = 'pdf')  # all figure names
-#   # note the tikz2png option is the extra parameters passed to 'convert'
-#   for (fig in figs) {
-#     system(sprintf('convert %s %s %s', options$tikz2png, fig, sub('\\.pdf$', '.png', fig)))
-#   }
-# })
+knitr::knit_hooks$set(tikz2png = function(before, options, envir) {
+  # use this hook only for dev='tikz' and externalized tikz graphics
+  if (before || options$dev != 'tikz' || !options$external || options$fig.num == 0) return()
+  figs = knitr:::all_figs(options, ext = 'pdf')  # all figure names
+  # note the tikz2png option is the extra parameters passed to 'convert'
+  for (fig in figs) {
+    system(sprintf('convert %s %s %s', options$tikz2png, fig, sub('\\.pdf$', '.png', fig)))
+  }
+})
 
 
 # devtools::install_github('rmcelreath/glmer2stan')
 # names(knitr::knit_engines$get())
-# create a bib file for the R packages used in this document
-
-# pkgs <- c('base', 'rmarkdown', 'rstan', 'knitr', 'rstan', 'brms','glmer2stan','loo',
-#          'bayesplot', 'rstanarm', 'StanHeaders','shinystan','rstantools')
-# knitr::write_bib(pkgs, file = 'skeleton.bib')
 
 # citeFun <- function(x){
 #  knitcitations::write.bibtex(citation(x),
