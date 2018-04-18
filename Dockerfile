@@ -24,8 +24,7 @@ RUN yum update \
     mesa-libGLU \
     mesa-libGLU-devel \
   
-# TinyTeX for PDF
-RUN Rscript -e "install.packages(c('devtools', 'bookdown', 'rstan'), repos = 'https://cran.rstudio.com')"
+RUN Rscript -e "install.packages(c('devtools', 'bookdown'), repos = 'https://cran.rstudio.com')"
 
 RUN mkdir /liftrroot/
 WORKDIR /liftrroot/
