@@ -13,6 +13,9 @@ if (length(setdiff(Pkgs, .packages(TRUE))) > 0) {
 }
 ```
 
+
+- Claus O. Wilke 新书：数据可视化基础 [Fundamentals of Data Visualization](http://serialmentor.com/dataviz/) 全 R/ggplot2 实现
+
 ```bash
 sudo apt-get install libwebp-dev libpoppler-cpp-dev
 ```
