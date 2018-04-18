@@ -148,10 +148,15 @@ knitr::include_graphics(path = paste0("diagrams/00-workflow", ext))
 sessionInfo()
 ```
 
+重复实现的关键是拉取一个现有的 Docker 镜像，可以免去安装和环境配置的诸多麻烦。
+
 ```bash
 docker run --name book -d -p 8282:8787 -e ROOT=TRUE \
  -e USER=rstudio -e PASSWORD=cloud rocker/geospatial
 ```
+
+主机端口号 8282，这里可以改成你自己喜欢的，虚拟机端口号 8787 对应 RStudio Server 默认端口，如果你想自己指定，就去修改 RStudio Server的配置文件。拉取的 Docker 镜像取名 book，由于要安装 rstan 和 rstanarm 包，编译的过程中需要比较大的内存空间，默认分配给 docker 的内存增加到 4 Gb
+
 
 ## 许可
 
