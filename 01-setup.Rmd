@@ -8,14 +8,61 @@ if (length(setdiff(Pkgs, .packages(TRUE))) > 0)
   install.packages(setdiff(Pkgs, .packages(TRUE)))
 ```
 
+## 安装 R
+
+Windows 下安装指导见《R语言忍者秘笈》的第二章^[<https://bookdown.org/yihui/r-ninja/setup.html>]
+
+推荐没事多翻翻官网 [FAQ 文档](https://mirrors.tuna.tsinghua.edu.cn/CRAN/doc/FAQ/R-FAQ.html) 以及6本自带的手册
+
+* **An Introduction to R** (R-intro) includes information on data types, programming elements, statistical modeling and graphics. This document is based on the **Notes on S-PLUS** by Bill Venables and David Smith.
+    + 介绍数据类型，编程基础，统计模型和图形
+* **Writing R Extensions** (R-exts) currently describes the process of creating R add-on packages, writing R documentation, R’s system and foreign language interfaces, and the R API.
+    + 描述创建扩展包、写R包文档的过程，介绍 R 系统，外部语言接口以及 R 的API
+* **R Data Import/Export** (R-data) is a guide to importing and exporting data to and from R.
+    + 从 R 导入和导出数据
+* **The R Language Definition** (R-lang), a first version of the *Kernighan & Ritchie of R*, explains evaluation, parsing, object oriented programming, computing on the language, and so forth.
+    + 介绍 R 语言程序设计，解释计算、解析、面向对象编程以及计算
+* **R Installation and Administration** (R-admin).
+    + R 安装和管理
+* **R Internals** (R-ints) is a guide to R’s internal structures. (Added in R 2.4.0.)
+    + R 内部结构指南
+
+Hadley Wickham 正在写文档介绍 [Documentation for R's internal C API](https://github.com/hadley/r-internals)
+
 ## 编译 R
 
 从源码编译 R 的需求在哪呢？
 
-1. 爱折腾的极客：玩配置
+1. 爱折腾的极客：玩配置，学习 make 相关工具和 Linux 世界的依赖
 2. 追求性能：如 [LFS 支持](http://users.suse.com/~aj/linux_lfs.html) 和 [Intel MKL 加速](http://dirk.eddelbuettel.com/blog/2018/04/15/#018_mkl_for_debian_ubuntu)
 3. 环境限制：CentOS 6/7 或者红帽系统，自带的R版本比较落后
 4. 微软提供的一套 MSR （这里不需要编译）
+
+现在很多东西都讲究 docker 化，直接往 CentOS 系统上编译安装最新版 R 会越来越少，这里给个例子，在 docker 内安装 R 和扩展包，Dockerfile 的内容如下
+
+```{r}
+cat(readLines(con <- file("Dockerfile", encoding = "UTF-8")) ,sep = "\n")
+```
+
+这种方式可以安装到最新版的 R，同时省去了自己配置安装过程中的麻烦，只是系统自带的 texlive 还是比较旧，如何安装 tlmgr 管理器，安装新的 TeX 包到之前的位置值得考虑，主要目的是为中文的 R Markdown 文档服务。
+
+Pandoc 提供的 LaTeX 文类，是希望用户在 YAML 指定 CJKmainfont 等，显式地安装系统中文字体供使用，楷体和宋体，文泉驿黑体都是系统自带的。要我说可以用思源黑体和宋体，或者自己拷贝一份中文字体到 `~/.fonts` 然后刷新，就是添加这样一段代码，这种做法使用最广
+
+```
+RUN mkdir ~/.fonts \
+  && curl -o ~/.fonts/Inconsolata-Bold.ttf https://raw.githubusercontent.com/google/fonts/master/ofl/inconsolata/Inconsolata-Bold.ttf \
+  && curl -o ~/.fonts/Inconsolata-Regular.ttf https://raw.githubusercontent.com/google/fonts/master/ofl/inconsolata/Inconsolata-Regular.ttf \
+  && fc-cache -fv ~/.fonts \
+```
+
+文泉驿字体
+
+```
+wqy-unibit-fonts wqy-microhei-fonts wqy-zenhei-fonts
+```
+
+
+
 
 ## 安装 RStudio
 
