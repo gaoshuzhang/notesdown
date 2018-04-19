@@ -22,7 +22,7 @@ RUN yum install -y R \
     mesa-libGLU \
     mesa-libGLU-devel
   
-RUN Rscript -e "install.packages(c('devtools', 'bookdown', 'rticles', 'tinytex'), repos = 'https://cran.rstudio.com')"
+RUN Rscript -e "install.packages(c('devtools', 'bookdown', 'rticles', 'tinytex'), repos = 'https://cran.rstudio.com');.packages(TRUE)"
 
 RUN mkdir /liftrroot/
 WORKDIR /liftrroot/
