@@ -1,6 +1,6 @@
 FROM centos
 
-MAINTAINER Xiangyun Huang <xiangyunfaith@outlook.com>
+MAINTAINER "Xiangyun Huang" <xiangyunfaith@outlook.com>
 
 # System dependencies for required R packages
 RUN yum -y update
@@ -10,18 +10,8 @@ RUN yum install -y R \
     libcurl-devel \
     openssl-devel \
     libssh2-devel \
-    libxml2-devel \
-    ImageMagick-c++-devel \
-    librsvg2-devel \
-    readline-devel \
-    v8-314-devel \
-    libXmu \
-    libXmu-devel \
-    tclx \
-    tclx-devel \
-    mesa-libGLU \
-    mesa-libGLU-devel
-  
+    libxml2-devel
+
 RUN Rscript -e "install.packages(c('devtools', 'bookdown', 'rticles', 'tinytex'), repos = 'https://cran.rstudio.com');.packages(TRUE)"
 
 RUN mkdir /liftrroot/
