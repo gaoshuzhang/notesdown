@@ -1,4 +1,4 @@
-FROM cloud2016/bookdown-chinese
+FROM centos
 
 MAINTAINER Xiangyun Huang <xiangyunfaith@outlook.com>
 
@@ -6,30 +6,23 @@ MAINTAINER Xiangyun Huang <xiangyunfaith@outlook.com>
 RUN yum -y update
 RUN yum install -y epel-release
 RUN yum -y update
-RUN yum install -y pandoc \
-    pandoc-citeproc \
-    mesa-libGLU \
-    mesa-libGLU-devel \
+RUN yum install -y R \
+    libcurl-devel \
+    openssl-devel \
+    libssh2-devel \
+    libxml2-devel \
+    ImageMagick-c++-devel \
     librsvg2-devel \
-    libsndfile-devel \
-    portaudio-devel \
-    mesa-libOSMesa-devel \
-    librsvg2-tools \
-    libXpm-devel \
-    libwebp-devel \
-    xz-devel \
-    pcre-devel \
-    glibc-headers \
-    libreadline6-devel \
     readline-devel \
-    libXt-devel \
-    tcl \
-    tcl-devel \
-    tclx	
-
-RUN Rscript -e "devtools::session_info();.packages(TRUE)"
+    v8-314-devel \
+    libXmu \
+    libXmu-devel \
+    tclx \
+    tclx-devel \
+    mesa-libGLU \
+    mesa-libGLU-devel
   
-RUN Rscript -e "install.packages('rstan', repos = 'https://cran.rstudio.com')"
+RUN Rscript -e "install.packages(c('devtools', 'bookdown', 'rticles', 'tinytex'), repos = 'https://cran.rstudio.com')"
 
 RUN mkdir /liftrroot/
 WORKDIR /liftrroot/
