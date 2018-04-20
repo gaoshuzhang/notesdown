@@ -192,6 +192,16 @@ echo "https://username:password@github.com" >> .git-credentials
 git config --global credential.helper store
 ```
 
+往空的 Github 仓库添加本地文件
+
+```bash
+git init
+git remote add origin https://github.com/XiangyunHuang/notes-book.git
+git add -A
+git commit -m "balabala"
+git push -u origin master
+```
+
 使用 zsh
 
 ```bash
