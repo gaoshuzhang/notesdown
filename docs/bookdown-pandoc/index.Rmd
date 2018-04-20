@@ -8,6 +8,7 @@ bibliography: [book.bib, packages.bib]
 biblio-style: apalike
 link-citations: yes
 graphics: yes
+tables: yes
 description: "如何使用 Pandoc 模板写中文"
 ---
 
@@ -51,6 +52,33 @@ knitr::knit_hooks$set(tikz2png = function(before, options, envir) {
 par(mar = c(4.5, 4, .1, .1))
 hist(x, main='', xlab='$x$ (how the fonts look like here?)',
   ylab='$\\hat{f}(x) = \\frac{1}{nh}\\sum_{i=1}^n \\cdots$')
+```
+
+```{r, eval=knitr::is_html_output()}
+library(knitr)
+library(kableExtra)
+dt <- mtcars[1:5, 1:4]
+
+# HTML table
+kable(dt, format = "html", caption = "Demo Table") %>%
+  kable_styling(bootstrap_options = "striped",
+                full_width = F) %>%
+  add_header_above(c(" ", "Group 1" = 2, "Group 2[note]" = 2)) %>%
+  add_footnote(c("table footnote"))
+```
+
+
+```{r, eval=knitr::is_latex_output()}
+library(knitr)
+library(kableExtra)
+dt <- mtcars[1:5, 1:4]
+
+# LaTeX Table
+kable(dt, format = "latex", booktabs = T, caption = "Demo Table") %>%
+  kable_styling(latex_options = c("striped", "hold_position"),
+                full_width = F) %>%
+  add_header_above(c(" ", "Group 1" = 2, "Group 2[note]" = 2)) %>%
+  add_footnote(c("table footnote"))
 ```
 
 

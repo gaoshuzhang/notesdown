@@ -1,4 +1,13 @@
-# Markdown {#pandoc-markdown}
+# R Markdown {#pandoc-markdown}
+
+```{r setup,include=FALSE}
+Pkgs <- c(
+  "kableExtra"
+)
+if (length(setdiff(Pkgs, .packages(TRUE))) > 0) 
+  install.packages(setdiff(Pkgs, .packages(TRUE)))
+```
+
 
 - 图片引用
 
@@ -11,3 +20,42 @@ gitbook 这样网页又该如何引用这张图片呢？
 - 表格交叉引用
 
 - 参考文献交叉引用
+
+
+## 复杂表格制作
+
+- kableExtra
+
+借助 kableExtra 包 [@-kableExtra] 可以制作复杂的统计图表，更多的例子请看 <https://github.com/haozhu233/kableExtra> ，我喜欢这个图标设计，如图 \@ref(fig:kableExtra) 
+
+```{r kableExtra, echo = FALSE, fig.cap="kableExtra 的徽标"}
+ext <- if (knitr::is_html_output()) ".svg" else if (knitr::is_latex_output()) ".pdf" else ".png"
+knitr::include_graphics(path = paste0("diagrams/kableExtra", ext))
+```
+
+```{r, eval=knitr::is_html_output()}
+library(knitr)
+library(kableExtra)
+dt <- mtcars[1:5, 1:4]
+
+# HTML table
+kable(dt, format = "html", caption = "Demo Table") %>%
+  kable_styling(bootstrap_options = "striped",
+                full_width = F) %>%
+  add_header_above(c(" ", "Group 1" = 2, "Group 2[note]" = 2)) %>%
+  add_footnote(c("table footnote"))
+```
+
+```{r, eval = knitr::is_latex_output()}
+library(knitr)
+library(kableExtra)
+dt <- mtcars[1:5, 1:4]
+
+# LaTeX Table
+kable(dt, format = "latex", booktabs = T, caption = "Demo Table") %>%
+  kable_styling(latex_options = c("striped", "hold_position"),
+                full_width = F) %>%
+  add_header_above(c(" ", "Group 1" = 2, "Group 2[note]" = 2)) %>%
+  add_footnote(c("table footnote"))
+```
+
