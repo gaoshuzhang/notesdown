@@ -161,6 +161,45 @@ Kubernetes 容器集群管理 <https://www.kubernetes.org.cn>
 基本使用已包含在 **tinytex** \index{tinytex}包 [@R-tinytex] 内
 
 
+## Git
+
+CR (Carriage Return) 表示回车，LF (Line Feed) 表示换行，Windows 下用回车加换行表示下一行，UNIX/Linux 采用换行符 (LF) 表示下一行，MAC OS 则采用回车符 (CR) 表示下一行
+
+```bash
+git config --global core.autocrlf false
+```
+
+添加子模块
+
+```bash
+git submodule add git://github.com/jgm/pandoc-templates.git templates
+```
+
+克隆项目
+
+```bash
+git clone --depth=10 --branch=master --recursive \
+    git@github.com:XiangyunHuang/pandoc4everything.git
+```
+
+配置账户
+
+```bash
+git config --global user.email "email"
+git config --global user.name "username"
+touch .git-credentials
+echo "https://username:password@github.com" >> .git-credentials
+git config --global credential.helper store
+```
+
+使用 zsh
+
+```bash
+sudo apt update && sudo apt install zsh
+sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
+```
+
+
 ## 其它
 
 重复实现的关键是拉取一个现有的 Docker 镜像，可以免去安装和环境配置的诸多麻烦。
@@ -184,10 +223,10 @@ Failed to create bus connection: No such file or directory
 
 ```r
 capabilities()
-       jpeg         png        tiff       tcltk         X11        aqua    http/ftp     sockets      libxml 
-       TRUE        TRUE        TRUE        TRUE       FALSE       FALSE        TRUE        TRUE        TRUE 
-       fifo      cledit       iconv         NLS     profmem       cairo         ICU long.double     libcurl 
-       TRUE        TRUE        TRUE       FALSE        TRUE        TRUE        TRUE        TRUE        TRUE 
+ jpeg         png        tiff       tcltk         X11        aqua    http/ftp     sockets      libxml 
+ TRUE        TRUE        TRUE        TRUE       FALSE       FALSE        TRUE        TRUE        TRUE 
+ fifo      cledit       iconv         NLS     profmem       cairo         ICU long.double     libcurl 
+ TRUE        TRUE        TRUE       FALSE        TRUE        TRUE        TRUE        TRUE        TRUE 
 ```
 主机端口号 8282，这里可以改成你自己喜欢的，虚拟机端口号 8787 对应 RStudio Server 默认端口，如果你想自己指定，就去修改 RStudio Server的配置文件。拉取的 Docker 镜像取名 book，这是方便以后启动 docker 时方便，只需
 

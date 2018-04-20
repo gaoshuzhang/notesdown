@@ -54,9 +54,16 @@ hist(x, main='', xlab='$x$ (how the fonts look like here?)',
 ```
 
 
+An inline ![image](images/inkscape.png){#id .class width=30 height=20px}
+and a reference ![image][ref] with attributes.
+
+[ref]: images/inkscape.png "ink" {#id .class key=val key2="val 2"}
+
 ```{r 00-pressure,fig.cap="压力曲线"}
 plot(pressure)
 ```
+
+这里呢 ![image2][ref] with attributes.
 
 如图 \@ref(fig:00-pressure)
 
