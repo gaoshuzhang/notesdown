@@ -24,10 +24,14 @@ Some notes about R and other open souce softwares, such as Pandoc, LaTeX, Inksca
 ## 图形
 
 * 绘图
+    + plot
+    + ggplot2
 * 配色
+    + RColorBrewer
+    + colormap
 * 字体
     + xkcd
-    + 中/英文
+    + 中/英文（思源字体与showtext）
 * 保存
     + tikz/svg/cairo_pdf/png
 * 动画
@@ -35,10 +39,13 @@ Some notes about R and other open souce softwares, such as Pandoc, LaTeX, Inksca
 
 # Python
 
-## 绘图
+## 统计图形
 
 * matplotlib/seaborn
-* bokeh
+* Bokeh
+
+## 统计计算
+
 * PyStan
 
 # Octave
