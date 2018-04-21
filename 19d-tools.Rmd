@@ -52,6 +52,18 @@ help('modules')
 system('pdflatex --version')
 ```
 
+```{bash}
+tex_pkg <- system("tlmgr list --only-installed", intern = TRUE)
+do.call(rbind, strsplit(tex_pkg, split = ":"))[, 1]
+```
+
+系统安装的字体
+
+```{r}
+fonts <- system("fc-list :lang=en | sort", intern = TRUE)
+unique(do.call(rbind, strsplit(fonts, split = ":"))[, 2])
+```
+
 ## Pandoc
 
 pandoc 在 R Markdown 中是否可用
@@ -247,5 +259,6 @@ docker start book
 docker exec -it book bash
 ```
 
-
 由于要安装 rstan 和 rstanarm 包，编译的过程中需要比较大的内存空间，默认分配给 docker 的内存要增加到 4 Gb，也就装个软件，大一点的基于 stan 实现的模型，还是适合放在大机器上跑，笔电可以跑跑简单的模型，学习一下就可以了。
+
+
