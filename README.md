@@ -1,15 +1,15 @@
-[![Build Status](https://api.travis-ci.org/XiangyunHuang/bookdown-chinese.svg?branch=master)](https://travis-ci.org/XiangyunHuang/bookdown-chinese) 
-[![](https://img.shields.io/docker/automated/cloud2016/bookdown-chinese.svg)](https://hub.docker.com/r/cloud2016/bookdown-chinese/builds)
+[![Build Status](https://api.travis-ci.org/XiangyunHuang/notesdown.svg?branch=master)](https://travis-ci.org/XiangyunHuang/notesdown) 
+[![](https://img.shields.io/docker/automated/cloud2016/notesdown.svg)](https://hub.docker.com/r/cloud2016/notesdown/builds)
 
 ---
 
 Some notes about R and other open souce softwares, such as Pandoc, LaTeX, Inkscape, Ghostscript, Git, Stan, Octave and Python.
 
-# R
+## R
 
-## 安装
+### 安装
 
-## 基础
+### 基础
 
 * 数据操作
     + 集合运算
@@ -21,7 +21,7 @@ Some notes about R and other open souce softwares, such as Pandoc, LaTeX, Inksca
 * 文件管理
 * 数值优化
 
-## 图形
+### 图形
 
 * 绘图
     + plot
@@ -37,15 +37,15 @@ Some notes about R and other open souce softwares, such as Pandoc, LaTeX, Inksca
 * 动画
     + animation/mapmate/rgl
 
-# Python
+## Python
 
-## 统计图形
+### 统计图形
 
 * matplotlib/seaborn
 * Bokeh
 
-## 统计计算
+### 统计计算
 
 * PyStan
 
-# Octave
+## Octave
