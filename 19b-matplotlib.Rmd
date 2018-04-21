@@ -46,6 +46,31 @@ Sys.setenv(R_GSCMD = "C:/Program Files/gs/gs9.23/bin/gswin64c.exe")
 embedFonts(file = "math-in-plot.pdf", outfile = "math-in-plot-embed.pdf")
 ```
 
+如图 \@ref(fig:native-math)
+
+```{python native-math, fig.cap = "本真的公式样式", dev = if(knitr::is_latex_output()) "pdf" else "png"}
+from __future__ import unicode_literals
+import numpy as np
+import matplotlib
+matplotlib.rcParams['text.usetex'] = True
+matplotlib.rcParams['text.latex.unicode'] = True
+import matplotlib.pyplot as plt
+plt.switch_backend('agg') # Very Important in R Markdown
+
+t = np.linspace(0.0, 1.0, 100)
+s = np.cos(4 * np.pi * t) + 2
+
+fig, ax = plt.subplots(figsize=(6, 4), tight_layout=True)
+ax.plot(t, s)
+
+ax.set_xlabel(r'\textbf{time (s)}')
+# ax.set_ylabel(r'\textit{Velocity}(\N{DEGREE SIGN}/sec)', fontsize=16)
+ax.set_ylabel(r'\textit{voltage} (mV)', fontsize=16)
+ax.set_title(r'\TeX\ is Number $\displaystyle\sum_{n=1}^\infty'
+             r'\frac{-e^{i\pi}}{2^n}$!', fontsize=16, color='r')
+plt.show()
+```
+
 基本用法 <http://qiangbo.space/2018-04-06/matplotlib_l1/>
 
 ## seaborn
