@@ -47,7 +47,7 @@ addons:
       - pstoedit
 
 before_install:
-  - sudo -H pip install numpy matplotlib
+  - sudo -H pip install numpy matplotlib # scipy bokeh colorcet
   # for deploy
   - npm install netlify-cli -g
   # for pdf output

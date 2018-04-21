@@ -150,7 +150,7 @@ hist(x, main='', xlab='$x$ (how the fonts look like here?)',
 
 ## JS
 
-基于 JS 动态库的 R 包 leaflet [@R-leaflet]， rbokeh [@R-rbokeh] 和 plotly [@R-plotly] ，我比较喜欢 highcharter [@R-highcharter]，美观高效，还活跃开发中。
+基于 JS 动态库的 R 包 leaflet [@R-leaflet]，ggvis ， rbokeh [@R-rbokeh] 和 plotly [@R-plotly] ，我比较喜欢 highcharter [@R-highcharter]，美观高效，还活跃开发中。
 
 ```{r highcharter, eval= knitr::is_html_output(), fig.cap="highcharter 图形",cache=FALSE}
 library("highcharter")
@@ -173,7 +173,6 @@ h
 library(plotly)
 plot_ly(z = ~volcano, type = "surface")
 ```
-
 
 
 ## 位图
