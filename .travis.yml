@@ -22,7 +22,6 @@ addons:
       - ghostscript
       - imagemagick
       - optipng
-      - freeglut3
       - libreadline-dev
       - libwebp-dev
       - libgsl0ldbl
@@ -49,10 +48,6 @@ addons:
 
 before_install:
   - sudo -H pip install numpy matplotlib
-  # monofont for code set
-  - curl -o ~/.fonts/Inconsolata-Bold.ttf https://raw.githubusercontent.com/google/fonts/master/ofl/inconsolata/Inconsolata-Bold.ttf 
-  - curl -o ~/.fonts/Inconsolata-Regular.ttf https://raw.githubusercontent.com/google/fonts/master/ofl/inconsolata/Inconsolata-Regular.ttf
-  - fc-cache -fv ~/.fonts
   # for deploy
   - npm install netlify-cli -g
   # for pdf output
