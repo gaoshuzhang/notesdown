@@ -53,14 +53,14 @@ system('pdflatex --version')
 ```
 
 ```{r, warning=FALSE}
-pkg <- system("tlmgr list --only-installed", intern = TRUE)
+pkg <- system("tlmgr list --only-installed")
 do.call(rbind, strsplit(pkg, split = ":"))[, 1]
 ```
 
 系统安装的字体
 
 ```{r}
-fonts <- system("fc-list :lang=en | sort", intern = TRUE)
+fonts <- system("fc-list :lang=en | sort")
 unique(do.call(rbind, strsplit(fonts, split = ":"))[, 2])
 ```
 
