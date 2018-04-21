@@ -59,9 +59,24 @@ knitr::knit_hooks$set(tikz2png = function(before, options, envir) {
 ## 模型
 
 $$f(x) = \frac{1}{\sqrt{2\pi}\sigma}\mathrm{e}^{-\frac{(x - \mu)^2}{2 \sigma^2}}$$
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+列出 tex 版本及其他信息
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+```{r collapse=TRUE}
+system('pdflatex --version')
+```
+
+```{r, warning=FALSE}
+pkg <- base::system("tlmgr list --only-installed", intern = TRUE)
+do.call(rbind, strsplit(pkg, split = ":"))[, 1]
+```
+
+系统安装的字体
+
+```{r}
+fonts <- base::system("fc-list :lang=en | sort", intern = TRUE)
+unique(do.call(rbind, strsplit(fonts, split = ":"))[, 2])
+```
+
 
 ```{r, test-a, dev='tikz', fig.width=4.4, fig.height=3.3, tikz2png='-density 300'}
 (x=rnorm(20))
