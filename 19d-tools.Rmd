@@ -52,9 +52,9 @@ help('modules')
 system('pdflatex --version')
 ```
 
-```{bash}
-tex_pkg <- system("tlmgr list --only-installed", intern = TRUE)
-do.call(rbind, strsplit(tex_pkg, split = ":"))[, 1]
+```{r, warning=FALSE}
+pkg <- system("tlmgr list --only-installed", intern = TRUE)
+do.call(rbind, strsplit(pkg, split = ":"))[, 1]
 ```
 
 系统安装的字体
