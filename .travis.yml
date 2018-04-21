@@ -22,6 +22,9 @@ addons:
       - ghostscript
       - imagemagick
       - optipng
+      - freeglut3
+      - readline-dev
+      - libreadline-dev
       - libwebp-dev
       - libgsl0ldbl
       - dieharder
