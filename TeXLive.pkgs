@@ -30,6 +30,7 @@ doi
 doublestroke
 draftwatermark
 dvisvgm
+dvipng
 ec
 enumitem
 environ
@@ -125,6 +126,7 @@ todonotes
 trimspaces
 tufte-latex
 txfonts
+type1cm
 ucs
 ulem
 underscore
