@@ -64,8 +64,29 @@ text(
 axis(1, labels = seq(0, 9, by = 1), at = seq(0, 9, by = 1), las = 1, col = "gray")
 ```
 
+plot 作为一个泛型函数，对于不同的输入数据类型，会自动匹配不同的绘图函数，默认的有
+
+```{r}
+methods(plot)
+```
+
+
+```{r nice-plot,echo=FALSE, fig.cap='丰富的方法', fig.width=8,fig.height=9,out.width="80%"}
+source(file = "code/plot.R", local = TRUE)
+```
+
+
 
 ## ggplot {#ggplot}
+
+
+ggplot2 有很多绘图函数
+
+```{r}
+library(ggplot2)
+grep('^(geom_)', ls('package:ggplot2'), value = TRUE)
+grep('^(stat_)', ls('package:ggplot2'), value = TRUE)
+```
 
 rattle 下载量时序图
 
