@@ -15,7 +15,7 @@ link-citations: yes
 links-as-notes: no
 colorlinks: yes
 classoption: "hyperref, a4paper, UTF8, zihao = -4, linespread = 1.3"
-description: "这是一个笔记，搜集了很多博客内容"
+description: "这是一个R语言学习笔记"
 url: 'https\://bookdown-chinese.netlify.com/'
 github-repo: "xiangyunhuang/notesdown"
 cover-image: "images/dragon.svg"
@@ -78,7 +78,7 @@ is_online = curl::has_internet()
 
 ## 作者
 
-我是黄湘云，即将毕业的硕士研究生，跟随导师学习数理统计，主修 R 语言， 顺便学了点统计， 南方人， 2017年6月开始混迹于 Github ， 虽然2015年就注册了， 但是一直没有用起来， 后来有了直接的刚需（因为工作需要嘛）， 全是自学和靠大牛指点， 偶尔参加一些技术大会和沙龙， 周边学校也去听讲座， 对学术大牛心里充满无限敬仰， 多亏 [qiaozhang1993](https://github.com/qiaozhang1993) 搜集各大高校的讲座信息并时常分享于我。
+我是黄湘云，即将毕业的硕士研究生，跟随导师学习数理统计，主修 R 语言，顺便学了点统计，南方人， 2017年6月开始混迹于 Github ， 虽然2015年就注册了， 但是一直没有用起来， 后来有了直接的刚需（因为工作需要嘛），全是自学和靠大牛指点，偶尔参加一些技术大会和沙龙， 周边学校也去听讲座， 对学术大牛心里充满无限敬仰， 多亏 [qiaozhang1993](https://github.com/qiaozhang1993) 搜集各大高校的讲座信息并时常分享于我。
 
 本科学过 Photoshop 接触过 AI 和 AE，后来学了 R 这些就淡忘了，但是图层这个概念却一直记忆犹新，因为图层在 ggplot2 中是一个很关键的概念。
 
@@ -128,19 +128,20 @@ cat(".\n")
 
 ## 记号
 
-- $\mathcal{S,P,G}$
 - $S \neq \varnothing$
-- $\mathbb{R,C},\mathscr{P,F,D,A,B,C}$
+- 
 - $\mathbf{A,B,C},\mathsf{A,B,C},\mathit{A,B,C}$
 - $\mathrm{A,B,C}$
 - $\mathfrak{A,B,C}$
 - $$X,Y,D, \mathbf{X,Y,D},\mathsf{X,Y,D},\mathit{X,Y,D},\mathrm{X,Y,D}$$
 
+$A,B,C,D$ 斜体表示普通的集合，$X,Y,Z$ 表示矩阵，$a,b,c,d$ 表示常数，$\alpha,\beta,\theta,\phi,\kappa$ 表示模型或者分布函数的参数，$\Theta$ 表示参数空间，$\mathbb{R}^{n},\mathbb{C}^{n}$ 表示特殊的 $n$ 维实（复）数域，$\mathscr{A,B,C,D}$ 表示一般的数域，$\mathcal{S,P,G}$ 分别表示随机过程、概率空间和图
+
 ## 后记
 
 这本书是在 [RStudio](https://www.rstudio.com/products/rstudio/download/) 内用 [R Markdown](https://rmarkdown.rstudio.com/) 写的， [Git](https://git-scm.com/) 控制版本， [bookdown](https://bookdown.org/yihui/bookdown/) 组织章节， [knitr](https://yihui.name/knitr/) 将 R Markdown 源文件转化为 Markdown 文件， [Pandoc](http://pandoc.org) \index{Pandoc} 再将 Markdown 文件转化为 HTML 文档，而要转化为 PDF 文档则另外需要 TinyTeX\index{TinyTeX} 发行版^[<https://yihui.name/tinytex/>] 和来自 **rticles** [@R-rticles] 包的模板（一个基于 Pandoc 的 LaTeX 模板，两个美元符号包含的就是变量，变量基本上是 LaTeX 包的设置选项）。这个网站是通过 [Travis-CI](https://travis-ci.org/) 把编译结果（即 `_book` 目录）推送到 [Netlify](https://www.netlify.com/)，实现部署。在 Travis-CI 和 Netlify 都与 Github 绑定的情况下，源代码一发生改变就会触发编译和部署，即持续集成和连续部署，本书尝试采用两种编译方式，如图\@ref(fig:00-workflow)。
 
- `r if(knitr::is_html_output()) "Travis-CI 还提供一个指示器报告编译的状态：[![Build Status](https://travis-ci.org/XiangyunHuang/bookdown-chinese.svg?branch=master)](https://travis-ci.org/XiangyunHuang/bookdown-chinese)"`
+ `r if(knitr::is_html_output()) "Travis-CI 还提供一个指示器报告编译的状态：[![Build Status](https://travis-ci.org/XiangyunHuang/notesdown.svg?branch=master)](https://travis-ci.org/XiangyunHuang/notesdown)"`
 
 ```{r 00-workflow, echo = FALSE, fig.cap="书籍写作流程"}
 ext <- if (knitr::is_html_output()) ".svg" else if (knitr::is_latex_output()) ".pdf" else ".png"
