@@ -1,4 +1,4 @@
-# 安装 {#install}
+# 安装与配置 {#install}
 
 ```{r setup, include = FALSE}
 Pkgs <- c(
@@ -209,6 +209,13 @@ install.packages("INLA",
 ### tensorflow
 
 同样地，依赖也是很多，主要在于 GPU 版如何安装使用
+
+## 配置
+
+
+工作目录下的 .Rprofile，设置 site-library，设置环境变量
+
+
 
 ## 小技巧 {#tricks}
 
