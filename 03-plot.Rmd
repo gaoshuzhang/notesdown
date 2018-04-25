@@ -1,4 +1,4 @@
-# 绘图 {#plot}
+# 绘图 {#graphics}
 
 ```{r setup, include = FALSE}
 Pkgs <- c(
@@ -78,9 +78,41 @@ methods(plot)
 ```
 
 
-```{r nice-plot,echo=FALSE, fig.cap='丰富的方法', fig.width=8,fig.height=9,out.width="80%"}
-source(file = "code/plot.R", local = TRUE)
+```{r nice-plot, fig.cap='丰富的方法', fig.width=8,fig.height=9,out.width="80%"}
+op <- par(mfrow = c(3, 2), mar = c(2, 2, .5, .5))
+# 分类散点图
+plot(Sepal.Length ~ Sepal.Width, data = iris, col = Species, pch = 16)
+legend("topright",
+  legend = unique(iris$Species), box.col = "gray",
+  pch = 16, col = unique(iris$Species)
+)
+box(col = "gray")
+# 气泡图
+plot(Volume ~ Height,
+  data = trees, pch = 16, cex = Girth / 8,
+  col = rev(terrain.colors(nrow(trees), alpha = .5))
+)
+box(col = "gray")
+# 折线图
+plot(AirPassengers, col = "lightblue")
+box(col = "gray")
+
+# 柱形图
+set.seed(123456)
+barPois <- table(stats::rpois(1000, lambda = 5))
+plot(barPois, col = "lightblue", type = "h", lwd = 10, main = "")
+box(col = "gray")
+
+# 马赛克图
+# par(mar=c(2,2,.5,.5))
+plot(HairEyeColor, col = "lightblue", border = "white", main = "")
+# box(col="gray")
+# 矩阵图 自带 layout
+plot(iris[, -5], col = iris$Species, pch = 16)
+par(op)
 ```
+
+raster 图形
 
 ```{r, fig.cap="raster 图形"}
 library(raster)
@@ -89,13 +121,34 @@ library(spDataLarge)
 plot(elevation, asp = NA)
 ```
 
+注意与 image 函数区别
+
+```{r, fig.cap="image 图形"}
+# A prettier display of the volcano
+x <- 10*(1:nrow(volcano))
+y <- 10*(1:ncol(volcano))
+image(x, y, volcano, col = terrain.colors(100), axes = FALSE)
+contour(x, y, volcano, levels = seq(90, 200, by = 5),
+        add = TRUE, col = "peru")
+axis(1, at = seq(100, 800, by = 100))
+axis(2, at = seq(100, 600, by = 100))
+box()
+title(main = "Maunga Whau Volcano", font.main = 4)
+```
+
+
+
 ## ggplot {#ggplot}
 
+
+```{r,include=FALSE}
+library(ggplot2)
+# packageDescription("ggplot2")
+```
 
 ggplot2 有很多绘图函数
 
 ```{r}
-library(ggplot2)
 grep('^(geom_)', ls('package:ggplot2'), value = TRUE)
 grep('^(stat_)', ls('package:ggplot2'), value = TRUE)
 ```
