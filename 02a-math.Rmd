@@ -1,0 +1,293 @@
+# 数学运算 {#math-operator}
+
+## 矩阵运算
+
+```{r}
+A <- matrix(c(1, 2, 2, 3), nrow = 2)
+# 矩阵每个元素平方
+A^2 # Hadamard 积
+
+2^A
+exp(A)
+
+A %*% A
+crossprod(A, A) # 交叉积 t(x) %*% y
+tcrossprod(A, A) # x %*% t(y)
+
+A %o% A # 外积运算
+outer(A, A, FUN = "*")
+
+A %x% A # 直积/克罗内克积
+kronecker(A, A, FUN = "*")
+```
+
+```{r}
+det(A) # 行列式
+```
+
+逆
+
+```{r}
+solve(A)
+```
+
+特征值及分解 $A = V \Lambda V^{-1}$ 求解矩阵 A 的 n 次方
+
+```{r}
+eigen(A)
+
+eigen(A)$vectors %*% diag(eigen(A)$values) %*% solve(eigen(A)$vectors)
+```
+
+伴随矩阵 $A*A^{\star} = A^{\star} *A = |A|*I, A^{\star} = |A|*A^{-1}$
+
+- $|A^{\star}| = |A|^{n-1}, A \in \mathbb{R}^{n\times n},n \geq 2$
+- $(A^{\star})^{\star} = |A|^{n-2}A, A \in \mathbb{R}^{n\times n},n \geq 2$
+- $(A^{\star})^{\star}$ A 的 n 次伴随是？
+
+
+```{r}
+det(A)*solve(A)
+```
+
+单位矩阵
+
+```{r}
+diag(rep(3))
+```
+
+全1矩阵，借助外积运算
+
+```{r}
+rep(1,3) %o% rep(1,3) # 3 阶
+```
+
+
+对角矩阵
+
+```{r}
+diag(A) # 取矩阵的对角元素
+diag(diag(A)) # 对角矩阵
+```
+
+条件数
+
+```{r}
+library(Matrix)
+base::rcond(A)
+kappa(A)
+Matrix::rcond(Hilbert(6))
+Matrix::rcond(A)
+```
+
+Cholesky 分解
+
+```{r}
+# Compute the Choleski factorization of a real symmetric positive-definite square matrix.
+chol(A + diag(rep(1,2)))
+# Inverse from Choleski (or QR) Decomposition
+Matrix::chol2inv(A + diag(rep(1,2)))
+```
+
+
+奇异值及分解
+
+```{r}
+svd(A)
+svd(A)$d
+```
+
+线性方程组
+
+```{r}
+B <- Hilbert(6)
+b <- rowSums(B)
+# 不求逆解方程组
+solve(B,b) 
+
+# 求逆解方程组
+solve(B) %*% b
+```
+
+QR分解
+
+```{r}
+qr.default(A)
+qr.X(qr.default(A))
+qr.Q(qr.default(A))
+qr.R(qr.default(A))
+
+qr.Q(qr.default(A)) %*% qr.R(qr.default(A))
+```
+
+Moore-Penrose generalized inverse 广义逆，如果 A 可逆则，广义逆就是逆
+
+```{r}
+library(MASS)
+ginv(A)
+A %*% ginv(A) %*% A
+ginv(A) %*% A %*% ginv(A)
+t(A %*% ginv(A))
+A %*% ginv(A)
+t(ginv(A) %*% A)
+ginv(A) %*% A
+```
+
+`ginv` 函数实现
+
+```r
+# The function is currently defined as
+function(X, tol = sqrt(.Machine$double.eps))
+{
+## Generalized Inverse of a Matrix
+  dnx <- dimnames(X)
+  if(is.null(dnx)) dnx <- vector("list", 2)
+  s <- svd(X)
+  nz <- s$d > tol * s$d[1]
+  structure(
+    if(any(nz)) s$v[, nz] %*% (t(s$u[, nz])/s$d[nz]) else X,
+    dimnames = dnx[2:1])
+}
+```
+
+向量和矩阵的范数，其他操作看 Matrix 包 [@R-Matrix] ，尤其关于稀疏矩阵计算部分
+
+```{r}
+library(Matrix)
+norm(A)
+```
+
+LU 分解、Jordan分解
+
+矩阵的秩
+
+```{r}
+qr(A)$rank # or qr.default(A)$rank
+```
+
+矩阵下三角
+
+row 和 col
+
+```{r}
+row(A)
+col(A)
+A[row(A)]
+```
+
+
+```{r}
+lower.tri(A)
+upper.tri(A) # 矩阵上三角
+A[lower.tri(A)]
+A[lower.tri(A)] <- 0 # 获得上三角矩阵
+A
+A[row(A) < col(A)] <- 0
+A
+```
+
+- Householder 变换 <https://www.wikiwand.com/en/Householder_transformation>
+- Givens 旋转 <https://www.wikiwand.com/en/Givens_rotation>
+- 帽子矩阵在统计中的应用 回归与方差分析 [@David1978Hat]
+
+
+
+
+
+## 特殊函数
+
+- 阶乘 $n! = 1\times 2\times 3\cdots n$ 
+- 双阶乘 $(2n+1)!! = 1 \times 3\times 5 \times \cdots \times (2n+1), n = 0,1,2,\cdots$
+
+```{r}
+factorial(5) # 阶乘
+seq(from = 1, to = 5, length.out = 3)
+prod(seq(from = 1, to = 5, length.out = 3)) # 连乘 双阶乘
+
+seq(5)
+cumprod(seq(5)) # 累积
+cumsum(seq(5)) # 累和
+```
+
+此外还有 `cummax` 和 `cummin`
+
+- 组合数 $C_{n}^{k} = \frac{n(n-1)…(n-k+1)}{k!}$
+
+$C_{5}^{3} = \frac{5 \times 4 \times 3}{3 \times 2 \times 1}$
+
+```{r}
+choose(5,3)
+```
+
+- 伽马函数
+
+$\Gamma(x) = \int_{0}^{\infty} t^{x-1}\exp(-t)dt$
+$\Gamma(n) = (n-1)!, n \in \mathbb{Z}^{+}$
+
+```{r gamma-ex}
+gamma(2)
+gamma(10)
+gamma2 <- function(t,x){
+  t^(x-1)*exp(-t)
+}
+integrate(gamma2, lower = 0, upper = + Inf, x = 10)
+```
+
+- psigamma(x, deriv) 表示 $\psi(x)$ 的 `deriv` 阶导数
+
+$\mathrm{digamma}(x) \triangleq \psi(x) = \frac{d}{dx}{\ln \Gamma(x)} = \Gamma'(x) / \Gamma(x)$
+
+```{r psigamma-ex}
+# 例1
+x <- 2
+eval(deriv(~ gamma(x), "x"))/gamma(x)
+# 与此等价
+psigamma(2, 0)
+
+digamma(x) # psi(x) 的一阶导数
+trigamma(x) # psi(x) 的二阶导数
+
+# 例2
+eval(deriv(~ psigamma(x, 1), "x"))
+# 与此等价
+psigamma(2, 2)
+
+# 注意与下面这个例子比较
+dx2x <- deriv(~ x^3, "x")
+eval(dx2x)
+```
+
+- 贝塔函数
+
+$B(a,b) = \Gamma(a)\Gamma(b)/\Gamma(a+b) = \int_{0}^{1} t^{a-1} (1-t)^{b-1} dt$
+
+```{r beta-ex}
+beta(1, 1)
+beta(2, 3)
+beta2 <- function(t, a, b) {
+  t^(a - 1) * (1 - t)^(b - 1)
+}
+integrate(beta2, lower = 0, upper = 1, a = 2, b = 3)
+```
+
+- 贝塞尔函数
+
+```r
+besselI(x, nu, expon.scaled = FALSE) # 修正的第一类
+besselK(x, nu, expon.scaled = FALSE) # 修正的第二类
+besselJ(x, nu) # 第一类
+besselY(x, nu) # 第二类
+```
+
+- $\nu$ 贝塞尔函数的阶，可以是分数
+- expon.scaled 是否使用指数表示
+
+```{r Modified-Bessel}
+nus <- c(0:5, 10, 20)
+x <- seq(0, 4, length.out = 501)
+plot(x, x, ylim = c(0, 6), ylab = "", type = "n",
+     main = "Bessel Functions  I_nu(x)")
+for(nu in nus) lines(x, besselI(x, nu = nu), col = nu + 2)
+legend(0, 6, legend = paste("nu=", nus), col = nus + 2, lwd = 1)
+```
+

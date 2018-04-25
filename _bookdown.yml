@@ -15,7 +15,9 @@ rmd_files: [
   "index.Rmd",
   # 基础篇
   "01-setup.Rmd",
-  "02-foundation.Rmd",
+  "02a-math.Rmd",
+  "02b-data.Rmd",  
+  "02c-file.Rmd",
 
   "03a-plot.Rmd",
   "03b-ggplot2.Rmd",
