@@ -1,4 +1,6 @@
-language: R
+language: r
+r:
+  - 3.4.4
 dist: trusty
 sudo: false
 cache:
@@ -53,7 +55,7 @@ before_install:
   # for pdf output
   - tlmgr update --all --self
   - tlmgr install $(cat TeXLive.pkgs | tr '\n' ' ') || true
-  - Rscript -e 'devtools::install_github("tidyverse/ggplot2")'
+  - Rscript -e 'if(!require("devtools")) install.packages("devtools");devtools::install_github("tidyverse/ggplot2")'
 
 script:
   # - Rscript -e 'update.packages(ask = FALSE)'
