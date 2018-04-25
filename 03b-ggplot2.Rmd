@@ -1,4 +1,4 @@
-# ggplot2 {#ggplot}
+# 高级图形 {#ggplot}
 
 - Claus O. Wilke 新书：数据可视化基础 [Fundamentals of Data Visualization](http://serialmentor.com/dataviz/) 全 R/ggplot2 实现
 

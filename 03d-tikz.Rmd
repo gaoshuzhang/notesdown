@@ -1,4 +1,4 @@
-# tikz {#tikz}
+# TikZ 和 PGF
 
 如图 \@ref(fig:latex-tikz) 所示，模板存放在 `tikz/tikz2pdf.tex`
 

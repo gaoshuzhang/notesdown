@@ -1,4 +1,4 @@
-# JavaScript {#js}
+# 动态图形
 
 基于 JS 动态库的 R 包 leaflet [@R-leaflet]，ggvis ， rbokeh [@R-rbokeh] 和 plotly [@R-plotly] ，我比较喜欢 highcharter [@R-highcharter]，美观高效，还活跃开发中。
 

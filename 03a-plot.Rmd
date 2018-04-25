@@ -1,4 +1,4 @@
-# 绘图 {#graphics}
+# 基础图形 {#graphics}
 
 ```{r setup, include = FALSE}
 Pkgs <- c(
