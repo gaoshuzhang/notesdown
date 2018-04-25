@@ -53,6 +53,7 @@ before_install:
   # for pdf output
   - tlmgr update --all --self
   - tlmgr install $(cat TeXLive.pkgs | tr '\n' ' ') || true
+  - Rscript -e 'devtools::install_github("tidyverse/ggplot2")'
 
 script:
   # - Rscript -e 'update.packages(ask = FALSE)'

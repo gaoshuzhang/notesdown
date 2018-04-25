@@ -11,6 +11,13 @@ Pkgs <- c(
 if (length(setdiff(Pkgs, .packages(TRUE))) > 0) {
   install.packages(setdiff(Pkgs, .packages(TRUE)))
 }
+
+if (!"spDataLarge" %in% .packages(TRUE)) {
+  install.packages("spDataLarge",
+    repos = "https://nowosad.github.io/drat/",
+    type = "source"
+  )
+}
 ```
 
 
@@ -75,7 +82,12 @@ methods(plot)
 source(file = "code/plot.R", local = TRUE)
 ```
 
-
+```{r, fig.cap="raster 图形"}
+library(raster)
+library(sp)
+library(spDataLarge)
+plot(elevation, asp = NA)
+```
 
 ## ggplot {#ggplot}
 
