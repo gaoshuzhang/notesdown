@@ -64,15 +64,15 @@ script:
   - Rscript -e 'devtools::install_github("dgrtwo/gganimate")'
   - Rscript -e 'bookdown::render_book("index.Rmd", output_format = "all")'
 
-deploy:
-  provider: script
-  script: netlify deploy -t $NETLIFY_PAT
-  skip_cleanup: true
-
 #deploy:
-#  provider: pages
+#  provider: script
+#  script: netlify deploy -t $NETLIFY_PAT
 #  skip_cleanup: true
-#  github_token: $GITHUB_TOKEN
-#  on:
-#    branch: master
-#  local_dir: _book
+
+deploy:
+  provider: pages
+  skip_cleanup: true
+  github_token: $GITHUB_TOKEN
+  on:
+    branch: master
+  local_dir: _book
