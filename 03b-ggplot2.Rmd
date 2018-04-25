@@ -64,3 +64,11 @@ data %>%
   ) +
   theme_minimal()
 ```
+
+
+本节软件信息
+
+```{r}
+devtools::session_info()
+```
+
