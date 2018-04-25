@@ -1,0 +1,66 @@
+# ggplot2 {#ggplot}
+
+- Claus O. Wilke 新书：数据可视化基础 [Fundamentals of Data Visualization](http://serialmentor.com/dataviz/) 全 R/ggplot2 实现
+
+
+```{r,include=FALSE}
+library(ggplot2)
+# packageDescription("ggplot2")
+```
+
+ggplot2 有很多绘图函数
+
+```{r}
+grep('^(geom_)', ls('package:ggplot2'), value = TRUE)
+grep('^(stat_)', ls('package:ggplot2'), value = TRUE)
+```
+
+rattle 下载量时序图
+
+```{r log,fig.showtext=TRUE}
+library(ggplot2)
+library(cranlogs)
+library(ggthemes)
+pkgs_down <- cran_downloads(package = "rattle", from = Sys.Date() - 365 * 5, to = Sys.Date())
+ggplot(pkgs_down, aes(x = date, y = count, colour = package)) +
+  geom_line() +
+  geom_point(size = 1.5) +
+  scale_x_date(date_breaks = "1 year", date_labels = "%Y") +
+  ylim(c(0, 1500)) +
+  scale_colour_brewer(palette = "Set1") +
+  # scale_color_fivethirtyeight("") +
+  # theme_fivethirtyeight() +
+  labs(
+    subtitle = paste("最近更新日期:", Sys.Date()),
+    title = "Rattle 最近5年每日下载量",
+    caption = " 数据源: http://cran-logs.rstudio.com/ "
+  ) +
+  theme_minimal(base_size = 10.54, base_family = "source-han-serif-cn")
+```
+
+给线条添加注释和标签，这个功能有时候比图例更加漂亮
+
+```{r add-label-ggrepel, fig.cap="添加标签"}
+# 出自 https://gist.github.com/EmilHvitfeldt/acb849a6135a21426c260850cf0f461b
+# Horizontal annotations with ggrepel and ggplot2
+library(tidyverse)
+library(ggrepel)
+data <- tibble(
+  x = seq_len(100),
+  y = cumsum(rnorm(100))
+)
+
+anno_data <- data %>%
+  filter(x %% 25 == 10) %>%
+  mutate(text = "text")
+
+data %>%
+  ggplot(aes(x, y)) +
+  geom_line() +
+  geom_label_repel(aes(label = text),
+    data = anno_data,
+    direction = "y",
+    nudge_y = c(-5, 5, 5, 5)
+  ) +
+  theme_minimal()
+```

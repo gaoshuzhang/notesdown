@@ -1,0 +1,29 @@
+# tikz {#tikz}
+
+如图 \@ref(fig:latex-tikz) 所示，模板存放在 `tikz/tikz2pdf.tex`
+
+```{r latex-tikz, engine='tikz', out.width='90%', fig.ext=if (knitr:::is_latex_output()) 'pdf' else 'png', fig.cap='tikz 图形', engine.opts = list(template = "tikz/tikz2pdf.tex")}
+\begin{tikzpicture}[scale=.7]
+\draw [fill=gray!30,very thick] (0,-1) rectangle (5,1);
+\draw [very thick] (5, 0) -- (13,0);
+\node [below] at (2,-1) {\large Hello};
+\node [below, align=center] at (0,-1) {\large Two\\ lines};
+\end{tikzpicture}
+```
+
+一幅纯 tikz 代码绘制的图形，代码如下
+
+```{r import-tikze-code}
+cat(readLines("tikz/mini-demo.tex", encoding = "UTF-8"), sep = "\n")
+```
+
+```{r mini-tikz-demo,echo=FALSE,fig.cap="一幅迷你 tikz 图形"}
+knitr::include_graphics(path = "tikz/mini-demo.png")
+```
+
+```{r, dev='tikz', fig.width=4.4, fig.height=3.3, out.width="90%",eval = !knitr::is_html_output(),fig.ext='tex', tikz2png='-density 300',fig.cap='tikz 图形'}
+par(mar = c(4.5, 4, .1, .1))
+hist(x, main='', xlab='$x$ (how the fonts look like here?)',
+  ylab='$\\hat{f}(x) = \\frac{1}{nh}\\sum_{i=1}^n \\cdots$')
+```
+

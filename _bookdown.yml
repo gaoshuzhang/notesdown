@@ -17,10 +17,16 @@ rmd_files: [
   "01-setup.Rmd",
   "02-foundation.Rmd",
 
-  "03-plot.Rmd",
+  "03a-plot.Rmd",
+  "03b-ggplot2.Rmd",
+  "03c-javascript.Rmd",  
+  "03d-tikz.Rmd",  
+  "03e-vector.Rmd",  
+  
   "04-color.Rmd",
   "05-font.Rmd",
   "06-animation.Rmd",
+  
   # 进阶篇 
   "07-optimation.Rmd",
   "08-computing.Rmd",

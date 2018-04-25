@@ -30,6 +30,8 @@ knitr::include_graphics(path = paste0(
 
 - [LOO for non-factorized normal models](https://github.com/paul-buerkner/non-factorized-loo)
 - [Playing with negative binomial multilevel models in Stan](https://github.com/seananderson/negbin-stan)
+- [An Introduction to Greta](https://rviews.rstudio.com/2018/04/23/on-first-meeting-greta/) tensoflow and stan
+
 
 ### PyStan 接口
 
