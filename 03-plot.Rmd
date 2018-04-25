@@ -185,7 +185,7 @@ hist(x, main='', xlab='$x$ (how the fonts look like here?)',
 
 基于 JS 动态库的 R 包 leaflet [@R-leaflet]，ggvis ， rbokeh [@R-rbokeh] 和 plotly [@R-plotly] ，我比较喜欢 highcharter [@R-highcharter]，美观高效，还活跃开发中。
 
-```{r highcharter, eval= knitr::is_html_output(), fig.cap="highcharter 图形",cache=FALSE}
+```{r highcharter, fig.cap="highcharter 图形",eval=FALSE}
 library("highcharter")
 data(diamonds, mpg, package = "ggplot2")
 
@@ -193,7 +193,7 @@ hchart(mpg, "scatter", hcaes(x = displ, y = hwy, group = class))
 ```
 
 
-```{r rbokeh, eval = knitr::is_html_output(), fig.cap="rbokeh 图形",warning=FALSE,message=FALSE,cache=FALSE}
+```{r rbokeh,fig.cap="rbokeh 图形",eval=FALSE}
 library(rbokeh)
 h <- figure(width = 600, height = 400) %>%
   ly_hist(eruptions, data = faithful, breaks = 40, freq = FALSE) %>%
@@ -202,7 +202,7 @@ h
 ```
 
 
-```{r plotly, eval = knitr::is_html_output(), fig.cap="plotly 图形",cache=FALSE}
+```{r plotly, fig.cap="plotly 图形",eval=FALSE}
 library(plotly)
 plot_ly(z = ~volcano, type = "surface")
 ```
