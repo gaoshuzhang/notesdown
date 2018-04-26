@@ -1,35 +1,91 @@
 # 数学运算 {#math-operator}
 
+```{r,include = FALSE}
+library(Matrix)
+```
+
+
 ## 矩阵运算
 
 ```{r}
 A <- matrix(c(1, 2, 2, 3), nrow = 2)
-# 矩阵每个元素平方
-A^2 # Hadamard 积
+A
+```
 
-2^A
-exp(A)
+### 乘法
 
+```{r}
 A %*% A
-crossprod(A, A) # 交叉积 t(x) %*% y
-tcrossprod(A, A) # x %*% t(y)
+```
 
-A %o% A # 外积运算
+### Hadamard 积
+
+矩阵每个元素平方
+
+```{r}
+A^2
+```
+
+### 交叉积
+
+```{r}
+crossprod(A, A)  #  t(x) %*% y
+tcrossprod(A, A) #  x %*% t(y)
+```
+
+### 外积
+
+```{r}
+A %o% A
 outer(A, A, FUN = "*")
+```
 
-A %x% A # 直积/克罗内克积
+### 直积
+
+直积/克罗内克积
+
+```{r}
+A %x% A
 kronecker(A, A, FUN = "*")
 ```
 
-```{r}
-det(A) # 行列式
+### 乘方
+
+矩阵 A 首先是一个方阵，对称性和正定性未知，n 个 矩阵 A 相乘
+
+统计之都论坛讨论如何求矩阵的乘方 <https://d.cosx.org/d/5619-5619>
+
+```r
+"%^%" <- function(mat, pow) {
+  if (!is.matrix(mat)) mat <- as.matrix(mat)
+  stopifnot(!diff(dim(mat)))
+  if (pow < 0) {
+    pow <- -pow
+    mat <- solve(mat)
+  }
+  pow <- round(pow)
+  switch(pow + 1, return(diag(1, nrow(mat))), return(mat))
+  get.exponents <- function(pow) {
+    if (pow == 0) {
+      NULL
+    } else {
+      c(k <- 2^floor(log2(pow)), get.exponents(pow - k))
+    }
+  }
+  ans <- diag(nrow(mat))
+  dlog2exp <- rev(-diff(c(log2(get.exponents(pow)), 0)))
+  for (j in 1:length(dlog2exp)) {
+    if (dlog2exp[j]) {
+      for (i in 1:dlog2exp(j)) {
+        mat <- mat %*% mat
+      }
+    }
+    ans <- ans %*% mat
+  }
+  ans
+}
 ```
 
-逆
-
-```{r}
-solve(A)
-```
 
 特征值及分解 $A = V \Lambda V^{-1}$ 求解矩阵 A 的 n 次方
 
@@ -37,88 +93,41 @@ solve(A)
 eigen(A)
 
 eigen(A)$vectors %*% diag(eigen(A)$values) %*% solve(eigen(A)$vectors)
+eigen(A)$vectors %*% diag(eigen(A)$values)^3 %*% solve(eigen(A)$vectors)
+A %*% A %*% A
 ```
 
-伴随矩阵 $A*A^{\star} = A^{\star} *A = |A|*I, A^{\star} = |A|*A^{-1}$
-
-- $|A^{\star}| = |A|^{n-1}, A \in \mathbb{R}^{n\times n},n \geq 2$
-- $(A^{\star})^{\star} = |A|^{n-2}A, A \in \mathbb{R}^{n\times n},n \geq 2$
-- $(A^{\star})^{\star}$ A 的 n 次伴随是？
-
+### 幂
 
 ```{r}
-det(A)*solve(A)
+2^A
+exp(A)
 ```
 
-单位矩阵
+### 行列式
 
 ```{r}
-diag(rep(3))
+det(A)
 ```
 
-全1矩阵，借助外积运算
+### 逆
 
 ```{r}
-rep(1,3) %o% rep(1,3) # 3 阶
+solve(A)
 ```
 
-
-对角矩阵
-
-```{r}
-diag(A) # 取矩阵的对角元素
-diag(diag(A)) # 对角矩阵
-```
-
-条件数
-
-```{r}
-library(Matrix)
-base::rcond(A)
-kappa(A)
-Matrix::rcond(Hilbert(6))
-Matrix::rcond(A)
-```
-
-Cholesky 分解
-
-```{r}
-# Compute the Choleski factorization of a real symmetric positive-definite square matrix.
-chol(A + diag(rep(1,2)))
-# Inverse from Choleski (or QR) Decomposition
-Matrix::chol2inv(A + diag(rep(1,2)))
-```
-
-
-奇异值及分解
-
-```{r}
-svd(A)
-svd(A)$d
-```
-
-线性方程组
+应用之线性方程组
 
 ```{r}
 B <- Hilbert(6)
 b <- rowSums(B)
-# 不求逆解方程组
+# not inv
 solve(B,b) 
 
-# 求逆解方程组
+# inv
 solve(B) %*% b
 ```
 
-QR分解
-
-```{r}
-qr.default(A)
-qr.X(qr.default(A))
-qr.Q(qr.default(A))
-qr.R(qr.default(A))
-
-qr.Q(qr.default(A)) %*% qr.R(qr.default(A))
-```
 
 Moore-Penrose generalized inverse 广义逆，如果 A 可逆则，广义逆就是逆
 
@@ -150,20 +159,96 @@ function(X, tol = sqrt(.Machine$double.eps))
 }
 ```
 
-向量和矩阵的范数，其他操作看 Matrix 包 [@R-Matrix] ，尤其关于稀疏矩阵计算部分
+### 伴随矩阵
+
+伴随矩阵 $A*A^{\star} = A^{\star} *A = |A|*I, A^{\star} = |A|*A^{-1}$
+
+- $|A^{\star}| = |A|^{n-1}, A \in \mathbb{R}^{n\times n},n \geq 2$
+- $(A^{\star})^{\star} = |A|^{n-2}A, A \in \mathbb{R}^{n\times n},n \geq 2$
+- $(A^{\star})^{\star}$ A 的 n 次伴随是？
+
 
 ```{r}
-library(Matrix)
+det(A)*solve(A)
+```
+
+### 单位矩阵
+
+```{r}
+diag(rep(3))
+```
+
+全1矩阵，借助外积运算，如3阶矩阵
+
+```{r}
+rep(1,3) %o% rep(1,3) 
+```
+
+
+### 对角矩阵
+
+```{r}
+diag(A)       # diagonal of a matrix
+diag(diag(A)) # construct a diagonal matrix
+```
+
+### 条件数
+
+```{r}
+base::rcond(A)
+kappa(A)
+Matrix::rcond(Hilbert(6))
+Matrix::rcond(A)
+```
+
+### 范数
+
+向量和矩阵的范数，包括1，2，无穷范数，其他操作看 Matrix 包 [@R-Matrix] ，尤其关于稀疏矩阵计算部分
+
+```{r}
 norm(A)
 ```
 
-LU 分解、Jordan分解
-
-矩阵的秩
+### 秩
 
 ```{r}
 qr(A)$rank # or qr.default(A)$rank
 ```
+
+## 矩阵分解
+
+### Cholesky 分解
+
+```{r}
+# Compute the Choleski factorization of a real symmetric positive-definite square matrix.
+chol(A + diag(rep(1,2)))
+# Inverse from Choleski (or QR) Decomposition
+Matrix::chol2inv(A + diag(rep(1,2)))
+```
+
+
+### 奇异值及分解
+
+```{r}
+svd(A)
+svd(A)$d
+```
+
+
+### QR分解
+
+```{r}
+qr.default(A)
+qr.X(qr.default(A))
+qr.Q(qr.default(A))
+qr.R(qr.default(A))
+qr.Q(qr.default(A)) %*% qr.R(qr.default(A))
+```
+
+
+
+LU 分解、Jordan分解
+
 
 矩阵下三角
 
@@ -189,8 +274,6 @@ A
 - Householder 变换 <https://www.wikiwand.com/en/Householder_transformation>
 - Givens 旋转 <https://www.wikiwand.com/en/Givens_rotation>
 - 帽子矩阵在统计中的应用 回归与方差分析 [@David1978Hat]
-
-
 
 
 
