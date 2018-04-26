@@ -1,0 +1,36 @@
+bookdown::gitbook:
+  split_by: chapter+number
+  css: style.css
+  config:
+    toc:
+      before: |
+        <li><a href="./">A Minimal Book Example</a></li>
+      after: |
+        <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+    download: ["pdf", "epub"]
+bookdown::pdf_book:
+  includes:
+    in_header: preamble.tex
+  latex_engine: xelatex
+  citation_package: natbib
+  toc: yes
+  keep_tex: yes
+  number_sections: yes
+  toc_bib: yes
+  pandoc_args: "--top-level-division=chapter"
+  highlight_bw: yes
+  template: default.latex
+bookdown::epub_book: default
+rmarkdown::github_document: 
+  toc: yes
+  toc_depth: 2
+  dev: "png"
+rmarkdown::html_document: 
+  toc: yes
+  keep_md: yes
+rmarkdown::pdf_document: 
+  latex_engine: xelatex
+  number_sections: yes
+  toc: no
+  template: default.latex
+  pandoc_args: "--top-level-division=chapter"

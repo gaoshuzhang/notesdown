@@ -1,0 +1,29 @@
+model{
+
+for(DStrip in 1:NStrip) {
+
+  RStrip[DStrip] ~ dnorm(meanStrip[DStrip], TStrip)
+  meanStrip[DStrip] <- interceptUnparam
+
+  for(Dobservations in SStrip[DStrip]:(SStrip[DStrip+1]-1)){
+
+    conc[Dobservations] ~ dnorm(meanobservations[Dobservations], Tobservations)
+    meanobservations[Dobservations] <- RStrip[DStrip] + betaobservations * Xobservations[Dobservations]
+
+  }#observations
+}#Strip
+
+
+
+
+# priors
+
+intercept  ~ dunif(-1000,1000)
+betaobservations ~ dunif(-1000,1000)
+interceptUnparam<- intercept
+TStrip <- pow(SDStrip, -2)
+SDStrip ~ dunif(0, 100)
+Tobservations <- pow(SDobservations, -2)
+SDobservations ~ dunif(0, 100)
+
+} # model

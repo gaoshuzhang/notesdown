@@ -1,0 +1,19 @@
+book_filename: "cos-articles"
+output_dir: "docs"
+delete_merged_file: true
+clean: [packages.bib]
+language:
+  label:
+    fig: "图 "
+    tab: "表 "
+  ui:
+    edit: "编辑"
+    chapter_name: ["第 ", " 章"]
+new_session: yes
+before_chapter_script: ["common.R"]
+rmd_files: [
+  "index.Rmd",
+  "01-stan.Rmd",
+
+  "06-references.Rmd",
+]

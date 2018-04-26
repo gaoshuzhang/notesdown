@@ -1,0 +1,33 @@
+# Stan 框架入门 {#stan}
+
+## 框架介绍
+
+Stan 是一个 C++ 库，使用 No-U-Turn 采样器做贝叶斯推断或者使用优化器做频率推断
+
+在用户定义好模型和给定数据的情况下，获得参数的后验模拟分布
+
+
+## 如何使用
+
+- 贝叶斯广义线性模型/ 二项和泊松分布
+- 贝叶斯广义线性混合效应模型/ 二项和泊松分布
+
+
+## 各语言接口
+
+介绍 rstan [@R-rstan]
+
+用 rstan 实现上述两个模型
+
+其它接口如 PyStan 提一下下就可以了
+
+## 如何开发扩展
+
+重点，如何基于 rstantools [@R-rstantools] 开发其它利用 Stan 计算库的 R 包，举例子，
+此处最好是自己做一个功能单一的 mini 包展示过程
+
+
+介绍 Stan 的生态 brms [@brms2017jss] rstanarm [@R-rstanarm] shinystan [@R-shinystan]
+
+
+

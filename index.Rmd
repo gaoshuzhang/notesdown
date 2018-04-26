@@ -1,0 +1,46 @@
+--- 
+title: "投稿"
+author: "黄湘云"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+documentclass: ctexrep
+bibliography: [book.bib, packages.bib]
+biblio-style: unsrt
+link-citations: yes
+tables: yes
+natbiboptions: super,square
+classoption: "oneside, a4paper, UTF8, zihao = -4, linespread = 1.3"
+description: "This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook."
+---
+
+# 前言
+
+
+空间广义线性混合效应模型的实现方式 [@R-spaMM]
+
+glmmPQL 程序实现惩罚拟似然 (Penalized Quasi-Likelihood) 算法拟合广义线性混合效应模型，其中随机效应服从多元正态分布[@MASS2002]。
+
+```r
+glmmPQL(<fixed effect formula>, random = ~ 1 | dummy,
+   correlation = corExp(form = ~x+y | dummy), data = <data frame>)
+```
+
+
+corMatern 和 MaternCorr 由 spaMM 提供，实现 corSpatial 对象，用于 lme or glmmPQL.
+
+```{r}
+library(nlme) # will be loaded automatically if omitted
+library(MASS)
+# fit1.PQL <- glmmPQL(y ~ trt + I(week > 2), random = ~ 1 | ID,
+#                 family = binomial, data = bacteria)
+# summary(fit1.PQL)
+```
+
+
+```{r include=FALSE}
+# automatically create a bib database for R packages
+knitr::write_bib(c(
+  .packages(), 'bookdown', 'knitr', 'rmarkdown'
+), 'packages.bib')
+```
+

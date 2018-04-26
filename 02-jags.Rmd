@@ -1,0 +1,313 @@
+# JAGS 和 OpenBUGS
+
+JAGS 是 Just Another Gibbs Sampler 的简称，使用 MCMC 来分析贝叶斯层次模型，相比 BUGS，JAGS 有以下两个方面的主要优势：
+
+1. 跨平台支持 BUGS 编程语言，即 Windows，Linux 和 Mac OS上都有 JAGS 引擎
+2. 用户可以自定义函数、分布和采样器
+
+```{r}
+library(glmmBUGS)
+library(nlme)
+data(Muscle)
+
+muscleRagged <- glmmBUGS(conc ~ length,
+  data = Muscle,
+  effects = "Strip", family = "gaussian", initFile = "code/getInits.R",
+  modelFile = "code/model.bug", reparam = "Strip"
+)
+
+startingValues <- muscleRagged$startingValues
+```
+
+
+```{r}
+source("code/getInits.R")
+```
+
+```{r}
+library(R2jags)
+```
+
+```{r}
+muscleResultJags <- jags(
+  muscleRagged$ragged, getInits,
+  parameters.to.save = names(getInits()),
+  model.file = "code/model.bug", n.chain = 3, n.iter = 1000,
+  n.burnin = 100, n.thin = 10,
+  working.directory = getwd()
+)
+```
+
+```{r}
+muscleParamsJags <- restoreParams(
+  muscleResultJags$BUGSoutput,
+  muscleRagged$ragged
+)
+```
+
+
+```{r, eval=FALSE}
+data(muscleResult)
+
+muscleParams = restoreParams(muscleResult, muscleRagged$ragged)  
+summaryChain(muscleParams)
+checkChain(muscleParams)
+```
+
+收敛性检查
+
+```{r}
+checkChain(muscleParamsJags)
+```
+
+rongelap 数据集
+
+```{r}
+library(glmmBUGS)
+```
+
+```{r}
+# 数据集来自 http://www.leg.ufpr.br/lib/exe/fetch.php/pessoais:paulojus:mbgbook:datasets:rongelap.txt
+rongelap <- read.table("data/rongelap.txt", header = TRUE)
+```
+
+
+```{r}
+library(spdep)
+coordinates(rongelap) <- ~ cX + cY
+```
+
+```{r}
+rongelap$logOffset <- log(rongelap$time)
+rongelap$site <- seq(1, length(rongelap$time))
+
+forBugs <- glmmBUGS(
+  formula = counts + logOffset ~ 1, family = "poisson",
+  data = rongelap@data, effects = "site", spatial = rongelap,
+  priors = list(phisite = "dgamma(100,1)")
+)
+```
+
+```{r}
+startingValues <- forBugs$startingValues
+startingValues$phi$site <- 100
+source("getInits.R")
+```
+
+
+```{r}
+library(R2OpenBUGS)
+rongelapResult <- bugs(forBugs$ragged, getInits,
+  parameters.to.save = names(getInits()),
+  model.file = "model.txt", n.chain = 2, n.iter = 8000, n.burnin = 5000, n.thin = 1,
+  debug = FALSE, working.directory = getwd()
+)
+```
+
+
+```
+Inference for Bugs model at "model.txt", 
+Current: 2 chains, each with 8000 iterations (first 5000 discarded)
+Cumulative: n.sims = 6000 iterations saved
+             mean   sd   2.5%    25%    50%    75%  97.5% Rhat n.eff
+intercept     1.8  0.1    1.7    1.8    1.8    1.9    2.0    1  2200
+SDsite        0.5  0.0    0.5    0.5    0.5    0.6    0.6    1  5700
+Rsite[1]     -1.3  0.1   -1.6   -1.4   -1.3   -1.3   -1.1    1  6000
+Rsite[2]      1.8  0.0    1.8    1.8    1.8    1.8    1.9    1  6000
+Rsite[3]      2.2  0.0    2.2    2.2    2.2    2.2    2.3    1  1200
+Rsite[4]      1.6  0.0    1.5    1.6    1.6    1.6    1.6    1  3700
+Rsite[5]      2.1  0.0    2.1    2.1    2.1    2.1    2.1    1  4800
+Rsite[6]      1.9  0.0    1.8    1.9    1.9    1.9    1.9    1  2300
+Rsite[7]      1.8  0.0    1.7    1.8    1.8    1.8    1.8    1  6000
+Rsite[8]      2.4  0.0    2.3    2.4    2.4    2.4    2.4    1  6000
+Rsite[9]      1.7  0.0    1.7    1.7    1.7    1.7    1.8    1  6000
+Rsite[10]     1.8  0.0    1.8    1.8    1.8    1.8    1.9    1  6000
+Rsite[11]     1.8  0.0    1.8    1.8    1.8    1.9    1.9    1  1900
+Rsite[12]     1.7  0.0    1.6    1.7    1.7    1.7    1.7    1  6000
+Rsite[13]     2.3  0.0    2.3    2.3    2.3    2.3    2.3    1   790
+Rsite[14]     1.6  0.0    1.5    1.5    1.6    1.6    1.6    1  6000
+Rsite[15]     0.8  0.0    0.7    0.8    0.8    0.8    0.9    1  6000
+Rsite[16]     2.1  0.0    2.0    2.0    2.1    2.1    2.1    1  3700
+Rsite[17]     1.9  0.0    1.9    1.9    1.9    1.9    2.0    1  6000
+Rsite[18]     1.8  0.0    1.7    1.8    1.8    1.8    1.8    1  6000
+Rsite[19]     1.8  0.0    1.8    1.8    1.8    1.8    1.8    1  3500
+Rsite[20]     1.7  0.0    1.7    1.7    1.7    1.7    1.8    1  2800
+Rsite[21]     2.0  0.0    1.9    2.0    2.0    2.0    2.0    1  4300
+Rsite[22]     1.8  0.0    1.7    1.8    1.8    1.8    1.8    1  6000
+Rsite[23]     1.9  0.0    1.9    1.9    1.9    1.9    1.9    1  6000
+Rsite[24]     2.4  0.0    2.4    2.4    2.4    2.4    2.4    1  5900
+Rsite[25]     1.9  0.0    1.8    1.9    1.9    1.9    1.9    1  6000
+Rsite[26]     2.0  0.0    2.0    2.0    2.0    2.0    2.0    1  5100
+Rsite[27]     1.8  0.0    1.7    1.7    1.8    1.8    1.8    1  3800
+Rsite[28]     1.6  0.0    1.5    1.6    1.6    1.6    1.6    1  6000
+Rsite[29]     0.8  0.0    0.7    0.8    0.8    0.8    0.8    1  1700
+Rsite[30]     1.4  0.0    1.3    1.4    1.4    1.4    1.4    1  6000
+Rsite[31]     1.9  0.0    1.9    1.9    1.9    1.9    1.9    1  6000
+Rsite[32]     2.1  0.0    2.0    2.1    2.1    2.1    2.1    1  6000
+Rsite[33]     2.2  0.0    2.2    2.2    2.2    2.2    2.3    1  3500
+Rsite[34]     2.2  0.0    2.1    2.1    2.2    2.2    2.2    1  6000
+Rsite[35]     2.2  0.0    2.1    2.1    2.2    2.2    2.2    1  6000
+Rsite[36]     2.4  0.0    2.3    2.4    2.4    2.4    2.4    1  3600
+Rsite[37]     1.4  0.0    1.4    1.4    1.4    1.5    1.5    1  6000
+Rsite[38]     1.9  0.0    1.9    1.9    1.9    1.9    1.9    1  1300
+Rsite[39]     2.0  0.0    2.0    2.0    2.0    2.0    2.0    1  6000
+Rsite[40]     1.9  0.0    1.9    1.9    1.9    2.0    2.0    1  6000
+Rsite[41]     1.4  0.0    1.4    1.4    1.4    1.4    1.5    1  1900
+Rsite[42]     1.8  0.0    1.8    1.8    1.8    1.8    1.8    1  6000
+Rsite[43]     1.6  0.0    1.6    1.6    1.6    1.6    1.6    1  6000
+Rsite[44]     1.9  0.0    1.9    1.9    1.9    1.9    2.0    1  6000
+Rsite[45]     2.1  0.0    2.0    2.0    2.1    2.1    2.1    1  6000
+Rsite[46]     2.0  0.0    2.0    2.0    2.0    2.0    2.1    1  6000
+Rsite[47]     2.1  0.0    2.1    2.1    2.1    2.1    2.1    1  6000
+Rsite[48]     1.6  0.0    1.5    1.6    1.6    1.6    1.6    1   900
+Rsite[49]     1.6  0.0    1.6    1.6    1.6    1.6    1.6    1  1300
+Rsite[50]     1.8  0.0    1.8    1.8    1.8    1.8    1.8    1  5700
+Rsite[51]     1.1  0.0    1.1    1.1    1.1    1.2    1.2    1  6000
+Rsite[52]     1.5  0.0    1.4    1.5    1.5    1.5    1.5    1  6000
+Rsite[53]     1.0  0.0    0.9    0.9    1.0    1.0    1.0    1  1700
+Rsite[54]     1.5  0.0    1.4    1.5    1.5    1.5    1.5    1  6000
+Rsite[55]     1.9  0.0    1.8    1.9    1.9    1.9    1.9    1  6000
+Rsite[56]     2.1  0.0    2.1    2.1    2.1    2.1    2.1    1  3500
+Rsite[57]     2.1  0.0    2.0    2.1    2.1    2.1    2.1    1  6000
+Rsite[58]     2.1  0.0    2.1    2.1    2.1    2.1    2.1    1  6000
+Rsite[59]     2.5  0.0    2.5    2.5    2.5    2.5    2.5    1  4800
+Rsite[60]     2.3  0.0    2.2    2.2    2.3    2.3    2.3    1  6000
+Rsite[61]     1.6  0.0    1.5    1.6    1.6    1.6    1.6    1  6000
+Rsite[62]     1.9  0.0    1.9    1.9    1.9    1.9    1.9    1  6000
+Rsite[63]     1.4  0.0    1.4    1.4    1.4    1.4    1.5    1  2800
+Rsite[64]     1.7  0.0    1.6    1.7    1.7    1.7    1.7    1  6000
+Rsite[65]     1.8  0.0    1.7    1.8    1.8    1.8    1.8    1  2200
+Rsite[66]     2.2  0.0    2.2    2.2    2.2    2.2    2.2    1  6000
+Rsite[67]     2.4  0.0    2.4    2.4    2.4    2.4    2.5    1  6000
+Rsite[68]     1.5  0.0    1.4    1.4    1.5    1.5    1.5    1  4600
+Rsite[69]     1.9  0.0    1.9    1.9    1.9    2.0    2.0    1  6000
+Rsite[70]     0.2  0.1    0.1    0.2    0.2    0.2    0.3    1  6000
+Rsite[71]     2.0  0.0    2.0    2.0    2.0    2.0    2.1    1  2400
+Rsite[72]     2.4  0.0    2.4    2.4    2.4    2.5    2.5    1  3900
+Rsite[73]     1.8  0.0    1.8    1.8    1.8    1.8    1.9    1  1900
+Rsite[74]     2.0  0.0    2.0    2.0    2.0    2.0    2.0    1  6000
+Rsite[75]     2.6  0.0    2.6    2.6    2.6    2.6    2.6    1   840
+Rsite[76]     1.7  0.0    1.7    1.7    1.7    1.7    1.7    1   550
+Rsite[77]     2.7  0.0    2.7    2.7    2.7    2.7    2.7    1  6000
+Rsite[78]     1.9  0.0    1.9    1.9    1.9    1.9    1.9    1  6000
+Rsite[79]     1.8  0.0    1.8    1.8    1.8    1.8    1.8    1  6000
+Rsite[80]     2.2  0.0    2.2    2.2    2.2    2.2    2.3    1  1800
+Rsite[81]     1.9  0.0    1.8    1.8    1.9    1.9    1.9    1  6000
+Rsite[82]     2.2  0.0    2.2    2.2    2.2    2.2    2.2    1  6000
+Rsite[83]     2.6  0.0    2.6    2.6    2.6    2.6    2.6    1  6000
+Rsite[84]     1.4  0.0    1.4    1.4    1.4    1.4    1.5    1  6000
+Rsite[85]     2.3  0.0    2.2    2.2    2.3    2.3    2.3    1  3300
+Rsite[86]     2.2  0.0    2.2    2.2    2.2    2.2    2.3    1  4000
+Rsite[87]     2.1  0.0    2.1    2.1    2.1    2.1    2.2    1  6000
+Rsite[88]     2.5  0.0    2.4    2.5    2.5    2.5    2.5    1  3500
+Rsite[89]     2.3  0.0    2.2    2.3    2.3    2.3    2.3    1  6000
+Rsite[90]     2.3  0.0    2.3    2.3    2.3    2.3    2.4    1  4100
+Rsite[91]     2.5  0.0    2.5    2.5    2.5    2.5    2.5    1  6000
+Rsite[92]     2.7  0.0    2.6    2.7    2.7    2.7    2.7    1  6000
+Rsite[93]     2.2  0.0    2.1    2.2    2.2    2.2    2.2    1  5600
+Rsite[94]     2.1  0.0    2.1    2.1    2.1    2.1    2.2    1  6000
+Rsite[95]     2.5  0.0    2.5    2.5    2.5    2.5    2.5    1  6000
+Rsite[96]     2.0  0.0    2.0    2.0    2.0    2.0    2.1    1  2700
+Rsite[97]     2.4  0.0    2.4    2.4    2.4    2.4    2.5    1  6000
+Rsite[98]     2.2  0.0    2.1    2.1    2.2    2.2    2.2    1  1600
+Rsite[99]     2.4  0.0    2.3    2.3    2.4    2.4    2.4    1  6000
+Rsite[100]    2.2  0.0    2.2    2.2    2.2    2.2    2.3    1  6000
+Rsite[101]    2.3  0.0    2.3    2.3    2.3    2.3    2.3    1  6000
+Rsite[102]    2.4  0.0    2.4    2.4    2.4    2.4    2.4    1  6000
+Rsite[103]    1.9  0.0    1.9    1.9    1.9    2.0    2.0    1  6000
+Rsite[104]    2.2  0.0    2.1    2.1    2.2    2.2    2.2    1  6000
+Rsite[105]    2.6  0.0    2.6    2.6    2.6    2.6    2.6    1  4800
+Rsite[106]    2.1  0.0    2.1    2.1    2.1    2.1    2.2    1  4900
+Rsite[107]    2.3  0.0    2.3    2.3    2.3    2.3    2.3    1  6000
+Rsite[108]    2.1  0.0    2.0    2.1    2.1    2.1    2.1    1  3500
+Rsite[109]    2.6  0.0    2.6    2.6    2.6    2.6    2.6    1  6000
+Rsite[110]    2.3  0.0    2.3    2.3    2.3    2.3    2.3    1  4300
+Rsite[111]    2.0  0.0    2.0    2.0    2.0    2.0    2.0    1  6000
+Rsite[112]    2.4  0.0    2.4    2.4    2.4    2.4    2.5    1  1500
+Rsite[113]    1.7  0.0    1.7    1.7    1.7    1.7    1.8    1  6000
+Rsite[114]    2.0  0.0    2.0    2.0    2.0    2.1    2.1    1  6000
+Rsite[115]    2.4  0.0    2.4    2.4    2.4    2.5    2.5    1  6000
+Rsite[116]    1.3  0.0    1.2    1.3    1.3    1.3    1.3    1  6000
+Rsite[117]    2.4  0.0    2.4    2.4    2.4    2.4    2.4    1  6000
+Rsite[118]    2.3  0.0    2.3    2.3    2.3    2.3    2.4    1  6000
+Rsite[119]    2.1  0.0    2.0    2.0    2.1    2.1    2.1    1  6000
+Rsite[120]    2.3  0.0    2.2    2.3    2.3    2.3    2.3    1  6000
+Rsite[121]    1.5  0.0    1.5    1.5    1.5    1.6    1.6    1  5700
+Rsite[122]    1.1  0.0    1.0    1.1    1.1    1.1    1.2    1  1400
+Rsite[123]    1.8  0.0    1.8    1.8    1.8    1.8    1.9    1  6000
+Rsite[124]    2.2  0.0    2.1    2.1    2.2    2.2    2.2    1  6000
+Rsite[125]    1.9  0.0    1.8    1.9    1.9    1.9    1.9    1  6000
+Rsite[126]    2.5  0.0    2.4    2.5    2.5    2.5    2.5    1  6000
+Rsite[127]    2.2  0.0    2.1    2.2    2.2    2.2    2.2    1  3500
+Rsite[128]    2.2  0.0    2.1    2.2    2.2    2.2    2.2    1  6000
+Rsite[129]    2.0  0.0    2.0    2.0    2.0    2.1    2.1    1  6000
+Rsite[130]    2.0  0.0    1.9    2.0    2.0    2.0    2.0    1  4300
+Rsite[131]    2.1  0.0    2.1    2.1    2.1    2.2    2.2    1  6000
+Rsite[132]    2.2  0.0    2.2    2.2    2.2    2.3    2.3    1  5100
+Rsite[133]    2.3  0.0    2.2    2.2    2.3    2.3    2.3    1  4000
+Rsite[134]    1.9  0.0    1.8    1.9    1.9    1.9    1.9    1  6000
+Rsite[135]    1.9  0.0    1.8    1.8    1.9    1.9    1.9    1  6000
+Rsite[136]    1.8  0.0    1.8    1.8    1.8    1.9    1.9    1  1300
+Rsite[137]    1.4  0.0    1.4    1.4    1.4    1.4    1.5    1  6000
+Rsite[138]    2.4  0.0    2.4    2.4    2.4    2.4    2.4    1  1300
+Rsite[139]    1.6  0.0    1.6    1.6    1.6    1.7    1.7    1  6000
+Rsite[140]    2.1  0.0    2.1    2.1    2.1    2.1    2.2    1  6000
+Rsite[141]    1.7  0.0    1.7    1.7    1.7    1.7    1.8    1  6000
+Rsite[142]    2.0  0.0    2.0    2.0    2.0    2.0    2.1    1  6000
+Rsite[143]    0.8  0.0    0.8    0.8    0.8    0.9    0.9    1  6000
+Rsite[144]    1.8  0.0    1.7    1.8    1.8    1.8    1.8    1  6000
+Rsite[145]    1.7  0.0    1.6    1.6    1.7    1.7    1.7    1  6000
+Rsite[146]    2.1  0.0    2.1    2.1    2.1    2.2    2.2    1  2500
+Rsite[147]    1.8  0.0    1.8    1.8    1.8    1.9    1.9    1  2500
+Rsite[148]    2.3  0.0    2.3    2.3    2.3    2.3    2.4    1  1500
+Rsite[149]    2.1  0.0    2.0    2.1    2.1    2.1    2.1    1  6000
+Rsite[150]    2.5  0.0    2.4    2.4    2.5    2.5    2.5    1  6000
+Rsite[151]    1.9  0.0    1.9    1.9    1.9    1.9    1.9    1  6000
+Rsite[152]    2.0  0.0    2.0    2.0    2.0    2.0    2.1    1  3300
+Rsite[153]    2.2  0.0    2.1    2.1    2.2    2.2    2.2    1  6000
+Rsite[154]    1.9  0.0    1.8    1.9    1.9    1.9    1.9    1  3200
+Rsite[155]    2.0  0.0    2.0    2.0    2.0    2.0    2.1    1  6000
+Rsite[156]    1.7  0.0    1.7    1.7    1.7    1.7    1.8    1  6000
+Rsite[157]    1.1  0.0    1.1    1.1    1.1    1.1    1.2    1  6000
+phisite     102.0  9.7   84.2   95.2  101.6  108.5  122.1    1  6000
+deviance   1690.1 19.5 1655.0 1677.0 1690.0 1703.0 1731.0    1  4500
+
+For each parameter, n.eff is a crude measure of effective sample size,
+and Rhat is the potential scale reduction factor (at convergence, Rhat=1).
+
+DIC info (using the rule, pD = Dbar-Dhat)
+pD = -3.3 and DIC = 1687.0
+DIC is an estimate of expected predictive error (lower deviance is better).
+```
+
+```{r}
+print(rongelapResult, digits.summary = 3)
+
+library("coda")
+codaobject <- read.bugs(model)
+plot(codaobject)
+```
+
+
+```{r}
+# data('rongelapResult') # 软件自带的运算结果 bugs 对象
+rongelapParams <- restoreParams(rongelapResult, ragged = forBugs$ragged)
+rongelapParams <- restoreParams(rongelapResult)
+```
+
+
+```{r}
+checkChain(rongelapParams)
+rongelapParams$siteGrid <- CondSimuPosterior(rongelapParams, rongelap,
+  gridSize = 100
+)
+
+rongelapSummary <- summaryChain(rongelapParams)
+```
+
+
+```{r}
+# plot posterior probabilities of being above average
+image(rongelapSummary$siteGrid$pgt0)
+```
+
