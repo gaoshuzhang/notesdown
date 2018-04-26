@@ -20,17 +20,3 @@ bookdown::pdf_book:
   pandoc_args: "--top-level-division=chapter"
   highlight_bw: yes
   template: default.latex
-bookdown::epub_book: default
-rmarkdown::github_document: 
-  toc: yes
-  toc_depth: 2
-  dev: "png"
-rmarkdown::html_document: 
-  toc: yes
-  keep_md: yes
-rmarkdown::pdf_document: 
-  latex_engine: xelatex
-  number_sections: yes
-  toc: no
-  template: default.latex
-  pandoc_args: "--top-level-division=chapter"
