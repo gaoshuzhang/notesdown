@@ -1,5 +1,15 @@
 # 绘图工具
 
+```{r,include=FALSE}
+Pkgs <- c(
+  "webp", "rsvg", "pdftools", "magick"
+)
+if (length(setdiff(Pkgs, .packages(TRUE))) > 0) {
+  install.packages(setdiff(Pkgs, .packages(TRUE)))
+}
+```
+
+
 图片导入，导出，转化，批量转化
 
 导入 SVG 格式的图片, rsvg [@R-rsvg] 批量转化 svg 文件为 pdf 文件

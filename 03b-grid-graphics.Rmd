@@ -1,5 +1,15 @@
 # 高级图形 {#ggplot}
 
+```{r,include=FALSE}
+Pkgs <- c(
+  "cranlogs", "ggthemes",
+  "tidyverse","ggrepel"
+)
+if (length(setdiff(Pkgs, .packages(TRUE))) > 0) {
+  install.packages(setdiff(Pkgs, .packages(TRUE)))
+}
+```
+
 - Claus O. Wilke 新书：数据可视化基础 [Fundamentals of Data Visualization](http://serialmentor.com/dataviz/) 全 R/ggplot2 实现
 
 
@@ -18,7 +28,6 @@ grep('^(stat_)', ls('package:ggplot2'), value = TRUE)
 rattle 下载量时序图
 
 ```{r log,fig.showtext=TRUE}
-library(ggplot2)
 library(cranlogs)
 library(ggthemes)
 pkgs_down <- cran_downloads(package = "rattle", from = Sys.Date() - 365 * 5, to = Sys.Date())
@@ -69,6 +78,6 @@ data %>%
 本节软件信息
 
 ```{r}
-devtools::session_info()
+devtools::session_info("ggplot2")
 ```
 

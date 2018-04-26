@@ -2,11 +2,7 @@
 
 ```{r setup, include = FALSE}
 Pkgs <- c(
-  "cranlogs", "ggthemes", "webp", "rsvg",
-  "pdftools", "magick",
-  "ISLR",
-  "tidyverse","ggrepel",
-  "leaflet","rbokeh","plotly","highcharter"
+  "ISLR", "raster", "sp"
 )
 if (length(setdiff(Pkgs, .packages(TRUE))) > 0) {
   install.packages(setdiff(Pkgs, .packages(TRUE)))

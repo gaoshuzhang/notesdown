@@ -53,7 +53,7 @@ kronecker(A, A, FUN = "*")
 
 矩阵 A 首先是一个方阵，对称性和正定性未知，n 个 矩阵 A 相乘
 
-统计之都论坛讨论如何求矩阵的乘方 <https://d.cosx.org/d/5619-5619>
+统计之都论坛讨论如何求矩阵的乘方 <https://d.cosx.org/d/5619-svd>
 
 ```r
 "%^%" <- function(mat, pow) {
@@ -65,27 +65,24 @@ kronecker(A, A, FUN = "*")
   }
   pow <- round(pow)
   switch(pow + 1, return(diag(1, nrow(mat))), return(mat))
-  get.exponents <- function(pow) {
-    if (pow == 0) {
-      NULL
-    } else {
-      c(k <- 2^floor(log2(pow)), get.exponents(pow - k))
-    }
-  }
+  get.exponents <- function(pow)
+    if (pow == 0) NULL else c(k <- 2^floor(log2(pow)), get.exponents(pow - k))
   ans <- diag(nrow(mat))
   dlog2exp <- rev(-diff(c(log2(get.exponents(pow)), 0)))
   for (j in 1:length(dlog2exp)) {
-    if (dlog2exp[j]) {
-      for (i in 1:dlog2exp(j)) {
-        mat <- mat %*% mat
-      }
-    }
+    if (dlog2exp[j]) for (i in 1:dlog2exp[j]) mat <- mat %*% mat
     ans <- ans %*% mat
   }
   ans
 }
 ```
 
+奇异值分解
+
+```r
+s <- svd(A)
+all.equal(s$u%*%diag(s$d)%*%t(s$v),A)
+```
 
 特征值及分解 $A = V \Lambda V^{-1}$ 求解矩阵 A 的 n 次方
 
@@ -279,6 +276,8 @@ A
 
 ## 特殊函数
 
+### 阶乘
+
 - 阶乘 $n! = 1\times 2\times 3\cdots n$ 
 - 双阶乘 $(2n+1)!! = 1 \times 3\times 5 \times \cdots \times (2n+1), n = 0,1,2,\cdots$
 
@@ -302,7 +301,9 @@ $C_{5}^{3} = \frac{5 \times 4 \times 3}{3 \times 2 \times 1}$
 choose(5,3)
 ```
 
-- 伽马函数
+> 斯特林公式
+
+### 伽马函数
 
 $\Gamma(x) = \int_{0}^{\infty} t^{x-1}\exp(-t)dt$
 $\Gamma(n) = (n-1)!, n \in \mathbb{Z}^{+}$
@@ -340,7 +341,7 @@ dx2x <- deriv(~ x^3, "x")
 eval(dx2x)
 ```
 
-- 贝塔函数
+### 贝塔函数
 
 $B(a,b) = \Gamma(a)\Gamma(b)/\Gamma(a+b) = \int_{0}^{1} t^{a-1} (1-t)^{b-1} dt$
 
@@ -353,7 +354,7 @@ beta2 <- function(t, a, b) {
 integrate(beta2, lower = 0, upper = 1, a = 2, b = 3)
 ```
 
-- 贝塞尔函数
+### 贝塞尔函数
 
 ```r
 besselI(x, nu, expon.scaled = FALSE) # 修正的第一类
@@ -373,4 +374,69 @@ plot(x, x, ylim = c(0, 6), ylab = "", type = "n",
 for(nu in nus) lines(x, besselI(x, nu = nu), col = nu + 2)
 legend(0, 6, legend = paste("nu=", nus), col = nus + 2, lwd = 1)
 ```
+
+## 统计分布 {#distribution}
+
+
+### 一元分布
+
+三大抽样及其历史
+
+### 多元分布
+
+多元t分布函数
+
+The multivariate $t$ distribution (MVT) is given by
+
+$$T(\mathbf{a},\mathbf{b},\Sigma,\nu)=\frac{2^{1-\frac{\nu}{2}}}{\Gamma(\frac{\nu}{2}) } \int_{0}^{\infty} s^{\nu-1}e^{-\frac{s^2}{2}} \Phi(\frac{s\mathbf{a}}{\sqrt{\nu}},\frac{s\mathbf{b}}{\sqrt{\nu}},\Sigma)ds$$
+
+multivariate normal distribution function (MVN)
+
+$$\Phi(\mathbf{a},\mathbf{b},\Sigma)=\frac{1}{\sqrt{|\Sigma|(2\pi)^m}} \int_{a_1}^{b_1}\!\int_{a_2}^{b_2}\!\cdots\!\int_{a_m}^{b_m} e^{-\frac{1}{2}x^\top\Sigma^{-1}x}dx$$
+$x=(x_1,x_2,\dots,x_m)^\top,-\infty \le a_i \le b_i \le \infty$ for all $i$ and $\Sigma$ is a positive semi-definite symmetric $m \times m$ matrix
+
+多元$t$分布分位数计算
+
+```r
+library(mvtnorm)
+library(matrixcalc)
+n <- c(26, 24, 20, 33, 32)
+V <- diag(1 / n)
+df <- 130
+C <- matrix(c(
+  1, 1, 1, 0, 0, -1, 0, 0, 1, 0,
+  0, -1, 0, 0, 1, 0, 0, 0, -1, -1,
+  0, 0, -1, 0, 0
+), ncol = 5)
+cv <- C %*% V %*% t(C) ## covariance matrix
+dv <- t(1 / sqrt(diag(cv)))
+cr <- cv * (t(dv) %*% dv) ## correlation matrix
+delta <- rep(0, 5)
+Tn <- qmvt(0.95,
+  df = df, delta = delta, corr = cr,
+  abseps = 0.0001, maxpts = 100000, tail = "both"
+)
+Tn
+```
+
+计算多元正态分布的概率
+
+```r
+sigma <- read.csv(file = "data/sigma.csv", header = F, sep = ",")
+mat <- matrix(0, nrow = nrow(sigma), ncol = ncol(sigma))
+sigma <- as.matrix(sigma)
+attributes(sigma) <- attributes(mat)
+# str(sigma)
+# is.symmetric.matrix(sigma)
+# is.positive.definite(sigma)
+m <- nrow(sigma)
+Fn <- pmvnorm(
+  lower = rep(-Inf, m), upper = rep(0, m),
+  mean = rep(0, m), sigma = sigma
+)
+Fn
+```
+
+mvrnorm 函数来自 MASS 包，模拟多元正态分布的样本
+
 

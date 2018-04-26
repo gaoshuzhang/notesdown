@@ -15,41 +15,40 @@ rmd_files: [
   "index.Rmd",
   # 基础篇
   "01-setup.Rmd",
-  "02a-math.Rmd",
-  "02b-data.Rmd",  
-  "02c-file.Rmd",
-
-  "03a-plot.Rmd",
-  "03b-ggplot2.Rmd",
-  "03c-javascript.Rmd",  
-  "03d-tikz.Rmd",  
-  "03e-vector.Rmd",  
-  
-  "04-color.Rmd",
-  "05-font.Rmd",
+  "02a-math-operators.Rmd",
+  "02b-data-manipulation.Rmd",  
+  "02c-file-manipulation.Rmd",
+  # 绘图篇
+  "03a-plot-graphics.Rmd",
+  "03b-grid-graphics.Rmd",
+  "03c-dynamic-graphics.Rmd",  
+  "03d-Tikz-PGF.Rmd",  
+  "03e-vector-graphics.Rmd",  
+  # 中忍
+  "04-colors-in-plot.Rmd",
+  "05-fonts-in-plot.Rmd",
   "06-animation.Rmd",
-  
-  # 进阶篇 
+  # 进阶篇
   "07-optimation.Rmd",
-  "08-computing.Rmd",
-  
-  "09-gp.Rmd",
-  "10-mcmc.Rmd",
-  "11-inla.Rmd",
-
-  "12-spatial.Rmd",
-  "13-network.Rmd",
+  "08-statistical-simulation.Rmd",
+  "09-gaussian-process.Rmd",
+  # 上忍
+  "10-bayesian-computation.Rmd",
+  "11-laplace-approximations.Rmd",
+  # 案例篇
+  "12-analysis-spatial-data.Rmd",
+  "13-analysis-network-data.Rmd",
   # 高级篇
   "15-glm.Rmd",
-  "16-mm.Rmd",
+  "16-glmm.Rmd",
   "17-gam.Rmd",
-
-  "18-appendix.Rmd",
   # 附录
+  "18-appendix.Rmd",
   "19a-markdown.Rmd",
   "19b-matplotlib.Rmd",
-  "19c-cpp.Rmd",
-  "19d-tools.Rmd",
+  "19c-r2cpp.Rmd",
+  "19d-software-tools.Rmd",
   "19e-bookmarks.Rmd",
+  # 参考文献
   "20-references.Rmd",
 ]
