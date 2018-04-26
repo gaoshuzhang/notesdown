@@ -208,10 +208,20 @@ git config --global credential.helper store
 
 ```bash
 git init
-git remote add origin https://github.com/XiangyunHuang/notes-book.git
+git remote add origin https://github.com/XiangyunHuang/notesdown.git
 git add -A
 git commit -m "balabala"
 git push -u origin master
+```
+
+本地新建仓库推送至远程分支
+
+```bash
+git remote add origin https://github.com/XiangyunHuang/notesdown.git
+git add .
+git commit -m "init cos-art"
+# 此时远程仓库 notesdown 还没有 cos-art 分支
+git push origin master:cos-art
 ```
 
 使用 zsh
