@@ -11,6 +11,12 @@ cache:
     - $HOME/texlive
     - $HOME/.fonts
 
+branches:
+  only:
+    - master
+    - devel
+    - cos-art
+    
 pandoc_version: 2.1.3
 
 addons:
