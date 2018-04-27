@@ -1,4 +1,4 @@
-# 贝叶斯计算
+# 贝叶斯计算 {#bayes}
 
 ```{r setup, include = FALSE}
 Pkgs <- c(
