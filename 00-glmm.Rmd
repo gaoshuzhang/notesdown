@@ -2,4 +2,4 @@
 
 广义线性混合效应模型（以下简称 GLMM），即广义线性模型和混合效应模型的组合，一种最简单的形式如下：
 $$\mathbf{y} = \alpha + \mathbf{X} \boldsymbol{\beta} + \mathbf{Z} \mathbf{b} + \boldsymbol{\epsilon},$$
-其中，$\mathbf{X}$ 为 $n\times p$ 已知设计阵
+其中，$\mathbf{X}$ 为 $n\times p$ 已知设计阵，$\boldsymbol{\beta}$ 表示固定效应，$\mathbf{b}$ 表示随机效应，
