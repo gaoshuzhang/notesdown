@@ -18,6 +18,8 @@ addons:
       - optipng
 
 before_install:
+  - git config --global user.email "xiangyunfaith@outlook.com"
+  - git config --global user.name "Xiangyun Huang"
   # for pdf output
   - tlmgr update --all --self
   - tlmgr install ctex xecjk zhnumber fandol filehook lm-math unicode-math index sourceserifpro
@@ -25,3 +27,12 @@ before_install:
 script:
   - Rscript -e 'update.packages(ask = FALSE)'
   - Rscript -e 'bookdown::render_book("index.Rmd", output_format = "all")'
+
+after_success:
+  - cd _book
+  - git init
+  - git remote add origin https://github.com/XiangyunHuang/notesdown.git
+  - git add -A
+  - git commit -m"Daily update"
+  - git push -q https://${GITHUB_PAT}@github.com/XiangyunHuang/notesdown.git master:cos-art/output
+ 
