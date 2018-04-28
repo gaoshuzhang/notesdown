@@ -34,5 +34,5 @@ after_success:
   - git remote add origin https://github.com/XiangyunHuang/notesdown.git
   - git add -A
   - git commit -m"Daily update"
-  - git push -q https://${GITHUB_PAT}@github.com/XiangyunHuang/notesdown.git master:cos-art/docs
+  - git push -q https://${GITHUB_PAT}@github.com/XiangyunHuang/notesdown.git master:cos-docs
  
