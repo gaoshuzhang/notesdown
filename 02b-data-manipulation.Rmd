@@ -7,6 +7,17 @@
 
 以 CRAN 日志数据为例
 
+- R 包开发者
+
+```{r}
+library(magrittr)
+#Pkgs <- c('knitr', 'rmarkdown', 'bookdown', 'blogdown', 
+#          'animation', 'tinytex', 'ggplot2', 'devtools')
+#lapply(.packages(T), maintainer) %>% unlist %>% unique
+
+gsub(' <([^<>]*)>', '', lapply(.packages(T), maintainer) %>% unlist)  %>% unique %>% sort
+```
+
 ## order 和 sort
 
 
