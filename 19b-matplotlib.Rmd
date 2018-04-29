@@ -11,7 +11,7 @@ sudo -H pip install numpy matplotlib
 
 默认使用 [STIX 数学字体](http://www.stixfonts.org/) 和 DejaVu Sans 英文字体，如图 \@ref(fig:math-matplotlib) 所示
 
-```{python math-matplotlib, fig.cap = "数学公式", dev = if(knitr::is_latex_output()) "pdf" else if(knitr::is_html_output()) "svg" else "png"}
+```{python math-matplotlib, fig.cap = "数学公式"}
 import numpy as np
 import matplotlib.pyplot as plt
 plt.switch_backend('agg') # Very Important in R Markdown
@@ -48,7 +48,7 @@ embedFonts(file = "math-in-plot.pdf", outfile = "math-in-plot-embed.pdf")
 
 如图 \@ref(fig:native-math)
 
-```{python native-math, fig.cap = "本真的公式样式", dev = if(knitr::is_latex_output()) "pdf" else "png"}
+```{python native-math, fig.cap = "本真的公式样式"}
 from __future__ import unicode_literals
 import numpy as np
 import matplotlib
@@ -87,7 +87,7 @@ text.usetex        : true
 ```
 
 
-```{python, fig.cap = "Python数学字体设置", dev = if(knitr::is_latex_output()) "pdf" else if(knitr::is_html_output()) "svg" else "png"}
+```{python, fig.cap = "Python数学字体设置"}
 #from matplotlib import rc
 #rc('font',**{'family':'sans-serif','sans-serif':['Helvetica']})
 ## for Palatino and other serif fonts use:
@@ -184,4 +184,3 @@ p.y_range.range_padding = 0.12
 
 show(p)
 ```
-
