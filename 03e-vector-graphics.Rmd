@@ -57,6 +57,29 @@ knitr::include_graphics(path = paste0(
 ))
 ```
 
+
+## 转化
+
+首先安装 ImageMagick 软件包中的 covert 程序
+
+```bash
+asy -f jpg test.asy
+```
+
+高质量大图，给定像素
+
+```
+convert -geometry 1000x3000 example.eps example.png
+```
+
+指定分辨率
+
+```
+convert -geometry 1000x3000 -density 300 -units PixelsPerInch example.eps example.png
+```
+
+这样不改变图像的像素数，只是给出一个每个像素应该显示多大的提示。
+
 ## 优化
 
 optipng 是一个非常好的图片压缩、优化工具
