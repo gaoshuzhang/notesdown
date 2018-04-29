@@ -87,7 +87,7 @@ text.usetex        : true
 ```
 
 
-```{python, fig.cap = "Python字体设置"}
+```{python, fig.cap = "Python数学字体设置", dev = if(knitr::is_latex_output()) "pdf" else if(knitr::is_html_output()) "svg" else "png"}
 #from matplotlib import rc
 #rc('font',**{'family':'sans-serif','sans-serif':['Helvetica']})
 ## for Palatino and other serif fonts use:
