@@ -1,5 +1,15 @@
 # 绘图工具
 
+```{r,include=FALSE}
+Pkgs <- c(
+  "webp", "rsvg", "pdftools", "magick"
+)
+if (length(setdiff(Pkgs, .packages(TRUE))) > 0) {
+  install.packages(setdiff(Pkgs, .packages(TRUE)))
+}
+```
+
+
 图片导入，导出，转化，批量转化
 
 导入 SVG 格式的图片, rsvg [@R-rsvg] 批量转化 svg 文件为 pdf 文件
@@ -46,6 +56,29 @@ knitr::include_graphics(path = paste0(
   )
 ))
 ```
+
+
+## 转化
+
+首先安装 ImageMagick 软件包中的 covert 程序
+
+```bash
+asy -f jpg test.asy
+```
+
+高质量大图，给定像素
+
+```
+convert -geometry 1000x3000 example.eps example.png
+```
+
+指定分辨率
+
+```
+convert -geometry 1000x3000 -density 300 -units PixelsPerInch example.eps example.png
+```
+
+这样不改变图像的像素数，只是给出一个每个像素应该显示多大的提示。
 
 ## 优化
 

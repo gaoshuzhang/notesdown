@@ -14,12 +14,13 @@ tables: yes
 link-citations: yes
 links-as-notes: no
 colorlinks: yes
-classoption: "hyperref, a4paper, UTF8, zihao = -4, linespread = 1.3"
+toccolor: magenta
+classoption: "hyperref, a4paper, UTF8, zihao = -4, linespread = 1.3, table"
 description: "这是一个R语言学习笔记"
 url: 'https\://bookdown-chinese.netlify.com/'
 github-repo: "xiangyunhuang/notesdown"
-cover-image: "images/dragon.svg"
-apple-touch-icon: "images/dragon.svg"
+cover-image: "images/dragon.png"
+apple-touch-icon: "images/dragon.png"
 apple-touch-icon-size: 120
 favicon: "favicon.ico"
 ---
@@ -119,12 +120,7 @@ cat(".\n")
 
 - R语言基础、高级技巧
 
-你好，世界。我写了一本书。这本书是这样的，第 \@ref(color) 章介绍了啥啥，第 \@ref(graphics) 章说了啥啥，然后是啥啥……
-
-- 第 \@ref(animotion) 章介绍 animation、mapmate、rgl
-- 第 \@ref(mcmc) 章介绍 rstan
-- 第 \@ref(spatial) 章介绍 sf
-- 第 \@ref(network) 章介绍 igraph
+你好，世界。我写了一本书。这本书是这样的，第 \@ref(install-setup) 章介绍了啥啥，第 \@ref(math-operator) 章说了啥啥，然后是啥啥……
 
 ## 记号
 
@@ -137,31 +133,31 @@ cat(".\n")
 
 $A,B,C,D$ 斜体表示普通的集合，$X,Y,Z$ 表示矩阵，$a,b,c,d$ 表示常数，$\alpha,\beta,\theta,\phi,\kappa$ 表示模型或者分布函数的参数，$\Theta$ 表示参数空间，$\mathbb{R}^{n},\mathbb{C}^{n}$ 表示特殊的 $n$ 维实（复）数域，$\mathscr{A,B,C,D}$ 表示一般的数域，$\mathcal{S,P,G}$ 分别表示随机过程、概率空间和图
 
-符号   | 含义             | 符号  | 含义
- :---: |   :----------:   | :---: |  :----------: 
-$\mathbf{A}$               | 粗体            | $\Omega$                   | 全集
-$\mathit{A}$               | 集合            | $\mathbb{R,C}$             | 实（复）数集
-$\mathcal{A}$              | 集族            | $\varnothing$               | 空集
-$\mathsf{A}$               | 矩阵            | $\mathsf{A}^{-}$            | 矩阵的广义逆
-$\mathsf{A}^\top$          | 矩阵转置        | $\bar{x}$                   | 平均值
-$\mathsf{A}^\mathrm{-1}$   | 矩阵的逆        | $\vert a \vert$             | 标量绝对值
-$\mathsf{A}^{\star}$       | 伴随矩阵        | $\mathop{\mathrm{diag}}(\mathsf{A})$ | 矩阵的对角
-$\lVert \mathsf{A} \rVert_{1}$       | 矩阵的1范数     | $\mathsf{I}$                | 单位矩阵
-$\lVert \mathsf{A} \rVert_{2}$       | 矩阵的2范数     | $\mathsf{I}_{n}$            | $n$ 阶单位矩阵
-$\lVert \mathsf{A} \rVert_{\infty}$  | 矩阵的无穷范数  | $\mathsf{1}$                | 全1矩阵
-$\lVert \mathsf{X} \rVert_{1}$       | 向量的1范数     | $\mathsf{1}_{n}$            | $n$ 阶全1矩阵
-$\lVert \mathsf{X} \rVert_{2}$       | 向量的2范数     | $\lVert \mathsf{X} \rVert_{\infty}$  | 向量的无穷范数
-$\langle\mathsf{X},\mathsf{Y}\rangle$ | 向量的内积    | $f(\mathsf{X})$        | 随机变量的函数
-$\mathsf{X} \wedge \mathsf{Y}$       | 向量的外积     | $\nabla{\mathsf{X}}$   | 向量微分或梯度
-$\beta$                              | 模型系数             | $\theta$               | 模型或分布参数
-$\alpha$                             | 模型截距             | $\Theta$               | 参数空间
-$\hat{\beta}_{ls}$                   | 模型系数的LS估计     | $f(x)$                 | 标量值函数
-$\hat{\beta}_{mle}$                  | 模型系数的MLE估计    | $f(\mathsf{X})$        | 向量的函数
-$\hat{\beta}_{bayes}$                | 模型系数的Bayes估计  | $\mathcal{X}$          | 概率空间
-$\rho$                              | 相关系数            | $\kappa$      | 贝塞尔函数的阶
-$\phi$                              | 尺度参数            | $u$           | 距离 $\lVert \mathsf{x}_1 -\mathsf{x}_2 \rVert$
-$\mathbb{R}^2$                      | 二维实数域        | $S(x)$        | 空间过程
-$\mathcal{S}$      | $\mathcal{S} = \{S(x):x \in \mathbb{R}^2\}$ | $\mathcal{S}^{\star}$  | 随机过程 $\mathcal{S}$ 的近似
+|                 符号                  |                    含义                     |                 符号                 |                     含义                      |
+| :-----------------------------------: | :-----------------------------------------: | :----------------------------------: | :-------------------------------------------: |
+|             $\mathbf{A}$              |                    粗体                     |               $\Omega$               |                     全集                      |
+|             $\mathit{A}$              |                    集合                     |            $\mathbb{R,C}$            |                 实（复）数集                  |
+|             $\mathcal{A}$             |                    集族                     |            $\varnothing$             |                     空集                      |
+|             $\mathsf{A}$              |                    矩阵                     |           $\mathsf{A}^{-}$           |                 矩阵的广义逆                  |
+|           $\mathsf{A}^\top$           |                  矩阵转置                   |              $\bar{x}$               |                    平均值                     |
+|       $\mathsf{A}^\mathrm{-1}$        |                  矩阵的逆                   |           $\vert a \vert$            |                  标量绝对值                   |
+|         $\mathsf{A}^{\star}$          |                  伴随矩阵                   | $\mathop{\mathrm{diag}}(\mathsf{A})$ |                  矩阵的对角                   |
+|    $\lVert \mathsf{A} \rVert_{1}$     |                 矩阵的1范数                 |             $\mathsf{I}$             |                   单位矩阵                    |
+|    $\lVert \mathsf{A} \rVert_{2}$     |                 矩阵的2范数                 |           $\mathsf{I}_{n}$           |                $n$ 阶单位矩阵                 |
+|  $\lVert \mathsf{A} \rVert_{\infty}$  |               矩阵的无穷范数                |             $\mathsf{1}$             |                    全1矩阵                    |
+|    $\lVert \mathsf{X} \rVert_{1}$     |                 向量的1范数                 |           $\mathsf{1}_{n}$           |                 $n$ 阶全1矩阵                 |
+|    $\lVert \mathsf{X} \rVert_{2}$     |                 向量的2范数                 | $\lVert \mathsf{X} \rVert_{\infty}$  |                向量的无穷范数                 |
+| $\langle\mathsf{X},\mathsf{Y}\rangle$ |                 向量的内积                  |           $f(\mathsf{X})$            |                随机变量的函数                 |
+|    $\mathsf{X} \wedge \mathsf{Y}$     |                 向量的外积                  |         $\nabla{\mathsf{X}}$         |                向量微分或梯度                 |
+|                $\beta$                |                  模型系数                   |               $\theta$               |                模型或分布参数                 |
+|               $\alpha$                |                  模型截距                   |               $\Theta$               |                   参数空间                    |
+|          $\hat{\beta}_{ls}$           |              模型系数的LS估计               |                $f(x)$                |                  标量值函数                   |
+|          $\hat{\beta}_{mle}$          |              模型系数的MLE估计              |           $f(\mathsf{X})$            |                  向量的函数                   |
+|         $\hat{\beta}_{bayes}$         |             模型系数的Bayes估计             |            $\mathcal{X}$             |                   概率空间                    |
+|                $\rho$                 |                  相关系数                   |               $\kappa$               |                贝塞尔函数的阶                 |
+|                $\phi$                 |                  尺度参数                   |                 $u$                  | 距离 $\lVert \mathsf{x}_1 -\mathsf{x}_2 \rVert$ |
+|            $\mathbb{R}^2$             |                 二维实数域                  |                $S(x)$                |                   空间过程                    |
+|             $\mathcal{S}$             | $\mathcal{S} = \{S(x):x \in \mathbb{R}^2\}$ |        $\mathcal{S}^{\star}$         |         随机过程 $\mathcal{S}$ 的近似         |
 
 - 多元统计分析 高惠璇 矩阵符号表示
 - 深度学习符号表示 <https://github.com/XiangyunHuang/dlbook>
@@ -189,7 +185,7 @@ $$\rho(u) = \big\{2^{\kappa-1}\Gamma(\kappa)\big\}^{-1}(u/\phi)^{\kappa}K_{\kapp
 
  `r if(knitr::is_html_output()) "Travis-CI 还提供一个指示器报告编译的状态：[![Build Status](https://travis-ci.org/XiangyunHuang/notesdown.svg?branch=master)](https://travis-ci.org/XiangyunHuang/notesdown)"`
 
-```{r 00-workflow, echo = FALSE, fig.cap="书籍写作流程"}
+```{r 00-workflow, echo = FALSE, fig.cap="两种编译方式及过程"}
 ext <- if (knitr::is_html_output()) ".svg" else if (knitr::is_latex_output()) ".pdf" else ".png"
 knitr::include_graphics(path = paste0("diagrams/00-workflow", ext))
 ```
