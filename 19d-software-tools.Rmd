@@ -52,10 +52,10 @@ help('modules')
 system('pdflatex --version')
 ```
 
-```{r}
+```{r,eval=FALSE}
 # list all installed LaTeX packages
+# tlmgr info --list --only-installed --data name,size
 tinytex::tlmgr(c("info", "--list", "--only-installed", "--data", "name,size"))
-# or, tlmgr info --list --only-installed --data name
 ```
 
 可以考虑打包自定义 TinyTeX 发行版，自定义在于最小的中文支持和最喜爱的英文字体设置 fandol 和 sourceserifpro(XeLaTeX)，mathptmx 和 inconsolata(PDFLaTeX), fibeamer, Pandoc's LaTeX 模板 
