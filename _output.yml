@@ -14,9 +14,9 @@ bookdown::gitbook:
     sharing: yes
 bookdown::pdf_book:
   includes:
-    in_header: preamble.tex
-    before_body: before_body.tex
-    after_body: after_body.tex    
+    in_header: latex/preamble.tex
+    before_body: latex/before_body.tex
+    after_body: latex/after_body.tex    
   latex_engine: xelatex
   citation_package: natbib
   keep_tex: no
@@ -26,5 +26,5 @@ bookdown::pdf_book:
   toc_unnumbered: yes
   toc_appendix: yes
   highlight_bw: no
-#  template: default.latex
-  base_format: rticles::ctex
+  template: latex/default.latex
+#  base_format: rticles::ctex

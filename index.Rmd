@@ -14,7 +14,7 @@ tables: yes
 link-citations: yes
 links-as-notes: no
 colorlinks: yes
-#toccolor: magenta
+toccolor: magenta
 classoption: "hyperref, a4paper, UTF8, zihao = -4, linespread = 1.3"
 description: "这是一个R语言学习笔记"
 url: 'https\://bookdown-chinese.netlify.com/'
