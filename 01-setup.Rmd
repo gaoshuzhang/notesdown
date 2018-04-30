@@ -8,7 +8,7 @@ if (length(setdiff(Pkgs, .packages(TRUE))) > 0)
   install.packages(setdiff(Pkgs, .packages(TRUE)))
 ```
 
-## 安装 R
+## 安装 R 软件
 
 Windows 下安装指导见《R语言忍者秘笈》的第二章^[<https://bookdown.org/yihui/r-ninja/setup.html>]
 
@@ -29,9 +29,7 @@ Windows 下安装指导见《R语言忍者秘笈》的第二章^[<https://bookdo
 
 Hadley Wickham 正在写文档介绍 [Documentation for R's internal C API](https://github.com/hadley/r-internals)
 
-## 编译 R
-
-从源码编译 R 的需求在哪呢？
+- 从源码编译 R 的需求在哪呢？
 
 1. 爱折腾的极客：玩配置，学习 make 相关工具和 Linux 世界的依赖
 2. 追求性能：如 [LFS 支持](http://users.suse.com/~aj/linux_lfs.html) 和 [Intel MKL 加速](http://dirk.eddelbuettel.com/blog/2018/04/15/#018_mkl_for_debian_ubuntu)
@@ -72,7 +70,7 @@ wqy-unibit-fonts wqy-microhei-fonts wqy-zenhei-fonts
     + [离线安装](https://docs.microsoft.com/en-us/machine-learning-server/install/machine-learning-server-linux-offline)
 
 
-## 安装 R 包
+## 安装 R 扩展包
 
 - 从指定的镜像站点安装（源头）
 
@@ -145,7 +143,9 @@ dieharderTests() %>% head()
 
 RDieHarder \index{RDieHarder} [@R-RDieHarder] 由 [Dirk Eddelbuettel](http://dirk.eddelbuettel.com) 开发，将 [Robert G. Brown](http://www.phy.duke.edu/~rgb/General/dieharder.php) 的工作介绍给 R 用户
 
-### SparkR 和 sparklyr
+### SparkR
+
+### sparklyr
 
 ```{r,eval=FALSE}
 library(sparklyr)
@@ -153,7 +153,7 @@ library(sparklyr)
 spark_install(version = "2.2.0", hadoop_version = "2.7")
 ```
 
-### clickhouse-r
+### DBI
 
 这是一个存放在Github上的包，随着 ClikHouse 在大厂的流行，此包也受到越来越多的关注
 与数据仓库如何连接，如何查询数据，背后的接口 DBI 如何使用，实例化一个新的接口（如 clickhouse2r ）
@@ -210,10 +210,15 @@ install.packages("INLA",
 
 同样地，依赖也是很多，主要在于 GPU 版如何安装使用
 
-## 配置
+## 安装 IDE
+
+RStudio
 
 
-工作目录下的 .Rprofile，设置 site-library，设置环境变量
+## 配置文件
+
+
+工作目录下的 .Rprofile，设置 site-library，设置环境变量 Renviron
 
 
 
