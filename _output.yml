@@ -24,5 +24,7 @@ bookdown::pdf_book:
   toc_depth: 3
   toc_bib: yes
   toc_unnumbered: yes
-  toc_appendix: yes  
+  toc_appendix: yes
+  highlight_bw: no
+#  template: default.latex
   base_format: rticles::ctex

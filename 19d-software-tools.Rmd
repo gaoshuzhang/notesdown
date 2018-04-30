@@ -52,9 +52,18 @@ help('modules')
 system('pdflatex --version')
 ```
 
-```{r, warning=FALSE}
-pkg <- base::system("tlmgr list --only-installed", intern = TRUE)
-do.call(rbind, strsplit(pkg, split = ":"))[, 1]
+```{r}
+# list all installed LaTeX packages
+tinytex::tlmgr(c("info", "--list", "--only-installed", "--data", "name,size"))
+# or, tlmgr info --list --only-installed --data name
+```
+
+可以考虑打包自定义 TinyTeX 发行版，自定义在于最小的中文支持和最喜爱的英文字体设置 fandol 和 sourceserifpro(XeLaTeX)，mathptmx 和 inconsolata(PDFLaTeX), fibeamer, Pandoc's LaTeX 模板 
+
+在 Windows or MacOS 下需要这行操作
+
+```
+tlmgr --repository http://www.preining.info/tlgpg/ install tlgpg
 ```
 
 系统安装的字体
@@ -271,4 +280,8 @@ docker exec -it book bash
 
 由于要安装 rstan 和 rstanarm 包，编译的过程中需要比较大的内存空间，默认分配给 docker 的内存要增加到 4 Gb，也就装个软件，大一点的基于 stan 实现的模型，还是适合放在大机器上跑，笔电可以跑跑简单的模型，学习一下就可以了。
 
+查看系统路径，环境变量
 
+```{r}
+strsplit(Sys.getenv("PATH"),split = .Platform$path.sep)
+```

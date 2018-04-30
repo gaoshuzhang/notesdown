@@ -133,7 +133,7 @@ Seaborn is a Python visualization library based on matplotlib. It provides a hig
 
 > R Markdown 暂不支持动态 Python 图形的展示
 
-```{python,eval = FALSE}
+```{python, eval = FALSE}
 # https://bokeh.pydata.org/en/latest/docs/gallery/joyplot.html
 from numpy import linspace
 from scipy.stats.kde import gaussian_kde
