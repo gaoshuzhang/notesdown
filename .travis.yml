@@ -59,7 +59,7 @@ before_install:
   # for deploy
   - npm install netlify-cli -g
   # for pdf output
-  - tlmgr update --all --self
+  - tlmgr update --all
   - tlmgr install $(cat TeXLive.pkgs | tr '\n' ' ') || true
   - Rscript -e 'if(!require("devtools")) install.packages("devtools");devtools::install_github("tidyverse/ggplot2")'
 
