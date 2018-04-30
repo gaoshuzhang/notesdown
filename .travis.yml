@@ -21,7 +21,7 @@ before_install:
   - git config --global user.email "xiangyunfaith@outlook.com"
   - git config --global user.name "Xiangyun Huang"
   # for pdf output
-  - tlmgr update --all --self
+  #- tlmgr update --all --self
   - tlmgr install ctex xecjk zhnumber fandol filehook lm-math unicode-math index sourceserifpro
 
 script:
