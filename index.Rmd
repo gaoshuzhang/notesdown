@@ -38,6 +38,18 @@ library(MASS)
 ```
 
 
+```{r}
+devtools::session_info('bookdown')
+```
+
+## 符号
+
+
+- $\mathbb{R}^2,\mathbb{C}^2$ 二维实数域
+
+- $\mupAlpha,\mupBeta,\mupGamma,\mathrm{C}$
+- $\alpha,\beta,\gamma,A,B,\Gamma,C$
+
 ```{r include=FALSE}
 # automatically create a bib database for R packages
 knitr::write_bib(c(

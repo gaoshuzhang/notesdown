@@ -25,7 +25,7 @@ before_install:
   - tlmgr install ctex xecjk zhnumber fandol filehook lm-math unicode-math index sourceserifpro
 
 script:
-  - Rscript -e 'update.packages(ask = FALSE)'
+  # - Rscript -e 'update.packages(ask = FALSE)'
   - Rscript -e 'bookdown::render_book("index.Rmd", output_format = "all")'
 
 after_success:

@@ -6,7 +6,13 @@ output:
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(
+  echo = TRUE,
+  engine.path = list(
+#    octave = "/usr/bin/octave-cli",
+    python = "D:/Anaconda3/python.exe"
+  )
+  )
 ```
 
 This is a minimal example of a book based on R Markdown and **bookdown** (https://github.com/rstudio/bookdown). Please see the page "Get Started" at https://bookdown.org/ for how to compile this example.
@@ -32,3 +38,34 @@ plot(pressure)
 ```
 
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+```{python}
+print('hello')
+```
+
+
+```{python, dev = "png", eval = T}
+import numpy as np
+import matplotlib.pyplot as plt
+plt.switch_backend('agg') # Very Important in R Markdown
+
+# Example data
+t = np.arange(0.0, 1.0 + 0.01, 0.01)
+s = np.cos(4 * np.pi * t) + 2
+
+plt.rc('text', usetex=True)
+plt.rc('font', family='serif')
+plt.plot(t, s)
+
+plt.xlabel(r'\textbf{time} (s)')
+plt.ylabel(r'\textit{voltage} (mV)',fontsize=16)
+plt.title(r"\TeX\ is Number "
+          r"$\displaystyle\sum_{n=1}^\infty\frac{-e^{i\pi}}{2^n}$!",
+          fontsize=16, color='gray')
+# Make room for the ridiculously large title.
+plt.subplots_adjust(top=0.8)
+
+# plt.savefig('tex_demo')
+plt.show()
+```
+
