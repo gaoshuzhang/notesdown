@@ -11,11 +11,15 @@
 
 ```{r}
 library(magrittr)
-#Pkgs <- c('knitr', 'rmarkdown', 'bookdown', 'blogdown', 
-#          'animation', 'tinytex', 'ggplot2', 'devtools')
-#lapply(.packages(T), maintainer) %>% unlist %>% unique
-
-gsub(' <([^<>]*)>', '', lapply(.packages(T), maintainer) %>% unlist)  %>% unique %>% sort
+gsub(
+  " <([^<>]*)>", "",
+  lapply(.packages(TRUE), maintainer)
+  %>%
+    unlist()
+) %>% 
+  unique() %>% 
+  sort() %>% 
+  tail(10)
 ```
 
 ## order 和 sort
