@@ -13,12 +13,18 @@ before_chapter_script: ["common.R"]
 
 rmd_files: [
   "index.Rmd",
+  
   # 基础篇
+  "Foundations.Rmd",
+  
   "01-setup.Rmd",
   "02a-math-operators.Rmd",
-  "02b-data-manipulation.Rmd",  
+  "02b-data-manipulation.Rmd",
   "02c-file-manipulation.Rmd",
+  
   # 绘图篇
+  "Graphics.rmd",
+  
   "03a-plot-graphics.Rmd",
   "03b-grid-graphics.Rmd",
   "03c-dynamic-graphics.Rmd",  
@@ -28,17 +34,26 @@ rmd_files: [
   "04-colors-in-plot.Rmd",
   "05-fonts-in-plot.Rmd",
   "06-animation.Rmd",
+  
   # 进阶篇
+  "Computations.Rmd",
+  
   "07-optimation.Rmd",
   "08-statistical-simulation.Rmd",
   "09-gaussian-process.Rmd",
   # 上忍
   "10-bayesian-computation.Rmd",
   "11-laplace-approximations.Rmd",
+  
   # 案例篇
+  "Analysis.Rmd",
+  
   "12-analysis-spatial-data.Rmd",
   "13-analysis-network-data.Rmd",
+  
   # 高级篇
+  "Models.Rmd",
+  
   "15-glm.Rmd",
   "16-glmm.Rmd",
   "17-gam.Rmd",
