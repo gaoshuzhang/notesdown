@@ -44,6 +44,9 @@ is_online = curl::has_internet()
 
 # 前言 {.unnumbered}
 
+> **注意** 本书采用 [知识共享署名-非商业性使用-禁止演绎 4.0 国际许可协议](https://creativecommons.org/licenses/by-nc-nd/4.0/) 许可，请君自重，别没事儿拿去传个什么新浪爱问、百度文库以及 XX 经济论坛，项目中代码使用 [MIT 协议](https://github.com/XiangyunHuang/bookdown-chinese/blob/master/LICENSE) 开源，你正在阅读的是 `r Sys.Date()` 在 `r if(is_on_travis) "[Travis](https://travis-ci.org/XiangyunHuang/bookdown-chinese)" else "本地"` 构建的。
+
+
 > 荃者所以在鱼，得鱼而忘荃；蹄者所以在兔；得兔而忘蹄；言者所以在意，得意而忘言。吾安得夫忘言之人而与之言哉！
 
 ```{block2, type = 'flushright', html.tag = 'p'}
@@ -75,14 +78,6 @@ is_online = curl::has_internet()
     + R Markdown: The Definitive Guide <https://bookdown.org/yihui/rmarkdown/>
 
 
-## 作者 {.unnumbered}
-
-我是黄湘云，即将毕业的硕士研究生，跟随导师学习数理统计，主修 R 语言，顺便学了点统计，南方人， 2017年6月开始混迹于 Github ， 虽然2015年就注册了， 但是一直没有用起来， 后来有了直接的刚需（因为工作需要嘛），全是自学和靠大牛指点，偶尔参加一些技术大会和沙龙， 周边学校也去听讲座， 对学术大牛心里充满无限敬仰， 多亏 [qiaozhang1993](https://github.com/qiaozhang1993) 搜集各大高校的讲座信息并时常分享于我。
-
-本科学过 Photoshop 接触过 AI 和 AE，后来学了 R 这些就淡忘了，但是图层这个概念却一直记忆犹新，因为图层在 ggplot2 中是一个很关键的概念。
-
-Python 喊着要学，已经叫唤两年了，今年打算学个入门。
-Mxnet、Xgboost 和 Stan 也是要学的，下半年正式入职京东了，另外一个可能要学的是 [INLA](http://www.r-inla.org) 专用于处理空间广义线性混合效应模型，这个会在混合效应模型的相关章节予以介绍。
 
 ## 致谢 {.unnumbered}
 
@@ -120,61 +115,6 @@ cat(".\n")
 
 你好，世界。我写了一本书。这本书是这样的，第 \@ref(install-setup) 章介绍了啥啥，第 \@ref(math-operator) 章说了啥啥，然后是啥啥……
 
-## 记号 {.unnumbered}
-
-- $S \neq \varnothing$
-- 
-- $\mathbf{A,B,C},\mathsf{A,B,C},\mathit{A,B,C}$
-- $\mathrm{A,B,C}$
-- $\mathfrak{A,B,C}$
-- $$X,Y,D, \mathbf{X,Y,D},\mathsf{X,Y,D},\mathit{X,Y,D},\mathrm{X,Y,D}$$
-
-$A,B,C,D$ 斜体表示普通的集合，$X,Y,Z$ 表示矩阵，$a,b,c,d$ 表示常数，$\alpha,\beta,\theta,\phi,\kappa$ 表示模型或者分布函数的参数，$\Theta$ 表示参数空间，$\mathbb{R}^{n},\mathbb{C}^{n}$ 表示特殊的 $n$ 维实（复）数域，$\mathscr{A,B,C,D}$ 表示一般的数域，$\mathcal{S,P,G}$ 分别表示随机过程、概率空间和图
-
-|                 符号                  |                    含义                     |                 符号                 |                     含义                      |
-| :-----------------------------------: | :-----------------------------------------: | :----------------------------------: | :-------------------------------------------: |
-|             $\mathbf{A}$              |                    粗体                     |               $\Omega$               |                     全集                      |
-|             $\mathit{A}$              |                    集合                     |            $\mathbb{R,C}$            |                 实（复）数集                  |
-|             $\mathcal{A}$             |                    集族                     |            $\varnothing$             |                     空集                      |
-|             $\mathsf{A}$              |                    矩阵                     |           $\mathsf{A}^{-}$           |                 矩阵的广义逆                  |
-|           $\mathsf{A}^\top$           |                  矩阵转置                   |              $\bar{x}$               |                    平均值                     |
-|       $\mathsf{A}^\mathrm{-1}$        |                  矩阵的逆                   |           $\vert a \vert$            |                  标量绝对值                   |
-|         $\mathsf{A}^{\star}$          |                  伴随矩阵                   | $\mathop{\mathrm{diag}}(\mathsf{A})$ |                  矩阵的对角                   |
-|    $\lVert \mathsf{A} \rVert_{1}$     |                 矩阵的1范数                 |             $\mathsf{I}$             |                   单位矩阵                    |
-|    $\lVert \mathsf{A} \rVert_{2}$     |                 矩阵的2范数                 |           $\mathsf{I}_{n}$           |                $n$ 阶单位矩阵                 |
-|  $\lVert \mathsf{A} \rVert_{\infty}$  |               矩阵的无穷范数                |             $\mathsf{1}$             |                    全1矩阵                    |
-|    $\lVert \mathsf{X} \rVert_{1}$     |                 向量的1范数                 |           $\mathsf{1}_{n}$           |                 $n$ 阶全1矩阵                 |
-|    $\lVert \mathsf{X} \rVert_{2}$     |                 向量的2范数                 | $\lVert \mathsf{X} \rVert_{\infty}$  |                向量的无穷范数                 |
-| $\langle\mathsf{X},\mathsf{Y}\rangle$ |                 向量的内积                  |           $f(\mathsf{X})$            |                随机变量的函数                 |
-|    $\mathsf{X} \wedge \mathsf{Y}$     |                 向量的外积                  |         $\nabla{\mathsf{X}}$         |                向量微分或梯度                 |
-|                $\beta$                |                  模型系数                   |               $\theta$               |                模型或分布参数                 |
-|               $\alpha$                |                  模型截距                   |               $\Theta$               |                   参数空间                    |
-|          $\hat{\beta}_{ls}$           |              模型系数的LS估计               |                $f(x)$                |                  标量值函数                   |
-|          $\hat{\beta}_{mle}$          |              模型系数的MLE估计              |           $f(\mathsf{X})$            |                  向量的函数                   |
-|         $\hat{\beta}_{bayes}$         |             模型系数的Bayes估计             |            $\mathcal{X}$             |                   概率空间                    |
-|                $\rho$                 |                  相关系数                   |               $\kappa$               |                贝塞尔函数的阶                 |
-|                $\phi$                 |                  尺度参数                   |                 $u$                  | 距离 $\lVert \mathsf{x}_1 -\mathsf{x}_2 \rVert$ |
-|            $\mathbb{R}^2$             |                 二维实数域                  |                $S(x)$                |                   空间过程                    |
-|             $\mathcal{S}$             | $\mathcal{S} = \{S(x):x \in \mathbb{R}^2\}$ |        $\mathcal{S}^{\star}$         |         随机过程 $\mathcal{S}$ 的近似         |
-
-- 多元统计分析 高惠璇 矩阵符号表示
-- 深度学习符号表示 <https://github.com/XiangyunHuang/dlbook>
-
-举例，线性模型的表示，此处 $Y$ 为 $n\times 1$列向量，$X$ 为$p\times n$的矩阵，$\beta$ 为 $p\times 1$的列向量 ，$\epsilon$ 为$n\times1$列向量
-$$Y = X'\beta + \epsilon$$
-$$\mathsf{A} = \varGamma^\top\Lambda\varGamma$$
-$$\mathsf{u} = (u_1,u_2,\cdots,u_n)$$
-$$\mathsf{x} = (x_1,x_2,\cdots,x_n)$$
-期望 $\mathsf{E}$ 正态分布 $\mathcal{N}(\mathsf{x};\mathsf{\mu},\mathsf{\Sigma})$
-对数 $\mathsf{\log}$ 协方差 $\mathsf{Cov},\mathsf{Var}$ 
-
-矩阵 $$\mathsf{Y} = (\mathsf{y}^{(1)},\mathsf{y}^{(n)},\cdots,\mathsf{y}^{(n)})$$
-其中 $\mathsf{y}^{(i)} = (y_{1i},y_{2i},\cdots,y_{ni})$ 表示第 $i$ 列
-
-梅隆函数(Matern function)是描述空间相关性的常用函数，它带有两参数$\kappa$ 和 $\phi$，具体形式如下：
-$$\rho(u) = \big\{2^{\kappa-1}\Gamma(\kappa)\big\}^{-1}(u/\phi)^{\kappa}K_{\kappa}(u/\phi)$$
-其中，$K_{\kappa}(\cdot)$ 表示 $\kappa$ 阶修正的贝塞尔函数
-
 
 
 ## 后记 {.unnumbered}
@@ -196,9 +136,6 @@ knitr::include_graphics(path = paste0("diagrams/00-workflow", ext))
 sessionInfo()
 ```
 
-## 许可 {.unnumbered}
-
-本书采用 [知识共享署名-非商业性使用-禁止演绎 4.0 国际许可协议](https://creativecommons.org/licenses/by-nc-nd/4.0/) 许可，请君自重，别没事儿拿去传个什么新浪爱问、百度文库以及 XX 经济论坛，项目中代码使用 [MIT 协议](https://github.com/XiangyunHuang/bookdown-chinese/blob/master/LICENSE) 开源，你正在阅读的是 `r Sys.Date()` 在 `r if(is_on_travis) "[Travis](https://travis-ci.org/XiangyunHuang/bookdown-chinese)" else "本地"` 构建的。
 
 ```{r, include = FALSE, cache = FALSE}
 # automatically create a bib database for R packages
