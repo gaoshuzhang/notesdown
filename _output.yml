@@ -1,8 +1,10 @@
 bookdown::gitbook:
   css: css/style.css
+  dev: svglite
+  split_by: section
   config:
     toc:
-      collapse: section
+      collapse: none
       before: |
         <li><a href="./">R语言笔记</a></li>
       after: |

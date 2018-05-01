@@ -17,6 +17,14 @@ if (length(setdiff(Pkgs, .packages(TRUE))) > 0)
 
 gitbook 这样网页又该如何引用这张图片呢？
 
+```{r 00-workflow, echo = FALSE, fig.cap="两种编译方式及过程"}
+ext <- if (knitr::is_html_output()) ".svg" else if (knitr::is_latex_output()) ".pdf" else ".png"
+knitr::include_graphics(path = paste0("diagrams/00-workflow", ext))
+```
+
+如图 \@ref(fig:00-workflow) 展示了两种编译方式
+
+
 - 表格交叉引用
 
 - 参考文献交叉引用
