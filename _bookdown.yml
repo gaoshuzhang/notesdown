@@ -13,6 +13,8 @@ before_chapter_script: ["common.R"]
 
 rmd_files: [
   "index.Rmd",
+  "00-authors.Rmd",
+  "00-notations.Rmd",
   
   # 基础篇
   "Foundations.Rmd",

@@ -1,4 +1,4 @@
-# 记号 {.unnumbered}
+# 符号说明 {.unnumbered}
 
 - $S \neq \varnothing$
 - 
