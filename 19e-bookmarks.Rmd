@@ -12,6 +12,7 @@
 - [François Husson](https://francoishusson.wordpress.com/) 多元统计分析
 - [Jean-Paul Fox](http://www.jean-paulfox.com/) Bayesian response modeling
 - [Julian faraway](https://farawaystatistics.wordpress.com) INLA [When Small Data beats Big Data](http://people.bath.ac.uk/jjf23/papers/smallvbig.pdf)
+- [Shirin Glander](https://shirinsplayground.netlify.com/)
 
 - [Yihui Xie](https://yihui.name/)
 - [Beilei Bian](http://statsjoke.me)
