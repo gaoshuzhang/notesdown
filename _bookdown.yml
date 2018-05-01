@@ -23,7 +23,7 @@ rmd_files: [
   "02c-file-manipulation.Rmd",
   
   # 绘图篇
-  "Graphics.rmd",
+  "Graphics.Rmd",
   
   "03a-plot-graphics.Rmd",
   "03b-grid-graphics.Rmd",
