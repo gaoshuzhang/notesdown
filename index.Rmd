@@ -25,8 +25,6 @@ apple-touch-icon-size: 120
 favicon: "favicon.ico"
 ---
 
-\mainmatter
-
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(
   comment = "#>",
@@ -44,7 +42,7 @@ is_on_travis = identical(Sys.getenv("TRAVIS"), "true")
 is_online = curl::has_internet()
 ```
 
-# 前言
+# 前言 {.unnumbered}
 
 > 荃者所以在鱼，得鱼而忘荃；蹄者所以在兔；得兔而忘蹄；言者所以在意，得意而忘言。吾安得夫忘言之人而与之言哉！
 
@@ -77,7 +75,7 @@ is_online = curl::has_internet()
     + R Markdown: The Definitive Guide <https://bookdown.org/yihui/rmarkdown/>
 
 
-## 作者
+## 作者 {.unnumbered}
 
 我是黄湘云，即将毕业的硕士研究生，跟随导师学习数理统计，主修 R 语言，顺便学了点统计，南方人， 2017年6月开始混迹于 Github ， 虽然2015年就注册了， 但是一直没有用起来， 后来有了直接的刚需（因为工作需要嘛），全是自学和靠大牛指点，偶尔参加一些技术大会和沙龙， 周边学校也去听讲座， 对学术大牛心里充满无限敬仰， 多亏 [qiaozhang1993](https://github.com/qiaozhang1993) 搜集各大高校的讲座信息并时常分享于我。
 
@@ -86,7 +84,7 @@ is_online = curl::has_internet()
 Python 喊着要学，已经叫唤两年了，今年打算学个入门。
 Mxnet、Xgboost 和 Stan 也是要学的，下半年正式入职京东了，另外一个可能要学的是 [INLA](http://www.r-inla.org) 专用于处理空间广义线性混合效应模型，这个会在混合效应模型的相关章节予以介绍。
 
-## 致谢
+## 致谢 {.unnumbered}
 
 虚位以待壮士
 
@@ -113,7 +111,7 @@ cat(".\n")
 于矿大宝源公寓
 ```
 
-## 结构
+## 结构 {.unnumbered}
 
 第一章：数学符号说明
 第二章：基础知识
@@ -122,7 +120,7 @@ cat(".\n")
 
 你好，世界。我写了一本书。这本书是这样的，第 \@ref(install-setup) 章介绍了啥啥，第 \@ref(math-operator) 章说了啥啥，然后是啥啥……
 
-## 记号
+## 记号 {.unnumbered}
 
 - $S \neq \varnothing$
 - 
@@ -179,7 +177,7 @@ $$\rho(u) = \big\{2^{\kappa-1}\Gamma(\kappa)\big\}^{-1}(u/\phi)^{\kappa}K_{\kapp
 
 
 
-## 后记
+## 后记 {.unnumbered}
 
 这本书是在 [RStudio](https://www.rstudio.com/products/rstudio/download/) 内用 [R Markdown](https://rmarkdown.rstudio.com/) 写的， [Git](https://git-scm.com/) 控制版本， [bookdown](https://bookdown.org/yihui/bookdown/) 组织章节， [knitr](https://yihui.name/knitr/) 将 R Markdown 源文件转化为 Markdown 文件， [Pandoc](http://pandoc.org) \index{Pandoc} 再将 Markdown 文件转化为 HTML 文档，而要转化为 PDF 文档则另外需要 TinyTeX\index{TinyTeX} 发行版^[<https://yihui.name/tinytex/>] 和来自 **rticles** [@R-rticles] 包的模板（一个基于 Pandoc 的 LaTeX 模板，两个美元符号包含的就是变量，变量基本上是 LaTeX 包的设置选项）。这个网站是通过 [Travis-CI](https://travis-ci.org/) 把编译结果（即 `_book` 目录）推送到 [Netlify](https://www.netlify.com/)，实现部署。在 Travis-CI 和 Netlify 都与 Github 绑定的情况下，源代码一发生改变就会触发编译和部署，即持续集成和连续部署，本书尝试采用两种编译方式，如图\@ref(fig:00-workflow)。
 
@@ -198,7 +196,7 @@ knitr::include_graphics(path = paste0("diagrams/00-workflow", ext))
 sessionInfo()
 ```
 
-## 许可
+## 许可 {.unnumbered}
 
 本书采用 [知识共享署名-非商业性使用-禁止演绎 4.0 国际许可协议](https://creativecommons.org/licenses/by-nc-nd/4.0/) 许可，请君自重，别没事儿拿去传个什么新浪爱问、百度文库以及 XX 经济论坛，项目中代码使用 [MIT 协议](https://github.com/XiangyunHuang/bookdown-chinese/blob/master/LICENSE) 开源，你正在阅读的是 `r Sys.Date()` 在 `r if(is_on_travis) "[Travis](https://travis-ci.org/XiangyunHuang/bookdown-chinese)" else "本地"` 构建的。
 
