@@ -57,9 +57,10 @@ addons:
 before_install:
   - sudo -H pip install numpy matplotlib # scipy bokeh colorcet
   - npm install netlify-cli -g
-  - wget http://mirrors.rit.edu/CTAN/systems/texlive/tlnet/update-tlmgr-latest.sh
-  - sh update-tlmgr-latest.sh -- --upgrade
-  - tlmgr update --all --self
+  # upgrade texlive
+  #- wget http://mirrors.rit.edu/CTAN/systems/texlive/tlnet/update-tlmgr-latest.sh
+  #- sh update-tlmgr-latest.sh -- --upgrade
+  #- tlmgr update --all --self
 
 before_script:
   #- Rscript -e 'if(!require("devtools")) install.packages("devtools")'
