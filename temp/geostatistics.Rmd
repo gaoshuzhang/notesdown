@@ -1,0 +1,258 @@
+---
+title: "空间广义线性混合效应模型及其在流行病预测中的应用"
+subtitle: 'Spatial Generalized Linear Mixed Models and its Applications to Prevlence Mapping'
+author: '黄湘云' 
+output: 
+  pdf_document: 
+    fig_caption: yes
+    latex_engine: xelatex    
+    citation_package: natbib
+    number_sections: yes
+    toc: yes
+    toc_depth: 4
+    extra_dependencies:
+      - \usepackage{ctex}
+abstract: |
+  | 空间广义线性混合效应模型的应用背景介绍
+  | 空间广义线性混合效应模型及其应用
+  | 空间广义线性混合效应模型及其应用
+bibliography: refer.bib
+biblio-title: 参考文献
+link-citations: yes
+colorlinks: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  echo = TRUE, 
+  collapse = TRUE, 
+  highlight = TRUE,  
+  fig.align = 'center',
+  fig.showtext = TRUE,
+  out.width = '.7\\textwidth'
+  )
+
+library(ggplot2)
+theme_set(theme_minimal())
+```
+
+# 论文综述
+
+线性模型 到 广义线性模型
+线性混合效应模型 到 广义线性混合效应模型 再到 空间广义线性混合效应模型
+
+求解混合效应模型的各种方法
+
+从 kriging 克里金插值 到 高斯过程 
+
+简单介绍提出本文的大纲思路
+
+简单回顾广义线性模型和混合效应模型
+
+定位统计计算
+
+广义线性模型的应用广泛
+广义线性模型的算法实现进展综述
+
+介绍空间数据统计包含地统计、离散空间变差、空间点过程
+
+引出广义线性模型在geostatistical data analysis 的应用及算法实现
+
+在 S 语言中空间数据分析和建模
+Modern Applied Statistics with S [@MASS2002]
+
+检验环境和基因效应在空间相关性中的存在性 [@spaMM2014]
+流行现象的时空分析[@surveillance2017]
+
+近年来涉及空间数据分析和建模的书籍也越来越多，
+
+用于空间数据分析的分层模型
+Hierarchical Modeling and Analysis for Spatial Data [@Banerjee2015]
+
+基于R-INLA软件的空间和时空贝叶斯模型
+Spatial and Spatio-temporal Bayesian Models with R-INLA [@Blangiardo2015]
+
+
+特别地，基于地统计数据的有 [@Schl2016Using]
+
+R 语言空间数据可视化方面呈现越来越流行的趋势，从早些年的 lattice [@lattice2008] 到如今的 ggplot2[@ggplot22016]，操作空间数据的 sp 对象也发展为 sf 对象，同时整合了不少第三方软件和服务 如基于 Google Earth 的空间可视化 [@plotKML2015] ，基于Google Maps的交互空间可视化 [@plotGoogleMaps2012] 
+
+一元和多元时空模型spBayes包 [@spBayes2015]
+
+
+# 模型介绍
+
+## 线性模型  
+
+线性模型的一般形式为
+
+\begin{equation}
+Y = X'\beta + \epsilon, \mathsf{E}(\epsilon) = 0, \mathsf{Cov}(\epsilon) = \sigma^2 I \label{eq:LM}
+\end{equation}
+
+其中，$Y = (y_1,y_2,\cdots,y_n)'$ 是 $n$ 维列向量，代表对响应变量$Y$的$n$次重复观测；$\beta = (\beta_0,\beta_1,\cdots,\beta_{p-1})'$ 是 $p$ 维列向量，代表模型自变量 $X$ 的系数，$\beta_0$是截距项；
+$X' = (1_{(1\times n)}',X_{(1)}',X_{(2)}',\cdots,X_{(n)}')$，$1_{(1\times n)}'$ 是全1的$n$维列向量，而$X_{(i)}' = (x_{1i},x_{2i},\cdots,x_{ni})'$ 代表对第$i$个自变量的$n$次观测；
+$\epsilon = (\epsilon_1,\epsilon_2,\cdots,\epsilon_n)'$是$n$ 维列向量，代表模型的随机误差，$\mathsf{E}(\epsilon_i \epsilon_j) = 0, i \ne j$。 求解线性模型 \eqref{eq:LM} 的 R 函数是 `lm`，近年来，高维乃至超高维稀疏线性模型成为热门的研究方向，相关的R包也越来越多，比较著名的有`glmnet`[@glmnet2011JSS] 和 `SIS`[@SIS2016JSS]。
+
+
+## 广义线性模型
+
+广义线性模型的一般形式
+
+\begin{equation}
+Y \sim \mathtext{指数族} \quad
+\eta = X'\beta \quad
+\mathsf{E}(Y) = g^{-1}(\eta)  \label{eq:GLM}
+\end{equation}
+
+简写之为
+
+\begin{equation*}
+g(\mu) = X'\beta
+\end{equation*}
+
+其中$\mu \equiv \mathrm{E}(Y)$， $g$ 代表联系函数，特别地，当 $Y \sim N(\mu,\sigma^2)$ 时，$g(x) = x$ ；当 $Y \sim \mathsf{Binomial}(n,p)$ 时，$g(x)=\ln(\frac{x}{1-x})$；当 $Y \sim \mathsf{Possion}(\lambda)$ 时，$g(x) = \ln(x)$；此处不一一列举。[@McCullagh1989] 
+模型\eqref{eq:GLM}最早由 Nelder 和 Wedderburn [@Nelder1972]提出，它弥补了模型\eqref{eq:LM} 的两个重要缺点：一是因变量只能取连续值的情况，二是期望与自变量只能用线性关系联系 [@Chen2011]。求解广义线性模型 \eqref{eq:GLM} 的 R 函数是 `glm`，参数估计的办法一般是拟似然法。
+
+
+## 混合效应模型  
+
+广义线性混合模型的一般形式
+
+\begin{equation}
+g(\mu) = X'\beta + Z'b  \label{eq:GLMM}
+\end{equation}
+其中 $Z'$ 是$q$维随机效应的 $n \times q$ 的向量值矩阵。
+混合效应模型包含线性混合效应模型、广义线性混合效应模型、非线性混合效应模型等，之所以称之为混合效应，是因为模型既包含固定效应(fixed-effects)又随机效应(random effects)。如前所述的线性和广义线性模型中的自变量就是固定效应，而随机效应是那些不能直接观察到的潜变量。求解模型\eqref{eq:GLMM}的R包有 `nlme` [@R-nlme]，`mgcv` [@mgcv2017] 和`lme4`[@lme4JSS]，参数估计的方法一般有限制极大似然法。
+
+
+## 空间广义线性混合效应模型
+
+本文重点关注空间广义线性混合效应模型(Spatial Generalized linear mixed-effects models,简写为SGLMM)[@Zhang2002On;@Varin2005Pairwise;@Bonat2016Practical]，它既是对模型\eqref{eq:LM}、\eqref{eq:GLM}和\eqref{eq:GLMM}的延伸也是对空间数据分析的应用，属于空间统计下的地统计(geostatistics)分支，因此在有些参考文献[@Diggle2002;@Christensen2004;@Diggle2007]中也称为广义线性地统计模型(Generalized linear geostatistical models)，SGLMM 具有广泛的应用，如分析核污染浓度的空间分布[@Diggle1998]，预测热带流行病的分布[@Diggle2016]
+
+
+# 算法描述
+
+## 贝叶斯方法
+
+coda: Convergence Diagnosis and output analysis for MCMC
+用于对MCMC的收敛性诊断和输出分析 [@coda2006]
+geoR: 用于空间数据分析和预测的贝叶斯方法 [@geoR2001]
+geoRglm: 空间广义线性混合效应模型 [@geoRglm2002]
+brms [@brms2017JSS]
+
+```{r, echo=TRUE}
+library(coda)
+```
+
+
+MCMCvis--- Tools to Visualize, Manipulate, and Summarize MCMC Output
+
+Performs key functions for MCMC analysis using minimal code - visualizes, manipulates, and summarizes MCMC output. Functions support simple and straightforward subsetting of model parameters within the calls, and produce presentable and 'publication-ready' output. MCMC output may be derived from Bayesian model output fit with JAGS, Stan, or other MCMC samplers.
+
+mgcv and JAGS
+
+Stan 是一种概率编程语言[@Stan2017JSS]，可以替代 BUGS ( **B**ayesian inference **U**sing **G**ibbs **S**ampling ) [@BUGS] 作为 MCMC 的高效实现，可用于贝叶斯框架下，标准地统计模型的参数估计，Stan 提供多种语言的接口实现，方便起见，本文采用它提供的 R 语言接口 -- rstan 包 [@Stan2015;@Stan2017JSS]。此外，还有[@rethinking2015]  　
+
+lme4 [@lme4JSS]
+
+gstat [@gstat2016]
+
+glmmBUGS RStan 实现MCMC 
+
+
+## 最大似然方法
+
+最大似然 [@PrevMap2017] 将 MCML 和 MCMC 方法应用于空间广义线性混合效应模型的参数估计和预测，
+
+
+## 拉普拉斯近似
+
+方法 [@Rue2017arXiv]
+
+
+# 数值模拟
+
+`RandomFields`是模拟多元随机场的 R 包 [@RandomFields2015]， `geoR` 包[@R-geoR2016]的 `grf` 函数只适合模拟少量数据点
+
+分泊松、二项两种情况、上述3种方法，在空间广义线性混合效应模型下的模拟情况（使用标准的地统计模型，无时间项和混合分布）
+
+标准地统计流行抽样模型（Standard Geostatistical Prevalence Sampling Model）
+\begin{equation}
+\log[p(x_i)/\{1-p(x_i)\}] = d(x_i)'\beta + S(x_i) + Z_i \label{eq:SGPSM}
+\end{equation}
+其中 $\mathsf{S} = \{S(x):x \in \mathbb{R}^2\}$
+  
+
+```{r simulation-binom, fig.cap='二项分布'}
+####################################
+# 模拟空间广义线性混合效应模型
+####################################
+library(mvtnorm)
+library(geoR) 
+library(RandomFields)
+set.seed(2018)
+N <- 400 # 样本量
+# N <- 10000 
+# 模拟二元正态分布
+sigma <- matrix(c(2, .2, .2, 3), byrow = TRUE, ncol = 2) # 协方差矩阵  
+data.x <- cbind(rep(1, N), rmvnorm(n = N, mean = c(1, 2), sigma = sigma))
+beta <- c(1.2, 1, 0.2) # 模型系数 其中 beta_0 = 1.2 是截距  
+# 添加空间随机效应 sigma^2 = 1 phi = 25 tau^2 =1 kappa = 1
+S <- grf(N, grid = "irreg", nx = N, ny = N,
+		xlims = c(0,100), ylims = c(0,100), nsim = 1, mean=0,
+		cov.mode = "powered.exponential",
+		cov.par = c(1,25), nugget = 1, kappa = 1)
+# 响应变量服从二项分布		
+mu <- exp(S$data + data.x %*% beta)/(1 + exp(S$data + data.x %*% beta))
+binom.data.y <- rbinom(N, size = 10, prob = mu) / 10
+
+ggplot(data = as.data.frame(S$coords), aes(x = x, y = y, colour = binom.data.y)) + 
+  geom_point(pch = 16, size = 3, alpha = .8) +	
+  scale_colour_distiller(palette = "Spectral") +
+  labs(colour = "观察概率",x = "横坐标",y = "纵坐标")
+```
+
+
+```{r simulation-pois,fig.cap='泊松分布'}
+# 响应变量服从泊松分布 
+## 空间随机效应和协变量同上
+lambda <- exp(S$data + data.x %*% beta)  
+pois.data.y <- rpois(length(S$data), lambda = lambda) 
+
+ggplot(data = as.data.frame(S$coords), 
+       aes(x = x, y = y, colour = log(pois.data.y + 1)) ) + 
+  geom_point(pch = 16, size = 3, alpha = .8) +	
+  scale_colour_distiller(palette = "Spectral") +
+  labs(colour = "对数\n观察数目",x = "横坐标",y = "纵坐标")
+```
+
+
+
+$$\lambda(x) = \frac{\exp(\mu+S(x))}{1+\exp(\mu+S(x))} $$ 
+
+```{r load-pkgs,eval=FALSE}
+# 加载 R 包
+suppressPackageStartupMessages({
+  library(PrevMap)
+})
+```
+
+
+```{r matern, fig.width = 6, fig.height = 5}
+source('code/02-Matern-function.R') 
+```
+
+从蓝到红，值由小变大
+
+## 模拟二项分布数据集
+
+此处模拟数据集 `data_sim` 来自 `PrevMap` 包，零均值高斯过程 单元格上 $30 \times 30$ 参数 
+$\sigma^2 = 1, \phi = 0.15, \kappa =  2$，块金效应 (nugget effect) $\tau^2 = 0$，每个格点上重复实验10次，得到响应变量二项分布的概率值
+
+
+```{r low-rank, echo=FALSE,fig.cap="数值模拟",fig.pos="!htb"}
+knitr::include_graphics("figure/simulation.pdf")
+```
+
+

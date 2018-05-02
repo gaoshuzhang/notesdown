@@ -1,0 +1,177 @@
+# 数据分析
+
+第一份数据来自[@Diggle2007ATMP]描述的调查， 1991年至2001年间，在喀麦隆及尼日利亚南部的197个村庄调查Loa loa热带疾病的流行度，共收集 26646 人的数据
+
+第二份数据来自2011年高教社杯全国大学生数学建模竞赛A题附件，数据描述某城市表层土壤重金属污染的状况，包含了319个位置及测得的砷、镉、铬等8种重金属浓度 
+
+第三份数据来自 rongelap 数据集 
+
+## 探索分析
+
+
+```{r loaloamap,fig.cap='喀麦隆及尼日利亚南部 Loa loa 感染比例散点图'}
+library(maps)
+library(mapdata)
+countries <- c("Malabo","Nigeria","Cameroon")
+LoaloaMap <- map_data("worldHires", region = countries ) 
+
+ggplot(LoaloaMap, aes(x = long, y = lat)) + 
+  geom_map(map = LoaloaMap, aes(map_id = region),
+            size = .2, color = 'gray',fill = 'white' ) +
+  geom_point(data = loaloa, pch = 16, size = 3, alpha = .8,
+             aes(x = LONGITUDE, y = LATITUDE, colour = NO_INF/NO_EXAM )) +	
+  xlim(6, NA) + 
+  ylim(2, 8) +
+  scale_colour_distiller(palette = "Spectral") +
+  labs(colour = "感染比例",x = "经度",y = "纬度")
+```
+
+
+
+## 广义线性混合效应模型
+
+广义线性混合效应模型(Generalized Linear Mixed Effects models,简称GLME)，线性模型和线性混合效应模型都必须遵循正态性条件，如果数据偏离比较多，我们必须使用广义形式，lme4包[@lme42015]可以处理这类问题。
+
+下面以数据集loaloa为例说明，并且使用广义线性模型（只含有固定效应）与之对比。
+
+- loa loa 数据集分析[@Diggle2007ATMP] [@Schl2016Using] 二项分布
+- rongelap 数据集 Possion 分布  模拟情况也是这两个分布
+
+广义线性模型
+
+```{r}
+data(loaloa, package = 'PrevMap')
+glm.bino = glm(cbind(NO_INF, NO_EXAM) ~ ELEVATION + STDEV9901 + MAX9901, 
+                data = loaloa, family = "binomial")  
+summary(glm.bino) 
+```
+
+广义可加模型
+
+```{r}
+library(mgcv)
+gam.bino <- gam(cbind(NO_INF, NO_EXAM) ~ s(ELEVATION) + s(MAX9901) + s(STDEV9901), 
+                data = loaloa, family = binomial)
+summary(gam.bino)
+```
+
+```{r}
+AIC(glm.bino, gam.bino)
+```
+
+带空间效应的
+
+```{r}
+
+```
+
+
+- Generalized Additive Mixed Models using 'mgcv' and 'lme4' [@R-gamm4]
+- Uses a slice sampling-based Markov chain Monte Carlo to conduct Bayesian fitting and inference for generalized additive mixed models (GAMM). Generalized linear mixed models and generalized additive models are also handled as special cases of GAMM. [@R-gammSlice]
+
+
+```{r cumcm2011A,echo=FALSE,fig.cap='采样点分布图'}
+# 导入数据
+library(readxl)
+cumcm2011A_location <- read_xls(path = 'data/cumcm2011A附件_数据.xls',sheet = '附件1',
+                       range = 'B4:E322',col_names = FALSE)
+colnames(cumcm2011A_location) <- c('x','y','elevation','area')
+cumcm2011A_location$area <- as.factor(cumcm2011A_location$area)
+cumcm2011A_data <- read_xls(path = 'data/cumcm2011A附件_数据.xls', sheet = '附件2',
+                            range = 'B4:I322', col_names = FALSE)
+colnames(cumcm2011A_data) <- c('As', 'Cd', 'Cr', 'Cu', 'Hg', 'Ni', 'Pb', 'Zn')
+cumcm2011A <- cbind(cumcm2011A_location, cumcm2011A_data)
+rm(cumcm2011A_location,cumcm2011A_data) 
+# 因子变量名称替换
+area_labels = c('生活区','工业区','山区','交通区','公园绿地区')
+# 采样点分布图 气泡图 大小表示海拔 颜色表示区域
+ggplot(cumcm2011A, aes(x = x, y = y, size = elevation, color = area )) +
+  geom_point(shape = 19, alpha = 0.5) +
+  scale_color_brewer(palette = "Set1", labels = area_labels) +
+  labs(x = '横坐标', y = '纵坐标', size = '海拔\n米', color = '功能区') 
+```
+
+```{r As,echo=FALSE, fig.cap='砷浓度分布图'}
+ggplot(cumcm2011A, aes(x = x, y = y, color = area, size = As )) +
+  geom_point( shape = 19, alpha = 0.5 ) +
+  scale_color_brewer(palette = "Set1", labels = area_labels ) +
+  labs(x = '横坐标', y = '纵坐标', size = '砷浓度\n微克/克', color = '功能区')
+```
+
+不同功能区带来的位置效应（随机效应），其它重金属浓度带来的影响（固定效应），空间位置带来的空间影响（随机效应）
+
+```{r modeling}
+library(lme4)   
+# 线性混合效应  响应变量视为正态分布
+lmer.gaussian = lmer(As ~ elevation + scale(Cd) + scale(Cr) + scale(Cu) + 
+                    scale(Hg) + scale(Ni) + scale(Pb) + scale(Zn) + (1|area), 
+                  data = cumcm2011A) 
+# 线性模型 正态分布
+lm.gaussian = lm(As ~ elevation + scale(Cd) + scale(Cr) + scale(Cu) + 
+                    scale(Hg) + scale(Ni) + scale(Pb) + scale(Zn), 
+                  data = cumcm2011A)
+
+# 广义线性模型 伽马分布
+glm.gamma = glm(As ~ elevation + scale(Cd) + scale(Cr) + scale(Cu) + 
+                    scale(Hg) + scale(Ni) + scale(Pb) + scale(Zn), 
+                  data = cumcm2011A, family = Gamma(link = "identity"))
+
+# 广义线性混合效应 响应变量视为伽马分布
+glmer.gamma = glmer(As ~ elevation + scale(Cd) + scale(Cr) + scale(Cu) + 
+                    scale(Hg) + scale(Ni) + scale(Pb) + scale(Zn) + (1|area), 
+                  data = cumcm2011A, family = Gamma(link = "identity"))
+
+
+AIC(lmer.gaussian, lm.gaussian, glm.gamma, glmer.gamma)
+```
+
+```{r}
+library(nlme)
+lme.gaussian = lme(As ~ elevation + scale(Cd) + scale(Cr) + scale(Cu) + 
+             scale(Hg) + scale(Ni) + scale(Pb) + scale(Zn), 
+           random= ~1|area, data = cumcm2011A)  
+summary(lme.gaussian)
+```
+
+
+```{r As-distribution, echo=FALSE,fig.cap='砷浓度的直方图'}
+# mycols <- RColorBrewer::brewer.pal(9,name = 'RdBu')
+# colorRampPalette( rev(mycols),interpolate = "spline")
+ggplot(cumcm2011A, aes(As)) +
+  geom_histogram(bins = 30, fill = viridisLite::viridis(30, direction = -1) ) +
+  geom_vline(xintercept = c(1.8,5.4), color = 'firebrick',linetype = 2, lwd = 1) +
+  annotate('text', x = 1.8 + 1, y = 2, label = '1.8', color = 'white', size = 5) +
+  annotate('text', x = 5.4 + 1, y = 2, label = '5.4', color = 'white', size = 5) +
+  labs(y = '频数', x = '砷浓度（微克/克）')
+
+# hist(cumcm2011A$As, breaks = 30, plot = TRUE, 
+#      col = viridisLite::viridis(30), border = 'white')
+
+ggplot(cumcm2011A, aes(As, fill = ifelse(As < 5.4,'#4DAF4A', '#E41A1C') )  ) +
+  geom_histogram(bins = 30) +
+  scale_fill_identity() +
+  geom_vline(xintercept = c(1.8,5.4), color = 'firebrick',linetype = 2) +
+  annotate('text', x = 1.8 + 1, y = 2, label = '1.8', color = 'white') +
+  annotate('text', x = 5.4 + 1, y = 2, label = '5.4', color = 'white') +  
+  labs(y = '频数', x = '砷浓度（微克/克）') 
+# As 背景浓度（无污染情况下）范围如下
+# mu = 3.6 sigma = 0.9  1.8~5.4
+```
+
+砷浓度作为响应变量，从图中来看，为简单起见，可近似为正态分布，而后考虑伽马分布，且分参数为 $1< \alpha <=2$ 和 $\alpha >2$ 的两种情况探讨。
+
+```{r boxplot-As, echo=FALSE, fig.cap='砷浓度随功能区的分布'}
+ggplot(cumcm2011A, aes(x = area, y = As, color = area)) +
+  geom_boxplot() +
+  scale_color_brewer(palette = "Set1", labels = area_labels ) +
+  labs(color = '功能区', x = '', y = '砷浓度（微克/克）') 
+```
+
+城市功能区的差异对砷浓度存在影响
+
+数据 Applied spatial data analysis with R [@Roger2013]
+
+<https://rpubs.com/corey_sparks>
+
+## 空间广义线性混合效应模型
+

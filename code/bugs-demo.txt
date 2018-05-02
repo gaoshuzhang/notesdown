@@ -1,0 +1,208 @@
+## BUGS 案例
+
+### BRugs
+
+连接 WinBUGS 和 OpenBUGS，64位R下运行，示例来自 [Andrew Gelman主页](http://www.stat.columbia.edu/~gelman/bugsR/runningbugs.html)
+
+```r
+library ("BRugs")
+schools <- read.table ("data/schools.dat", header=TRUE)
+J <- nrow(schools)
+y <- schools$estimate
+sigma.y <- schools$sd
+data <- list ("J", "y", "sigma.y")
+inits <- function() {
+	list( theta = rnorm(J,0,100), 
+	      mu.theta = rnorm(1,0,100), 
+		  sigma.theta = runif(1,0,100)
+		)}
+parameters <- c("theta", "mu.theta", "sigma.theta")
+
+schools.sim <- bugs(data, inits, parameters, "schools.bug", 
+					n.chains=3, n.iter=1000,
+					bugs.directory = "D:/Program/WinBUGS14/")
+print (schools.sim)
+plot (schools.sim)
+   
+schools.sim.open <- bugs(data, inits, parameters, "schools.bug", 
+						 n.chains = 3, n.iter = 1000, 
+						 program = "openbugs")  
+print (schools.sim.open)
+plot (schools.sim.open)
+```
+
+### glmmBUGS 与 R2OpenBUGS 、 R2WinBUGS
+
+glmm: Generalized Linear Mixed Models via Monte Carlo Likelihood Approximation
+Approximates the likelihood of a generalized linear mixed model using Monte Carlo likelihood approximation. Then maximizes the likelihood approximation to return maximum likelihood estimates, observed Fisher information, and other model information.
+
+来自 geoR 包 rongelap 数据集
+
+```r
+library(glmmBUGS)
+library(nlme)
+library(spdep)
+```
+
+准备数据
+
+```r
+rongelap <- read.table(url(
+	paste("http://www.leg.ufpr.br/lib/exe/fetch.php/",
+	"pessoais:paulojus:mbgbook:datasets:rongelap.txt",
+	sep="")
+	),header=TRUE
+)
+
+coordinates(rongelap) <- ~ cX + cY
+
+rongelap$logOffset <- log(rongelap$time)
+rongelap$site <- seq(1, length(rongelap$time)) 
+```
+
+建立模型
+
+```r
+forBugs <- glmmBUGS(formula = counts + logOffset ~ 1, family = "poisson",
+                    data = rongelap@data, effects = "site", spatial = rongelap,
+                    priors = list(phisite = "dgamma(157,1)"))
+    
+startingValues <- forBugs$startingValues
+startingValues$phi$site <- 157
+# Warning message:
+# In startingValues$phi$site <- 100 : 把公式左手强迫变成串列
+source("getInits.R")
+```
+
+模型计算
+
+```r
+library(R2OpenBUGS)
+rongelapResult = bugs(forBugs$ragged, getInits, parameters.to.save = names(getInits()),
+                      model.file = "model.txt", n.chain = 2, n.iter = 1000, n.burnin = 500,
+                      n.thin = 1, debug = FALSE, working.directory = getwd())
+library(R2WinBUGS) 
+rongelapResult2 = bugs(forBugs$ragged, getInits, 
+	parameters.to.save = names(getInits()),
+    model.file = "model.bug", n.chain = 2, 
+	n.burnin = 1000, n.thin = 1, n.iter = 5000, 
+	bugs.directory = "D:/Program/WinBUGS14/",
+    program = "winbugs", debug = FALSE,
+    working.directory = getwd())	# 总是报错
+# Error in bugs.run(n.burnin, bugs.directory, WINE = WINE, useWINE = useWINE,  : 
+#  Look at the log file and
+# try again with 'debug=TRUE' to figure out what went wrong within Bugs.
+	  
+# 查看结果					  
+rongelapResult	
+names(rongelapResult)
+plot(rongelapResult)				  		  
+```
+
+诊断MCMC 
+
+```r
+rongelapParams = restoreParams(rongelapResult, forBugs$ragged)  
+# 与 names(muscleResultJags$BUGSoutput) 相比 少了 program 一项    
+# Error in if (dim(result$betas)[3] == 1) { : 参数长度为零      
+checkChain(rongelapParams)
+```
+
+```r
+rongelapParams$siteGrid <- CondSimuPosterior(rongelapParams, 
+	rongelap, gridSize=100) 
+rongelapSummary <- summaryChain(rongelapParams)
+```
+
+
+绘制image
+
+```r
+# plot posterior probabilities of being above average
+image(rongelapSummary$siteGrid$pgt0)
+```
+
+
+### glmmBUGS 与 R2jags
+
+```r
+library(glmmBUGS)
+library(nlme)
+data(Muscle)
+muscleRagged <- glmmBUGS(conc ~ length, data = Muscle, effects = "Strip", 
+                        family = "gaussian", modelFile = 'model.bug', 
+						reparam = 'Strip')
+startingValues <- muscleRagged$startingValues
+source("getInits.R")
+```
+
+模型计算
+
+```r
+library('R2jags')
+muscleResultJags <- jags(muscleRagged$ragged, getInits, 
+                        parameters.to.save = names(getInits()), 
+                        model.file = "model.bug", n.chain = 3, n.iter = 1000, 
+                        n.burnin = 100, n.thin = 10, working.directory = getwd() ) 
+
+muscleParamsJags <- restoreParams( muscleResultJags$BUGSoutput, muscleRagged$ragged) 
+```
+
+诊断 MCMC 
+
+```r
+checkChain(muscleParamsJags)
+```
+
+## RStan 案例
+
+```r
+library("rstan") # observe startup messages
+rstan_options(auto_write = TRUE)
+options(mc.cores = parallel::detectCores())
+```
+
+```
+// saved as 8schools.stan
+data {
+  int<lower=0> J; // number of schools 
+  real y[J]; // estimated treatment effects
+  real<lower=0> sigma[J]; // s.e. of effect estimates 
+}
+parameters {
+  real mu; 
+  real<lower=0> tau;
+  real eta[J];
+}
+transformed parameters {
+  real theta[J];
+  for (j in 1:J)
+    theta[j] = mu + tau * eta[j];
+}
+model {
+  target += normal_lpdf(eta | 0, 1);
+  target += normal_lpdf(y | theta, sigma);
+}
+```
+
+
+```r
+schools_dat <- list(J = 8, 
+                    y = c(28,  8, -3,  7, -1,  1, 18, 12),
+                    sigma = c(15, 10, 16, 11,  9, 11, 10, 18))
+fit <- stan(file = '8schools.stan', data = schools_dat, 
+            iter = 1000, chains = 4)
+print(fit, digits = 3)
+plot(fit)
+pairs(fit, pars = c("mu", "tau", "lp__"))
+
+la <- extract(fit, permuted = TRUE) # return a list of arrays 
+mu <- la$mu 
+
+### return an array of three dimensions: iterations, chains, parameters 
+a <- extract(fit, permuted = FALSE) 
+
+### use S3 functions as.array (or as.matrix) on stanfit objects
+a2 <- as.array(fit)
+m <- as.matrix(fit)			
+```

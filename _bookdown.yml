@@ -1,0 +1,28 @@
+book_filename: "thesis"
+delete_merged_file: true
+clean: [packages.bib, thesis.bbl]
+language:
+  label:
+    fig: "图 "
+    tab: "表 "
+  ui:
+    edit: "编辑"
+    chapter_name: ["第 ", " 章"]
+
+new_session: yes
+before_chapter_script: ["common.R"]
+    
+rmd_files: [
+  "index.Rmd",
+  "01-introduction.Rmd",
+
+  "02-reviews.Rmd",
+  "03-algorithms.Rmd",
+  
+  "04a-simulations.Rmd",
+  "04b-simulations.Rmd",
+  
+  "05-applications.Rmd",
+  "06-summary.Rmd",
+  "07-references.Rmd",
+]

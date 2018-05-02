@@ -1,0 +1,4 @@
+mgcv 广义线性混合效应模型模拟图 无空间效应 
+
+广义可加模型
+https://menugget.blogspot.jp/2016/02/visualizing-model-predictions-in-3d.html
