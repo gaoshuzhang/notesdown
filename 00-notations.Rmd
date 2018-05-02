@@ -1,5 +1,7 @@
 # 符号说明 {.unnumbered}
 
+\chaptermark{符号说明}
+
 - $S \neq \varnothing$
 - 
 - $\mathbf{A,B,C},\mathsf{A,B,C},\mathit{A,B,C}$
