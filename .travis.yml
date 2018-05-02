@@ -65,7 +65,7 @@ before_install:
   - Rscript -e 'if(!require("devtools")) install.packages("devtools");devtools::install_github("tidyverse/ggplot2")'
 
 script:
-  # - Rscript -e 'update.packages(ask = FALSE)'
+  - Rscript -e 'update.packages(ask = FALSE)'
   # - Rscript -e 'devtools::install_github("tidyverse/ggplot2")'
   - Rscript -e 'devtools::install_github("leonawicz/mapmate")'
   - Rscript -e 'devtools::install_github("dgrtwo/gganimate")'
@@ -77,9 +77,12 @@ script:
 #  skip_cleanup: true
 
 deploy:
-  provider: pages
-  skip_cleanup: true
-  github_token: $GITHUB_TOKEN
-  on:
-    branch: master
-  local_dir: _book
+  - provider: pages
+    skip_cleanup: true
+    github_token: $GITHUB_TOKEN
+    on:
+      branch: master
+    local_dir: _book
+  - provider: script
+    script: netlify deploy -t $NETLIFY_PAT
+    skip_cleanup: true
