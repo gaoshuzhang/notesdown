@@ -104,4 +104,48 @@
 % for kableExtra
 % \usepackage[table]{xcolor}
 
+% 添加水印
+\usepackage{tikz,everypage}
+
+\makeatletter
+\global\let\tikz@ensure@dollar@catcode=\relax
+\makeatother
+
+%%--------- 每页第一列行号----------------------------------------------------%%
+% \makeatletter
+% \AtBeginDocument{%
+%   \AddEverypageHook{%
+%     \small    
+%     % \catcodetable  \catcodetable@latex    
+%     \begin{tikzpicture}[remember picture,overlay]
+%       \path (current page.north west) --  (current page.south west)
+%             \foreach \i in {1,...,\fakelinenos}
+%                { node [pos={(\i-.5)/\fakelinenos},
+%                   xshift=\fakelinenoshift, line number style] {\i} }  ;
+%     \end{tikzpicture}%
+%   }%
+% }
+% \makeatother    
+% \tikzset{%
+%   line numbers/.store in=\fakelinenos,
+%   line numbers=72,
+%   line number shift/.store in=\fakelinenoshift,
+%   line number shift=5mm,
+%   line number style/.style={text=gray},
+% }
+
+% Draft
+\usepackage{draftwatermark}
+\SetWatermarkText{DRAFT}
+\SetWatermarkLightness{0.9}
+\usepackage{background}
+\SetBgContents{仅供学习使用，不得用于商业目的。
+\url{https://github.com/XiangyunHuang/notesdown}}
+\SetBgScale{1}
+\SetBgAngle{0}
+\SetBgOpacity{1}
+\SetBgColor{red}
+\SetBgPosition{current page.north}
+\SetBgVshift{-0.5cm}
+
 \frontmatter
