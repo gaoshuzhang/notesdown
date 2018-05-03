@@ -14,15 +14,16 @@ before_chapter_script: ["common.R"]
     
 rmd_files: [
   "index.Rmd",
-  "01-introduction.Rmd",
+  "01-reviews.Rmd",
 
-  "02-reviews.Rmd",
-  "03-algorithms.Rmd",
+  "02-models.Rmd",
+#  "03-algorithms.Rmd",
   
-  "04a-simulations.Rmd",
-  "04b-simulations.Rmd",
+#  "04a-simulations.Rmd",
+#  "04b-simulations.Rmd",
   
-  "05-applications.Rmd",
-  "06-summary.Rmd",
-  "07-references.Rmd",
+#  "05-applications.Rmd",
+#  "06-summary.Rmd",
+#  "07-references.Rmd",
+#  "08-appendix.Rmd",
 ]

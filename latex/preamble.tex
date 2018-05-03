@@ -2,20 +2,26 @@
 \usepackage{amsfonts} % \mathbb \mathfrak
 \usepackage{mathrsfs} % \mathscr
 % included by pandoc-template
-% \usepackage{amssymb}  % for \varnothing 
-% \usepackage{amsmath}
-
+\usepackage{amssymb}  % for \varnothing
+\usepackage{amsmath}
+% \usepackage{breqn} % provides automatic line breaking for big formulas
+% \usepackage{mathtools, nccmath} % 
+% \usepackage{nccmath}
+% https://tex.stackexchange.com/questions/375170/vertical-spacing-of-equations-using-align-environment-following-short-texts?noredirect=1&lq=1
 % 章节标题数字样式
 \ctexset{
   chapter/name = {,},
   chapter/number = \arabic{chapter},
   chapter/numberformat = \sf, % 数字字体 Arial
-  chapter/beforeskip = 12pt, % 标题前后的间距
-  chapter/afterskip = 18pt,
+  chapter/beforeskip = 16pt, % 标题前后的间距  即12磅
+  chapter/afterskip = 8pt,  % 即6磅
   chapter/fixskip = true, % 标题与正文的距离
   chapter/format += \heiti\zihao{3},  % 一级标题
   section/numberformat = \rm,
   section/format += \heiti\zihao{4}\raggedright, % 二级标题
+  section/beforeskip = 16pt, % 段前后的间距 同一级标题
+  section/afterskip = 8pt,
+  section/fixskip = true, % 标题与正文的距离  
   subsection/numberformat = \rm,
   subsection/format += \heiti\zihao{-4}\raggedright,  % 三级标题
   % contentsname = {目\quad 录},
@@ -23,6 +29,8 @@
 
 %% 段首缩进40点 即两个汉字
 \setlength\parindent{40pt}
+
+\renewcommand\appendix{\setcounter{secnumdepth}{-1}}
 
 \usepackage{fancyhdr}
 \pagestyle{fancy}
@@ -42,6 +50,21 @@
 \fancyhead[OC]{\kaishu \leftmark}
 \fancyfoot[C]{\thepage}}
 
-\graphicspath{{figures/}}
+\graphicspath{{figures/}{_bookdown_files/}}
+
+% \usepackage{parskip}
+% \setlength{\abovedisplayskip}{1pt} %3pt 个人觉得稍妥，可自行设置
+% \setlength{\belowdisplayskip}{1pt}
+
+\newenvironment{shrinkeq}[1]
+{\bgroup
+\addtolength\abovedisplayshortskip{#1}
+\addtolength\abovedisplayskip{#1}
+\addtolength\belowdisplayshortskip{#1}
+\addtolength\belowdisplayskip{#1}}
+{\egroup\ignorespacesafterend}
+
+% \begin{shrinkeq}{-3ex}
+% \end{shrinkeq}
 
 \frontmatter

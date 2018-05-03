@@ -24,11 +24,6 @@
 \end{equation}
 
 
-```{r matern-function}
-source('code/02-Matern-function.R') 
-```
-
-从蓝到红，值由小变大
 
 ## 模拟二项分布数据集
 
