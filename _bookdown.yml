@@ -17,7 +17,7 @@ rmd_files: [
   "01-reviews.Rmd",
 
   "02-models.Rmd",
-#  "03-algorithms.Rmd",
+  "03-algorithms.Rmd",
   
 #  "04a-simulations.Rmd",
 #  "04b-simulations.Rmd",
