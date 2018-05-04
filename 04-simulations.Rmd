@@ -1,96 +1,336 @@
 # 数值模拟
 
-目前，在 R 语言中的空间数据分析和建模，包括空间插值和平滑以及克里金方法等，此外，还介绍了线性和混合线性模型，广义线性和广义线性混合效应的求解方法与软件实现[@MASS2002]。
+我们分响应变量服从泊松和二项分布两种情况，模拟数据，相应的空间广义线性混合效应模型分别是\@ref(eq:SGPSM1)和 \@ref(eq:SGPSM2)。RandomFields 是模拟多元随机场的 R 包 [@RandomFields2015]， geoR 包[@R-geoR2016] 的 grf 函数只适合模拟少量数据点（$n < 500$）， MASS 包的 glmmPQL 函数采用惩罚拟似然求解带空间效应的广义线性混合效应模型[@MASS2002]。 方程 \@ref(eq:SGPSM1) 在有些文献中也称为标准地质统计流行抽样模型(Standard Geostatistical Prevalence Sampling Model)[@Diggle2007]
 
+\begin{gather}
+\log\big\{\frac{p(x_i)}{1-p(x_i)}\big\} = d(x_i)'\beta + S(x_i) + Z_i (\#eq:SGPSM1)\\
+\log[\lambda(x_i)] = d(x_i)'\beta + S(x_i) + Z_i (\#eq:SGPSM2)
+\end{gather}
 
-`RandomFields` 是模拟多元随机场的 R 包 [@RandomFields2015]， `geoR` 包[@R-geoR2016]的 `grf` 函数只适合模拟少量数据点（$n < 500$）
-
-分泊松、二项两种情况、上述3种方法，在空间广义线性混合效应模型下的模拟情况（使用标准的地统计模型，无时间项和混合分布）
 
 ## 二项分布
 
-模型形式如方程 \@ref(eq:SGPSM)所示，也称为标准地质统计流行抽样模型（Standard Geostatistical Prevalence Sampling Model）
+产生模拟数据的模型参数有$n=400,\sigma^2=1,\phi=25,\tau^2=1,\kappa=1,\beta_0=1.2$，假定协变量服从二元高斯分布，其协方差矩阵为
 
-\begin{equation}
-\log\big\{\frac{p(x_i)}{1-p(x_i)}\big\} = d(x_i)'\beta + S(x_i) + Z_i (\#eq:SGPSM)
-\end{equation}
+$$\Sigma=\begin{bmatrix}2 & 0.2\\
+0.2 & 3
+\end{bmatrix}$$
 
-其中 $\mathcal{S} = \{S(x):x \in \mathbb{R}^2\}$
+```{r,echo=TRUE,eval=FALSE,message=FALSE}
+# 产生数据
+library(mvtnorm)
+library(geoR)
+library(sp)
+library(RandomFieldsUtils)
+library(RandomFields)
+set.seed(2018)
+# 协方差矩阵 模拟二元正态分布
+sigma <- matrix(c(2, .2, .2, 3), byrow = TRUE, ncol = 2)
+N <- 400 # N <- 10000
+data.x <- cbind(rep(1, N), rmvnorm(n = N, mean = c(1, 2), sigma = sigma))
+beta <- c(1.2, 1, 0.2) # beta_0 = 1.2 是截距
+# 添加空间随机效应 sigma^2 = 1 phi = 25 tau^2 =1 kappa = 1
+S <- grf(N,
+  grid = "irreg", nx = N, ny = N,
+  xlims = c(0, 100), ylims = c(0, 100), nsim = 1, mean = 0,
+  cov.mode = "powered.exponential",
+  cov.par = c(1, 25), nugget = 1, kappa = 1
+)
+mu <- exp(S$data + data.x %*% beta) / (1 + exp(S$data + data.x %*% beta))
+binom.data.y <- rbinom(N, size = 10, prob = mu) / 10
+# plot(S$coords,
+#   type = "p", pch = 16, xlab = "X Coord", ylab = "Y Coord",
+#   col = terrain.colors(11)[binom.data.y * 10]
+# )
+# 绘制响应变量随空间位置变化的散点图，颜色从蓝到红，变量的值由0到1
+library(ggplot2)
+ggplot(data = as.data.frame(S$coords), aes(x = x, y = y, colour = binom.data.y)) + 
+  geom_point(pch = 16, size = 3, alpha = .8) +	
+  scale_colour_distiller(palette = "Spectral") +
+  labs(colour = "Prob",x = "X Coord",y = "Y Coord")
+```
+
+此处模拟数据集 `data_sim` 来自 PrevMap 包，零均值高斯过程 单元格上 $30 \times 30$ 参数 
+$\sigma^2 = 1, \phi = 0.15, \kappa =  2$，块金效应 (nugget effect) $\tau^2 = 0$，每个格点上重复实验10次，模拟响应变量二项分布的概率值。
 
 
-## 泊松分布
+- 模型参数估计部分
 
-模型形式如方程 \@ref(eq:SGPSM2) 所示
+```{r,message=FALSE,echo=TRUE,eval=FALSE}
+# 生成 data_sim 数据集
+set.seed(2018)
+library(geoR)
+library(RandomFields)
+DataNum <- 10000
+Data_Sim <- grf(DataNum,
+  grid = "irreg", DataNum, DataNum,
+  xlims = c(0, 100), ylims = c(0, 100), nsim = 1, mean = 0,
+  cov.mode = "powered.exponential",
+  cov.par = c(1, 25), nugget = 1, kappa = 1
+)
 
-\begin{equation}
-\log[\lambda(x_i)] = d(x_i)'\beta + S(x_i) + Z_i (\#eq:SGPSM2)
-\end{equation}
+rbinom(n, size, prob)
+# phi = 25 tau = 1 kappa = 1 sigma = 1
+# Simulated date matrix with response variable distributed with 'powered exponential' covariance matrix
 
+library(PrevMap)
+data("data_sim") # 在 PrevMap 包中
+knots1 <- expand.grid(
+  seq(-0.2, 1.2, length = 8),
+  seq(-0.2, 1.2, length = 8)
+)
+knots2 <- expand.grid(
+  seq(-0.2, 1.2, length = 16),
+  seq(-0.2, 1.2, length = 16)
+)
+knots3 <- expand.grid(
+  seq(-0.2, 1.2, length = 32),
+  seq(-0.2, 1.2, length = 32)
+)
+# 精确计算
+par0.exact <- c(0, 1, 0.15)
+exact.mcmc <- control.mcmc.MCML(
+  n.sim = 15000, burnin = 5000, thin = 5,
+  h = 1.65 / (nrow(data_sim)^(1 / 6))
+)
+system.time(fit.MCML.exact <- binomial.logistic.MCML(y ~ 1,
+  units.m = ~ units.m, coords = ~ x1 + x2,
+  data = data_sim, par0 = par0.exact,
+  start.cov.pars = 0.15,
+  control.mcmc = exact.mcmc,
+  kappa = 2, fixed.rel.nugget = 0, method = "nlminb",
+  plot.correlogram = FALSE
+))
 
+# Fixed relative variance of the nugget effect: 0 
+# Conditional simulation (burnin=5000, thin=5): 
+# Iteration 15000 out of 15000 
+# Estimation: 
+#   0:    -0.0000000:  0.00000  0.00000 -1.89712
+#   1:  -0.096588322: 0.00221774 -0.00353693 -1.88858
+#   2:   -0.22173788: 0.00735497 -0.0104126 -1.87278
+#   3:   -0.97752221: 0.255598 -0.181303 -1.91676
+#   4:    -1.2385645: 0.613893 -0.535106 -2.00673
+#   5:    -1.3523607: 0.517397 -0.434678 -1.98096
+#   6:    -1.3544228: 0.503688 -0.417004 -1.97647
+#   7:    -1.3544238: 0.503373 -0.416617 -1.97637
+#   8:    -1.3544238: 0.503373 -0.416617 -1.97637
+#    user  system elapsed 
+#  839.57   18.94  858.19
 
-## 模拟二项分布数据集
+# 近似计算 low-rank  参数估计 分3种粒度 记录程序运行的时间
+par0.lr <- c(-0.219294, 0.97945, 0.21393)
+lr.mcmc <- control.mcmc.MCML(
+  n.sim = 15000, burnin = 5000, thin = 5,
+  h = 1.65 / (nrow(knots1)^(1 / 6))
+)
 
-此处模拟数据集 `data_sim` 来自 `PrevMap` 包，零均值高斯过程 单元格上 $30 \times 30$ 参数 
-$\sigma^2 = 1, \phi = 0.15, \kappa =  2$，块金效应 (nugget effect) $\tau^2 = 0$，每个格点上重复实验10次，得到响应变量二项分布的概率值
+system.time(fit.MCML.lr1 <- binomial.logistic.MCML(y ~ 1,
+  units.m = ~ units.m, coords = ~ x1 + x2,
+  data = data_sim, par0 = par0.lr,
+  start.cov.pars = par0.lr[3], control.mcmc = lr.mcmc,
+  low.rank = TRUE, knots = knots1, kappa = 2,
+  method = "nlminb", plot.correlogram = FALSE
+))
 
+# Conditional simulation (burnin=5000, thin=5): 
+# Iteration 15000 out of 15000 
+# Estimation: 
+#   0:    -0.0000000: -0.219294 -1.61996 -0.502386
+#   1:    -1.9700794: -0.204222 -1.64731 -0.415457
+#   2:    -5.5861874: -0.249859 -2.04459 -0.432375
+#   3:    -7.0904812: -0.298889 -2.12859 -0.427948
+#   4:    -8.1851010: -0.316596 -2.13015 -0.436352
+#   5:    -9.5082331: -0.355437 -2.13856 -0.425871
+#   6:    -10.067565: -0.372897 -2.17102 -0.407318
+#   7:    -10.974438: -0.380679 -2.40809 -0.400481
+#   8:    -10.975223: -0.380693 -2.41513 -0.400440
+#   9:    -10.975223: -0.380693 -2.41510 -0.400440
+#  10:    -10.975223: -0.380693 -2.41510 -0.400440
+#    user  system elapsed 
+#   74.11    1.47   75.77
+
+lr.mcmc$h <- 1.65 / (nrow(knots2)^(1 / 6))
+par0.lr <- c(-0.017333, 0.16490, 0.16971)
+system.time(fit.MCML.lr2 <- binomial.logistic.MCML(y ~ 1,
+  units.m = ~ units.m, coords = ~ x1 + x2,
+  data = data_sim, par0 = par0.lr,
+  start.cov.pars = par0.lr[3], control.mcmc = lr.mcmc,
+  low.rank = TRUE, knots = knots2, kappa = 2,
+  method = "nlminb", plot.correlogram = FALSE
+))
+
+# Conditional simulation (burnin=5000, thin=5): 
+# Iteration 15000 out of 15000 
+# Estimation: 
+#   0:    -0.0000000: -0.0173330 -4.16441 -0.733943
+#   1:    -1.4156772: -0.000845313 -4.19508 -0.645052
+#   2:    -1.6032590: -0.00360549 -4.27732 -0.647427
+#   3:    -1.6133414: 0.000503305 -4.29473 -0.654881
+#   4:    -1.6136570: 0.00136614 -4.29962 -0.656305
+#   5:    -1.6136571: 0.00137241 -4.29971 -0.656335
+#   6:    -1.6136571: 0.00137240 -4.29971 -0.656335
+#    user  system elapsed 
+#  144.46    9.01  153.56 
+
+lr.mcmc$h <- 1.65 / (nrow(knots3)^(1 / 6))
+par0.lr <- c(-0.031759, 0.30572, 0.18854)
+system.time(fit.MCML.lr3 <- binomial.logistic.MCML(y ~ 1,
+  units.m = ~ units.m, coords = ~ x1 + x2,
+  data = data_sim, par0 = par0.lr,
+  start.cov.pars = par0.lr[3], control.mcmc = lr.mcmc,
+  low.rank = TRUE, knots = knots3, kappa = 2,
+  method = "nlminb", plot.correlogram = FALSE
+))
+
+# Conditional simulation (burnin=5000, thin=5): 
+# Iteration 15000 out of 15000 
+# Estimation: 
+#   0:    -0.0000000: -0.0317590 -4.26470 -0.628724
+#   1:    -4.2142054: -0.0243050 -4.29660 -0.542862
+#   2:    -5.0398103: -0.00729183 -4.32851 -0.530939
+#   3:    -5.3459532: -0.0146437 -4.36908 -0.525692
+#   4:    -5.3511289: -0.0147919 -4.36446 -0.526091
+#   5:    -5.3511292: -0.0147946 -4.36443 -0.526097
+#   6:    -5.3511292: -0.0147946 -4.36443 -0.526097
+#    user  system elapsed 
+#  901.22  118.55 1019.87 
+```
+
+- 模型预测部分
+
+```{r,eval=FALSE}
+# 提取系数
+par.hat <- coef(fit.MCML.exact)
+Sigma.hat <- varcov.spatial(
+  coords = data_sim[c("x1", "x2")],
+  cov.pars = par.hat[2:3], kappa = 2
+)$varcov
+# 重要性采样 近似高维积分
+mu.hat <- rep(par.hat[1], nrow(data_sim))
+system.time(S.cond.sim <- Laplace.sampling(
+  mu = mu.hat, Sigma = Sigma.hat, y = data_sim$y,
+  units.m = data_sim$units.m, control.mcmc = exact.mcmc,
+  plot.correlogram = FALSE
+))
+
+# Conditional simulation (burnin=5000, thin=5): 
+# Iteration 15000 out of 15000 
+#    user  system elapsed 
+#  278.84   47.99  327.77 
+
+# 模拟近似的和精确的 prevalence 预测
+prevalence.sim <- exp(S.cond.sim$samples) / (1 + exp(S.cond.sim$samples))
+prevalence.exact <- apply(prevalence.sim, 2, mean)
+
+## 预测 分3种粒度
+lr.mcmc$h <- 1.65 / (nrow(knots1)^(1 / 6))
+system.time(pred.MCML.lr1 <- spatial.pred.binomial.MCML(fit.MCML.lr1,
+  grid.pred = data_sim[c("x1", "x2")], control.mcmc = lr.mcmc,
+  type = "joint", scale.predictions = "prevalence",
+  plot.correlogram = FALSE
+))
+
+# Conditional simulation (burnin=5000, thin=5): 
+# Iteration 15000 out of 15000 
+# Spatial predictions: prevalence 
+#    user  system elapsed 
+#   37.83    0.93   38.78
+
+lr.mcmc$h <- 1.65 / (nrow(knots2)^(1 / 6))
+system.time(pred.MCML.lr2 <- spatial.pred.binomial.MCML(fit.MCML.lr2,
+  grid.pred = data_sim[c("x1", "x2")], control.mcmc = lr.mcmc,
+  type = "joint", scale.predictions = "prevalence",
+  plot.correlogram = FALSE
+))
+
+# Conditional simulation (burnin=5000, thin=5): 
+# Iteration 15000 out of 15000 
+# Spatial predictions: prevalence 
+#    user  system elapsed 
+#   83.76    6.95   90.78 
+
+lr.mcmc$h <- 1.65 / (nrow(knots3)^(1 / 6))
+system.time(pred.MCML.lr3 <- spatial.pred.binomial.MCML(fit.MCML.lr3,
+  grid.pred = data_sim[c("x1", "x2")], control.mcmc = lr.mcmc,
+  type = "joint", scale.predictions = "prevalence",
+  plot.correlogram = FALSE
+))
+
+# Conditional simulation (burnin=5000, thin=5): 
+# Iteration 15000 out of 15000 
+# Spatial predictions: prevalence 
+#    user  system elapsed 
+#  643.09  130.62  773.80
+```
+
+- 绘制预测曲面
+
+```{r, eval=FALSE}
+# 画图展示  images of estimated surfaces of prevalence
+# pdf(file = 'figure/simulation.pdf',width = 8,height = 7.2)
+# mycols <- viridisLite::viridis(30)
+mycols <- colorRampPalette(rev(RColorBrewer::brewer.pal(11, name = "Spectral")))(30)
+op <- par(mfrow = c(2, 2), mar = c(3, 4, 3, 4))
+r.exact <- rasterFromXYZ(cbind(
+  data_sim[, c("x1", "x2")],
+  prevalence.exact
+))
+plot(r.exact, zlim = c(0, 1), main = "Exact method", col = mycols)
+contour(r.exact, levels = seq(0.1, 0.9, 0.1), add = TRUE)
+
+plot(pred.MCML.lr1, "prevalence", "predictions",
+  zlim = c(0, 1),
+  main = "Low-rank: 64 knots", col = mycols
+)
+contour(pred.MCML.lr1, "prevalence", "predictions",
+  zlim = c(0, 1),
+  levels = seq(0.1, 0.9, 0.1), add = TRUE
+)
+
+plot(pred.MCML.lr2, "prevalence", "predictions",
+  zlim = c(0, 1),
+  main = "Low-rank: 256 knots", col = mycols
+)
+contour(pred.MCML.lr2, "prevalence", "predictions",
+  zlim = c(0, 1),
+  levels = seq(0.1, 0.9, 0.1), add = TRUE
+)
+
+plot(pred.MCML.lr3, "prevalence", "predictions",
+  zlim = c(0, 1),
+  main = "Low-rank: 1024 knots", col = mycols
+)
+contour(pred.MCML.lr3, "prevalence", "predictions",
+  zlim = c(0, 1),
+  levels = seq(0.1, 0.9, 0.1), add = TRUE
+)
+par(op)
+
+# dev.off()
+```
 
 ```{r low-rank, fig.cap = "低秩近似方法与精确蒙特卡罗最大似然方法"}
 knitr::include_graphics(path = "figures/simulation.pdf")
 ```
 
-MCML 精确计算 
-Low-Rank 近似计算 
 贝叶斯MCMC计算(R和Stan) 
 限制极大似然 REML 
 
-## 广义线性模型
 
-### 似然推断
+## 泊松分布
 
-```{r}
-library(mcmc)
-data(logit)
-out <- glm(y ~ x1 + x2 + x3 + x4, data = logit,
-    family = binomial(), x = TRUE)
-summary(out)
-```
+```{r,eval=FALSE,echo=TRUE}
+# 泊松分布 空间随机效应和协变量同上
+lambda <- exp(S$data + data.x %*% beta)
+pois.data.y <- rpois(length(S$data), lambda = lambda)
 
-
-
-
-
-### 贝叶斯推断
-
-```{r}
-x <- out$x
-y <- out$y
-
-lupost <- function(beta, x, y) {
-    eta <- as.numeric(x %*% beta)
-    logp <- ifelse(eta < 0, eta - log1p(exp(eta)), - log1p(exp(- eta)))
-    logq <- ifelse(eta < 0, - log1p(exp(eta)), - eta - log1p(exp(- eta)))
-    logl <- sum(logp[y == 1]) + sum(logq[y == 0])
-    return(logl - sum(beta^2) / 8)
-}
-```
-
-
-```{r}
-set.seed(2018)    # to get reproducible results
-beta.init <- as.numeric(coefficients(out))
-out <- metrop(lupost, beta.init, 1e3, x = x, y = y)
-names(out)
-out$accept
-```
-
-```{r}
-out <- metrop(out, scale = 0.1, x = x, y = y)
-out$accept
-out <- metrop(out, scale = 0.3, x = x, y = y)
-out$accept
-out <- metrop(out, scale = 0.5, x = x, y = y)
-out$accept
-out <- metrop(out, scale = 0.4, x = x, y = y)
-out$accept
+ggplot(
+  data = as.data.frame(S$coords),
+  aes(x = x, y = y, colour = log(pois.data.y + 1))
+) +
+  geom_point(pch = 16, size = 3, alpha = .8) +
+  scale_colour_distiller(palette = "Spectral") +
+  labs(colour = "对数\n观察数目", x = "横坐标", y = "纵坐标")
 ```
 

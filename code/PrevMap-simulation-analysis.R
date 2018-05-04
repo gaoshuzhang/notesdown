@@ -84,9 +84,9 @@ ggplot(data = as.data.frame(S$coords), aes(x = x, y = y, colour = binom.data.y))
   labs(colour = "观察概率",x = "横坐标",y = "纵坐标")
 
 
-# plot(S$coords, type = 'p', pch = 16, xlab = 'X Coord', ylab = 'Y Coord',
-	# col = terrain.colors(11)[binom.data.y*10] )
-# title(main = '响应变量的空间分布', family = 'SimSun')
+plot(S$coords, type = 'p', pch = 16, xlab = 'X Coord', ylab = 'Y Coord',
+col = terrain.colors(11)[binom.data.y*10] )
+# title(main = '响应变量的空间分布')
 
 
 # 泊松分布 空间随机效应和协变量同上
@@ -103,7 +103,6 @@ ggplot(data = as.data.frame(S$coords), aes(x = x, y = y, colour = log(pois.data.
 
 #########################################################
 library(PrevMap)
-library(geoR)
 data("data_sim") # 在 PrevMap 包中
 knots1 <- expand.grid(seq(-0.2,1.2, length = 8), 
   seq(-0.2,1.2, length = 8))
@@ -151,7 +150,7 @@ system.time(fit.MCML.lr3 <- binomial.logistic.MCML(y ~ 1,
   data = data_sim, par0 = par0.lr,
   start.cov.pars = par0.lr[3], control.mcmc = lr.mcmc,
   low.rank = TRUE, knots = knots3, kappa = 2, 
-  method = "nlminb", plot.correlogram = FALSE))  
+  method = "nlminb", plot.correlogram = FALSE)) 
  
 # 提取系数 
 par.hat <- coef(fit.MCML.exact)
