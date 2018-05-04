@@ -47,7 +47,16 @@
   pages={129-36},
   year={2002},
 }
-
+@Article{Hosseini2016,
+	author={Hosseini, Fatemeh},
+	title={A new algorithm for estimating the parameters of the spatial generalized linear mixed models},
+	journal={Environmental and Ecological Statistics},
+	year={2016},
+	volume={23},
+	number={2},
+	pages={205--217},
+	doi={10.1007/s10651-015-0335-6}
+}
 @article{Bonat2016Practical,
   title={Practical likelihood analysis for spatial generalized linear mixed models},
   author={Bonat, Wagner Hugo and {Ribeiro Jr.}, Paulo J.},
@@ -92,7 +101,15 @@
 	pages = {702--718},
 	year={2004}
 } 
-
+@article{Geyer1994On,
+  title={On the Convergence of Monte Carlo Maximum Likelihood Calculations},
+  author={Geyer, Charles J.},
+  journal={Journal of the Royal Statistical Society. Series B (Methodological)},
+  volume={56},
+  number={1},
+  pages={261-274},
+  year={1994},
+}
 @article{Diggle2016,
 	author = {Peter J. Diggle and Emanuele Giorgi},
 	title = {Model-Based Geostatistics for Prevalence Mapping in Low-Resource Settings},
@@ -190,7 +207,13 @@
     year = {2016},
 	edition = {2nd},
   }
-
+@ARTICLE{MCMC2017INLA,
+   author = {{G{\'o}mez-Rubio}, V. and H{\aa}vard Rue},
+    title = "{Markov Chain Monte Carlo with the Integrated Nested Laplace Approximation}",
+  journal = {ArXiv e-prints},
+   eprint = {1701.07844},
+     year = {2017},
+}
 @Article{INLA2009,
     author = {H{\aa}vard Rue and Sara Martino and Nicholas Chopin},
     title = {Approximate Bayesian Inference for Latent Gaussian Models Using Integrated Nested Laplace Approximations (with discussion).},
@@ -199,6 +222,13 @@
     volume = {71},
     pages = {319--392},
   } 
+@Manual{R-glmmBUGS,
+    title = {{glmmBUGS}: Generalised Linear Mixed Models and Spatial Models with {WinBUGS}, {Jags}, and {OpenBUGS}},
+    author = {Patrick E Brown and L Zhou},
+    year = {2018},
+    note = {R package version 2.4.2},
+    url = {https://CRAN.R-project.org/package=glmmBUGS},
+  }  
 @Article{INLA2015,
     title = {Bayesian Spatial Modelling with {R}-{INLA}},
     author = {Finn Lindgren and H{\aa}vard Rue},
@@ -390,16 +420,6 @@ in Ultrahigh Dimensional Statistical Models},
     url = {https://CRAN.R-project.org/package=geoR},
   }
   
-@article{gstat2004,
-	title = {Multivariable geostatistics in S: the gstat package},
-	journal = {Computers \& Geosciences},
-	volume = {30},
-	number = {7},
-	pages = {683 - 691},
-	year = {2004},
-	author = {Edzer J Pebesma},
-}
-
 @Article{pscl2008,
     title = {Regression Models for Count Data in {R}},
     author = {Achim Zeileis and Christian Kleiber and Simon Jackman},
@@ -677,7 +697,43 @@ in Ultrahigh Dimensional Statistical Models},
     note = {R package version 0.6-1},
     url = {https://CRAN.R-project.org/package=sf},
 }
-  
+@Misc{RStan,
+    title = {{RStan}: the {R} interface to {Stan}},
+    author = {{Stan Development Team}},
+    note = {R package version 2.17.3},
+    year = {2018},
+    url = {http://mc-stan.org/},
+  }
+@misc{scikitcuda2015,
+    author       = {Lev E. Givon and Thomas Unterthiner and 
+					N. Benjamin Erichson and David Wei Chiang and 
+					Eric Larson and Luke Pfister and
+                    Sander Dieleman and Gregory R. Lee and
+                    Stefan van der Walt and Bryant Menn and
+                    Teodor Mihai Moldovan and Fr\'{e}d\'{e}ric Bastien and
+                    Xing Shi and Jan Schl\"{u}ter and
+                    Brian Thomas and Chris Capdevila and
+                    Alex Rubinsteyn and Michael M. Forbes and
+                    Jacob Frelinger and Tim Klein and
+                    Bruce Merry and Nate Merill and
+                    Lars Pastewka and S. Clarkson and
+                    Michael Rader and Steve Taylor and
+                    Arnaud Bergeron and Nikul H. Ukani and
+                    Feng Wang and Yiyin Zhou},
+    title        = {scikit-cuda 0.5.1: a {Python} interface to {GPU}-powered libraries},
+    month        = December,
+    year         = 2015,
+    doi          = {10.5281/zenodo.40565},
+    url          = {http://dx.doi.org/10.5281/zenodo.40565}
+}
+@misc{ArrayFire2015,
+  address = {Atlanta},
+  author = {Yalamanchili, Pavan and Arshad, Umar and Mohammed, Zakiuddin and Garigipati, Pradeep and Entschev, Peter and Kloppenborg, Brian and Malcolm, James and Melonakos, John},
+  publisher = {AccelerEyes},
+  title = {{ArrayFire - A high performance software library for parallel computing with an easy-to-use API}},
+  url = {https://github.com/arrayfire/arrayfire},
+  year = {2015}
+}
 @Article{Krige1951,
     author = {Krige, D. G.},
     title = {A Statistical Approach to Some Basiv Mine Valuation Problems on the Witwatersrand},

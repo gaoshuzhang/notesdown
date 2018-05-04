@@ -179,3 +179,5 @@ knitr::include_graphics(path = "figures/matern-3d.pdf")
 基于贝叶斯框架实现模型\@ref(eq:SGLMM)的参数估计和预测，必然使用 MCMC 算法，自然地，需要指定模型参数 $\bm{\theta} = (\beta,\tau^2,\sigma^2,\phi)$的先验分布，对于 $\beta$，选择相互独立的均匀先验，而对于参数 $\tau^2,\sigma^2,\phi$，选取如下模糊先验：
 $$f(\tau^2) \propto \frac{1}{\tau^2};f(\sigma^2) \propto \frac{1}{\sigma^2};f(\phi) \propto \frac{1}{\phi^2}$$
 其中，$\tau^2$ 和 $\sigma^2$ 为杰弗里斯先验，这些先验的选择是出于实用和经验的考虑（意思就是说可以取别的），如果由这些先验导出的后验不合适，则 MCMC 算法的表现就会不收敛； 通常选取不同初始值，产生多条链，如果没有出现算法不收敛的情况，则这样的先验是被合适的。这些无信息的先验分布的选择对最终结果几乎没有影响，这是贝叶斯非常棒的部分，贝叶斯推断方法也得以被广泛应用[@mao2006]。
+
+作为模型 \@ref(eq:SGLMM) 求解和展示的首选工具 --- R 语言在空间数据分析与可视化方面呈现越来越流行的趋势，从早些年的 `lattice` 图形[@lattice2008] 到如今的 `ggplot2`图形[@ggplot22016]，操作空间数据的 `sp` 对象[@R-sp]也发展为 `sf` 对象[@R-sf]，同时整合了不少第三方软件和服务，如基于 Google Maps 的交互空间可视化 [@plotGoogleMaps2012]，基于 Google Earth 的空间可视化 [@plotKML2015]。下面就求解模型 \@ref(eq:SGLMM)的三类算法进行详细阐述，分别是贝叶斯方法、似然方法和低秩近似方法，并介绍相应的软件实现。

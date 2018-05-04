@@ -19,11 +19,10 @@ rmd_files: [
   "02-models.Rmd",
   "03-algorithms.Rmd",
   
-#  "04a-simulations.Rmd",
-#  "04b-simulations.Rmd",
-  
+#  "04-simulations.Rmd",
 #  "05-applications.Rmd",
-#  "06-summary.Rmd",
+
+  "06-summary.Rmd",
 #  "07-references.Rmd",
 #  "08-appendix.Rmd",
 ]

@@ -154,12 +154,10 @@
 \chapter*{\markboth{摘要}{摘要}{摘\quad 要}}
 \pagenumbering{Roman} 
 \medskip
-随机变量的独立性非参数假设检验一直以来就是统计学上比较关注的问题。Jing 和 Zhu(1996) 提出了基于pp法和bootstrap法的一种B-K-R型检验统计量。Norbert Henze 和 Ya.Yu.Nikitin(2003)引入了积分经验过程。Jing和Wang（2006）利用积分经验过程检验多元分布函数的相等性。本文在这些文章的基础上，提出了高维情况下基于投影积分经验过程的 Kolmogorov-Smirnov 和 Cramer-VonMises(C-V) 检验统计量检验随机变量的独立性。
-Bootstrap 统计量用于逼近所提出的统计量的临界值,并证明了在原假设成立时他们有相同的经验分布。
-数论的方法用于有效的计算bootstrap临界值。最后本文给出了大量的数值模拟。
+空间广义线性混合效应模型具有广泛的应用，特别是空间统计领域，为了统计推断，相关的计算方法还没到收敛的状态。1998年 Peter J. Diggle 实现基于马尔科夫链蒙特卡罗算法的贝叶斯估计，2002 年 Venables, W. N. 和 Ripley, B. D 实现惩罚拟似然估计， 2004 年 Ole F Christensen 实现的蒙特卡罗最大似然估计，2009年 H{\aa}vard Rue 实现近似贝叶斯推断方法---集成嵌套拉普拉斯算法。在大规模稀疏数据环境下，高效的计算方法一直是研究的重要方向。用以模型选择和统计推断的低秩近似、似然和贝叶斯算法在论文中实现了，基于贝叶斯推断的算法也在 Stan 框架下实现了。通过模拟比较，低秩近似具有明显的效率优势，Stan 框架因其本身优化程度极高的计算库、并行特点和编译带来的再次优化大大加速了模拟的过程。
 \medskip
 \par
-{\heiti 关键词 ：} Bootstrap统计量，积分经验分布函数，积分经验过程
+{\heiti 关键词 ：} 地质统计，空间广义线性混合效应模型，马尔科夫链蒙特卡罗
 
 \par
 \vspace{1cm}
@@ -173,24 +171,11 @@ Bootstrap 统计量用于逼近所提出的统计量的临界值,并证明了在
 \vskip 0.6cm
 \end{center}
 \par
-Testing the joint independence of variables has long been an
-interesting issue in statistical inference.Jing and Zhu(1996)
-proposed  B-K-R type tests based on the projection pursuit technique
-and bootstrap method.Henze and Ya.Yu.Nikitin(2003) introduced the
-integrated empirical processes.Jing and Wang(2006) used the
-integrated empirical processes to test the equality of multivariate
-distributions.Based on the above ,in this paper we will introduce
-the projected integrated empirical processes of Cramer-VonMises
-statistics and Kolmogorov-Smirnov statistics for testing the joint
-independence of variables in high dimension space.The bootstrap is
-used for determining the approximate critical values. An
-approximation is derived by Number-theoretic method for the
-bootstrap statistics suggested. Several simulation experiments are
-performed.
+Spatial generalized linear mixed effects model (SGLMM) has a wide range of applications, especially in the area of spatial statistics. For statistical inference, the relevant calculation methods have not yet reached the state-of-art. In 1998, Peter J. Diggle and his colleagues had bayesian estimation using Markov Chain Monte Carlo algorithms. In 2002, Venables, W. N. and Ripley, B. D fited SGLMM models via Penalized Quasi-Likelihood. In 2004, Ole F Christensen got Monte Carlo Maximum Likelihood estimations of SGLMMs. In 2009, an approximate bayesian inference --- Integrated Nested Laplace Approximations was used to fit SGLMMs by H{\aa}vard Rue. In large-scale sparse settings, effective and efficient algorithms are always pursued by reseachers. Low-rank, likelihood-based and bayesian framework approaches are carried out by R language, stan library only for the latter. By comparison, the low-rank approximation has obvious efficiency advantages. The Stan framework greatly accelerates the simulation process due to its highly optimized computational library, parallel features, and re-optimization from compilation.
 \medskip
 \par
 
-{\bf Key words：} Bootstrap，Kolmogorov-Smirnov statistics
+{\bf Key words：} Geostatistics，Spatial Generalized Linear Mixed Models, Markov Chain Monte Carlo
 
 % 空一页
 \newpage 
