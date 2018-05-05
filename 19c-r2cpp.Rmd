@@ -1,5 +1,8 @@
 # 性能提升 {#performance}
 
+- [C++ 编程风格指南](http://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines) 
+- <https://github.com/isocpp/CppCoreGuidelines>
+
 - 如何充分利用 Rcpp 包
 - 设个目标，锻炼一下编码能力，关于统计计算和可视化尽可能提供两个方案，至少包含基础 R 包的实现
 

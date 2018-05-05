@@ -44,6 +44,15 @@ sudo apt-get update
 help('modules')
 ```
 
+## Hugo
+
+下载 <https://github.com/gohugoio/hugo/releases>
+
+```bash
+wget https://github.com/gohugoio/hugo/releases/download/v0.40.2/hugo_0.40.2_Linux-64bit.deb
+sudo dpkg -i hugo_0.40.2_Linux-64bit.deb
+```
+
 ## LaTeX 
 
 列出 tex 版本及其他信息
