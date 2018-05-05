@@ -29,3 +29,16 @@ filled.mapMM(lfit,
   )
 )
 dev.off()
+
+
+##---------------------Gambia ----------------------------------
+
+lfit <- corrHLfit(cbind(npos, ntot - npos) ~
+                    pos ~ age + netuse + treated + phc
+                  + Matern(1 | longitude + latitude),
+                  HLmethod = "HL(0,1)", data = gambia,
+                  family = binomial(), ranFix = list(nu = 0.5, rho = 2.255197, lambda = 1.075)
+)
+
+
+

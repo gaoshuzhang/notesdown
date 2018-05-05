@@ -30,6 +30,7 @@ set.seed(2018)
 sigma <- matrix(c(2, .2, .2, 3), byrow = TRUE, ncol = 2)
 N <- 1600 # N <- 10000
 data.x <- cbind(rep(1, N), rmvnorm(n = N, mean = c(1, 2), sigma = sigma))
+data.z <- rnorm(N, mean = 0, sd = 3)
 beta <- c(1.2, 1, 0.2) # beta_0 = 1.2 是截距
 # 添加空间随机效应 sigma^2 = 1 phi = 25 tau^2 =1 kappa = 1
 # 不规则网络
@@ -83,8 +84,127 @@ par(op)
 dev.off()
 
 
-mu <- exp(S$data + data.x %*% beta) / (1 + exp(S$data + data.x %*% beta))
-binom.data.y <- rbinom(N, size = 10, prob = mu) / 10
+mu <- exp(exp_reg_S$data + data.x %*% beta) / (1 + exp(exp_reg_S$data + data.x %*% beta))
+binom.data.y <- rbinom(N, size = 100, prob = mu)
+
+binom_exp_reg_sim <- cbind.data.frame(binom.data.y, exp_reg_S$coord, data.x, data.z)
+
+colnames(binom_exp_reg_sim) <- c("y","x1","x2","d1","d2","d3","z")
+
+library(MASS)
+
+library(nlme) # will be loaded automatically if omitted
+
+# d1 作为常数项视为虚假随机效应
+
+binom_exp_reg_sim_fit <- glmmPQL(y ~ d2 + d3, random = ~ 1 | d1,
+  correlation = corExp(form = ~ x1 + x2 | d1),
+  family = binomial, data = binom_exp_reg_sim
+)
+
+# iteration 1
+# iteration 2
+# iteration 3
+# Warning message:
+# In eval(family$initialize) : non-integer #successes in a binomial glm!
+# 
+# summary(binom_exp_reg_sim_fit)
+# Linear mixed-effects model fit by maximum likelihood
+#  Data: binom_exp_reg_sim 
+#   AIC BIC logLik
+#    NA  NA     NA
+# 
+# Random effects:
+#  Formula: ~1 | d1
+#          (Intercept)  Residual
+# StdDev: 5.945984e-05 0.4092199
+# 
+# Correlation Structure: Exponential spatial correlation
+#  Formula: ~x1 + x2 | d1 
+#  Parameter estimate(s):
+#    range 
+# 1.866339 
+# Variance function:
+#  Structure: fixed weights
+#  Formula: ~invwt 
+# Fixed effects: y ~ d2 + d3 
+#                 Value  Std.Error   DF  t-value p-value
+# (Intercept) 0.9561796 0.05497952 1597 17.39156       0
+# d2          0.7795871 0.02445972 1597 31.87228       0
+# d3          0.1358919 0.01618551 1597  8.39590       0
+#  Correlation: 
+#    (Intr) d2    
+# d2  0.266       
+# d3 -0.423  0.012
+# 
+# Standardized Within-Group Residuals:
+#        Min         Q1        Med         Q3        Max 
+# -5.7465519 -0.3581836  0.3154303  0.6250068  2.7649474 
+# 
+# Number of Observations: 1600
+# Number of Groups: 1 
+
+# https://stackoverflow.com/questions/32038355/r-glmm-glmer-vs-glmmpql
+
+library(spaMM)
+
+lfit <- corrHLfit(cbind(y, 100 - y) ~ d1 + d2 + d3 + z
+  + Matern(1 | x1 + x2),
+HLmethod = "HL(0,1)", data = binom_exp_reg_sim,
+family = binomial(), ranFix = list(nu = 0.5, rho = 2.255197, lambda = 1.075)
+)
+
+summary(lfit)
+
+# formula: cbind(y, 100 - y) ~ d1 + d2 + d3 + z + Matern(1 | x1 + x2)
+# Estimation of corrPars by Laplace REML approximation (p_bv).
+# Estimation of fixed effects by h-likelihood approximation.
+# Family: binomial ( link = logit ) 
+#  ------------ Fixed effects (beta) ------------
+#             Estimate Cond. SE t-value
+# (Intercept)  1.11401 0.045439  24.517
+# d1                NA       NA      NA
+# d2           0.93369 0.021829  42.773
+# d3           0.17367 0.016924  10.262
+# z           -0.01515 0.009751  -1.553
+#  --------------- Random effects ---------------
+# Family: gaussian ( link = identity ) 
+#                    --- Correlation parameters:
+#    1.rho     1.nu 
+# 2.255197 0.500000 
+#            --- Variance parameters ('lambda'):
+# lambda = var(u) for u ~ Gaussian; 
+#    x1 + x2  :  1.075 [fixed] 
+# # of obs: 1600; # of groups: x1 + x2, 1600 
+#  ------------- Likelihood values  -------------
+#                         logLik
+#        h-likelihood: -5533.244
+# p_v(h) (marginal L): -5638.748
+#   p_beta,v(h) (ReL): -5651.148
+
+
+library(maps)
+
+pdf(file = "spaMM-simulation.pdf", width = 6, height = 4, pointsize = 10)
+par(mar = c(4, 4, 2, 0))
+
+filled.mapMM(lfit,
+  key.title = title(main = "ratio"), 
+  # key.axes = axis(4, seq(0, 1, by = .2)),
+  color.palette = colorRampPalette(rev(RColorBrewer::brewer.pal(11, name = "Spectral"))),
+  map.asp = 1, gridSteps = 61, var.contour.args = list(add = FALSE),
+  add.map = FALSE, plot.axes = quote({ # 取消地图背景，这是模拟数据
+    axis(1)
+    axis(2)
+  }),
+  decorations = NULL,
+  plot.title = title(
+    main = "Inferred prevalence, Simulation",
+    xlab = "X Coord", ylab = "Y Coord"
+  )
+)
+dev.off()
+
 # plot(S$coords,
 #   type = "p", pch = 16, xlab = "X Coord", ylab = "Y Coord",
 #   col = terrain.colors(11)[binom.data.y * 10]
@@ -111,7 +231,13 @@ knitr::include_graphics(path = "figures/irreg-gp.pdf")
 ```{r,message=FALSE,echo=TRUE,eval=FALSE}
 # 生成 data_sim 数据集
 data.x
-binom.data.y
+binom.data.y 
+
+# binomial.logistic.MCML #支持多元协变量 
+
+
+
+
 
 library(PrevMap)
 
