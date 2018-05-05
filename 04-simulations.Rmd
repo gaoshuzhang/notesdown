@@ -10,13 +10,15 @@
 
 ## 二项分布
 
-产生模拟数据的模型参数有$n=400,\sigma^2=1,\phi=25,\tau^2=1,\kappa=1,\beta_0=1.2$，假定协变量服从二元高斯分布，其协方差矩阵为
+产生模拟数据的模型参数有$n=1600,\sigma^2=1,\phi=25,\tau^2=1,\kappa=1,\beta_0=1.2$，假定协变量服从二元高斯分布，其协方差矩阵为
 
 $$\Sigma=\begin{bmatrix}2 & 0.2\\
 0.2 & 3
 \end{bmatrix}$$
 
-```{r,echo=TRUE,eval=FALSE,message=FALSE}
+图 \@ref(fig:reg-gp) 表示规则网格上的采样，图\@ref(fig:irreg-gp) 表示随机采样
+
+```{r,echo=FALSE,eval=FALSE,message=FALSE}
 # 产生数据
 library(mvtnorm)
 library(geoR)
@@ -26,16 +28,61 @@ library(RandomFields)
 set.seed(2018)
 # 协方差矩阵 模拟二元正态分布
 sigma <- matrix(c(2, .2, .2, 3), byrow = TRUE, ncol = 2)
-N <- 400 # N <- 10000
+N <- 1600 # N <- 10000
 data.x <- cbind(rep(1, N), rmvnorm(n = N, mean = c(1, 2), sigma = sigma))
 beta <- c(1.2, 1, 0.2) # beta_0 = 1.2 是截距
 # 添加空间随机效应 sigma^2 = 1 phi = 25 tau^2 =1 kappa = 1
-S <- grf(N,
+# 不规则网络
+exp_irreg_S <- grf(N,
   grid = "irreg", nx = N, ny = N,
   xlims = c(0, 100), ylims = c(0, 100), nsim = 1, mean = 0,
   cov.mode = "powered.exponential",
   cov.par = c(1, 25), nugget = 1, kappa = 1
 )
+# 规则网络 产生 N*N 个点
+exp_reg_S <- grf(sqrt(N),
+  grid = "reg", nx = sqrt(N), ny = sqrt(N),
+  xlims = c(0, 100), ylims = c(0, 100), nsim = 1, mean = 0,
+  cov.mode = "powered.exponential",
+  cov.par = c(1, 25), nugget = 1, kappa = 1
+)
+
+# 不规则网络
+matern_irreg_S <- grf(N,
+  grid = "irreg", nx = N, ny = N,
+  xlims = c(0, 100), ylims = c(0, 100), nsim = 1, mean = 0,
+  cov.mode = "matern",
+  cov.par = c(1, 25), nugget = 1, kappa = .5
+)
+
+# 规则网络 产生 N*N 个点
+matern_reg_S <- grf(sqrt(N),
+  grid = "reg", nx = sqrt(N), ny = sqrt(N),
+  xlims = c(0, 100), ylims = c(0, 100), nsim = 1, mean = 0,
+  cov.mode = "matern",
+  cov.par = c(1, 25), nugget = 1, kappa = .5
+)
+
+pdf(file = 'reg-gp.pdf',width = 8,height = 8)
+mycols <- colorRampPalette(rev(RColorBrewer::brewer.pal(11, name = "Spectral")))(30)
+op <- par(mfrow = c(2, 2), mar = c(4, 4, 1, 1))
+image(exp_reg_S, asp = NA, col = mycols)
+image(matern_reg_S, asp = NA, col = mycols)
+points(exp_reg_S, col = mycols)
+points(matern_reg_S, col = mycols)
+par(op)
+dev.off()
+
+
+pdf(file = 'irreg-gp.pdf',width = 13,height = 6)
+mycols <- colorRampPalette(rev(RColorBrewer::brewer.pal(11, name = "Spectral")))(30)
+op <- par(mfrow = c(1, 2), mar = c(4, 2, 1, .5))
+points(exp_irreg_S, col = mycols)
+points(matern_irreg_S, col = mycols)
+par(op)
+dev.off()
+
+
 mu <- exp(S$data + data.x %*% beta) / (1 + exp(S$data + data.x %*% beta))
 binom.data.y <- rbinom(N, size = 10, prob = mu) / 10
 # plot(S$coords,
@@ -49,32 +96,25 @@ ggplot(data = as.data.frame(S$coords), aes(x = x, y = y, colour = binom.data.y))
   scale_colour_distiller(palette = "Spectral") +
   labs(colour = "Prob",x = "X Coord",y = "Y Coord")
 ```
+```{r reg-gp,fig.cap="模拟高斯过程：核函数分别为指数族（左图），梅隆族（右图）"}
+knitr::include_graphics(path = "figures/reg-gp.pdf")
+```
+```{r irreg-gp,fig.cap="模拟高斯过程：核函数分别为指数族（左图），梅隆族（右图）"}
+knitr::include_graphics(path = "figures/irreg-gp.pdf")
+```
 
-此处模拟数据集 `data_sim` 来自 PrevMap 包，零均值高斯过程 单元格上 $30 \times 30$ 参数 
-$\sigma^2 = 1, \phi = 0.15, \kappa =  2$，块金效应 (nugget effect) $\tau^2 = 0$，每个格点上重复实验10次，模拟响应变量二项分布的概率值。
+此处模拟数据集来自零均值高斯过程规则单元网格格上 $30 \times 30$ 参数 $\sigma^2 = 1, \phi = 0.15, \kappa =  2$，块金效应 (nugget effect) $\tau^2 = 0$的指数族，每个格点上重复实验10次，模拟响应变量二项分布的概率值。
 
 
 - 模型参数估计部分
 
 ```{r,message=FALSE,echo=TRUE,eval=FALSE}
 # 生成 data_sim 数据集
-set.seed(2018)
-library(geoR)
-library(RandomFields)
-DataNum <- 10000
-Data_Sim <- grf(DataNum,
-  grid = "irreg", DataNum, DataNum,
-  xlims = c(0, 100), ylims = c(0, 100), nsim = 1, mean = 0,
-  cov.mode = "powered.exponential",
-  cov.par = c(1, 25), nugget = 1, kappa = 1
-)
-
-rbinom(n, size, prob)
-# phi = 25 tau = 1 kappa = 1 sigma = 1
-# Simulated date matrix with response variable distributed with 'powered exponential' covariance matrix
+data.x
+binom.data.y
 
 library(PrevMap)
-data("data_sim") # 在 PrevMap 包中
+
 knots1 <- expand.grid(
   seq(-0.2, 1.2, length = 8),
   seq(-0.2, 1.2, length = 8)
