@@ -225,12 +225,6 @@ knitr::include_graphics(path = "figures/spaMM-simulation.pdf")
 
 如图\@ref(fig:spamm-sim)所示
 
-```{r spamm-loaloa,fig.cap="Loa loa数据集上的预测结果"}
-knitr::include_graphics(path = "figures/spaMM-loaloa.pdf")
-```
-
-如图 \@ref(fig:spamm-sim)所示
-
 - 模型参数估计部分
 
 ```{r,message=FALSE,eval=FALSE,echo=FALSE}
@@ -517,6 +511,64 @@ knitr::include_graphics(path = "figures/simulation.pdf")
 
 基于SPDE的三角网格划分
 
+
+```{r,eval=FALSE,echo=FALSE}
+loc = matrix(runif(32*2, min = -0.2, max = 1.2), 32, 2) 
+
+mesh = inla.mesh.2d(loc,
+                    boundary=list(inla.nonconvex.hull(loc, 0.1, 0.15),
+                                  inla.nonconvex.hull(loc, 0.2, 0.2)),
+                    max.edge=c(0.05, 0.1))
+plot(mesh)
+
+system.time(fit.SPDE.exact <- binomial.logistic.MCML(y ~ 1,
+  units.m = ~ units.m, coords = ~ x1 + x2,
+  data = data_sim, par0 = par0.exact,
+  start.cov.pars = 0.15, mesh = mesh,
+  control.mcmc = exact.mcmc, SPDE = TRUE,
+  kappa = 1, fixed.rel.nugget = 0, method = "nlminb", # kappa = 1 only for SPDE
+  plot.correlogram = FALSE
+))
+
+
+par.hat <- coef(fit.SPDE.exact)
+Sigma.hat <- varcov.spatial(
+  coords = data_sim[c("x1", "x2")],
+  cov.pars = par.hat[2:3], kappa = 1
+)$varcov
+# 重要性采样 近似高维积分
+mu.hat <- rep(par.hat[1], nrow(data_sim))
+system.time(S.cond.sim <- Laplace.sampling(
+  mu = mu.hat, Sigma = Sigma.hat, y = data_sim$y,
+  units.m = data_sim$units.m, control.mcmc = exact.mcmc,
+  plot.correlogram = FALSE
+))
+
+Conditional simulation (burnin=5000, thin=5): 
+Iteration 15000 out of 15000 
+   user  system elapsed 
+329.530 368.020 233.725 
+
+# 模拟近似的和精确的 prevalence 预测
+prevalence.sim <- exp(S.cond.sim$samples) / (1 + exp(S.cond.sim$samples))
+prevalence.exact <- apply(prevalence.sim, 2, mean)
+
+mycols <- colorRampPalette(rev(RColorBrewer::brewer.pal(11, name = "Spectral")))(30)
+r.exact <- rasterFromXYZ(cbind(
+  data_sim[, c("x1", "x2")],
+  prevalence.exact
+))
+
+pdf(file = 'INLA-simulation.pdf',width = 8,height = 7.2)
+plot(r.exact, zlim = c(0, 1), main = "INLA method", col = mycols, asp = NA)
+contour(r.exact, levels = seq(0.1, 0.9, 0.1), add = TRUE)
+dev.off()
+
+pdf(file = 'mesh-spde.pdf',width = 8,height = 7.2)
+par(mar = c(.5,.5,.5,.5))
+plot(mesh, main = "")
+dev.off()
+```
 ```{r mesh-spde,fig.cap="基于SPDE的三角网格划分"}
 knitr::include_graphics(path = "figures/mesh-spde.pdf")
 ```
@@ -534,20 +586,10 @@ knitr::include_graphics(path = "figures/INLA-simulation.pdf")
 贝叶斯MCMC计算(R和Stan) 
 限制极大似然 REML 
 
+### 冈比亚儿童疟疾的空间分布
 
-### 泊松分布
-
-```{r,eval=FALSE,echo=TRUE}
-# 泊松分布 空间随机效应和协变量同上
-lambda <- exp(S$data + data.x %*% beta)
-pois.data.y <- rpois(length(S$data), lambda = lambda)
-
-ggplot(
-  data = as.data.frame(S$coords),
-  aes(x = x, y = y, colour = log(pois.data.y + 1))
-) +
-  geom_point(pch = 16, size = 3, alpha = .8) +
-  scale_colour_distiller(palette = "Spectral") +
-  labs(colour = "对数\n观察数目", x = "横坐标", y = "纵坐标")
+```{r spamm-loaloa,fig.cap="Loa loa数据集上的预测结果"}
+knitr::include_graphics(path = "figures/spaMM-loaloa.pdf")
 ```
 
+如图 \@ref(fig:spamm-sim)所示

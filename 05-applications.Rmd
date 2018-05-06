@@ -5,8 +5,6 @@
 二项分布 MCML 和 低秩近似 贝叶斯
 
 
-
-
 ### 冈比亚儿童疟疾的空间分布
 
 贝叶斯方法
@@ -17,3 +15,19 @@
 
 泊松分布
 
+
+### 泊松分布
+
+```{r,eval=FALSE,echo=TRUE}
+# 泊松分布 空间随机效应和协变量同上
+lambda <- exp(S$data + data.x %*% beta)
+pois.data.y <- rpois(length(S$data), lambda = lambda)
+
+ggplot(
+  data = as.data.frame(S$coords),
+  aes(x = x, y = y, colour = log(pois.data.y + 1))
+) +
+  geom_point(pch = 16, size = 3, alpha = .8) +
+  scale_colour_distiller(palette = "Spectral") +
+  labs(colour = "对数\n观察数目", x = "横坐标", y = "纵坐标")
+```
