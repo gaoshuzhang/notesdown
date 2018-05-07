@@ -9,6 +9,10 @@ lme4: An R package for fitting and analyzing linear, nonlinear and generalized l
 
 ## 广义线性混合效应模型
 
+- fitting mixed models with (temporal) correlations in R 时间相依的结构的 GLMMs及其实现 [作者 Github](https://github.com/bbolker)
+- <https://bbolker.github.io/mixedmodels-misc/notes/corr_braindump.html>
+
+
 
 ## 空间广义线性混合效应模型
 

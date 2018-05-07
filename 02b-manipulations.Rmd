@@ -5,6 +5,12 @@
 
 ## 正则匹配
 
+正则表达式 is ervrywhere，is 高级/hacker's skill 技能
+
+- [正则表达式速查表 -- Python3](https://www.dataquest.io/blog/large_files/python-regular-expressions-cheat-sheet.pdf)
+- [Online regex tester and debugger](https://regex101.com/)
+- [Regular expression operations](https://docs.python.org/3/library/re.html)
+
 以 CRAN 日志数据为例
 
 - R 包开发者
