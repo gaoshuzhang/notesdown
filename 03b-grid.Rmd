@@ -13,21 +13,18 @@ if (length(setdiff(Pkgs, .packages(TRUE))) > 0) {
 - Claus O. Wilke 新书：数据可视化基础 [Fundamentals of Data Visualization](http://serialmentor.com/dataviz/) 全 R/ggplot2 实现
 
 
-```{r,include=FALSE}
-library(ggplot2)
-# packageDescription("ggplot2")
-```
-
 ggplot2 有很多绘图函数
 
 ```{r}
+library(ggplot2)
+# packageDescription("ggplot2")
 grep('^(geom_)', ls('package:ggplot2'), value = TRUE)
 grep('^(stat_)', ls('package:ggplot2'), value = TRUE)
 ```
 
 rattle 下载量时序图
 
-```{r log,fig.showtext=TRUE}
+```{r log, fig.showtext = TRUE}
 library(cranlogs)
 library(ggthemes)
 pkgs_down <- cran_downloads(package = "rattle", from = Sys.Date() - 365 * 5, to = Sys.Date())
