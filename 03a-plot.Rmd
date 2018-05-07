@@ -124,3 +124,21 @@ axis(2, at = seq(100, 600, by = 100))
 box()
 title(main = "Maunga Whau Volcano", font.main = 4)
 ```
+
+残差图
+
+```
+# iris$Species 分三类
+
+vec_mean <- apply(iris[,-5],2,mean)
+vec_sd <- apply(iris[,-5],2,sd)
+
+plot( seq(4) , vec_mean,
+    ylim = range(c(vec_mean-vec_sd, vec_mean + vec_sd)),
+    pch=19, xlab="Species", ylab="Mean +/- SD",
+    main="Scatter plot with std.dev error bars"
+)
+
+arrows(seq(4), vec_mean-vec_sd, seq(4),  vec_mean + vec_sd, length=0.05, angle=90, code=3)
+# seq( nlevels(iris$Species) )
+```
