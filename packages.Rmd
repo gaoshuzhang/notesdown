@@ -1,0 +1,20 @@
+# R 包列表
+
+完成本书使用了很多R包，这里列出已经安装的 R 包
+
+```{r pkgs}
+pkg <- .packages(TRUE)
+pkgInfo <- lapply(pkg, packageDescription,
+  fields = c("Package", "Version", "Maintainer", "Title")
+)
+knitr::kable(data.frame(
+  Package = sapply(pkgInfo, `[[`, 1),
+  Version = sapply(pkgInfo, `[[`, 2),
+  # Maintainer = sapply(pkgInfo, "[[", 3),
+  Title = sapply(pkgInfo, "[[", 4)
+),
+caption = "R包信息列表",
+booktabs = TRUE
+)
+```
+

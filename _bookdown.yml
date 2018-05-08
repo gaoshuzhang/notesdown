@@ -64,6 +64,7 @@ rmd_files: [
   "19b-matplotlib.Rmd",
   "19c-r2cpp.Rmd",
   "19d-software-tools.Rmd",
+  "packages.Rmd",
   "19e-bookmarks.Rmd",
   # 参考文献
   "20-references.Rmd",
