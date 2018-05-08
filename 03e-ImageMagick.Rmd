@@ -34,6 +34,28 @@ for (i in seq(length(list.files(tmp)))) {
 knitr::include_graphics(path = paste0("diagrams/inkscape", ext))
 ```
 
+## 截图
+
+- webshot <https://github.com/wch/webshot>
+
+```r
+# 截图
+install.packages("webshot")
+webshot::install_phantomjs()
+# 截网页
+library(webshot)
+webshot("https://www.r-project.org/", "r.png")
+webshot("https://www.r-project.org/", "r.pdf") # Can also output to PDF
+# 截文档
+rmdshot("document.rmd", "document.png")
+# 截特定大小 GraphicsMagick (recommended) or ImageMagick installed
+# Can specify pixel dimensions for resize()
+webshot("https://www.r-project.org/", "r-small.png") %>%
+  resize("400x") %>%
+  shrink()
+```
+
+
 ## Inkscape
 
 Inkscape is an open source drawing tool with capabilities similar to Illustrator, Freehand, and CorelDraw that uses the W3C standard scalable vector graphics  format (SVG). Some supported SVG features include basic shapes, paths, text, markers, clones, alpha blending, transforms, gradients, and grouping. In addition, Inkscape supports Creative Commons meta-data, node-editing, layers, complex path operations, text-on-path, and SVG XML editing. It also imports several formats like EPS, Postscript, JPEG, PNG, BMP, and TIFF and exports PNG as well as multiple vector-based formats.

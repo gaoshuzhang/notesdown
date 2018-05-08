@@ -1,9 +1,13 @@
-# R 包列表
+# 重现
 
-完成本书使用了很多R包，这里列出已经安装的 R 包
+- R
+
+```{r}
+system('R --version', intern = TRUE)
+```
 
 ```{r pkgs}
-pkg <- .packages(TRUE)
+pkg <- .packages(all.available = TRUE, lib.loc = .libPaths()[2])
 pkgInfo <- lapply(pkg, packageDescription,
   fields = c("Package", "Version", "Maintainer", "Title")
 )
@@ -14,7 +18,18 @@ knitr::kable(data.frame(
   Title = sapply(pkgInfo, "[[", 4)
 ),
 caption = "R包信息列表",
-booktabs = TRUE
+booktabs = TRUE,
+longtable = TRUE
 )
 ```
 
+- LaTeX 
+
+```{r}
+base::system('xelatex --version', intern = TRUE)
+```
+
+```{r}
+base::system('tlmgr info --list --only-installed --data name,size', intern = TRUE)
+# or tinytex::tlmgr(c("info", "--list", "--only-installed", "--data", "name,size"))
+```

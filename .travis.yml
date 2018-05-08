@@ -19,8 +19,8 @@ branches:
 
 pandoc_version: 2.1.3
 
-r_packages:
-  - sf
+#r_packages:
+#  - sf
 #  - mxnet
 
 git:
@@ -42,16 +42,16 @@ r_github_packages:
 #  - clauswilke/ggridges
   - JohnCoene/echarts4r
 
-bioc_packages:
-  - Rgraphviz
-  - graph
+#bioc_packages:
+#  - Rgraphviz
+#  - graph
 
 repos:
   CRAN: https://cloud.r-project.org
   ropensci: http://packages.ropensci.org
-  INLA: https://inla.r-inla-download.org/R/stable
-  deltarho: http://packages.deltarho.org
-  dmlc: https://apache-mxnet.s3-accelerate.dualstack.amazonaws.com/R/CRAN/
+#  INLA: https://inla.r-inla-download.org/R/stable
+#  deltarho: http://packages.deltarho.org
+#  dmlc: https://apache-mxnet.s3-accelerate.dualstack.amazonaws.com/R/CRAN/
 
 addons:
   apt:
@@ -94,7 +94,7 @@ before_install:
   - tlmgr update --all
 
 before_script:
-  - Rscript -e 'update.packages(ask = FALSE)'
+  - Rscript -e 'update.packages(lib.loc = .libPaths()[2],ask = FALSE)'
 
 script:
   - Rscript -e 'bookdown::render_book("index.Rmd", output_format = "all")'

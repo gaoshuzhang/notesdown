@@ -55,18 +55,6 @@ sudo dpkg -i hugo_0.40.2_Linux-64bit.deb
 
 ## LaTeX 
 
-列出 tex 版本及其他信息
-
-```{r collapse=TRUE}
-system('pdflatex --version')
-```
-
-```{r,eval=FALSE}
-# list all installed LaTeX packages
-# tlmgr info --list --only-installed --data name,size
-tinytex::tlmgr(c("info", "--list", "--only-installed", "--data", "name,size"))
-```
-
 可以考虑打包自定义 TinyTeX 发行版，自定义在于最小的中文支持和最喜爱的英文字体设置 fandol 和 sourceserifpro(XeLaTeX)，mathptmx 和 inconsolata(PDFLaTeX), fibeamer, Pandoc's LaTeX 模板 
 
 在 Windows or MacOS 下需要这行操作
@@ -114,46 +102,6 @@ fx <- inline::cxxfunction( signature(x = "integer", y = "numeric" ) , '
 fx( 2L, 5 ) 
 ```
 
-
-## R
-
-可用的图形设备
-
-```{r}
-capabilities()
-```
-
-其他软件信息
-
-```{r}
-extSoftVersion()
-```
-
-pdf 设备可用的字体信息
-
-```{r}
-names(pdfFonts())
-```
-
-
-- webshot <https://github.com/wch/webshot>
-
-```r
-# 截图
-install.packages("webshot")
-webshot::install_phantomjs()
-# 截网页
-library(webshot)
-webshot("https://www.r-project.org/", "r.png")
-webshot("https://www.r-project.org/", "r.pdf") # Can also output to PDF
-# 截文档
-rmdshot("document.rmd", "document.png")
-# 截特定大小 GraphicsMagick (recommended) or ImageMagick installed
-# Can specify pixel dimensions for resize()
-webshot("https://www.r-project.org/", "r-small.png") %>%
-  resize("400x") %>%
-  shrink()
-```
 
 ## 容器
 
