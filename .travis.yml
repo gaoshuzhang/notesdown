@@ -33,6 +33,7 @@ r_github_packages:
   - dgrtwo/gganimate
   - cosname/recharts
   - JohnCoene/echarts4r
+  - rstudio/r2d3
 #  - rmcelreath/rethinking
 #  - rmcelreath/glmer2stan
   - renozao/RcppOctave
@@ -80,6 +81,7 @@ addons:
       - python2.7
       - python-tk
       - octave
+      - liboctave-dev
       - proj-bin 
       - libpaper-utils
       - libatlas3-base

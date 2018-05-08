@@ -43,9 +43,13 @@ devtools::install_github("JohnCoene/echarts4r")
 devtools::install_github('cosname/recharts')
 ```
 
+## D3
 
+R Interface to D3 Visualizations [@R-r2d3]
 
-
+```r
+devtools::install_github("rstudio/r2d3")
+```
 
 
 
