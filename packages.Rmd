@@ -7,7 +7,7 @@ system('R --version', intern = TRUE)
 ```
 
 ```{r pkgs}
-pkg <- .packages(all.available = TRUE, lib.loc = .libPaths()[2])
+pkg <- .packages(all.available = TRUE)
 pkgInfo <- lapply(pkg, packageDescription,
   fields = c("Package", "Version", "Maintainer", "Title")
 )

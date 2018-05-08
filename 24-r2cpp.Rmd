@@ -22,3 +22,22 @@ for (i in seq(1000)) {
 }
 proc.time() - .proctime00
 ```
+
+## Rcpp
+
+
+
+### RcppOctave
+
+
+### RcppGSL
+
+
+### RcppArmadillo
+
+### RcppParallel
+
+### RcppNumerical
+
+
+### RcppAlgos
