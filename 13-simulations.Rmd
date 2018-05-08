@@ -39,3 +39,20 @@ rand(1,5)
 ### HMC 算法
 
 汉密尔顿蒙特卡罗算法
+
+
+## 分布式
+
+### Rmpi
+
+安装配置 <http://www.stats.uwo.ca/faculty/yu/Rmpi/>
+
+### Rhpc
+
+<https://prs.ism.ac.jp/~nakama/Rhpc/>
+
+Function of apply style using 'MPI' provides better 'HPC' environment on R. And this package supports long vector, can deal with slightly big data.
+
+
+
+

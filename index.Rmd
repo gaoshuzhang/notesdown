@@ -131,7 +131,6 @@ cat(".\n")
 sessionInfo()
 ```
 
-
 ```{r, include = FALSE, cache = FALSE}
 # automatically create a bib database for R packages
 knitr::write_bib(c(

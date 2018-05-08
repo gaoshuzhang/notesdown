@@ -28,24 +28,48 @@ gsub(
   tail(10)
 ```
 
-## order 和 sort
+## 排序
+
+### order 
+
+### sort
 
 
-## which
+## 索引
+
+### which
 
 向量和矩阵中的操作
 
-## by
+### `[[`
+
+## 分组
+
+by
 
 
-## with 和 within
+with 和 within
 
 
 ## apply 
 
-## aggregate
+### lapply
 
-## Map 和 Reduce
+### sapply
+ 
+### parallel
+
+
+ 
+## 合并 
+
+### aggregate
+
+## 映射 
+
+### Map  
+
+### Reduce
 
 openxlsx 
 拆分、映射计算，合并
@@ -79,10 +103,19 @@ saveWorkbook(wb, file = "example.xlsx", overwrite = TRUE)
 ```
 
 
+## 拆分
 
-## embed
+### split 
 
-## split 和 cut
+### cut
 
-findInterval
+- findInterval
+- embed
+
+## 数据库
+
+RMariaDB: Implements a 'DBI'-compliant interface to 'MariaDB' (<https://mariadb.org/>) and 'MySQL' (<https://www.mysql.com/>) databases. <https://github.com/r-dbi/RMariaDB>
+
+- rio <https://github.com/leeper/rio>
+
 
