@@ -21,7 +21,7 @@ pandoc_version: 2.1.3
 
 r_packages:
   - sf
-  - mxnet
+#  - mxnet
 
 git:
   depth: 5
@@ -31,13 +31,15 @@ r_github_packages:
   - tidyverse/ggplot2
   - leonawicz/mapmate
   - dgrtwo/gganimate
+  - cosname/recharts
+  - JohnCoene/echarts4r
 #  - rmcelreath/rethinking
 #  - rmcelreath/glmer2stan
-#  - renozao/RcppOctave
+  - renozao/RcppOctave
 #  - ropensci/plotly
 #  - dkahle/ggmap
 #  - clauswilke/ggridges
-#  - JohnCoene/echarts4r
+  - JohnCoene/echarts4r
 
 bioc_packages:
   - Rgraphviz
@@ -61,7 +63,6 @@ addons:
       - ghostscript
       - imagemagick
       - optipng
-      - libreadline-dev
       - libwebp-dev
       - libgsl0ldbl
       - dieharder

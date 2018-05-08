@@ -31,3 +31,21 @@ figure(width = 600, height = 400) %>%
 library(plotly)
 plot_ly(z = ~volcano, type = "surface")
 ```
+
+## ECharts
+
+基于 ECharts 4 开发的 R 包 [@R-echarts4r] 和 [@R-recharts]
+
+
+```r
+# install.packages("devtools")
+devtools::install_github("JohnCoene/echarts4r")
+devtools::install_github('cosname/recharts')
+```
+
+
+
+
+
+
+

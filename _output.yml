@@ -10,7 +10,7 @@ bookdown::gitbook:
         <li><a href="https://xiangyun.netlify.com/">黄湘云</a></li>
     download: ["pdf"]
     edit:
-      link: https://github.com/XiangyunHuang/bookdown-chinese/edit/master/%s
+      link: https://github.com/XiangyunHuang/notesdown/edit/master/%s
       text: "Edit"
     sharing: yes
 bookdown::pdf_book:
