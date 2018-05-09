@@ -95,3 +95,36 @@ kable(dt, format = "latex", booktabs = T, caption = "kableExtra 制作") %>%
   add_header_above(c(" ", "Group 1" = 2, "Group 2[note]" = 2)) %>%
   add_footnote(c("table footnote"))
 ```
+
+1. 如何将表格横向或者纵向展示
+
+
+2. 添加短标题
+
+```{r,eval=FALSE}
+library(dplyr)
+library(knitr)
+library(kableExtra) # 这个必须加载
+
+df <- data.frame( X = sample(letters, 10), y = runif(10), z = sample(10:20, 10))
+
+kable(df,
+      booktabs = TRUE,
+      caption = "This caption is way too long and doesnt look good when formatted in the Table of Contents.  What you really need here is a much shorter caption so that your eyes dont go crazy trying to figure out what information the author is trying to convey.  Often there is too much information in the caption anyway so why not shorten it?.",
+      escape = FALSE,
+      format = 'latex') %>%
+  kable_styling(latex_options = c("striped", "hold_position"))
+```
+
+
+
+```{r,eval=FALSE}
+kable(df,
+      booktabs = TRUE,
+      caption = "This caption is way too long and doesnt look good when formatted in the Table of Contents.  What you really need here is a much shorter caption so that your eyes dont go crazy trying to figure out what information the author is trying to convey.  Often there is too much information in the caption anyway so why not shorten it?.",
+      caption.short = "This is a shorter caption.",
+      escape = FALSE,
+      format = 'latex') %>%
+  kable_styling(latex_options = c("striped", "hold_position"))
+```
+

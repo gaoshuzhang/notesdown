@@ -1,4 +1,5 @@
-[![Build Status](https://api.travis-ci.org/XiangyunHuang/notesdown.svg?branch=master)](https://travis-ci.org/XiangyunHuang/notesdown) 
+[![Build Status](https://api.travis-ci.org/XiangyunHuang/notesdown.svg?branch=master)](https://travis-ci.org/XiangyunHuang/notesdown)
+[![GitHub license](https://img.shields.io/github/license/XiangyunHuang/notesdown.svg)](https://github.com/XiangyunHuang/notesdown)
 ---
 
 Some notes about R and other open souce softwares, such as Pandoc, LaTeX, Inkscape, Ghostscript, Git, Stan, Octave and Python.
@@ -29,7 +30,7 @@ Some notes about R and other open souce softwares, such as Pandoc, LaTeX, Inksca
     + colormap
 * 字体
     + xkcd
-    + 中/英文（思源字体与showtext）
+    + 中/英文（思源字体与 showtext）
 * 保存
     + tikz/svg/cairo_pdf/png
 * 动画
@@ -47,3 +48,4 @@ Some notes about R and other open souce softwares, such as Pandoc, LaTeX, Inksca
 * PyStan
 
 ## Octave
+
