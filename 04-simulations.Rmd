@@ -1,6 +1,6 @@
 # 数值模拟 {#simulations}
 
-响应变量分泊松和二项分布两种情况，模拟数据，相应的空间广义线性混合效应模型分别是\@ref(eq:SGPSM1)和 \@ref(eq:SGPSM2)。RandomFields 是模拟多元随机场的 R 包 [@RandomFields2015]， geoR 包[@R-geoR2016] 的 grf 函数只适合模拟少量数据点（$n < 500$）， MASS 包的 glmmPQL 函数采用惩罚拟似然求解带空间效应的广义线性混合效应模型[@MASS2002]。 方程 \@ref(eq:SGPSM1) 在有些文献中也称为标准地质统计流行抽样模型(Standard Geostatistical Prevalence Sampling Model)[@Diggle2007]
+响应变量分泊松和二项分布两种情况，模拟数据，相应的空间广义线性混合效应模型分别是\@ref(eq:SGPSM1)和 \@ref(eq:SGPSM2)。RandomFields 是模拟多元随机场的 R 包 [@RandomFields2015]， geoR 包[@R-geoR] 的 grf 函数只适合模拟少量数据点（$n < 500$）， MASS 包的 glmmPQL 函数采用惩罚拟似然求解带空间效应的广义线性混合效应模型[@MASS2002]。 方程 \@ref(eq:SGPSM1) 在有些文献中也称为标准地质统计流行抽样模型 (Standard Geostatistical Prevalence Sampling Model)[@Diggle2007]
 
 \begin{gather}
 \log\big\{\frac{p(x_i)}{1-p(x_i)}\big\} = d(x_i)'\beta + S(x_i) + Z_i (\#eq:SGPSM1)\\
