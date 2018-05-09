@@ -127,6 +127,17 @@ plt.show()
 
 Seaborn is a Python visualization library based on matplotlib. It provides a high-level interface for drawing attractive statistical graphics.
 
+- statsmodels
+
+
+## pyglet
+
+处理音视频文件
+
+## mayavi
+
+三维图形
+
 ## bokeh
 
 - 主页 <https://bokeh.pydata.org/en/latest/>
@@ -184,3 +195,8 @@ p.y_range.range_padding = 0.12
 
 show(p)
 ```
+
+## plotly
+
+商业图形库
+
