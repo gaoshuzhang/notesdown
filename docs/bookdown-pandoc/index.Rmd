@@ -41,6 +41,12 @@ plot(pressure)
 
 这里呢 ![image2][ref] with attributes.
 
+```{r cc,echo=FALSE,out.width="15%"}
+ext <- if (knitr::is_html_output()) ".svg" else if (knitr::is_latex_output()) ".eps" else ".png"
+knitr::include_graphics(path = paste0("images/by-nc-nd",ext))
+```
+
+
 ```{r include=FALSE}
 # automatically create a bib database for R packages
 knitr::write_bib(c(

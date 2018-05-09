@@ -12,7 +12,7 @@ lot: yes
 graphics: yes
 tables: yes
 link-citations: yes
-links-as-notes: yes
+links-as-notes: no
 colorlinks: yes
 toccolor: magenta
 classoption: "hyperref, a4paper, UTF8, zihao = -4, linespread = 1.3, table"
@@ -131,7 +131,7 @@ sessionInfo()
 ```{block2, type = 'rmdwarning'}
 本书采用 [知识共享署名-非商业性使用-禁止演绎 4.0 国际许可协议](https://creativecommons.org/licenses/by-nc-nd/4.0/) 许可，请君自重，别没事儿拿去传个什么新浪爱问、百度文库以及 XX 经济论坛，项目中代码使用 [MIT 协议](https://github.com/XiangyunHuang/notesdown/blob/master/LICENSE) 开源
 ```
-```{r cc,echo=FALSE,fig.width=3,fig.height=1,out.width="100%"}
+```{r cc,echo=FALSE,out.width="15%"}
 ext <- if (knitr::is_html_output()) ".svg" else if (knitr::is_latex_output()) ".eps" else ".png"
 knitr::include_graphics(path = paste0("images/by-nc-nd",ext))
 ```
