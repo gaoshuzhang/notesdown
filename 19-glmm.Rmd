@@ -1,5 +1,12 @@
 # 混合效应模型 {#mixed-model}
 
+## 方差分析
+
+估计
+
+
+
+
 ## 线性混合效应模型
 
 lme4: An R package for fitting and analyzing linear, nonlinear and generalized linear mixed models. 

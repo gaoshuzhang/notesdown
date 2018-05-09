@@ -3,7 +3,7 @@
 - R
 
 ```{r}
-system('R --version', intern = TRUE)
+sessionInfo("bookdown")
 ```
 
 ```{r pkgs}

@@ -14,5 +14,5 @@ bookdown::pdf_book:
   citation_package: natbib
   keep_tex: yes
   pandoc_args: "--top-level-division=chapter"
-  base_format: rticles::ctex
+  template: template.latex
 bookdown::epub_book: default

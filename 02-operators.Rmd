@@ -4,6 +4,7 @@
 library(Matrix)
 ```
 
+统计计算之矩阵运算，自然离不开 **Matrix** 包 [@R-Matrix]
 
 ## 矩阵运算
 

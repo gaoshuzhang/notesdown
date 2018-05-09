@@ -29,6 +29,8 @@ proc.time() - .proctime00
 
 ### RcppOctave
 
+混合编程
+
 
 ### RcppGSL
 
@@ -41,3 +43,9 @@ proc.time() - .proctime00
 
 
 ### RcppAlgos
+
+
+```{r}
+devtools::session_info(pkgs = c("Rcpp","RcppOctave"))
+```
+
