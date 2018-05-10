@@ -16,28 +16,81 @@ library(geoRglm) # MCMC
 library(glmmTMB) # 与 spaMM 比较
 ```
 
+
+
+```{r,fig.cap="Loa loa 与植被的关系",eval=FALSE}
+knitr::include_graphics(path = "figures/loaloa-stdNDVI-elevation.pdf")
+knitr::include_graphics(path = "figures/loaloa-maxNDVI-elevation.pdf")
+knitr::include_graphics(path = "figures/loaloa-maxNDVI.pdf")
+```
+```{r,fig.cap="Loa loa 观测到的流行度分布",eval=FALSE}
+knitr::include_graphics(path = "figures/loaloa-logit-prob-elevation.pdf")
+knitr::include_graphics(path = "figures/loaloa-prob.pdf")
+```
+```{r,fig.cap="Loa loa流行度与海拔的关系",eval=FALSE}
+knitr::include_graphics(path = "figures/loaloa-prob-elevation.pdf")
+```
+```{r,fig.cap="Loa loa 流行度观测结果"}
+knitr::include_graphics(path = "figures/loaloa-map.pdf")
+```
+
+
 ```{r spamm-loaloa,fig.cap="Loa loa数据集上的预测结果"}
 knitr::include_graphics(path = "figures/spaMM-loaloa.pdf")
 ```
 
-如图 \@ref(fig:spamm-sim)所示
+如图 \@ref(fig:spamm-loaloa)所示
 
 
 ## 冈比亚儿童疟疾的空间分布
 
-贝叶斯方法
-二项分布
+2002年，Peter Diggle等人分析过冈比亚儿童疟疾数据，该数据采集自冈比亚的5个地域，65个村庄，2035个5岁以下儿童的血液样本，并记录了他们的年龄、村庄的位置（GPS坐标）、血液中是否含有疟疾寄生虫、蚊帐是否使用、蚊帐是否杀虫、村庄周围绿色植物的覆盖度（RS测量）、村庄是否有医疗中心[@Diggle2002]。数据如表\@ref(tab:gambia-malaria) 所示
+
+```{r gambia-malaria,echo=FALSE}
+data("gambia",package = "geoR")
+knitr::kable(head(gambia), caption = "冈比亚儿童疟疾数据（部分）", booktabs = TRUE)
+```
+
+其中，各指标说明如下：
+
+- $(x,y)$ 村庄的坐标
+- pos 血样中是否出现寄生虫 （1表示是，0表示否）
+- age 儿童的年龄（按天计算）
+- netuse 儿童是否睡在蚊帐中 （1表示是，0表示否）
+- treated 蚊帐是否杀虫 （1表示是，0表示否）
+- green 村庄附近的绿色植物的覆盖度
+- phi 村庄里是否有医疗中心（1表示有，0表示没有）
+
+模型如下：
+
+$$\log\{p_{ij}/(1-p_{ij})\} = \alpha + \beta'z_{ij} + U_{i} + S(x_{i})$$
+其中，$z_{ij}$ 表示对第$i$个村庄的第$j$个儿童的观测值，如前所述的年龄、蚊帐使用情况等固定效应，相应地，$p_{ij}$ 表示感染疟疾的概率。$S(x_{i})$ 表示空间随机效应，$U_{i}$ 表示除空间效应以外的村庄水平上的变化，也是随机效应。
 
 
-## 朗格拉普岛核爆炸残留物的空间分布
+```{r map-gambia,fig.cap="采样的村庄"}
+knitr::include_graphics(path = "figures/gambia-map.pdf")
+```
 
-泊松分布
+探索植被覆盖度、蚊帐以及杀虫对疟疾流行度的影响，如图\@ref(fig:gambia-prevalence)所示，
+
+```{r gambia-prevalence, out.width='32.8%', fig.show='hold',fig.cap="疟疾流行度与村庄周围的植被覆盖度（左图），蚊帐与杀虫对疟疾流行度的影响（右图）"}
+knitr::include_graphics(path = c("figures/gambia-prevalence.pdf","figures/gambia-bed-net.pdf"))
+```
 
 
-## 泊松分布
+如图 \@ref(fig:spamm-gambia) 所示
+
+```{r spamm-gambia,fig.cap="冈比亚儿童疟疾空间分布预测"}
+knitr::include_graphics(path = "figures/spaMM-gambia.pdf")
+```
+
+
+
+
+
 
 ```{r,eval=FALSE,echo=FALSE}
-# 泊松分布 空间随机效应和协变量同上
+## 泊松分布 空间随机效应和协变量同上
 lambda <- exp(S$data + data.x %*% beta)
 pois.data.y <- rpois(length(S$data), lambda = lambda)
 
