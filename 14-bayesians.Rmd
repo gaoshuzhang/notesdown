@@ -152,3 +152,4 @@ Bayesian Modeling using Stan in R (May/June 2016)
 
 12. <https://magesblog.com/post/correlated-lognormal-chain-ladder-model/>
 
+13. <http://xcelab.net/rm/statistical-rethinking/>

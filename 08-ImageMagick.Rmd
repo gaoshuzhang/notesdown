@@ -132,7 +132,9 @@ pdfcrop 可将 PDF 图片中留白的部分裁去，再也不用纠结 par 了
 knitr::include_graphics(path = "figures/map_usa_unemp.pdf")
 ```
 
-## 其它图形接口
+## 接口
+
+R提供了丰富的图形接口，包括 Tcl/Tk , Gtk, Shiny 等。John Chamber 在书 《Extending R》详细介绍了这一切
 
 rattle/RGtk2: R Bindings for Gtk 2.8.0 and Above <http://www.ggobi.org/rgtk2/>
 
