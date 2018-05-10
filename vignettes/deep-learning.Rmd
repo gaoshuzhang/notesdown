@@ -1,0 +1,5 @@
+# 机器学习 or 深度学习
+
+deep learning from first principles in python r and octave
+
+<https://gigadom.wordpress.com>
