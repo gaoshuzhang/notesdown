@@ -1,6 +1,4 @@
-# 符号说明 {.unnumbered}
-
-\chaptermark{符号说明}
+# 符号说明
 
 - $S \neq \varnothing$
 - 

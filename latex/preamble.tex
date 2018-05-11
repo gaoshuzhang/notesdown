@@ -1,6 +1,8 @@
+
 \usepackage[default]{sourceserifpro}
 \usepackage[sfdefault]{sourcesanspro}
 \usepackage[scale=0.8]{sourcecodepro}
+
 \usepackage{amsfonts} % \mathbb \mathfrak
 \usepackage{mathrsfs} % \mathscr
 \usepackage{makeidx}
@@ -128,28 +130,27 @@
 \global\let\tikz@ensure@dollar@catcode=\relax
 \makeatother
 
-%%--------- 每页第一列行号----------------------------------------------------%%
-% \makeatletter
-% \AtBeginDocument{%
-%   \AddEverypageHook{%
-%     \small    
-%     % \catcodetable  \catcodetable@latex    
-%     \begin{tikzpicture}[remember picture,overlay]
-%       \path (current page.north west) --  (current page.south west)
-%             \foreach \i in {1,...,\fakelinenos}
-%                { node [pos={(\i-.5)/\fakelinenos},
-%                   xshift=\fakelinenoshift, line number style] {\i} }  ;
-%     \end{tikzpicture}%
-%   }%
-% }
-% \makeatother    
-% \tikzset{%
-%   line numbers/.store in=\fakelinenos,
-%   line numbers=72,
-%   line number shift/.store in=\fakelinenoshift,
-%   line number shift=5mm,
-%   line number style/.style={text=gray},
-% }
+%--------- 每页第一列行号----------------------------------------------------%%
+\makeatletter
+\AtBeginDocument{%
+  \AddEverypageHook{%
+    \small
+    \begin{tikzpicture}[remember picture,overlay]
+      \path (current page.north west) --  (current page.south west)
+            \foreach \i in {1,...,\fakelinenos}
+               { node [pos={(\i-.5)/\fakelinenos},
+                  xshift=\fakelinenoshift, line number style] {\i} }  ;
+    \end{tikzpicture}%
+  }%
+}
+\makeatother
+\tikzset{%
+  line numbers/.store in=\fakelinenos,
+  line numbers=72,
+  line number shift/.store in=\fakelinenoshift,
+  line number shift=5mm,
+  line number style/.style={text=gray},
+}
 
 % Draft
 \usepackage{draftwatermark}
