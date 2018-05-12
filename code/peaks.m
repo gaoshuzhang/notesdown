@@ -40,3 +40,19 @@ print -dpswrite -PPS_printer
 hf = figure (1);
 surf (peaks);
 print (hf, "peaks.pdf", "-dpdflatexstandalone");
+
+%% windows
+hf = figure (1);
+peaks(10);
+print (hf, "peaks.pdf", "-dpdf");
+print (hf, "peaks.eps", "-color"," -deps");
+
+print (hf, "peaks.svg", "-color"," -dsvg");
+
+
+%% windows
+hf = figure (1);
+peaks(50);
+print (hf, "peaks-more.eps", "-color"," -deps");
+
+print (hf, "peaks-more.svg", "-color"," -dsvg");

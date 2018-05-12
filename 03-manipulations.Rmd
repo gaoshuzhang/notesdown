@@ -28,6 +28,19 @@ gsub(
   tail(10)
 ```
 
+```r
+# 网上有多少 R 包
+pkg_repos <- c("https://mirrors.tuna.tsinghua.edu.cn/CRAN/","https://inla.r-inla-download.org/R/stable","http://r-forge.r-project.org/")
+
+pkg <- utils::available.packages(repos = pkg_repos)
+
+pkg <- as.data.frame(pkg, stringsAsFactors = FALSE)
+
+pkg$Package
+download.packages("Rbooks", destdir = "~/",repos = "http://r-forge.r-project.org/")
+```
+
+
 ## 排序
 
 ### order 
