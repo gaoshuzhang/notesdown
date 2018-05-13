@@ -41,6 +41,15 @@ download.packages("Rbooks", destdir = "~/",repos = "http://r-forge.r-project.org
 ```
 
 
+Github 活动记录 <https://github.com/jonocarroll/butteRfly>
+
+```r
+# install.packages("devtools")
+devtools::install_github("jonocarroll/butteRfly")
+my_socials <- collate_socials(user = c("jonocarroll", "carroll_jono", 4168169), 
+                              socials = c("GitHub", "Twitter", "StackOverflow"))
+```
+
 ## 排序
 
 ### order 

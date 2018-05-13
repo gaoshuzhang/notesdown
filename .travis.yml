@@ -17,7 +17,7 @@ branches:
     - release
     - stable
 
-pandoc_version: 2.1.3
+pandoc_version: 2.2.1
 
 #r_packages:
 #  - sf

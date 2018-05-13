@@ -23,7 +23,7 @@ INLA
 
 - A gentle INLA tutorial <https://www.precision-analytics.ca/blog-1/inla>
 - A Gentle Stan vs. INLA Comparison <http://www.martinmodrak.cz/2018/02/02/a-gentle-stan-vs.-inla-comparison/>
-
+- 探讨算法比较 <http://discourse.mc-stan.org/t/blog-a-gentle-stan-to-inla-comparison/3205>
 
 - GPstuff: Gaussian process models for Bayesian analysis  <http://research.cs.aalto.fi/pml/software/gpstuff/>
 

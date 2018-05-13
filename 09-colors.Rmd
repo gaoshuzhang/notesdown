@@ -9,18 +9,36 @@ if (length(setdiff(Pkgs, .packages(TRUE))) > 0)
   install.packages(setdiff(Pkgs, .packages(TRUE)))
 ```
 
-彩带
+君子爱色，取之有道：有些人功力深厚，黑白灰几乎打遍天下无敌手，如科波拉执导的《教父》、沃卓斯基执导的《黑客帝国》等等，但我还是要说，好色乃人之本性也，花花世界，岂能都是法印眼中的白骨！再说《红楼梦》里，芍药丛中，桃花树下，滴翠亭边，栊翠庵里，处处都是湘云、黛玉、宝钗、妙玉留下的诗歌。
 
-```{r pal-rect}
-# 代码来自 ?rainbow_hcl
-pal <- function(colorname, border = "light gray", ...){
-	n <- length(colorname)
-	plot(0, 0, type="n", xlim = c(0, 1), ylim = c(0, 1),
-		axes = FALSE, ...)
-	rect(0:(n-1)/n, 0, 1:n/n, 1, col = colorname, border = border)
-}
+黑西装、黑领带和白衬衫，让人一下子想到了电影《黑客帝国》，构建了整幅画轴，黑领带换黑领结和红玫瑰，转而又想到电影《教父》的主角维托·唐·科莱昂，黑白灰就占了电影的主色调。这么素的颜色怎么就能这么丰富呢？这就是配色的技艺了！
+
+## 调色板
+
+首先选择一组合适的颜色，比如从桃色到梨色，选择6种颜色，以此为基础，可以借助`grDevices::colorRampPalette`函数扩充至想要的数目
+
+```{r}
+# Colors from https://github.com/johannesbjork/LaCroixColoR
+color_vec <- c("#FF3200", "#E9A17C", "#E9E4A6", "#1BB6AF", "#0076BB", "#172869")
+n <- 20
+more_colors <- (grDevices::colorRampPalette(color_vec))(n)
 ```
 
+这里用 `graphics::rect` 函数展示这组颜色
+
+```{r ,fig.cap="桃色至梨色的渐变",fig.width=3,fig.height=1}
+# 代码来自 ?colorspace::rainbow_hcl
+pal <- function(colorname, border = "light gray", ...) {
+  n <- length(colorname)
+  plot(0, 0,
+    type = "n", xlim = c(0, 1), ylim = c(0, 1),
+    axes = FALSE, ...
+  )
+  rect(0:(n - 1) / n, 0, 1:n / n, 1, col = colorname, border = border)
+}
+par(mar = rep(0, 4))
+pal(more_colors, xlab = "Colors from Peach to Pear", ylab = "")
+```
 
 早些时候我在统计之都论坛上发帖 -- R语言绘图用调色板大全 <https://d.cosx.org/d/419378-r>
 
@@ -35,10 +53,7 @@ Adobe RGB  sRGB   P3广色域
 颜色空间及其区别 HCL and HSV color spaces
 基于网页、人眼、打印机使用不同的颜色模式为何
 
-君子爱色，取之有道：有些人功力深厚，黑白灰几乎打遍天下无敌手，如科波拉执导的《教父》、沃卓斯基执导的《黑客帝国》等等，但我还是要说，好色乃人之本性也，花花世界，岂能都是法印眼中的白骨！
-《红楼梦》里，芍药丛中，桃花树下，滴翠亭边，栊翠庵里，处处都是湘云、黛玉、宝钗、妙玉留下的赞歌。情景融合，王扶林，周汝昌 李耀宗
 
-- 君子爱色，取之有道
 
 哪里可以获取颜色
 
@@ -192,7 +207,7 @@ par(op)
 ```
 
 
-黑西装、黑领带和白衬衫，让人一下子想到了电影《黑客帝国》，构建了整幅画轴，黑领带换黑领结和红玫瑰，转而又想到电影《教父》的主角维托$\cdot$唐$\cdot$科莱昂，黑白灰就占了电影的主色调。这么素的颜色怎么就能这么丰富呢？这就是配色的技艺了！
+
 
 
 色相与阴影相比是无关紧要的，色相对于标记和分类很有用，但表示（精细的）空间数据或形状的效果较差。颜色是改善图形的好工具，但糟糕的配色方案 (color schemes) 可能会导致比灰度调色板更差的效果。[@meteorological2009]
