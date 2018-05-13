@@ -1,0 +1,14 @@
+
+# 与 R 有关的软件包
+
+- geoR 
+- geoRglm
+- geoBayes: Analysis of Geostatistical Data using Bayes and Empirical Bayes Methods
+
+- PrevMap
+
+
+SpatialVx: Spatial Forecast Verification <http://www.ral.ucar.edu/projects/icp/SpatialVx/>
+
+与 geo 相关的 R 包 
+
