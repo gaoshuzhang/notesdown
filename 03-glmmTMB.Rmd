@@ -3,7 +3,7 @@
 <https://mirrors.tuna.tsinghua.edu.cn/CRAN/web/packages/glmmTMB/index.html>
 
 
-```{r}
+```{r,eval=FALSE}
 d <- data.frame(z = as.vector(volcano),
                 x = as.vector(row(volcano)),
                 y = as.vector(col(volcano)))
