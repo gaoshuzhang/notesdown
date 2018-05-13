@@ -1,10 +1,23 @@
+
+library(spaMM)
+spamm_fit <- fitme(cbind(npos, ntot - npos) ~ elev1 + elev2 + elev3 + elev4 +
+                     maxNDVI1 + seNDVI + Matern(1 | longitude + latitude),
+                   data = Loaloa, family = binomial()
+)
+
+library(geoRglm) # MCMC
+
+library(glmmTMB) # 与 spaMM 比较
+
+
+
 library(spaMM)
 data(Loaloa)
 lfit <- corrHLfit(cbind(npos, ntot - npos) ~
 elev1 + elev2 + elev3 + elev4 + maxNDVI1 + seNDVI
   + Matern(1 | longitude + latitude),
 HLmethod = "HL(0,1)", data = Loaloa,
-family = binomial(), ranFix = list(nu = 0.5, rho = 2.255197, lambda = 1.075)
+family = binomial()
 )
 
 summary(lfit)
@@ -55,7 +68,12 @@ gambia_dat$y <- gambia_dat$y/1000
 
 gambia.fit <- corrHLfit(cbind(npos, ntotal - npos) ~ avg_age + netuse + treated + green + phc + Matern(1 | x + y),
                   HLmethod = "HL(0,1)", data = gambia_dat,
-                  family = binomial(), ranFix = list(nu = 0.5, rho = 2.255197, lambda = 1.075)
+                  family = binomial())
+summary(gambia.fit)
+
+gambia.fit <- corrHLfit(cbind(npos, ntotal - npos) ~ avg_age + netuse + treated + green + phc + Matern(1 | x + y),
+                        HLmethod = "HL(0,1)", data = gambia_dat,
+                        family = binomial(), ranFix = list(nu = 0.5, rho = 2.255197, lambda = 1.075)
 )
 summary(gambia.fit)
 
