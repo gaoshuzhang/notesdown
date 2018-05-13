@@ -24,11 +24,11 @@ knitr::include_graphics(path = "figures/loaloa-prob.pdf")
 ```{r,fig.cap="Loa loa流行度与海拔的关系",eval=FALSE}
 knitr::include_graphics(path = "figures/loaloa-prob-elevation.pdf")
 ```
-```{r loaloa-ratio,fig.cap="Loa loa 流行度观测结果",out.width="60%"}
+```{r loaloa-ratio,fig.cap="Loa loa 流行度观测结果，黑点是采样点",out.width="60%"}
 knitr::include_graphics(path = "figures/loaloa-map.pdf")
 ```
 
-建立模型 \@ref(eq:SGLMM)，计算得到固定效应参数如下表
+建立模型 \@ref(eq:SGLMM) $\log\{p_{ij}/(1-p_{ij})\} = \alpha + \beta'z_{ij} + U_{i} + S(x_{i}),$ 基于限制极大似然估计，计算得到固定效应参数如下表
 
 | 参数        | 估计       | 条件标准差 | t 统计量 |
 | :---------- | :--------- | :-------- | :------ |
@@ -67,12 +67,15 @@ knitr::include_graphics(path = "figures/gambia-map.pdf")
 | green | 村庄附近的绿色植物的覆盖度 |
 | phi | 村庄里是否有医疗中心（1表示有，0表示没有） |
 
+\newpage
+
 ```{r gambia-malaria,echo=FALSE}
 data("gambia",package = "geoR")
-knitr::kable(head(gambia), caption = "冈比亚儿童疟疾数据（部分）", booktabs = TRUE, longtable = TRUE)
+knitr::kable(head(gambia), row.names = FALSE, caption = "冈比亚儿童疟疾数据（部分）", 
+             booktabs = TRUE, longtable = FALSE)
 ```
 
-在建模之前，这些搜集的数据对疟疾产生的影响可以通过探索性分析获得直观的认识，植被覆盖度、蚊帐以及杀虫对疟疾流行度的影响，分别如图\@ref(fig:gambia-prevalence)和图\@ref(fig:bed-net)所示。
+在建模之前，这些搜集的数据对疟疾产生的影响可以通过探索性分析获得直观的认识，植被覆盖度、蚊帐以及杀虫对疟疾流行度的影响，分别如图\@ref(fig:gambia-prevalence)和图\@ref(fig:bed-net)所示。总体上，植被越茂盛，疟疾流行度越大，医疗中心对疟疾的控制作用比较有限，主要原因是冈比亚医疗卫生条件太差。蚊帐对疟疾的预防效果很好，没有使用蚊帐的人群中感染比例接近50\%，而使用了蚊帐的人群中比例降至30.5\%，此外，对蚊帐杀虫也有很好的保护效果。
 
 ```{r gambia-prevalence, fig.cap="疟疾流行度与村庄周围的植被覆盖度：绿色表示有医疗中心，橘黄色表示没有",out.width="60%"}
 knitr::include_graphics(path = "figures/gambia-prevalence.pdf")
@@ -81,8 +84,14 @@ knitr::include_graphics(path = "figures/gambia-prevalence.pdf")
 knitr::include_graphics(path = "figures/gambia-bed-net.pdf")
 ```
 
-总体上，植被越茂盛，疟疾流行度越大，医疗中心对疟疾的控制作用比较有限，主要原因是冈比亚医疗卫生条件太差。蚊帐对疟疾的预防效果很好，没有使用蚊帐的人群中感染比例接近50\%，而使用了蚊帐的人群中比例降至30.5\%，此外对蚊帐杀虫也有很好的保护效果。为进一步作出定量分析，建立模型如下：
-$$\log\{p_{ij}/(1-p_{ij})\} = \alpha + \beta'z_{ij} + U_{i} + S(x_{i})$$
+\newpage
+
+为进一步作出定量分析，建立模型如下：
+
+\begin{equation}
+\log\{p_{ij}/(1-p_{ij})\} = \alpha + \beta'z_{ij} + U_{i} + S(x_{i})
+\end{equation}
+
 其中，$z_{ij}$ 表示对第$i$个村庄的第$j$个儿童的观测值，如前所述的年龄、蚊帐使用情况等固定效应，相应地，$p_{ij}$ 表示感染疟疾的概率。$S(x_{i})$ 表示空间随机效应，$U_{i}$ 表示除空间效应以外的村庄水平上的变化，也是随机效应。固定效应$\beta$和截距项$\alpha$结果如下
 
 | 参数        | 估计      | 条件标准差 | t 统计量 |
@@ -96,25 +105,8 @@ $$\log\{p_{ij}/(1-p_{ij})\} = \alpha + \beta'z_{ij} + U_{i} + S(x_{i})$$
 
 此外，$\nu = 0.16465,\phi = 0.000367,\sigma^2 = 2.705$，相应的空间预测如图 \@ref(fig:spamm-gambia) 所示
 
+\newpage
+
 ```{r spamm-gambia,fig.cap="冈比亚儿童疟疾空间分布预测"}
 knitr::include_graphics(path = "figures/spaMM-gambia.pdf")
-```
-
-
-
-
-
-
-```{r,eval=FALSE,echo=FALSE}
-## 泊松分布 空间随机效应和协变量同上
-lambda <- exp(S$data + data.x %*% beta)
-pois.data.y <- rpois(length(S$data), lambda = lambda)
-
-ggplot(
-  data = as.data.frame(S$coords),
-  aes(x = x, y = y, colour = log(pois.data.y + 1))
-) +
-  geom_point(pch = 16, size = 3, alpha = .8) +
-  scale_colour_distiller(palette = "Spectral") +
-  labs(colour = "对数\n观察数目", x = "横坐标", y = "纵坐标")
 ```
