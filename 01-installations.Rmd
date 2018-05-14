@@ -40,8 +40,8 @@ Hadley Wickham 正在写文档介绍 [Documentation for R's internal C API](http
 
 现在很多东西都讲究 docker 化，直接往 CentOS 系统上编译安装最新版 R 会越来越少，这里给个例子，在 docker 内安装 R 和扩展包，Dockerfile 的内容如下
 
-```{r}
-cat(readLines(con <- file("Dockerfile", encoding = "UTF-8")) ,sep = "\n")
+```{r docker-file}
+cat(readLines(con <- file("docs/Dockerfile", encoding = "UTF-8")) ,sep = "\n")
 ```
 
 这种方式可以安装到最新版的 R，同时省去了自己配置安装过程中的麻烦，只是系统自带的 texlive 还是比较旧，如何安装 tlmgr 管理器，安装新的 TeX 包到之前的位置值得考虑，主要目的是为中文的 R Markdown 文档服务。
