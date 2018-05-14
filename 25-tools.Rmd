@@ -235,7 +235,6 @@ R包库存放位置
 
 ```{r}
 .libPaths()
-lapply(.libPaths(), function(path) .packages(TRUE, lib.loc = path))
 ```
 
 查看系统路径，环境变量
