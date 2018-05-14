@@ -1,4 +1,4 @@
-
+% font
 \usepackage[default]{sourceserifpro}
 \usepackage[sfdefault]{sourcesanspro}
 \usepackage[scale=0.8]{sourcecodepro}
@@ -7,6 +7,10 @@
 \usepackage{mathrsfs} % \mathscr
 \usepackage{makeidx}
 \makeindex
+
+% 段首缩进
+\usepackage{indentfirst}
+\setlength{\parindent}{2em}
 
 % https://tex.stackexchange.com/questions/354873/xelatex-sourcecodepro-listings-curly-quotes-always
 \makeatletter
@@ -39,7 +43,7 @@
   \Large
   \end{center}
   }
-
+% ctexbook
 \RecustomVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\},formatcom=\xeCJKVerbAddon}
 
 %%----------begin copy from https://github.com/rstudio/bookdown-----------------%%
@@ -123,14 +127,13 @@
 % for kableExtra
 % \usepackage[table]{xcolor}
 
-% 添加水印
 \usepackage{tikz,everypage}
 
 \makeatletter
 \global\let\tikz@ensure@dollar@catcode=\relax
 \makeatother
 
-%--------- 每页第一列行号----------------------------------------------------%%
+%%--------- 每页第一列为行号 -----------%%
 \makeatletter
 \AtBeginDocument{%
   \AddEverypageHook{%
@@ -152,7 +155,7 @@
   line number style/.style={text=gray},
 }
 
-% Draft
+%% 添加水印 Draft
 \usepackage{draftwatermark}
 \SetWatermarkText{DRAFT}
 \SetWatermarkLightness{0.9}

@@ -235,6 +235,7 @@ R包库存放位置
 
 ```{r}
 .libPaths()
+lapply(.libPaths(), function(path) .packages(TRUE, lib.loc = path))
 ```
 
 
