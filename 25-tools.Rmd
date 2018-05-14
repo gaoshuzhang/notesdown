@@ -231,7 +231,7 @@ docker exec -it book bash
 
 由于要安装 rstan 和 rstanarm 包，编译的过程中需要比较大的内存空间，默认分配给 docker 的内存要增加到 4 Gb，也就装个软件，大一点的基于 stan 实现的模型，还是适合放在大机器上跑，笔电可以跑跑简单的模型，学习一下就可以了。
 
-R包库存放位置，`site-library` 目录下没有安装包，第三方安装包都在 `Library` 下，`/home/travis/R-bin/lib/R/library` 包含基本包
+R包库存放位置
 
 ```{r}
 .libPaths()
