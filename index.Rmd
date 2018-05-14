@@ -74,7 +74,7 @@ is_online = curl::has_internet()
 
 
 
-## 致谢 
+## 致谢 {-}
 
 虚位以待壮士
 
@@ -101,7 +101,7 @@ cat(".\n")
 于矿大宝源公寓
 ```
 
-## 结构 
+## 结构 {-}
 
 第一章：数学符号说明
 第二章：基础知识
@@ -110,7 +110,7 @@ cat(".\n")
 
 你好，世界。我写了一本书。这本书是这样的，第 \@ref(install-setup) 章介绍了啥啥，第 \@ref(math-operator) 章说了啥啥，然后是啥啥……
 
-## 后记 
+## 后记 {-}
 
 这本书是在 [RStudio](https://www.rstudio.com/products/rstudio/download/) 内用 [R Markdown](https://rmarkdown.rstudio.com/) 写的， [Git](https://git-scm.com/) 控制版本， [bookdown](https://bookdown.org/yihui/bookdown/) 组织章节， [knitr](https://yihui.name/knitr/) 将 R Markdown 源文件转化为 Markdown 文件， [Pandoc](http://pandoc.org) \index{Pandoc} 再将 Markdown 文件转化为 HTML 文档，而要转化为 PDF 文档则另外需要 TinyTeX\index{TinyTeX} 发行版^[<https://yihui.name/tinytex/>] 和来自 **rticles** [@R-rticles] 包的模板（一个基于 Pandoc 的 LaTeX 模板，两个美元符号包含的就是变量，变量基本上是 LaTeX 包的设置选项）。这个网站是通过 [Travis-CI](https://travis-ci.org/) 把编译结果（即 `_book` 目录）推送到 [Netlify](https://www.netlify.com/)，实现部署。在 Travis-CI 和 Netlify 都与 Github 绑定的情况下，源代码一发生改变就会触发编译和部署，即持续集成和连续部署，你正在阅读的是 `r Sys.Date()` 在 `r if(is_on_travis) "[Travis](https://travis-ci.org/XiangyunHuang/notesdown) 上" else "本地"`构建的。
 
