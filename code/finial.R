@@ -541,3 +541,7 @@ ggplot(
   scale_colour_distiller(palette = "Spectral") +
   labs(colour = "对数\n观察数目", x = "横坐标", y = "纵坐标")
 
+
+https://mirrors.tuna.tsinghua.edu.cn/CRAN/web/packages/glmmTMB/vignettes/covstruct.html
+
+  
