@@ -17,3 +17,5 @@ D(peaks_fun, "x")
 D(peaks_fun, "y")
 ```
 
+- [An R package for optimization using genetic algorithms](https://github.com/luca-scr/GA)
+

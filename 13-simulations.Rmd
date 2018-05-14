@@ -22,6 +22,7 @@ rand('state',mtstate(4));
 rand(1,5)
 ```
 
+- [dqrng: Fast Pseudo Random Number Generators](https://github.com/daqana/dqrng)
 
 ## 随机过程
 

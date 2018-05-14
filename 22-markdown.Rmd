@@ -57,6 +57,7 @@ directory/
 └──  style.css
 ```
 
+broom 和 pixiedust 制作表格 Tables So Beautifully Fine-Tuned You Will Believe It's Magic. <https://github.com/nutterb/pixiedust>
 
 
 ## 复杂表格制作 {#kableExtra}
