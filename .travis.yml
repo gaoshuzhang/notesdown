@@ -94,7 +94,7 @@ before_install:
   - tlmgr update --all
 
 before_script:
-  - Rscript -e 'update.packages(lib.loc = .libPaths()[2],ask = FALSE)'
+  - Rscript -e 'update.packages(lib.loc = .libPaths()[1],ask = FALSE)'
 
 script:
   - Rscript -e 'bookdown::render_book("index.Rmd", output_format = "all")'
