@@ -31,7 +31,7 @@ r_binary_packages:
   - rstan
   - rstanarm
   - rstantools
-#  - sf
+#  - sf # not ready
   - rdieharder
 
 r_github_packages: 
@@ -58,7 +58,6 @@ repos:
 #  INLA: https://inla.r-inla-download.org/R/stable
 #  deltarho: http://packages.deltarho.org
 #  dmlc: https://apache-mxnet.s3-accelerate.dualstack.amazonaws.com/R/CRAN/
-# Add marutter's c2d4u repository, (and rrutter for CRAN builds too)
 
 addons:
   apt:
@@ -91,7 +90,6 @@ addons:
       - libgdal-dev
       # matplotlib
       - python2.7
-      - libpython-dev
       - python-tk
       - python-numpy
       - python-matplotlib
