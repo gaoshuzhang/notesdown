@@ -89,7 +89,7 @@ addons:
       - libgeos-dev 
       - libgdal-dev
       # matplotlib
-      - python2.7
+      # - python2.7
       - python-tk
       - python-numpy
       - python-matplotlib
