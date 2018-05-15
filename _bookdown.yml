@@ -45,7 +45,7 @@ rmd_files: [
 
   # 上忍
   "14-bayesians.Rmd",
-  "15-approximations.Rmd",
+#  "15-approximations.Rmd",
   
   # 案例篇
   "Cases.Rmd",
