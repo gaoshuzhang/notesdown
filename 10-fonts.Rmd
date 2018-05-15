@@ -168,13 +168,13 @@ knitr::include_graphics(path = paste0("figures/ggplot_cm_embed", if(knitr::is_la
 
 先测试一下
 
-```{r test-tikz-device}
+```{r test-tikz-device, eval= identical(Sys.getenv("TRAVIS"), "true")}
 tikzDevice::tikzTest()
 ```
 
 tikz 源于 LaTeX 宏包，在 R 语言绘图的世界里，对基础图形有很好的支持，如图 \@ref(fig:tikz-demo) 所示，坐标轴标签，标题，图例等位置都支持数学公式，既然含有数学公式，就得设置 `dev = 'tikz'` 和 `fig.ext = 'tex'`，并且只产生 PDF 格式图片，除非研究一个钩子（见 `common.R` 文件），遇到这种情况再将 PDF 转化为 PNG 格式
 
-```{r tikz-linear, dev = 'tikz', fig.cap = "线性回归模型", fig.ext = 'tex', eval = knitr::is_latex_output()}
+```{r tikz-linear, dev = 'tikz', fig.cap = "线性回归模型", fig.ext = 'tex', eval = knitr::is_latex_output() & identical(Sys.getenv("TRAVIS"), "true")}
 x <- rnorm(10)
 y <- x + rnorm(5, sd = 0.25)
 model <- lm(y ~ x)
@@ -195,7 +195,7 @@ legend("bottomright", legend = paste0("$y = ",
 
 或者单独保存成 pdf 图片和 png 图片，然后插入
 
-```{r tikz-demo, fig.cap="tikz 之线性回归", echo = FALSE,dpi=300}
+```{r tikz-demo, fig.cap = "tikz 之线性回归", echo = FALSE, dpi = 300}
 knitr::include_graphics(path = paste0("figures/linear", if(knitr::is_latex_output()) ".pdf" else ".png"))
 ```
 
@@ -215,5 +215,34 @@ cat(readLines("code/tikz-persp-3d.R", encoding = "UTF-8"), sep = "\n")
 
 ```{r plot3d-tikz, fig.cap="tikz 之复杂公式", echo = FALSE}
 knitr::include_graphics(path = paste0("figures/binormal", if(knitr::is_latex_output()) ".pdf" else ".png"))
+```
+
+## TikZ 和 PGF
+
+如图 \@ref(fig:latex-tikz) 所示，模板存放在 `tikz/tikz2pdf.tex`
+
+```{r latex-tikz, engine='tikz', out.width='90%', fig.ext=if (knitr:::is_latex_output()) 'pdf' else 'png', fig.cap='tikz 图形', engine.opts = list(template = "tikz/tikz2pdf.tex"), eval = knitr::is_latex_output() & identical(Sys.getenv("TRAVIS"), "true")}
+\begin{tikzpicture}[scale=.7]
+\draw [fill=gray!30,very thick] (0,-1) rectangle (5,1);
+\draw [very thick] (5, 0) -- (13,0);
+\node [below] at (2,-1) {\large Hello};
+\node [below, align=center] at (0,-1) {\large Two\\ lines};
+\end{tikzpicture}
+```
+
+一幅纯 tikz 代码绘制的图形，代码如下
+
+```{r import-tikze-code}
+cat(readLines("tikz/mini-demo.tex", encoding = "UTF-8"), sep = "\n")
+```
+
+```{r mini-tikz-demo,echo=FALSE,fig.cap="一幅迷你 tikz 图形"}
+knitr::include_graphics(path = "tikz/mini-demo.png")
+```
+
+```{r, dev='tikz', fig.width=4.4, fig.height=3.3, out.width="90%",eval = knitr::is_latex_output() & identical(Sys.getenv("TRAVIS"), "true"),fig.ext='tex', tikz2png='-density 300',fig.cap='tikz 图形'}
+par(mar = c(4.5, 4, .1, .1))
+hist(rnorm(1000), main='', xlab='$x$ (how the fonts look like here?)',
+  ylab='$\\hat{f}(x) = \\frac{1}{nh}\\sum_{i=1}^n \\cdots$')
 ```
 

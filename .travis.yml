@@ -47,7 +47,6 @@ r_github_packages:
 #  - ropensci/plotly
 #  - dkahle/ggmap
 #  - clauswilke/ggridges
-  - JohnCoene/echarts4r
 
 #bioc_packages:
 #  - Rgraphviz
@@ -80,7 +79,7 @@ addons:
       - libpoppler-cpp-dev
       - libv8-3.14-dev
       # tmap 
-      - libprotobuf-dev 
+      - libprotobuf-dev # protolite
       - protobuf-compiler
       - libjq-dev
       # rsvg
@@ -92,6 +91,7 @@ addons:
       - libgdal-dev
       # matplotlib
       - python2.7
+      - libpython-dev
       - python-tk
       - python-numpy
       - python-matplotlib

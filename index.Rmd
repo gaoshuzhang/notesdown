@@ -1,6 +1,6 @@
 ---
 title: "R 语言学习笔记"
-subtitle: "Notes on R, Octave, Python, Graphics, Models and Others"
+subtitle: "Notes on R, Octave, Python, Graphics, Models and Others/The Box of R for Data Science"
 author: "黄湘云"
 date: "`r format(Sys.time(), tz = 'Asia/Taipei', usetz = TRUE)`"
 site: bookdown::bookdown_site
