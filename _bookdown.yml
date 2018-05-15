@@ -45,24 +45,24 @@ rmd_files: [
 
   # 上忍
   "14-bayesians.Rmd",
-#  "15-approximations.Rmd",
+  "15-approximations.Rmd",
   
   # 案例篇
   "Cases.Rmd",
   
-#  "16-spatial.Rmd",
-#  "17-network.Rmd",
+  "16-spatial.Rmd",
+  "17-network.Rmd",
   
   # 模型篇
   "Models.Rmd",
   
-#  "18-glm.Rmd",
-#  "19-glmm.Rmd",
-#  "20-gam.Rmd",
+  "18-glm.Rmd",
+  "19-glmm.Rmd",
+  "20-gam.Rmd",
   # 附录
   "21-appendix.Rmd",
   "22-markdown.Rmd",
-#  "23-matplotlib.Rmd",
+  "23-matplotlib.Rmd",
   "24-r2cpp.Rmd",
   "25-tools.Rmd",
   "packages.Rmd",

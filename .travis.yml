@@ -106,6 +106,7 @@ addons:
 before_install:
   - npm install netlify-cli -g
   - tlmgr update --all
+  - tlmgr install psnfss type1cm ucs ncntrsbk helvetic
 
 before_script:
   - Rscript -e 'update.packages(lib.loc = .libPaths()[1],ask = FALSE)'
