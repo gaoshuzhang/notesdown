@@ -52,6 +52,7 @@ repos:
 #  INLA: https://inla.r-inla-download.org/R/stable
 #  deltarho: http://packages.deltarho.org
 #  dmlc: https://apache-mxnet.s3-accelerate.dualstack.amazonaws.com/R/CRAN/
+# Add marutter's c2d4u repository, (and rrutter for CRAN builds too)
 
 addons:
   apt:
@@ -60,6 +61,8 @@ addons:
       - sourceline: ppa:ubuntugis/ubuntugis-unstable
       - sourceline: ppa:jonathonf/python-2.7
       - sourceline: ppa:octave/stable
+      - sourceline: ppa:marutter/rrutter
+      - sourceline: ppa:marutter/c2d4u
     packages:
       - ghostscript
       - imagemagick
@@ -89,6 +92,7 @@ addons:
       - pstoedit
 
 before_install:
+  - sudo -H apt-get install r-cran-rstan
   - sudo -H pip install numpy matplotlib # scipy bokeh colorcet
   - npm install netlify-cli -g
   - tlmgr update --all
