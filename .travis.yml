@@ -1,8 +1,6 @@
 language: r
-r:
-  - 3.4.4
 dist: trusty
-sudo: false
+sudo: required
 cache:
   packages: true
   directories:
