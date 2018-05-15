@@ -62,7 +62,7 @@ rmd_files: [
   # 附录
   "21-appendix.Rmd",
   "22-markdown.Rmd",
-  "23-matplotlib.Rmd",
+#  "23-matplotlib.Rmd",
   "24-r2cpp.Rmd",
   "25-tools.Rmd",
   "packages.Rmd",
