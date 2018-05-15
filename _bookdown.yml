@@ -24,13 +24,13 @@ rmd_files: [
   "03-manipulations.Rmd",
   
   # 绘图篇
-#  "Graphics.Rmd",
+  "Graphics.Rmd",
   
-#  "04-plot.Rmd",
-#  "05-grid.Rmd",
-#  "06-interactions.Rmd",
+  "04-plot.Rmd",
+  "05-grid.Rmd",
+  "06-interactions.Rmd",
 #  "07-Tikz-PGF.Rmd",
-#  "08-ImageMagick.Rmd",
+  "08-ImageMagick.Rmd",
   
   # 中忍
 #  "09-colors.Rmd",

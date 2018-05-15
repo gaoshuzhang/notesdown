@@ -26,7 +26,14 @@ pandoc_version: 2.2.1
 git:
   depth: 5
   submodules: false
-  
+
+r_binary_packages:
+  - rstan
+  - rstanarm
+  - rstantools
+#  - sf
+  - rdieharder
+
 r_github_packages: 
   - tidyverse/ggplot2
   - leonawicz/mapmate
@@ -67,22 +74,29 @@ addons:
       - ghostscript
       - imagemagick
       - optipng
+      # webp
       - libwebp-dev
-      - libgsl0ldbl
-      - dieharder
-      - libdieharder3
-      - libdieharder-dev
+      # pdftools V8
       - libpoppler-cpp-dev
       - libv8-3.14-dev
+      # tmap 
       - libprotobuf-dev 
       - protobuf-compiler
       - libjq-dev
+      # rsvg
+      - librsvg2-dev
+      # sf
       - libudunits2-dev
       - libproj-dev 
       - libgeos-dev 
       - libgdal-dev
+      # matplotlib
       - python2.7
       - python-tk
+      - python-numpy
+      - python-matplotlib
+      - python-scipy
+      # RcppOctave
       - octave
       - liboctave-dev
       - proj-bin 
@@ -92,8 +106,6 @@ addons:
       - pstoedit
 
 before_install:
-  - sudo -H apt-get install r-cran-rstan
-  - sudo -H pip install numpy matplotlib # scipy bokeh colorcet
   - npm install netlify-cli -g
   - tlmgr update --all
 
