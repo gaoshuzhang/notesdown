@@ -6,7 +6,7 @@
 sessionInfo("bookdown")
 ```
 
-```{r pkgs}
+```{r pkgs, eval = FALSE}
 pkg <- .packages(all.available = TRUE)
 pkgInfo <- lapply(pkg, packageDescription,
   fields = c("Package", "Version", "Maintainer", "Title")
