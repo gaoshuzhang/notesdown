@@ -34,7 +34,7 @@ rmd_files: [
   
   # 中忍
   "09-colors.Rmd",
-  "10-fonts.Rmd",
+#  "10-fonts.Rmd",
   "11-animations.Rmd",
   
   # 进阶篇
