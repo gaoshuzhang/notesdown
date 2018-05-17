@@ -5,6 +5,8 @@
 
 ## 正则匹配
 
+字符串处理 [Handling Strings with R](http://www.gastonsanchez.com/r4strings/) Gaston Sanchez 著
+
 正则表达式 is ervrywhere，is 高级/hacker's skill 技能
 
 - [正则表达式速查表 -- Python3](https://www.dataquest.io/blog/large_files/python-regular-expressions-cheat-sheet.pdf)
