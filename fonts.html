@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>R 语言学习笔记</title>
+  <meta name="description" content="这是一个R语言学习笔记">
+  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
+
+  <meta property="og:title" content="R 语言学习笔记" />
+  <meta property="og:type" content="book" />
+  <meta property="og:url" content="https://notesdown.netlify.com/" />
+  <meta property="og:image" content="https://notesdown.netlify.com/images/dragon.png" />
+  <meta property="og:description" content="这是一个R语言学习笔记" />
+  <meta name="github-repo" content="xiangyunhuang/notesdown" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="R 语言学习笔记" />
+  
+  <meta name="twitter:description" content="这是一个R语言学习笔记" />
+  <meta name="twitter:image" content="https://notesdown.netlify.com/images/dragon.png" />
+
+<meta name="author" content="黄湘云">
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <link rel="apple-touch-icon-precomposed" sizes="120x120" href="images/dragon.png">
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+<link rel="prev" href="color.html">
+<link rel="next" href="animotion.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; position: absolute; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; }
+pre.numberSource a.sourceLine:empty
+  { position: absolute; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="css/style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">R语言笔记</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> 前言</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#e887b4e8b0a2"><i class="fa fa-check"></i>致谢</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#e7bb93e69e84"><i class="fa fa-check"></i>结构</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#e5908ee8aeb0"><i class="fa fa-check"></i>后记</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="section-2.html"><a href="section-2.html"><i class="fa fa-check"></i><b>2</b> 作者简介</a></li>
+<li class="chapter" data-level="3" data-path="section-3.html"><a href="section-3.html"><i class="fa fa-check"></i><b>3</b> 符号说明</a></li>
+<li class="part"><span><b>I 基础知识</b></span></li>
+<li class="chapter" data-level="4" data-path="install-setup.html"><a href="install-setup.html"><i class="fa fa-check"></i><b>4</b> 安装与配置</a><ul>
+<li class="chapter" data-level="4.1" data-path="install-setup.html"><a href="install-setup.html#-r-"><i class="fa fa-check"></i><b>4.1</b> 安装 R 软件</a></li>
+<li class="chapter" data-level="4.2" data-path="install-setup.html"><a href="install-setup.html#-r-"><i class="fa fa-check"></i><b>4.2</b> 安装 R 扩展包</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="install-setup.html"><a href="install-setup.html#rdieharder"><i class="fa fa-check"></i><b>4.2.1</b> RDieHarder</a></li>
+<li class="chapter" data-level="4.2.2" data-path="install-setup.html"><a href="install-setup.html#sparkr"><i class="fa fa-check"></i><b>4.2.2</b> SparkR</a></li>
+<li class="chapter" data-level="4.2.3" data-path="install-setup.html"><a href="install-setup.html#sparklyr"><i class="fa fa-check"></i><b>4.2.3</b> sparklyr</a></li>
+<li class="chapter" data-level="4.2.4" data-path="install-setup.html"><a href="install-setup.html#dbi"><i class="fa fa-check"></i><b>4.2.4</b> DBI</a></li>
+<li class="chapter" data-level="4.2.5" data-path="install-setup.html"><a href="install-setup.html#reticulate"><i class="fa fa-check"></i><b>4.2.5</b> reticulate</a></li>
+<li class="chapter" data-level="4.2.6" data-path="install-setup.html"><a href="install-setup.html#inla"><i class="fa fa-check"></i><b>4.2.6</b> INLA</a></li>
+<li class="chapter" data-level="4.2.7" data-path="install-setup.html"><a href="install-setup.html#mxnet"><i class="fa fa-check"></i><b>4.2.7</b> mxnet</a></li>
+<li class="chapter" data-level="4.2.8" data-path="install-setup.html"><a href="install-setup.html#tensorflow"><i class="fa fa-check"></i><b>4.2.8</b> tensorflow</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="install-setup.html"><a href="install-setup.html#-ide"><i class="fa fa-check"></i><b>4.3</b> 安装 IDE</a></li>
+<li class="chapter" data-level="4.4" data-path="install-setup.html"><a href="install-setup.html#section-4.4"><i class="fa fa-check"></i><b>4.4</b> 配置文件</a></li>
+<li class="chapter" data-level="4.5" data-path="install-setup.html"><a href="install-setup.html#tricks"><i class="fa fa-check"></i><b>4.5</b> 小技巧</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="math-operator.html"><a href="math-operator.html"><i class="fa fa-check"></i><b>5</b> 数学运算</a><ul>
+<li class="chapter" data-level="5.1" data-path="math-operator.html"><a href="math-operator.html#section-5.1"><i class="fa fa-check"></i><b>5.1</b> 矩阵运算</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="math-operator.html"><a href="math-operator.html#section-5.1.1"><i class="fa fa-check"></i><b>5.1.1</b> 乘法</a></li>
+<li class="chapter" data-level="5.1.2" data-path="math-operator.html"><a href="math-operator.html#Hadamard"><i class="fa fa-check"></i><b>5.1.2</b> Hadamard 积</a></li>
+<li class="chapter" data-level="5.1.3" data-path="math-operator.html"><a href="math-operator.html#section-5.1.3"><i class="fa fa-check"></i><b>5.1.3</b> 交叉积</a></li>
+<li class="chapter" data-level="5.1.4" data-path="math-operator.html"><a href="math-operator.html#section-5.1.4"><i class="fa fa-check"></i><b>5.1.4</b> 外积</a></li>
+<li class="chapter" data-level="5.1.5" data-path="math-operator.html"><a href="math-operator.html#section-5.1.5"><i class="fa fa-check"></i><b>5.1.5</b> 直积</a></li>
+<li class="chapter" data-level="5.1.6" data-path="math-operator.html"><a href="math-operator.html#section-5.1.6"><i class="fa fa-check"></i><b>5.1.6</b> 乘方</a></li>
+<li class="chapter" data-level="5.1.7" data-path="math-operator.html"><a href="math-operator.html#section-5.1.7"><i class="fa fa-check"></i><b>5.1.7</b> 幂</a></li>
+<li class="chapter" data-level="5.1.8" data-path="math-operator.html"><a href="math-operator.html#section-5.1.8"><i class="fa fa-check"></i><b>5.1.8</b> 行列式</a></li>
+<li class="chapter" data-level="5.1.9" data-path="math-operator.html"><a href="math-operator.html#section-5.1.9"><i class="fa fa-check"></i><b>5.1.9</b> 逆</a></li>
+<li class="chapter" data-level="5.1.10" data-path="math-operator.html"><a href="math-operator.html#section-5.1.10"><i class="fa fa-check"></i><b>5.1.10</b> 伴随矩阵</a></li>
+<li class="chapter" data-level="5.1.11" data-path="math-operator.html"><a href="math-operator.html#section-5.1.11"><i class="fa fa-check"></i><b>5.1.11</b> 单位矩阵</a></li>
+<li class="chapter" data-level="5.1.12" data-path="math-operator.html"><a href="math-operator.html#section-5.1.12"><i class="fa fa-check"></i><b>5.1.12</b> 对角矩阵</a></li>
+<li class="chapter" data-level="5.1.13" data-path="math-operator.html"><a href="math-operator.html#section-5.1.13"><i class="fa fa-check"></i><b>5.1.13</b> 条件数</a></li>
+<li class="chapter" data-level="5.1.14" data-path="math-operator.html"><a href="math-operator.html#section-5.1.14"><i class="fa fa-check"></i><b>5.1.14</b> 范数</a></li>
+<li class="chapter" data-level="5.1.15" data-path="math-operator.html"><a href="math-operator.html#section-5.1.15"><i class="fa fa-check"></i><b>5.1.15</b> 秩</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="math-operator.html"><a href="math-operator.html#section-5.2"><i class="fa fa-check"></i><b>5.2</b> 矩阵分解</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="math-operator.html"><a href="math-operator.html#cholesky-"><i class="fa fa-check"></i><b>5.2.1</b> Cholesky 分解</a></li>
+<li class="chapter" data-level="5.2.2" data-path="math-operator.html"><a href="math-operator.html#section-5.2.2"><i class="fa fa-check"></i><b>5.2.2</b> 奇异值及分解</a></li>
+<li class="chapter" data-level="5.2.3" data-path="math-operator.html"><a href="math-operator.html#qr"><i class="fa fa-check"></i><b>5.2.3</b> QR分解</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="math-operator.html"><a href="math-operator.html#section-5.3"><i class="fa fa-check"></i><b>5.3</b> 特殊函数</a><ul>
+<li class="chapter" data-level="5.3.1" data-path="math-operator.html"><a href="math-operator.html#section-5.3.1"><i class="fa fa-check"></i><b>5.3.1</b> 阶乘</a></li>
+<li class="chapter" data-level="5.3.2" data-path="math-operator.html"><a href="math-operator.html#section-5.3.2"><i class="fa fa-check"></i><b>5.3.2</b> 伽马函数</a></li>
+<li class="chapter" data-level="5.3.3" data-path="math-operator.html"><a href="math-operator.html#section-5.3.3"><i class="fa fa-check"></i><b>5.3.3</b> 贝塔函数</a></li>
+<li class="chapter" data-level="5.3.4" data-path="math-operator.html"><a href="math-operator.html#section-5.3.4"><i class="fa fa-check"></i><b>5.3.4</b> 贝塞尔函数</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="math-operator.html"><a href="math-operator.html#distribution"><i class="fa fa-check"></i><b>5.4</b> 统计分布</a><ul>
+<li class="chapter" data-level="5.4.1" data-path="math-operator.html"><a href="math-operator.html#section-5.4.1"><i class="fa fa-check"></i><b>5.4.1</b> 一元分布</a></li>
+<li class="chapter" data-level="5.4.2" data-path="math-operator.html"><a href="math-operator.html#section-5.4.2"><i class="fa fa-check"></i><b>5.4.2</b> 多元分布</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="section-6.html"><a href="section-6.html"><i class="fa fa-check"></i><b>6</b> 数据操作</a><ul>
+<li class="chapter" data-level="6.1" data-path="section-6.html"><a href="section-6.html#section-6.1"><i class="fa fa-check"></i><b>6.1</b> 集合运算</a></li>
+<li class="chapter" data-level="6.2" data-path="section-6.html"><a href="section-6.html#section-6.2"><i class="fa fa-check"></i><b>6.2</b> 正则匹配</a></li>
+<li class="chapter" data-level="6.3" data-path="section-6.html"><a href="section-6.html#section-6.3"><i class="fa fa-check"></i><b>6.3</b> 排序</a><ul>
+<li class="chapter" data-level="6.3.1" data-path="section-6.html"><a href="section-6.html#order"><i class="fa fa-check"></i><b>6.3.1</b> order</a></li>
+<li class="chapter" data-level="6.3.2" data-path="section-6.html"><a href="section-6.html#sort"><i class="fa fa-check"></i><b>6.3.2</b> sort</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="section-6.html"><a href="section-6.html#section-6.4"><i class="fa fa-check"></i><b>6.4</b> 索引</a><ul>
+<li class="chapter" data-level="6.4.1" data-path="section-6.html"><a href="section-6.html#which"><i class="fa fa-check"></i><b>6.4.1</b> which</a></li>
+<li class="chapter" data-level="6.4.2" data-path="section-6.html"><a href="section-6.html#section"><i class="fa fa-check"></i><b>6.4.2</b> <code>[[</code></a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="section-6.html"><a href="section-6.html#section-6.5"><i class="fa fa-check"></i><b>6.5</b> 分组</a></li>
+<li class="chapter" data-level="6.6" data-path="section-6.html"><a href="section-6.html#apply"><i class="fa fa-check"></i><b>6.6</b> apply</a><ul>
+<li class="chapter" data-level="6.6.1" data-path="section-6.html"><a href="section-6.html#lapply"><i class="fa fa-check"></i><b>6.6.1</b> lapply</a></li>
+<li class="chapter" data-level="6.6.2" data-path="section-6.html"><a href="section-6.html#sapply"><i class="fa fa-check"></i><b>6.6.2</b> sapply</a></li>
+<li class="chapter" data-level="6.6.3" data-path="section-6.html"><a href="section-6.html#parallel"><i class="fa fa-check"></i><b>6.6.3</b> parallel</a></li>
+</ul></li>
+<li class="chapter" data-level="6.7" data-path="section-6.html"><a href="section-6.html#section-6.7"><i class="fa fa-check"></i><b>6.7</b> 合并</a><ul>
+<li class="chapter" data-level="6.7.1" data-path="section-6.html"><a href="section-6.html#aggregate"><i class="fa fa-check"></i><b>6.7.1</b> aggregate</a></li>
+</ul></li>
+<li class="chapter" data-level="6.8" data-path="section-6.html"><a href="section-6.html#section-6.8"><i class="fa fa-check"></i><b>6.8</b> 映射</a><ul>
+<li class="chapter" data-level="6.8.1" data-path="section-6.html"><a href="section-6.html#map"><i class="fa fa-check"></i><b>6.8.1</b> Map</a></li>
+<li class="chapter" data-level="6.8.2" data-path="section-6.html"><a href="section-6.html#reduce"><i class="fa fa-check"></i><b>6.8.2</b> Reduce</a></li>
+</ul></li>
+<li class="chapter" data-level="6.9" data-path="section-6.html"><a href="section-6.html#section-6.9"><i class="fa fa-check"></i><b>6.9</b> 拆分</a><ul>
+<li class="chapter" data-level="6.9.1" data-path="section-6.html"><a href="section-6.html#split"><i class="fa fa-check"></i><b>6.9.1</b> split</a></li>
+<li class="chapter" data-level="6.9.2" data-path="section-6.html"><a href="section-6.html#cut"><i class="fa fa-check"></i><b>6.9.2</b> cut</a></li>
+</ul></li>
+<li class="chapter" data-level="6.10" data-path="section-6.html"><a href="section-6.html#section-6.10"><i class="fa fa-check"></i><b>6.10</b> 数据库</a></li>
+</ul></li>
+<li class="part"><span><b>II 统计图形</b></span></li>
+<li class="chapter" data-level="7" data-path="graphics.html"><a href="graphics.html"><i class="fa fa-check"></i><b>7</b> 基础图形</a><ul>
+<li class="chapter" data-level="7.1" data-path="graphics.html"><a href="graphics.html#base"><i class="fa fa-check"></i><b>7.1</b> plot</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="ggplot.html"><a href="ggplot.html"><i class="fa fa-check"></i><b>8</b> 高级图形</a></li>
+<li class="chapter" data-level="9" data-path="section-9.html"><a href="section-9.html"><i class="fa fa-check"></i><b>9</b> 动态图形</a><ul>
+<li class="chapter" data-level="9.1" data-path="section-9.html"><a href="section-9.html#echarts"><i class="fa fa-check"></i><b>9.1</b> ECharts</a></li>
+<li class="chapter" data-level="9.2" data-path="section-9.html"><a href="section-9.html#d3"><i class="fa fa-check"></i><b>9.2</b> D3</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="section-10.html"><a href="section-10.html"><i class="fa fa-check"></i><b>10</b> 绘图工具</a><ul>
+<li class="chapter" data-level="10.1" data-path="section-10.html"><a href="section-10.html#section-10.1"><i class="fa fa-check"></i><b>10.1</b> 截图</a></li>
+<li class="chapter" data-level="10.2" data-path="section-10.html"><a href="section-10.html#inkscape"><i class="fa fa-check"></i><b>10.2</b> Inkscape</a></li>
+<li class="chapter" data-level="10.3" data-path="section-10.html"><a href="section-10.html#section-10.3"><i class="fa fa-check"></i><b>10.3</b> 转化</a></li>
+<li class="chapter" data-level="10.4" data-path="section-10.html"><a href="section-10.html#section-10.4"><i class="fa fa-check"></i><b>10.4</b> 优化</a></li>
+<li class="chapter" data-level="10.5" data-path="section-10.html"><a href="section-10.html#section-10.5"><i class="fa fa-check"></i><b>10.5</b> 裁剪</a></li>
+<li class="chapter" data-level="10.6" data-path="section-10.html"><a href="section-10.html#section-10.6"><i class="fa fa-check"></i><b>10.6</b> 接口</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="color.html"><a href="color.html"><i class="fa fa-check"></i><b>11</b> 配色</a><ul>
+<li class="chapter" data-level="11.1" data-path="color.html"><a href="color.html#section-11.1"><i class="fa fa-check"></i><b>11.1</b> 调色板</a></li>
+<li class="chapter" data-level="11.2" data-path="color.html"><a href="color.html#section-11.2"><i class="fa fa-check"></i><b>11.2</b> 颜色空间</a><ul>
+<li class="chapter" data-level="11.2.1" data-path="color.html"><a href="color.html#rgb"><i class="fa fa-check"></i><b>11.2.1</b> RGB</a></li>
+<li class="chapter" data-level="11.2.2" data-path="color.html"><a href="color.html#hsl"><i class="fa fa-check"></i><b>11.2.2</b> HSL</a></li>
+<li class="chapter" data-level="11.2.3" data-path="color.html"><a href="color.html#hsv"><i class="fa fa-check"></i><b>11.2.3</b> HSV</a></li>
+<li class="chapter" data-level="11.2.4" data-path="color.html"><a href="color.html#hcl"><i class="fa fa-check"></i><b>11.2.4</b> HCL</a></li>
+<li class="chapter" data-level="11.2.5" data-path="color.html"><a href="color.html#cmyk"><i class="fa fa-check"></i><b>11.2.5</b> CMYK</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="fonts.html"><a href="fonts.html"><i class="fa fa-check"></i><b>12</b> 字体</a><ul>
+<li class="chapter" data-level="12.1" data-path="fonts.html"><a href="fonts.html#cjk-"><i class="fa fa-check"></i><b>12.1</b> CJK 字体</a></li>
+<li class="chapter" data-level="12.2" data-path="fonts.html"><a href="fonts.html#showtext"><i class="fa fa-check"></i><b>12.2</b> showtext</a></li>
+<li class="chapter" data-level="12.3" data-path="fonts.html"><a href="fonts.html#xkcd"><i class="fa fa-check"></i><b>12.3</b> xkcd</a></li>
+<li class="chapter" data-level="12.4" data-path="fonts.html"><a href="fonts.html#fontcm"><i class="fa fa-check"></i><b>12.4</b> fontcm</a></li>
+<li class="chapter" data-level="12.5" data-path="fonts.html"><a href="fonts.html#tikzdevice"><i class="fa fa-check"></i><b>12.5</b> tikzDevice</a></li>
+<li class="chapter" data-level="12.6" data-path="fonts.html"><a href="fonts.html#tikz--pgf"><i class="fa fa-check"></i><b>12.6</b> TikZ 和 PGF</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="animotion.html"><a href="animotion.html"><i class="fa fa-check"></i><b>13</b> 动画</a><ul>
+<li class="chapter" data-level="13.1" data-path="animotion.html"><a href="animotion.html#js-"><i class="fa fa-check"></i><b>13.1</b> JS 动画</a></li>
+<li class="chapter" data-level="13.2" data-path="animotion.html"><a href="animotion.html#svg-"><i class="fa fa-check"></i><b>13.2</b> svg 动画</a></li>
+<li class="chapter" data-level="13.3" data-path="animotion.html"><a href="animotion.html#mapmate"><i class="fa fa-check"></i><b>13.3</b> mapmate</a></li>
+<li class="chapter" data-level="13.4" data-path="animotion.html"><a href="animotion.html#rgl"><i class="fa fa-check"></i><b>13.4</b> rgl</a></li>
+</ul></li>
+<li class="part"><span><b>III 统计计算</b></span></li>
+<li class="chapter" data-level="14" data-path="optimation.html"><a href="optimation.html"><i class="fa fa-check"></i><b>14</b> 数值优化</a><ul>
+<li class="chapter" data-level="14.1" data-path="optimation.html"><a href="optimation.html#section-14.1"><i class="fa fa-check"></i><b>14.1</b> 测试函数</a></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="section-15.html"><a href="section-15.html"><i class="fa fa-check"></i><b>15</b> 随机模拟</a><ul>
+<li class="chapter" data-level="15.1" data-path="section-15.html"><a href="section-15.html#section-15.1"><i class="fa fa-check"></i><b>15.1</b> 随机数</a></li>
+<li class="chapter" data-level="15.2" data-path="section-15.html"><a href="section-15.html#section-15.2"><i class="fa fa-check"></i><b>15.2</b> 随机过程</a><ul>
+<li class="chapter" data-level="15.2.1" data-path="section-15.html"><a href="section-15.html#section-15.2.1"><i class="fa fa-check"></i><b>15.2.1</b> 随机游走</a></li>
+<li class="chapter" data-level="15.2.2" data-path="section-15.html"><a href="section-15.html#section-15.2.2"><i class="fa fa-check"></i><b>15.2.2</b> 遍历定理</a></li>
+<li class="chapter" data-level="15.2.3" data-path="section-15.html"><a href="section-15.html#m-h-"><i class="fa fa-check"></i><b>15.2.3</b> M-H 算法</a></li>
+<li class="chapter" data-level="15.2.4" data-path="section-15.html"><a href="section-15.html#gibbs-"><i class="fa fa-check"></i><b>15.2.4</b> Gibbs 算法</a></li>
+<li class="chapter" data-level="15.2.5" data-path="section-15.html"><a href="section-15.html#hmc-"><i class="fa fa-check"></i><b>15.2.5</b> HMC 算法</a></li>
+</ul></li>
+<li class="chapter" data-level="15.3" data-path="section-15.html"><a href="section-15.html#section-15.3"><i class="fa fa-check"></i><b>15.3</b> 分布式</a><ul>
+<li class="chapter" data-level="15.3.1" data-path="section-15.html"><a href="section-15.html#rmpi"><i class="fa fa-check"></i><b>15.3.1</b> Rmpi</a></li>
+<li class="chapter" data-level="15.3.2" data-path="section-15.html"><a href="section-15.html#rhpc"><i class="fa fa-check"></i><b>15.3.2</b> Rhpc</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="bayes.html"><a href="bayes.html"><i class="fa fa-check"></i><b>16</b> 贝叶斯计算</a><ul>
+<li class="chapter" data-level="16.1" data-path="bayes.html"><a href="bayes.html#bugs-"><i class="fa fa-check"></i><b>16.1</b> BUGS 软件</a></li>
+<li class="chapter" data-level="16.2" data-path="bayes.html"><a href="bayes.html#stan-"><i class="fa fa-check"></i><b>16.2</b> Stan 框架</a><ul>
+<li class="chapter" data-level="16.2.1" data-path="bayes.html"><a href="bayes.html#pystan-"><i class="fa fa-check"></i><b>16.2.1</b> PyStan 接口</a></li>
+<li class="chapter" data-level="16.2.2" data-path="bayes.html"><a href="bayes.html#rstan-"><i class="fa fa-check"></i><b>16.2.2</b> RStan 接口</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="r-inla.html"><a href="r-inla.html"><i class="fa fa-check"></i><b>17</b> 近似推断</a><ul>
+<li class="chapter" data-level="17.1" data-path="r-inla.html"><a href="r-inla.html#-"><i class="fa fa-check"></i><b>17.1</b> 高斯-马尔科夫随机场</a></li>
+<li class="chapter" data-level="17.2" data-path="r-inla.html"><a href="r-inla.html#section-17.2"><i class="fa fa-check"></i><b>17.2</b> 贝叶斯近似推断</a></li>
+</ul></li>
+<li class="part"><span><b>IV 数据分析</b></span></li>
+<li class="chapter" data-level="18" data-path="spatial.html"><a href="spatial.html"><i class="fa fa-check"></i><b>18</b> 空间数据</a><ul>
+<li class="chapter" data-level="18.1" data-path="spatial.html"><a href="spatial.html#section-18.1"><i class="fa fa-check"></i><b>18.1</b> 分析与可视化</a></li>
+<li class="chapter" data-level="18.2" data-path="spatial.html"><a href="spatial.html#sf"><i class="fa fa-check"></i><b>18.2</b> sf</a></li>
+<li class="chapter" data-level="18.3" data-path="spatial.html"><a href="spatial.html#prevmap"><i class="fa fa-check"></i><b>18.3</b> PrevMap</a></li>
+</ul></li>
+<li class="chapter" data-level="19" data-path="network.html"><a href="network.html"><i class="fa fa-check"></i><b>19</b> 网络数据</a><ul>
+<li class="chapter" data-level="19.1" data-path="network.html"><a href="network.html#-1"><i class="fa fa-check"></i><b>19.1</b> 分析与可视化</a></li>
+<li class="chapter" data-level="19.2" data-path="network.html"><a href="network.html#gephi"><i class="fa fa-check"></i><b>19.2</b> gephi</a></li>
+</ul></li>
+<li class="part"><span><b>V 统计模型</b></span></li>
+<li class="chapter" data-level="20" data-path="glm.html"><a href="glm.html"><i class="fa fa-check"></i><b>20</b> 广义线性模型</a><ul>
+<li class="chapter" data-level="20.1" data-path="glm.html"><a href="glm.html#section-20.1"><i class="fa fa-check"></i><b>20.1</b> 线性模型</a><ul>
+<li class="chapter" data-level="20.1.1" data-path="glm.html"><a href="glm.html#section-20.1.1"><i class="fa fa-check"></i><b>20.1.1</b> 参数估计</a></li>
+<li class="chapter" data-level="20.1.2" data-path="glm.html"><a href="glm.html#section-20.1.2"><i class="fa fa-check"></i><b>20.1.2</b> 最小二乘</a></li>
+<li class="chapter" data-level="20.1.3" data-path="glm.html"><a href="glm.html#section-20.1.3"><i class="fa fa-check"></i><b>20.1.3</b> 最大似然</a></li>
+</ul></li>
+<li class="chapter" data-level="20.2" data-path="network.html"><a href="network.html#-1"><i class="fa fa-check"></i><b>20.2</b> 参数估计</a><ul>
+<li class="chapter" data-level="20.2.1" data-path="glm.html"><a href="glm.html#section-20.2.1"><i class="fa fa-check"></i><b>20.2.1</b> 最小二乘估计</a></li>
+<li class="chapter" data-level="20.2.2" data-path="glm.html"><a href="glm.html#section-20.2.2"><i class="fa fa-check"></i><b>20.2.2</b> 广义最小二乘估计</a></li>
+<li class="chapter" data-level="20.2.3" data-path="glm.html"><a href="glm.html#section-20.2.3"><i class="fa fa-check"></i><b>20.2.3</b> 最大似然估计</a></li>
+</ul></li>
+<li class="chapter" data-level="20.3" data-path="glm.html"><a href="glm.html#section-20.3"><i class="fa fa-check"></i><b>20.3</b> 高维问题</a></li>
+</ul></li>
+<li class="chapter" data-level="21" data-path="mixed-model.html"><a href="mixed-model.html"><i class="fa fa-check"></i><b>21</b> 混合效应模型</a><ul>
+<li class="chapter" data-level="21.1" data-path="mixed-model.html"><a href="mixed-model.html#section-21.1"><i class="fa fa-check"></i><b>21.1</b> 方差分析</a></li>
+<li class="chapter" data-level="21.2" data-path="mixed-model.html"><a href="mixed-model.html#section-21.2"><i class="fa fa-check"></i><b>21.2</b> 线性混合效应模型</a></li>
+<li class="chapter" data-level="21.3" data-path="mixed-model.html"><a href="mixed-model.html#section-21.3"><i class="fa fa-check"></i><b>21.3</b> 广义线性混合效应模型</a></li>
+<li class="chapter" data-level="21.4" data-path="mixed-model.html"><a href="mixed-model.html#section-21.4"><i class="fa fa-check"></i><b>21.4</b> 空间广义线性混合效应模型</a></li>
+<li class="chapter" data-level="21.5" data-path="mixed-model.html"><a href="mixed-model.html#-2"><i class="fa fa-check"></i><b>21.5</b> 参数估计</a><ul>
+<li class="chapter" data-level="21.5.1" data-path="mixed-model.html"><a href="mixed-model.html#section-21.5.1"><i class="fa fa-check"></i><b>21.5.1</b> 限制极大似然估计</a></li>
+<li class="chapter" data-level="21.5.2" data-path="mixed-model.html"><a href="mixed-model.html#profile-"><i class="fa fa-check"></i><b>21.5.2</b> profile 似然估计</a></li>
+<li class="chapter" data-level="21.5.3" data-path="mixed-model.html"><a href="mixed-model.html#section-21.5.3"><i class="fa fa-check"></i><b>21.5.3</b> 贝叶斯估计</a></li>
+</ul></li>
+<li class="chapter" data-level="21.6" data-path="network.html"><a href="network.html#-1"><i class="fa fa-check"></i><b>21.6</b> 高维问题</a></li>
+</ul></li>
+<li class="chapter" data-level="22" data-path="gam.html"><a href="gam.html"><i class="fa fa-check"></i><b>22</b> 广义可加模型</a><ul>
+<li class="chapter" data-level="22.1" data-path="gam.html"><a href="gam.html#section-22.1"><i class="fa fa-check"></i><b>22.1</b> 一般广义可加模型</a></li>
+<li class="chapter" data-level="22.2" data-path="gam.html"><a href="gam.html#section-22.2"><i class="fa fa-check"></i><b>22.2</b> 广义可加混合效应模型</a></li>
+<li class="chapter" data-level="22.3" data-path="mixed-model.html"><a href="mixed-model.html#-2"><i class="fa fa-check"></i><b>22.3</b> 高维问题</a></li>
+</ul></li>
+<li class="appendix"><span><b>附录</b></span></li>
+<li class="chapter" data-level="A" data-path="pandoc-markdown.html"><a href="pandoc-markdown.html"><i class="fa fa-check"></i><b>A</b> R Markdown</a><ul>
+<li class="chapter" data-level="A.1" data-path="pandoc-markdown.html"><a href="pandoc-markdown.html#bookdown"><i class="fa fa-check"></i><b>A.1</b> bookdown</a></li>
+<li class="chapter" data-level="A.2" data-path="pandoc-markdown.html"><a href="pandoc-markdown.html#kableExtra"><i class="fa fa-check"></i><b>A.2</b> 复杂表格制作</a></li>
+</ul></li>
+<li class="chapter" data-level="B" data-path="python-plot.html"><a href="python-plot.html"><i class="fa fa-check"></i><b>B</b> Python 绘图</a><ul>
+<li class="chapter" data-level="B.1" data-path="python-plot.html"><a href="python-plot.html#matplotlib"><i class="fa fa-check"></i><b>B.1</b> matplotlib</a></li>
+<li class="chapter" data-level="B.2" data-path="python-plot.html"><a href="python-plot.html#seaborn"><i class="fa fa-check"></i><b>B.2</b> seaborn</a></li>
+<li class="chapter" data-level="B.3" data-path="python-plot.html"><a href="python-plot.html#pyglet"><i class="fa fa-check"></i><b>B.3</b> pyglet</a></li>
+<li class="chapter" data-level="B.4" data-path="python-plot.html"><a href="python-plot.html#mayavi"><i class="fa fa-check"></i><b>B.4</b> mayavi</a></li>
+<li class="chapter" data-level="B.5" data-path="python-plot.html"><a href="python-plot.html#bokeh"><i class="fa fa-check"></i><b>B.5</b> bokeh</a></li>
+<li class="chapter" data-level="B.6" data-path="python-plot.html"><a href="python-plot.html#plotly"><i class="fa fa-check"></i><b>B.6</b> plotly</a></li>
+</ul></li>
+<li class="chapter" data-level="C" data-path="performance.html"><a href="performance.html"><i class="fa fa-check"></i><b>C</b> 性能提升</a><ul>
+<li class="chapter" data-level="C.1" data-path="performance.html"><a href="performance.html#rcpp"><i class="fa fa-check"></i><b>C.1</b> Rcpp</a><ul>
+<li class="chapter" data-level="C.1.1" data-path="performance.html"><a href="performance.html#rcppoctave"><i class="fa fa-check"></i><b>C.1.1</b> RcppOctave</a></li>
+<li class="chapter" data-level="C.1.2" data-path="performance.html"><a href="performance.html#rcppgsl"><i class="fa fa-check"></i><b>C.1.2</b> RcppGSL</a></li>
+<li class="chapter" data-level="C.1.3" data-path="performance.html"><a href="performance.html#rcpparmadillo"><i class="fa fa-check"></i><b>C.1.3</b> RcppArmadillo</a></li>
+<li class="chapter" data-level="C.1.4" data-path="performance.html"><a href="performance.html#rcppparallel"><i class="fa fa-check"></i><b>C.1.4</b> RcppParallel</a></li>
+<li class="chapter" data-level="C.1.5" data-path="performance.html"><a href="performance.html#rcppnumerical"><i class="fa fa-check"></i><b>C.1.5</b> RcppNumerical</a></li>
+<li class="chapter" data-level="C.1.6" data-path="performance.html"><a href="performance.html#rcppalgos"><i class="fa fa-check"></i><b>C.1.6</b> RcppAlgos</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="D" data-path="other-tools.html"><a href="other-tools.html"><i class="fa fa-check"></i><b>D</b> 软件工具</a><ul>
+<li class="chapter" data-level="D.1" data-path="other-tools.html"><a href="other-tools.html#octave"><i class="fa fa-check"></i><b>D.1</b> Octave</a></li>
+<li class="chapter" data-level="D.2" data-path="other-tools.html"><a href="other-tools.html#python"><i class="fa fa-check"></i><b>D.2</b> Python</a></li>
+<li class="chapter" data-level="D.3" data-path="other-tools.html"><a href="other-tools.html#hugo"><i class="fa fa-check"></i><b>D.3</b> Hugo</a></li>
+<li class="chapter" data-level="D.4" data-path="other-tools.html"><a href="other-tools.html#latex"><i class="fa fa-check"></i><b>D.4</b> LaTeX</a></li>
+<li class="chapter" data-level="D.5" data-path="other-tools.html"><a href="other-tools.html#pandoc"><i class="fa fa-check"></i><b>D.5</b> Pandoc</a></li>
+<li class="chapter" data-level="D.6" data-path="other-tools.html"><a href="other-tools.html#rtools"><i class="fa fa-check"></i><b>D.6</b> Rtools</a></li>
+<li class="chapter" data-level="D.7" data-path="other-tools.html"><a href="other-tools.html#container"><i class="fa fa-check"></i><b>D.7</b> 容器</a><ul>
+<li class="chapter" data-level="D.7.1" data-path="other-tools.html"><a href="other-tools.html#rocker"><i class="fa fa-check"></i><b>D.7.1</b> rocker</a></li>
+<li class="chapter" data-level="D.7.2" data-path="other-tools.html"><a href="other-tools.html#singularity"><i class="fa fa-check"></i><b>D.7.2</b> Singularity</a></li>
+<li class="chapter" data-level="D.7.3" data-path="other-tools.html"><a href="other-tools.html#kubernetes"><i class="fa fa-check"></i><b>D.7.3</b> Kubernetes</a></li>
+</ul></li>
+<li class="chapter" data-level="D.8" data-path="other-tools.html"><a href="other-tools.html#apt"><i class="fa fa-check"></i><b>D.8</b> apt</a></li>
+<li class="chapter" data-level="D.9" data-path="other-tools.html"><a href="other-tools.html#yum"><i class="fa fa-check"></i><b>D.9</b> yum</a></li>
+<li class="chapter" data-level="D.10" data-path="other-tools.html"><a href="other-tools.html#tlmgr"><i class="fa fa-check"></i><b>D.10</b> tlmgr</a></li>
+<li class="chapter" data-level="D.11" data-path="other-tools.html"><a href="other-tools.html#git"><i class="fa fa-check"></i><b>D.11</b> Git</a></li>
+<li class="chapter" data-level="D.12" data-path="10-fonts.html"><a href="#section-D.12"><i class="fa fa-check"></i><b>D.12</b> 其它</a></li>
+</ul></li>
+<li class="chapter" data-level="E" data-path="reproduce.html"><a href="reproduce.html"><i class="fa fa-check"></i><b>E</b> 重现</a></li>
+<li class="chapter" data-level="F" data-path="bookmarks.html"><a href="bookmarks.html"><i class="fa fa-check"></i><b>F</b> 书签</a><ul>
+<li class="chapter" data-level="F.1" data-path="bookmarks.html"><a href="bookmarks.html#homepage"><i class="fa fa-check"></i><b>F.1</b> 主页</a></li>
+<li class="chapter" data-level="F.2" data-path="bookmarks.html"><a href="bookmarks.html#blogger"><i class="fa fa-check"></i><b>F.2</b> 博客</a></li>
+<li class="chapter" data-level="F.3" data-path="bookmarks.html"><a href="bookmarks.html#books"><i class="fa fa-check"></i><b>F.3</b> 书单</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="e58f82e88083e69687e78cae.html"><a href="e58f82e88083e69687e78cae.html"><i class="fa fa-check"></i>参考文献</a></li>
+<li class="divider"></li>
+<li><a href="https://xiangyun.netlify.com/">黄湘云</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">R 语言学习笔记</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="fonts" class="section level1">
+<h1><span class="header-section-number">第 12 章</span> 字体</h1>
+<div id="cjk-" class="section level2">
+<h2><span class="header-section-number">12.1</span> CJK 字体</h2>
+<p>windows 下，支持 <code>pdf</code>，<code>cairo_pdf</code> 和 <code>svg</code> 设备，如 <code>cairo_pdf(file = &quot;cjk.pdf&quot;,width=3,height=1)</code></p>
+<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb136-1" data-line-number="1"><span class="kw">library</span>(grid)</a>
+<a class="sourceLine" id="cb136-2" data-line-number="2"><span class="kw">grid.text</span>(<span class="st">&quot;\u4F60\u597D&quot;</span>,</a>
+<a class="sourceLine" id="cb136-3" data-line-number="3">  <span class="dt">y =</span> <span class="dv">2</span> <span class="op">/</span><span class="st"> </span><span class="dv">3</span>,</a>
+<a class="sourceLine" id="cb136-4" data-line-number="4">  <span class="dt">gp =</span> <span class="kw">gpar</span>(<span class="dt">fontfamily =</span> <span class="st">&quot;CNS1&quot;</span>)</a>
+<a class="sourceLine" id="cb136-5" data-line-number="5">)</a>
+<a class="sourceLine" id="cb136-6" data-line-number="6"><span class="kw">grid.text</span>(</a>
+<a class="sourceLine" id="cb136-7" data-line-number="7">  <span class="st">&quot;is &#39;hello&#39; in (Traditional) Chinese&quot;</span>,</a>
+<a class="sourceLine" id="cb136-8" data-line-number="8">  <span class="dt">y =</span> <span class="dv">1</span> <span class="op">/</span><span class="st"> </span><span class="dv">3</span></a>
+<a class="sourceLine" id="cb136-9" data-line-number="9">)</a></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:cjk"></span>
+<img src="10-fonts_files/figure-html/cjk-1.svg" alt="CJK 字体支持" width="100%" />
+<p class="caption">
+图 12.1: CJK 字体支持
+</p>
+</div>
+<p>参考文献 <a href="https://cran.r-project.org/doc/Rnews/Rnews_2006-2.pdf" class="uri">https://cran.r-project.org/doc/Rnews/Rnews_2006-2.pdf</a> Non-Standard Fonts in PostScript and PDF Graphics 一节</p>
+<p>grDevices 包提供了如下函数，用于 postscript 和 pdf 图形设备，嵌入字体借助了 <a href="https://www.ghostscript.com/">Ghostscript</a> 其下载地址 <a href="https://github.com/ArtifexSoftware/ghostpdl-downloads/releases/download/gs923/gs923w64.exe" class="uri">https://github.com/ArtifexSoftware/ghostpdl-downloads/releases/download/gs923/gs923w64.exe</a></p>
+<p>以及 PDF 阅读器 MuPDF <a href="https://www.mupdf.com/" class="uri">https://www.mupdf.com/</a></p>
+<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb137-1" data-line-number="1"><span class="kw">postscriptFonts</span>(...)</a>
+<a class="sourceLine" id="cb137-2" data-line-number="2"><span class="kw">pdfFonts</span>(...)</a>
+<a class="sourceLine" id="cb137-3" data-line-number="3">embedFonts</a></code></pre></div>
+<p>字体设置包括自定义中文字体、英文字体和数学公式。</p>
+<blockquote>
+<p>启用showtext 包处理中文，在网页版文档中，png 图片中的字体会变很小</p>
+</blockquote>
+</div>
+<div id="showtext" class="section level2">
+<h2><span class="header-section-number">12.2</span> showtext</h2>
+<p>showtext 包<span class="citation">(Qiu <a href="#ref-Qiu2015">2015</a>)</span>可以调用系统字体，图<a href="fonts.html#fig:iris-ggplot2">12.2</a>使用5号思源宋体，英文和数字使用 serif 字体。详细的使用文档可以看 <a href="https://github.com/yixuan/showtext">showtext 的开发页面</a></p>
+<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb138-1" data-line-number="1"><span class="kw">library</span>(ggplot2)</a>
+<a class="sourceLine" id="cb138-2" data-line-number="2"><span class="kw">ggplot</span>(iris, <span class="kw">aes</span>(Sepal.Length, Sepal.Width)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb138-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">colour =</span> Species)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb138-4" data-line-number="4"><span class="st">  </span><span class="kw">scale_colour_brewer</span>(<span class="dt">palette =</span> <span class="st">&quot;Set1&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb138-5" data-line-number="5"><span class="st">  </span><span class="kw">labs</span>(</a>
+<a class="sourceLine" id="cb138-6" data-line-number="6">    <span class="dt">title =</span> <span class="st">&quot;鸢尾花数据的散点图&quot;</span>,</a>
+<a class="sourceLine" id="cb138-7" data-line-number="7">    <span class="dt">x =</span> <span class="st">&quot;萼片长度&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;萼片宽度&quot;</span>, <span class="dt">colour =</span> <span class="st">&quot;鸢尾花类别&quot;</span></a>
+<a class="sourceLine" id="cb138-8" data-line-number="8">  ) <span class="op">+</span></a>
+<a class="sourceLine" id="cb138-9" data-line-number="9"><span class="st">  </span><span class="kw">theme_minimal</span>(<span class="dt">base_size =</span> <span class="fl">10.54</span>, <span class="dt">base_family =</span> <span class="st">&quot;source-han-serif-cn&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb138-10" data-line-number="10"><span class="st">  </span><span class="kw">theme</span>(</a>
+<a class="sourceLine" id="cb138-11" data-line-number="11">    <span class="dt">legend.text =</span> <span class="kw">element_text</span>(<span class="dt">family =</span> <span class="st">&quot;serif&quot;</span>, <span class="dt">size =</span> <span class="fl">10.54</span>),</a>
+<a class="sourceLine" id="cb138-12" data-line-number="12">    <span class="dt">axis.text =</span> <span class="kw">element_text</span>(<span class="dt">family =</span> <span class="st">&quot;serif&quot;</span>, <span class="dt">size =</span> <span class="fl">10.54</span>)</a>
+<a class="sourceLine" id="cb138-13" data-line-number="13">    )</a></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:iris-ggplot2"></span>
+<img src="10-fonts_files/figure-html/iris-ggplot2-1.svg" alt="showtext包处理图里的中文" width="70%" />
+<p class="caption">
+图 12.2: showtext包处理图里的中文
+</p>
+</div>
+<p>用 ggplot2 画个简单地图，地图数据在 mapdata 包 <span class="citation">(Richard A. Becker and Ray Brownrigg. <a href="#ref-R-mapdata">2018</a>)</span>，如图 <a href="fonts.html#fig:map-Fiji-earthquake">12.3</a> 所示</p>
+<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb139-1" data-line-number="1"><span class="kw">library</span>(maps)</a>
+<a class="sourceLine" id="cb139-2" data-line-number="2"><span class="kw">library</span>(mapdata)</a>
+<a class="sourceLine" id="cb139-3" data-line-number="3">FijiMap &lt;-<span class="st"> </span><span class="kw">map_data</span>(<span class="st">&quot;worldHires&quot;</span>, <span class="dt">region =</span> <span class="st">&quot;Fiji&quot;</span>)</a>
+<a class="sourceLine" id="cb139-4" data-line-number="4"><span class="kw">ggplot</span>(FijiMap, <span class="kw">aes</span>(<span class="dt">x =</span> long, <span class="dt">y =</span> lat)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb139-5" data-line-number="5"><span class="st">  </span><span class="kw">geom_map</span>(<span class="dt">map =</span> FijiMap, <span class="kw">aes</span>(<span class="dt">map_id =</span> region), <span class="dt">size =</span> <span class="fl">.2</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb139-6" data-line-number="6"><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">data =</span> quakes, <span class="kw">aes</span>(<span class="dt">x =</span> long, <span class="dt">y =</span> lat, <span class="dt">colour =</span> mag), <span class="dt">pch =</span> <span class="dv">16</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb139-7" data-line-number="7"><span class="st">  </span><span class="kw">xlim</span>(<span class="dv">160</span>, <span class="dv">195</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb139-8" data-line-number="8"><span class="st">  </span><span class="kw">scale_colour_distiller</span>(<span class="dt">palette =</span> <span class="st">&quot;Spectral&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb139-9" data-line-number="9"><span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">breaks =</span> (<span class="op">-</span><span class="dv">18</span><span class="op">:</span><span class="dv">18</span>) <span class="op">*</span><span class="st"> </span><span class="dv">5</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb139-10" data-line-number="10"><span class="st">  </span><span class="kw">coord_map</span>(<span class="st">&quot;ortho&quot;</span>, <span class="dt">orientation =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">10</span>, <span class="dv">180</span>, <span class="dv">0</span>)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb139-11" data-line-number="11"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">colour =</span> <span class="st">&quot;震级&quot;</span>, <span class="dt">x =</span> <span class="st">&quot;经度&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;纬度&quot;</span>, <span class="dt">title =</span> <span class="st">&quot;斐济地震带&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb139-12" data-line-number="12"><span class="st">  </span><span class="kw">theme_minimal</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb139-13" data-line-number="13"><span class="st">  </span><span class="kw">theme</span>(</a>
+<a class="sourceLine" id="cb139-14" data-line-number="14">    <span class="dt">title =</span> <span class="kw">element_text</span>(<span class="dt">family =</span> <span class="st">&quot;source-han-sans-cn&quot;</span>),</a>
+<a class="sourceLine" id="cb139-15" data-line-number="15">    <span class="dt">axis.title =</span> <span class="kw">element_text</span>(<span class="dt">family =</span> <span class="st">&quot;source-han-serif-cn&quot;</span>),</a>
+<a class="sourceLine" id="cb139-16" data-line-number="16">    <span class="dt">legend.title =</span> <span class="kw">element_text</span>(<span class="dt">family =</span> <span class="st">&quot;source-han-sans-cn&quot;</span>),</a>
+<a class="sourceLine" id="cb139-17" data-line-number="17">    <span class="dt">legend.position =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">0</span>), <span class="dt">legend.justification =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb139-18" data-line-number="18">  )</a></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:map-Fiji-earthquake"></span>
+<img src="10-fonts_files/figure-html/map-Fiji-earthquake-1.svg" alt="斐济地震带" width="70%" />
+<p class="caption">
+图 12.3: 斐济地震带
+</p>
+</div>
+<p>用 base plot 画地图，如图 <a href="fonts.html#fig:maps-unemp-plot">12.4</a> 所示</p>
+<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb140-1" data-line-number="1"><span class="kw">library</span>(mapproj)</a>
+<a class="sourceLine" id="cb140-2" data-line-number="2"><span class="kw">data</span>(unemp)</a>
+<a class="sourceLine" id="cb140-3" data-line-number="3"><span class="kw">data</span>(county.fips)</a>
+<a class="sourceLine" id="cb140-4" data-line-number="4">colors &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;#F1EEF6&quot;</span>, <span class="st">&quot;#D4B9DA&quot;</span>, <span class="st">&quot;#C994C7&quot;</span>, <span class="st">&quot;#DF65B0&quot;</span>, <span class="st">&quot;#DD1C77&quot;</span>, <span class="st">&quot;#980043&quot;</span>)</a>
+<a class="sourceLine" id="cb140-5" data-line-number="5">unemp<span class="op">$</span>colorBuckets &lt;-<span class="st"> </span><span class="kw">as.numeric</span>(<span class="kw">cut</span>(unemp<span class="op">$</span>unemp, <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">6</span>, <span class="dv">8</span>, <span class="dv">10</span>, <span class="dv">100</span>)))</a>
+<a class="sourceLine" id="cb140-6" data-line-number="6">leg.txt &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;&lt;2%&quot;</span>, <span class="st">&quot;2-4%&quot;</span>, <span class="st">&quot;4-6%&quot;</span>, <span class="st">&quot;6-8%&quot;</span>, <span class="st">&quot;8-10%&quot;</span>, <span class="st">&quot;&gt;10%&quot;</span>)</a>
+<a class="sourceLine" id="cb140-7" data-line-number="7">cnty.fips &lt;-<span class="st"> </span>county.fips<span class="op">$</span>fips[<span class="kw">match</span>(</a>
+<a class="sourceLine" id="cb140-8" data-line-number="8">  <span class="kw">map</span>(<span class="st">&quot;county&quot;</span>, <span class="dt">plot =</span> <span class="ot">FALSE</span>)<span class="op">$</span>names,</a>
+<a class="sourceLine" id="cb140-9" data-line-number="9">  county.fips<span class="op">$</span>polyname</a>
+<a class="sourceLine" id="cb140-10" data-line-number="10">)]</a>
+<a class="sourceLine" id="cb140-11" data-line-number="11">colorsmatched &lt;-<span class="st"> </span>unemp<span class="op">$</span>colorBuckets[<span class="kw">match</span>(cnty.fips, unemp<span class="op">$</span>fips)]</a>
+<a class="sourceLine" id="cb140-12" data-line-number="12"><span class="kw">par</span>(<span class="dt">mar =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">0</span>))</a>
+<a class="sourceLine" id="cb140-13" data-line-number="13"><span class="co"># draw map</span></a>
+<a class="sourceLine" id="cb140-14" data-line-number="14"><span class="kw">map</span>(<span class="st">&quot;county&quot;</span>,</a>
+<a class="sourceLine" id="cb140-15" data-line-number="15">  <span class="dt">col =</span> colors[colorsmatched], <span class="dt">fill =</span> <span class="ot">TRUE</span>, <span class="dt">resolution =</span> <span class="dv">0</span>,</a>
+<a class="sourceLine" id="cb140-16" data-line-number="16">  <span class="dt">lty =</span> <span class="dv">0</span>, <span class="dt">projection =</span> <span class="st">&quot;polyconic&quot;</span></a>
+<a class="sourceLine" id="cb140-17" data-line-number="17">)</a>
+<a class="sourceLine" id="cb140-18" data-line-number="18"><span class="kw">map</span>(<span class="st">&quot;state&quot;</span>,</a>
+<a class="sourceLine" id="cb140-19" data-line-number="19">  <span class="dt">col =</span> <span class="st">&quot;white&quot;</span>, <span class="dt">fill =</span> <span class="ot">FALSE</span>, <span class="dt">add =</span> <span class="ot">TRUE</span>, <span class="dt">lty =</span> <span class="dv">1</span>, <span class="dt">lwd =</span> <span class="fl">0.2</span>,</a>
+<a class="sourceLine" id="cb140-20" data-line-number="20">  <span class="dt">projection =</span> <span class="st">&quot;polyconic&quot;</span></a>
+<a class="sourceLine" id="cb140-21" data-line-number="21">)</a>
+<a class="sourceLine" id="cb140-22" data-line-number="22"><span class="kw">title</span>(<span class="st">&quot;unemployment by county, 2009&quot;</span>)</a>
+<a class="sourceLine" id="cb140-23" data-line-number="23"><span class="kw">legend</span>(<span class="st">&quot;top&quot;</span>, leg.txt, <span class="dt">horiz =</span> <span class="ot">TRUE</span>, <span class="dt">fill =</span> colors)</a></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:maps-unemp-plot"></span>
+<img src="10-fonts_files/figure-html/maps-unemp-plot-1.svg" alt="2009年美国各城镇失业率" width="100%" />
+<p class="caption">
+图 12.4: 2009年美国各城镇失业率
+</p>
+</div>
+</div>
+<div id="xkcd" class="section level2">
+<h2><span class="header-section-number">12.3</span> xkcd</h2>
+<p>这篇文章主要使用 ggplot2 包<span class="citation">(Wickham <a href="#ref-Wickham2016">2016</a>)</span>绘图，为了好玩我们还使用 xkcd 字体，先下载和加载 xkcd 包<span class="citation">(Torres-Manzanera <a href="#ref-R-xkcd">2016</a>)</span>，它提供一个 gg 风格的图层<code>theme_xkcd()</code>，图 <a href="fonts.html#fig:xkcd-embed">12.5</a> 是一个简单使用 xkcd 字体的例子</p>
+<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb141-1" data-line-number="1"><span class="kw">library</span>(extrafont)</a>
+<a class="sourceLine" id="cb141-2" data-line-number="2"><span class="co">#&gt; Registering fonts with R</span></a>
+<a class="sourceLine" id="cb141-3" data-line-number="3"><span class="kw">library</span>(xkcd)</a>
+<a class="sourceLine" id="cb141-4" data-line-number="4"><span class="kw">ggplot</span>(<span class="kw">aes</span>(mpg, wt), <span class="dt">data =</span> mtcars) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb141-5" data-line-number="5"><span class="st">    </span><span class="kw">theme_xkcd</span>()</a></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:xkcd-embed"></span>
+<img src="10-fonts_files/figure-html/xkcd-embed-1.svg" alt="xkcd 风的图" width="70%" />
+<p class="caption">
+图 12.5: xkcd 风的图
+</p>
+</div>
+</div>
+<div id="fontcm" class="section level2">
+<h2><span class="header-section-number">12.4</span> fontcm</h2>
+<p>安装 fontcm 包<span class="citation">(Chang, Kryukov, and Murrell <a href="#ref-R-fontcm">2014</a>)</span>处理数学公式，下载 fontcm 包<a href="#fn7" class="footnote-ref" id="fnref7"><sup>7</sup></a> 和相关字体，使用 fontcm 包，一个小 demo 如下，这里已经使用 <code>cairo_pdf</code> 设备保存图片了，如果用 <code>pdf</code> 设备保存会更加难看</p>
+<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb142-1" data-line-number="1"><span class="kw">library</span>(fontcm)</a>
+<a class="sourceLine" id="cb142-2" data-line-number="2">p &lt;-<span class="st"> </span><span class="kw">qplot</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">5</span>), <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">5</span>)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb142-3" data-line-number="3"><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Made with CM fonts&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;Made with CM fonts&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb142-4" data-line-number="4"><span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Made with CM fonts&quot;</span>)</a>
+<a class="sourceLine" id="cb142-5" data-line-number="5"><span class="co"># 公式</span></a>
+<a class="sourceLine" id="cb142-6" data-line-number="6">eq &lt;-<span class="st"> &quot;italic(sum(frac(1, n*&#39;!&#39;), n==0, infinity) ==</span></a>
+<a class="sourceLine" id="cb142-7" data-line-number="7"><span class="st">       lim(bgroup(&#39;(&#39;, 1 + frac(1, n), &#39;)&#39;)^n, n %-&gt;% infinity))&quot;</span></a>
+<a class="sourceLine" id="cb142-8" data-line-number="8"><span class="co"># 默认字体</span></a>
+<a class="sourceLine" id="cb142-9" data-line-number="9">p1 &lt;-<span class="st"> </span>p <span class="op">+</span><span class="st"> </span><span class="kw">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="dt">x =</span> <span class="dv">3</span>, <span class="dt">y =</span> <span class="dv">3</span>, <span class="dt">parse =</span> <span class="ot">TRUE</span>, <span class="dt">label =</span> eq) <span class="co"># fig 1</span></a>
+<a class="sourceLine" id="cb142-10" data-line-number="10"><span class="co"># 使用 CM Roman 字体</span></a>
+<a class="sourceLine" id="cb142-11" data-line-number="11">p2 &lt;-<span class="st"> </span>p <span class="op">+</span><span class="st"> </span><span class="kw">annotate</span>(<span class="st">&quot;text&quot;</span>,</a>
+<a class="sourceLine" id="cb142-12" data-line-number="12">  <span class="dt">x =</span> <span class="dv">3</span>, <span class="dt">y =</span> <span class="dv">3</span>, <span class="dt">parse =</span> <span class="ot">TRUE</span>,</a>
+<a class="sourceLine" id="cb142-13" data-line-number="13">  <span class="dt">family =</span> <span class="st">&quot;CM Roman&quot;</span>, <span class="dt">label =</span> eq</a>
+<a class="sourceLine" id="cb142-14" data-line-number="14">) <span class="op">+</span></a>
+<a class="sourceLine" id="cb142-15" data-line-number="15"><span class="st">  </span><span class="kw">theme</span>(</a>
+<a class="sourceLine" id="cb142-16" data-line-number="16">    <span class="dt">text =</span> <span class="kw">element_text</span>(<span class="dt">size =</span> <span class="dv">16</span>, <span class="dt">family =</span> <span class="st">&quot;CM Roman&quot;</span>),</a>
+<a class="sourceLine" id="cb142-17" data-line-number="17">    <span class="dt">axis.title.x =</span> <span class="kw">element_text</span>(<span class="dt">face =</span> <span class="st">&quot;italic&quot;</span>),</a>
+<a class="sourceLine" id="cb142-18" data-line-number="18">    <span class="dt">axis.title.y =</span> <span class="kw">element_text</span>(<span class="dt">face =</span> <span class="st">&quot;bold&quot;</span>)</a>
+<a class="sourceLine" id="cb142-19" data-line-number="19">  )</a>
+<a class="sourceLine" id="cb142-20" data-line-number="20"><span class="kw">library</span>(gridExtra)</a>
+<a class="sourceLine" id="cb142-21" data-line-number="21"><span class="kw">grid.arrange</span>(p1,p2, <span class="dt">nrow =</span> <span class="dv">1</span>, <span class="dt">ncol =</span> <span class="dv">2</span>)</a></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:fontcm-demo"></span>
+<img src="10-fonts_files/figure-html/fontcm-demo-1.svg" alt="fontcm 处理数学公式" width="70%" />
+<p class="caption">
+图 12.6: fontcm 处理数学公式
+</p>
+</div>
+<p>使用 ghostscript 对 <code>pdf</code> 设备保存的图形嵌入数学字体（此嵌入字体的方法对 <code>cairo_pdf</code> 保存的图形无效），最终效果如图 <a href="fonts.html#fig:fontcm-ggplot">12.7</a> 所示，</p>
+<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb143-1" data-line-number="1"><span class="kw">pdf</span>(<span class="dt">file =</span> <span class="st">&#39;figures/ggplot_cm.pdf&#39;</span>,<span class="dt">width =</span> <span class="dv">8</span>,<span class="dt">height =</span> <span class="dv">4</span>)</a>
+<a class="sourceLine" id="cb143-2" data-line-number="2"><span class="kw">grid.arrange</span>(p1,p2, <span class="dt">nrow =</span> <span class="dv">1</span>, <span class="dt">ncol =</span> <span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb143-3" data-line-number="3"><span class="kw">dev.off</span>()</a>
+<a class="sourceLine" id="cb143-4" data-line-number="4"><span class="co"># 嵌入字体</span></a>
+<a class="sourceLine" id="cb143-5" data-line-number="5">extrafont<span class="op">::</span><span class="kw">embed_fonts</span>(<span class="st">&quot;figures/ggplot_cm.pdf&quot;</span>, <span class="dt">outfile =</span> <span class="st">&quot;figures/ggplot_cm_embed.pdf&quot;</span>)</a></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:fontcm-ggplot"></span>
+<img src="figures/ggplot_cm_embed.png" alt="fontcm 处理数学公式" width="70%" />
+<p class="caption">
+图 12.7: fontcm 处理数学公式
+</p>
+</div>
+</div>
+<div id="tikzdevice" class="section level2">
+<h2><span class="header-section-number">12.5</span> tikzDevice</h2>
+<p>先测试一下</p>
+<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb144-1" data-line-number="1">tikzDevice<span class="op">::</span><span class="kw">tikzTest</span>()</a>
+<a class="sourceLine" id="cb144-2" data-line-number="2"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb144-3" data-line-number="3"><span class="co">#&gt; Active compiler:</span></a>
+<a class="sourceLine" id="cb144-4" data-line-number="4"><span class="co">#&gt;  /home/travis/texlive/bin/x86_64-linux/xelatex</span></a>
+<a class="sourceLine" id="cb144-5" data-line-number="5"><span class="co">#&gt;  XeTeX 3.14159265-2.6-0.99999 (TeX Live 2018)</span></a>
+<a class="sourceLine" id="cb144-6" data-line-number="6"><span class="co">#&gt;  kpathsea version 6.3.0</span></a>
+<a class="sourceLine" id="cb144-7" data-line-number="7"><span class="co">#&gt; Measuring dimensions of: A</span></a>
+<a class="sourceLine" id="cb144-8" data-line-number="8"><span class="co">#&gt; Running command: &#39;/home/travis/texlive/bin/x86_64-linux/xelatex&#39; -interaction=batchmode -halt-on-error -output-directory &#39;/tmp/Rtmpq3pJhL/tikzDevice764f46351c2e&#39; &#39;/tmp/Rtmpq3pJhL/tikzDevice764f46351c2e/tikzStringWidthCalc.tex&#39;</span></a>
+<a class="sourceLine" id="cb144-9" data-line-number="9"><span class="co">#&gt; [1] 7.5</span></a></code></pre></div>
+<p>tikz 源于 LaTeX 宏包，在 R 语言绘图的世界里，对基础图形有很好的支持，如图 <a href="fonts.html#fig:tikz-demo">12.8</a> 所示，坐标轴标签，标题，图例等位置都支持数学公式，既然含有数学公式，就得设置 <code>dev = 'tikz'</code> 和 <code>fig.ext = 'tex'</code>，并且只产生 PDF 格式图片，除非研究一个钩子（见 <code>common.R</code> 文件），遇到这种情况再将 PDF 转化为 PNG 格式</p>
+<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb145-1" data-line-number="1">x &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">10</span>)</a>
+<a class="sourceLine" id="cb145-2" data-line-number="2">y &lt;-<span class="st"> </span>x <span class="op">+</span><span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">5</span>, <span class="dt">sd =</span> <span class="fl">0.25</span>)</a>
+<a class="sourceLine" id="cb145-3" data-line-number="3">model &lt;-<span class="st"> </span><span class="kw">lm</span>(y <span class="op">~</span><span class="st"> </span>x)</a>
+<a class="sourceLine" id="cb145-4" data-line-number="4">rsq &lt;-<span class="st"> </span><span class="kw">summary</span>(model)<span class="op">$</span>r.squared</a>
+<a class="sourceLine" id="cb145-5" data-line-number="5">rsq &lt;-<span class="st"> </span><span class="kw">signif</span>(rsq, <span class="dv">4</span>)</a>
+<a class="sourceLine" id="cb145-6" data-line-number="6"><span class="kw">plot</span>(x, y, <span class="dt">main =</span> <span class="st">&quot;Hello </span><span class="ch">\\</span><span class="st">LaTeX!&quot;</span>, <span class="dt">xlab =</span> <span class="st">&quot;$x$&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;$y$&quot;</span>, </a>
+<a class="sourceLine" id="cb145-7" data-line-number="7">     <span class="dt">sub =</span> <span class="st">&quot;$</span><span class="ch">\\</span><span class="st">mathcal{N}(</span><span class="ch">\\</span><span class="st">mathbf{x};</span><span class="ch">\\</span><span class="st">mu,</span><span class="ch">\\</span><span class="st">Sigma)$&quot;</span>)</a>
+<a class="sourceLine" id="cb145-8" data-line-number="8"><span class="kw">abline</span>(model, <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>)</a>
+<a class="sourceLine" id="cb145-9" data-line-number="9"><span class="kw">mtext</span>(<span class="kw">paste</span>(<span class="st">&quot;Linear model: $R^{2}=&quot;</span>, rsq, <span class="st">&quot;$&quot;</span>), <span class="dt">line =</span> <span class="fl">0.5</span>)</a>
+<a class="sourceLine" id="cb145-10" data-line-number="10"><span class="kw">legend</span>(<span class="st">&quot;bottomright&quot;</span>, <span class="dt">legend =</span> <span class="kw">paste0</span>(<span class="st">&quot;$y = &quot;</span>, </a>
+<a class="sourceLine" id="cb145-11" data-line-number="11">                                     <span class="kw">round</span>(<span class="kw">coef</span>(model)[<span class="dv">2</span>], <span class="dv">3</span>),</a>
+<a class="sourceLine" id="cb145-12" data-line-number="12">                                     <span class="st">&quot;x +&quot;</span>, </a>
+<a class="sourceLine" id="cb145-13" data-line-number="13">                                     <span class="kw">round</span>(<span class="kw">coef</span>(model)[<span class="dv">1</span>], <span class="dv">3</span>), </a>
+<a class="sourceLine" id="cb145-14" data-line-number="14">                                     <span class="st">&quot;$&quot;</span></a>
+<a class="sourceLine" id="cb145-15" data-line-number="15">                                     ), </a>
+<a class="sourceLine" id="cb145-16" data-line-number="16">       <span class="dt">bty =</span> <span class="st">&quot;n&quot;</span>)</a></code></pre></div>
+<p>或者单独保存成 pdf 图片和 png 图片，然后插入</p>
+<div class="figure" style="text-align: center"><span id="fig:tikz-demo"></span>
+<img src="figures/linear.png" alt="tikz 之线性回归" width="70%" />
+<p class="caption">
+图 12.8: tikz 之线性回归
+</p>
+</div>
+<p>再把代码贴上</p>
+<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb146-1" data-line-number="1"><span class="kw">cat</span>(<span class="kw">readLines</span>(<span class="st">&quot;code/tikz-linear-regression.R&quot;</span>, <span class="dt">encoding =</span> <span class="st">&quot;UTF-8&quot;</span>), <span class="dt">sep =</span> <span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>)</a>
+<a class="sourceLine" id="cb146-2" data-line-number="2"><span class="co">#&gt; x &lt;- rnorm(10)</span></a>
+<a class="sourceLine" id="cb146-3" data-line-number="3"><span class="co">#&gt; y &lt;- x + rnorm(5, sd = 0.25)</span></a>
+<a class="sourceLine" id="cb146-4" data-line-number="4"><span class="co">#&gt; model &lt;- lm(y ~ x)</span></a>
+<a class="sourceLine" id="cb146-5" data-line-number="5"><span class="co">#&gt; rsq &lt;- summary(model)$r.squared</span></a>
+<a class="sourceLine" id="cb146-6" data-line-number="6"><span class="co">#&gt; rsq &lt;- signif(rsq, 4)</span></a>
+<a class="sourceLine" id="cb146-7" data-line-number="7"><span class="co">#&gt; plot(x, y, main = &quot;Hello \\LaTeX!&quot;, xlab = &quot;$x$&quot;, ylab = &quot;$y$&quot;, </span></a>
+<a class="sourceLine" id="cb146-8" data-line-number="8"><span class="co">#&gt;      sub = &quot;$\\mathcal{N}(\\mathbf{x};\\mu,\\Sigma)$&quot;)</span></a>
+<a class="sourceLine" id="cb146-9" data-line-number="9"><span class="co">#&gt; abline(model, col = &quot;red&quot;)</span></a>
+<a class="sourceLine" id="cb146-10" data-line-number="10"><span class="co">#&gt; mtext(paste(&quot;Linear model: $R^{2}=&quot;, rsq, &quot;$&quot;), line = 0.5)</span></a>
+<a class="sourceLine" id="cb146-11" data-line-number="11"><span class="co">#&gt; legend(&quot;bottomright&quot;, legend = paste0(&quot;$y = &quot;, </span></a>
+<a class="sourceLine" id="cb146-12" data-line-number="12"><span class="co">#&gt;                                       round(coef(model)[2], 3),</span></a>
+<a class="sourceLine" id="cb146-13" data-line-number="13"><span class="co">#&gt;                                       &quot;x +&quot;, </span></a>
+<a class="sourceLine" id="cb146-14" data-line-number="14"><span class="co">#&gt;                                       round(coef(model)[1], 3), </span></a>
+<a class="sourceLine" id="cb146-15" data-line-number="15"><span class="co">#&gt;                                       &quot;$&quot;</span></a>
+<a class="sourceLine" id="cb146-16" data-line-number="16"><span class="co">#&gt; ), </span></a>
+<a class="sourceLine" id="cb146-17" data-line-number="17"><span class="co">#&gt; bty = &quot;n&quot;)</span></a></code></pre></div>
+<p>虽然复杂图片也可直接用 tikz 制作但是，尺寸等细节不好调整（我还没找到合适的方法），比较合适的做法可能是，独立制作图，然后作为图片插入，以一个颇具复杂度的图片为例，如图 <a href="fonts.html#fig:plot3d-tikz">12.9</a> 所示</p>
+<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb147-1" data-line-number="1"><span class="kw">cat</span>(<span class="kw">readLines</span>(<span class="st">&quot;code/tikz-persp-3d.R&quot;</span>, <span class="dt">encoding =</span> <span class="st">&quot;UTF-8&quot;</span>), <span class="dt">sep =</span> <span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>)</a>
+<a class="sourceLine" id="cb147-2" data-line-number="2"><span class="co">#&gt; # 代码来自  http://www.ejwagenmakers.com/misc/Plotting_3d_in_R.pdf</span></a>
+<a class="sourceLine" id="cb147-3" data-line-number="3"><span class="co">#&gt; # 3-D plots</span></a>
+<a class="sourceLine" id="cb147-4" data-line-number="4"><span class="co">#&gt; mu1 &lt;- 0 # setting the expected value of x1</span></a>
+<a class="sourceLine" id="cb147-5" data-line-number="5"><span class="co">#&gt; mu2 &lt;- 0 # setting the expected value of x2</span></a>
+<a class="sourceLine" id="cb147-6" data-line-number="6"><span class="co">#&gt; s11 &lt;- 10 # setting the variance of x1</span></a>
+<a class="sourceLine" id="cb147-7" data-line-number="7"><span class="co">#&gt; s12 &lt;- 15 # setting the covariance between x1 and x2</span></a>
+<a class="sourceLine" id="cb147-8" data-line-number="8"><span class="co">#&gt; s22 &lt;- 10 # setting the variance of x2</span></a>
+<a class="sourceLine" id="cb147-9" data-line-number="9"><span class="co">#&gt; rho &lt;- 0.5 # setting the correlation coefficient between x1 and x2</span></a>
+<a class="sourceLine" id="cb147-10" data-line-number="10"><span class="co">#&gt; x1 &lt;- seq(-10, 10, length = 41) # generating the vector series x1</span></a>
+<a class="sourceLine" id="cb147-11" data-line-number="11"><span class="co">#&gt; x2 &lt;- x1 # copying x1 to x2</span></a>
+<a class="sourceLine" id="cb147-12" data-line-number="12"><span class="co">#&gt; f &lt;- function(x1, x2) {</span></a>
+<a class="sourceLine" id="cb147-13" data-line-number="13"><span class="co">#&gt;   term1 &lt;- 1 / (2 * pi * sqrt(s11 * s22 * (1 - rho^2)))</span></a>
+<a class="sourceLine" id="cb147-14" data-line-number="14"><span class="co">#&gt;   term2 &lt;- -1 / (2 * (1 - rho^2))</span></a>
+<a class="sourceLine" id="cb147-15" data-line-number="15"><span class="co">#&gt;   term3 &lt;- (x1 - mu1)^2 / s11</span></a>
+<a class="sourceLine" id="cb147-16" data-line-number="16"><span class="co">#&gt;   term4 &lt;- (x2 - mu2)^2 / s22</span></a>
+<a class="sourceLine" id="cb147-17" data-line-number="17"><span class="co">#&gt;   term5 &lt;- -2 * rho * ((x1 - mu1) * (x2 - mu2)) / (sqrt(s11) * sqrt(s22))</span></a>
+<a class="sourceLine" id="cb147-18" data-line-number="18"><span class="co">#&gt;   term1 * exp(term2 * (term3 + term4 - term5))</span></a>
+<a class="sourceLine" id="cb147-19" data-line-number="19"><span class="co">#&gt; } # setting up the function of the multivariate normal density</span></a>
+<a class="sourceLine" id="cb147-20" data-line-number="20"><span class="co">#&gt; z &lt;- outer(x1, x2, f) # calculating the density values</span></a>
+<a class="sourceLine" id="cb147-21" data-line-number="21"><span class="co">#&gt; nrz &lt;- nrow(z)</span></a>
+<a class="sourceLine" id="cb147-22" data-line-number="22"><span class="co">#&gt; ncz &lt;- ncol(z)</span></a>
+<a class="sourceLine" id="cb147-23" data-line-number="23"><span class="co">#&gt; # Create a function interpolating colors in the range of specified colors</span></a>
+<a class="sourceLine" id="cb147-24" data-line-number="24"><span class="co">#&gt; # jet.colors &lt;- colorRampPalette( c(&quot;blue&quot;, &quot;green&quot;) )</span></a>
+<a class="sourceLine" id="cb147-25" data-line-number="25"><span class="co">#&gt; # Generate the desired number of colors from this palette</span></a>
+<a class="sourceLine" id="cb147-26" data-line-number="26"><span class="co">#&gt; nbcol &lt;- 100</span></a>
+<a class="sourceLine" id="cb147-27" data-line-number="27"><span class="co">#&gt; # color &lt;- jet.colors(nbcol)</span></a>
+<a class="sourceLine" id="cb147-28" data-line-number="28"><span class="co">#&gt; color &lt;- viridisLite::viridis(100)</span></a>
+<a class="sourceLine" id="cb147-29" data-line-number="29"><span class="co">#&gt; # Compute the z-value at the facet centres</span></a>
+<a class="sourceLine" id="cb147-30" data-line-number="30"><span class="co">#&gt; zfacet &lt;- z[-1, -1] + z[-1, -ncz] + z[-nrz, -1] + z[-nrz, -ncz]</span></a>
+<a class="sourceLine" id="cb147-31" data-line-number="31"><span class="co">#&gt; # Recode facet z-values into color indices</span></a>
+<a class="sourceLine" id="cb147-32" data-line-number="32"><span class="co">#&gt; facetcol &lt;- cut(zfacet, nbcol)</span></a>
+<a class="sourceLine" id="cb147-33" data-line-number="33"><span class="co">#&gt; # persp 坐标轴标签不支持表达式 ?persp</span></a>
+<a class="sourceLine" id="cb147-34" data-line-number="34"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb147-35" data-line-number="35"><span class="co">#&gt; # 使用 tikzDevice 打造出版级的效果图</span></a>
+<a class="sourceLine" id="cb147-36" data-line-number="36"><span class="co">#&gt; # library(tikzDevice)</span></a>
+<a class="sourceLine" id="cb147-37" data-line-number="37"><span class="co">#&gt; # tf &lt;- file.path(getwd(), &quot;figures/binormal.tex&quot;)</span></a>
+<a class="sourceLine" id="cb147-38" data-line-number="38"><span class="co">#&gt; # tikz(tf, width = 6, height = 5.5, pointsize = 30, standAlone = TRUE)</span></a>
+<a class="sourceLine" id="cb147-39" data-line-number="39"><span class="co">#&gt; op &lt;- par(mar = c(2, 3, 3, 0.5))</span></a>
+<a class="sourceLine" id="cb147-40" data-line-number="40"><span class="co">#&gt; persp(x1, x2, z,</span></a>
+<a class="sourceLine" id="cb147-41" data-line-number="41"><span class="co">#&gt;       xlab = &quot;$x_{1}$&quot;,</span></a>
+<a class="sourceLine" id="cb147-42" data-line-number="42"><span class="co">#&gt;       ylab = &quot;$x_{2}$&quot;,</span></a>
+<a class="sourceLine" id="cb147-43" data-line-number="43"><span class="co">#&gt;       zlab = &quot;$f(\\mathsf{x})$&quot;,</span></a>
+<a class="sourceLine" id="cb147-44" data-line-number="44"><span class="co">#&gt;       main = &quot;Two dimensional Normal Distribution&quot;,</span></a>
+<a class="sourceLine" id="cb147-45" data-line-number="45"><span class="co">#&gt;       col = color[facetcol], border = NA, theta = 30, phi = 20,</span></a>
+<a class="sourceLine" id="cb147-46" data-line-number="46"><span class="co">#&gt;       r = 50, d = 0.1, expand = 0.5, ltheta = 90, lphi = 180,</span></a>
+<a class="sourceLine" id="cb147-47" data-line-number="47"><span class="co">#&gt;       shade = 0.1, ticktype = &quot;detailed&quot;, nticks = 5, box = TRUE</span></a>
+<a class="sourceLine" id="cb147-48" data-line-number="48"><span class="co">#&gt; ) # produces the 3-D plot</span></a>
+<a class="sourceLine" id="cb147-49" data-line-number="49"><span class="co">#&gt; # adding a text line to the graph</span></a>
+<a class="sourceLine" id="cb147-50" data-line-number="50"><span class="co">#&gt; mtext(&quot;$\\mu_1 = 0,\\mu_2 = 0,\\sigma_{11} = 10,\\sigma_{22} = 10,\\sigma_{12} = 15, \\rho = 0.5$&quot;, side = 3)</span></a>
+<a class="sourceLine" id="cb147-51" data-line-number="51"><span class="co">#&gt; mtext(&quot;$f(\\mathsf{x}) = \\frac{1}{2\\pi\\sqrt{\\sigma_{11}\\sigma_{22}(1-\\rho^2)}}\\exp\\big\\{-\\frac{1}{2(1-\\rho^2)}[\\frac{(x_1 - \\mu_1)^2}{\\sigma_{11}} - 2\\rho\\frac{(x_1 - \\mu_1)(x_2 - \\mu_2)}{\\sqrt{\\sigma_{11}}\\sqrt{\\sigma_{22</span><span class="re">}}}</span><span class="co"> + \\frac{(x_2 - \\mu_2)^2}{\\sigma_{22}}]\\big\\}$&quot;, side = 1)</span></a>
+<a class="sourceLine" id="cb147-52" data-line-number="52"><span class="co">#&gt; par(op)</span></a>
+<a class="sourceLine" id="cb147-53" data-line-number="53"><span class="co">#&gt; # dev.off()</span></a>
+<a class="sourceLine" id="cb147-54" data-line-number="54"><span class="co">#&gt; # tinytex::latexmk(file = &quot;figures/binormal.tex&quot;)</span></a></code></pre></div>
+<p>此外还有一个重要原因，tikz 图形绘制起来比较慢，尤其是线条密集型的图片，这样过于耗时，放在 travis 上编译不合适。如图 <a href="fonts.html#fig:plot3d-tikz">12.9</a></p>
+<div class="figure" style="text-align: center"><span id="fig:plot3d-tikz"></span>
+<img src="figures/binormal.png" alt="tikz 之复杂公式" width="70%" />
+<p class="caption">
+图 12.9: tikz 之复杂公式
+</p>
+</div>
+</div>
+<div id="tikz--pgf" class="section level2">
+<h2><span class="header-section-number">12.6</span> TikZ 和 PGF</h2>
+<p>如图 <a href="#fig:latex-tikz"><strong>??</strong></a> 所示，模板存放在 <code>tikz/tikz2pdf.tex</code></p>
+<div class="sourceCode" id="cb148"><pre class="sourceCode tikz"><code class="sourceCode latex"><a class="sourceLine" id="cb148-1" data-line-number="1"><span class="kw">\begin</span>{<span class="ex">tikzpicture</span>}[scale=.7]</a>
+<a class="sourceLine" id="cb148-2" data-line-number="2"><span class="fu">\draw</span> [fill=gray!30,very thick] (0,-1) rectangle (5,1);</a>
+<a class="sourceLine" id="cb148-3" data-line-number="3"><span class="fu">\draw</span> [very thick] (5, 0) -- (13,0);</a>
+<a class="sourceLine" id="cb148-4" data-line-number="4"><span class="fu">\node</span> [below] at (2,-1) {<span class="fu">\large</span> Hello};</a>
+<a class="sourceLine" id="cb148-5" data-line-number="5"><span class="fu">\node</span> [below, align=center] at (0,-1) {<span class="fu">\large</span> Two<span class="fu">\\</span> lines};</a>
+<a class="sourceLine" id="cb148-6" data-line-number="6"><span class="kw">\end</span>{<span class="ex">tikzpicture</span>}</a></code></pre></div>
+<p>一幅纯 tikz 代码绘制的图形，代码如下</p>
+<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb149-1" data-line-number="1"><span class="kw">cat</span>(<span class="kw">readLines</span>(<span class="st">&quot;tikz/mini-demo.tex&quot;</span>, <span class="dt">encoding =</span> <span class="st">&quot;UTF-8&quot;</span>), <span class="dt">sep =</span> <span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>)</a>
+<a class="sourceLine" id="cb149-2" data-line-number="2"><span class="co">#&gt; \documentclass[tikz]{standalone}</span></a>
+<a class="sourceLine" id="cb149-3" data-line-number="3"><span class="co">#&gt; \usepackage{tikz}</span></a>
+<a class="sourceLine" id="cb149-4" data-line-number="4"><span class="co">#&gt; \begin{document}</span></a>
+<a class="sourceLine" id="cb149-5" data-line-number="5"><span class="co">#&gt; \begin{tikzpicture}[domain=0:4]</span></a>
+<a class="sourceLine" id="cb149-6" data-line-number="6"><span class="co">#&gt;   \draw[very thin,color=gray] (-0.1,-1.1) grid (3.9,3.9);</span></a>
+<a class="sourceLine" id="cb149-7" data-line-number="7"><span class="co">#&gt;   \draw[-&gt;] (-0.2,0) -- (4.2,0) node[right] {$x$};</span></a>
+<a class="sourceLine" id="cb149-8" data-line-number="8"><span class="co">#&gt;   \draw[-&gt;] (0,-1.2) -- (0,4.2) node[above] {$f(x)$};</span></a>
+<a class="sourceLine" id="cb149-9" data-line-number="9"><span class="co">#&gt;   \draw[color=red]     plot (\x,\x)             node[right] {$f(x) =x$};</span></a>
+<a class="sourceLine" id="cb149-10" data-line-number="10"><span class="co">#&gt;   % \x r 表示弧度</span></a>
+<a class="sourceLine" id="cb149-11" data-line-number="11"><span class="co">#&gt;   \draw[color=blue]    plot (\x,{cos(\x r)})    node[right] {$f(x) = \cos x$};</span></a>
+<a class="sourceLine" id="cb149-12" data-line-number="12"><span class="co">#&gt;   \draw[color=green]   plot (\x,{(\x r)^0.1*sin(\x r)})    node[right] {$f(x) = x^{\frac{1}{10}} \sin x$};  </span></a>
+<a class="sourceLine" id="cb149-13" data-line-number="13"><span class="co">#&gt;   \draw[color=orange]  plot (\x,{0.05*exp(\x)}) node[right] {$f(x) = \frac{1}{20} \mathrm e^x$};</span></a>
+<a class="sourceLine" id="cb149-14" data-line-number="14"><span class="co">#&gt; \end{tikzpicture}</span></a>
+<a class="sourceLine" id="cb149-15" data-line-number="15"><span class="co">#&gt; \end{document}</span></a></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:mini-tikz-demo"></span>
+<img src="tikz/mini-demo.png" alt="一幅迷你 tikz 图形" width="70%" />
+<p class="caption">
+图 12.10: 一幅迷你 tikz 图形
+</p>
+</div>
+<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb150-1" data-line-number="1"><span class="kw">par</span>(<span class="dt">mar =</span> <span class="kw">c</span>(<span class="fl">4.5</span>, <span class="dv">4</span>, <span class="fl">.1</span>, <span class="fl">.1</span>))</a>
+<a class="sourceLine" id="cb150-2" data-line-number="2"><span class="kw">hist</span>(<span class="kw">rnorm</span>(<span class="dv">1000</span>), <span class="dt">main=</span><span class="st">&#39;&#39;</span>, <span class="dt">xlab=</span><span class="st">&#39;$x$ (how the fonts look like here?)&#39;</span>,</a>
+<a class="sourceLine" id="cb150-3" data-line-number="3">  <span class="dt">ylab=</span><span class="st">&#39;$</span><span class="ch">\\</span><span class="st">hat{f}(x) = </span><span class="ch">\\</span><span class="st">frac{1}{nh}</span><span class="ch">\\</span><span class="st">sum_{i=1}^n </span><span class="ch">\\</span><span class="st">cdots$&#39;</span>)</a></code></pre></div>
+
+</div>
+</div>
+<h3>参考文献</h3>
+<div id="refs" class="references">
+<div id="ref-Qiu2015">
+<p>Qiu, Yixuan. 2015. “Showtext: Using System Fonts in R Graphics.” <em>The R Journal</em> 7 (1): 99–108. <a href="http://journal.r-project.org/archive/2015/RJ-2015-008/index.html" class="uri">http://journal.r-project.org/archive/2015/RJ-2015-008/index.html</a>.</p>
+</div>
+<div id="ref-R-mapdata">
+<p>Richard A. Becker, Original S code by, and Allan R. Wilks. R version by Ray Brownrigg. 2018. <em>Mapdata: Extra Map Databases</em>. <a href="https://CRAN.R-project.org/package=mapdata" class="uri">https://CRAN.R-project.org/package=mapdata</a>.</p>
+</div>
+<div id="ref-Wickham2016">
+<p>Wickham, Hadley. 2016. <em>Ggplot2: Elegant Graphics for Data Analysis</em>. Second. New York: Springer-Verlag.</p>
+</div>
+<div id="ref-R-xkcd">
+<p>Torres-Manzanera, Emilio. 2016. <em>Xkcd: Plotting Ggplot2 Graphics in an Xkcd Style</em>. <a href="https://CRAN.R-project.org/package=xkcd" class="uri">https://CRAN.R-project.org/package=xkcd</a>.</p>
+</div>
+<div id="ref-R-fontcm">
+<p>Chang, Winston, Alexej Kryukov, and Paul Murrell. 2014. <em>Fontcm: Computer Modern Font for Use with Extrafont Package</em>. <a href="https://CRAN.R-project.org/package=fontcm" class="uri">https://CRAN.R-project.org/package=fontcm</a>.</p>
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="7">
+<li id="fn7"><p><a href="https://github.com/wch/fontcm" class="uri">https://github.com/wch/fontcm</a><a href="fonts.html#fnref7" class="footnote-back">↩</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="color.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="animotion.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": true,
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/XiangyunHuang/notesdown/edit/master/10-fonts.Rmd",
+"text": "Edit"
+},
+"download": ["notebook.pdf"],
+"toc": {
+"collapse": "none"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

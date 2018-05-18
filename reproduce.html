@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>R 语言学习笔记</title>
+  <meta name="description" content="这是一个R语言学习笔记">
+  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
+
+  <meta property="og:title" content="R 语言学习笔记" />
+  <meta property="og:type" content="book" />
+  <meta property="og:url" content="https://notesdown.netlify.com/" />
+  <meta property="og:image" content="https://notesdown.netlify.com/images/dragon.png" />
+  <meta property="og:description" content="这是一个R语言学习笔记" />
+  <meta name="github-repo" content="xiangyunhuang/notesdown" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="R 语言学习笔记" />
+  
+  <meta name="twitter:description" content="这是一个R语言学习笔记" />
+  <meta name="twitter:image" content="https://notesdown.netlify.com/images/dragon.png" />
+
+<meta name="author" content="黄湘云">
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <link rel="apple-touch-icon-precomposed" sizes="120x120" href="images/dragon.png">
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+<link rel="prev" href="other-tools.html">
+<link rel="next" href="bookmarks.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; position: absolute; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; }
+pre.numberSource a.sourceLine:empty
+  { position: absolute; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="css/style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">R语言笔记</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> 前言</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#e887b4e8b0a2"><i class="fa fa-check"></i>致谢</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#e7bb93e69e84"><i class="fa fa-check"></i>结构</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#e5908ee8aeb0"><i class="fa fa-check"></i>后记</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="section-2.html"><a href="section-2.html"><i class="fa fa-check"></i><b>2</b> 作者简介</a></li>
+<li class="chapter" data-level="3" data-path="section-3.html"><a href="section-3.html"><i class="fa fa-check"></i><b>3</b> 符号说明</a></li>
+<li class="part"><span><b>I 基础知识</b></span></li>
+<li class="chapter" data-level="4" data-path="install-setup.html"><a href="install-setup.html"><i class="fa fa-check"></i><b>4</b> 安装与配置</a><ul>
+<li class="chapter" data-level="4.1" data-path="install-setup.html"><a href="install-setup.html#-r-"><i class="fa fa-check"></i><b>4.1</b> 安装 R 软件</a></li>
+<li class="chapter" data-level="4.2" data-path="install-setup.html"><a href="install-setup.html#-r-"><i class="fa fa-check"></i><b>4.2</b> 安装 R 扩展包</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="install-setup.html"><a href="install-setup.html#rdieharder"><i class="fa fa-check"></i><b>4.2.1</b> RDieHarder</a></li>
+<li class="chapter" data-level="4.2.2" data-path="install-setup.html"><a href="install-setup.html#sparkr"><i class="fa fa-check"></i><b>4.2.2</b> SparkR</a></li>
+<li class="chapter" data-level="4.2.3" data-path="install-setup.html"><a href="install-setup.html#sparklyr"><i class="fa fa-check"></i><b>4.2.3</b> sparklyr</a></li>
+<li class="chapter" data-level="4.2.4" data-path="install-setup.html"><a href="install-setup.html#dbi"><i class="fa fa-check"></i><b>4.2.4</b> DBI</a></li>
+<li class="chapter" data-level="4.2.5" data-path="install-setup.html"><a href="install-setup.html#reticulate"><i class="fa fa-check"></i><b>4.2.5</b> reticulate</a></li>
+<li class="chapter" data-level="4.2.6" data-path="install-setup.html"><a href="install-setup.html#inla"><i class="fa fa-check"></i><b>4.2.6</b> INLA</a></li>
+<li class="chapter" data-level="4.2.7" data-path="install-setup.html"><a href="install-setup.html#mxnet"><i class="fa fa-check"></i><b>4.2.7</b> mxnet</a></li>
+<li class="chapter" data-level="4.2.8" data-path="install-setup.html"><a href="install-setup.html#tensorflow"><i class="fa fa-check"></i><b>4.2.8</b> tensorflow</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="install-setup.html"><a href="install-setup.html#-ide"><i class="fa fa-check"></i><b>4.3</b> 安装 IDE</a></li>
+<li class="chapter" data-level="4.4" data-path="install-setup.html"><a href="install-setup.html#section-4.4"><i class="fa fa-check"></i><b>4.4</b> 配置文件</a></li>
+<li class="chapter" data-level="4.5" data-path="install-setup.html"><a href="install-setup.html#tricks"><i class="fa fa-check"></i><b>4.5</b> 小技巧</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="math-operator.html"><a href="math-operator.html"><i class="fa fa-check"></i><b>5</b> 数学运算</a><ul>
+<li class="chapter" data-level="5.1" data-path="math-operator.html"><a href="math-operator.html#section-5.1"><i class="fa fa-check"></i><b>5.1</b> 矩阵运算</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="math-operator.html"><a href="math-operator.html#section-5.1.1"><i class="fa fa-check"></i><b>5.1.1</b> 乘法</a></li>
+<li class="chapter" data-level="5.1.2" data-path="math-operator.html"><a href="math-operator.html#Hadamard"><i class="fa fa-check"></i><b>5.1.2</b> Hadamard 积</a></li>
+<li class="chapter" data-level="5.1.3" data-path="math-operator.html"><a href="math-operator.html#section-5.1.3"><i class="fa fa-check"></i><b>5.1.3</b> 交叉积</a></li>
+<li class="chapter" data-level="5.1.4" data-path="math-operator.html"><a href="math-operator.html#section-5.1.4"><i class="fa fa-check"></i><b>5.1.4</b> 外积</a></li>
+<li class="chapter" data-level="5.1.5" data-path="math-operator.html"><a href="math-operator.html#section-5.1.5"><i class="fa fa-check"></i><b>5.1.5</b> 直积</a></li>
+<li class="chapter" data-level="5.1.6" data-path="math-operator.html"><a href="math-operator.html#section-5.1.6"><i class="fa fa-check"></i><b>5.1.6</b> 乘方</a></li>
+<li class="chapter" data-level="5.1.7" data-path="math-operator.html"><a href="math-operator.html#section-5.1.7"><i class="fa fa-check"></i><b>5.1.7</b> 幂</a></li>
+<li class="chapter" data-level="5.1.8" data-path="math-operator.html"><a href="math-operator.html#section-5.1.8"><i class="fa fa-check"></i><b>5.1.8</b> 行列式</a></li>
+<li class="chapter" data-level="5.1.9" data-path="math-operator.html"><a href="math-operator.html#section-5.1.9"><i class="fa fa-check"></i><b>5.1.9</b> 逆</a></li>
+<li class="chapter" data-level="5.1.10" data-path="math-operator.html"><a href="math-operator.html#section-5.1.10"><i class="fa fa-check"></i><b>5.1.10</b> 伴随矩阵</a></li>
+<li class="chapter" data-level="5.1.11" data-path="math-operator.html"><a href="math-operator.html#section-5.1.11"><i class="fa fa-check"></i><b>5.1.11</b> 单位矩阵</a></li>
+<li class="chapter" data-level="5.1.12" data-path="math-operator.html"><a href="math-operator.html#section-5.1.12"><i class="fa fa-check"></i><b>5.1.12</b> 对角矩阵</a></li>
+<li class="chapter" data-level="5.1.13" data-path="math-operator.html"><a href="math-operator.html#section-5.1.13"><i class="fa fa-check"></i><b>5.1.13</b> 条件数</a></li>
+<li class="chapter" data-level="5.1.14" data-path="math-operator.html"><a href="math-operator.html#section-5.1.14"><i class="fa fa-check"></i><b>5.1.14</b> 范数</a></li>
+<li class="chapter" data-level="5.1.15" data-path="math-operator.html"><a href="math-operator.html#section-5.1.15"><i class="fa fa-check"></i><b>5.1.15</b> 秩</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="math-operator.html"><a href="math-operator.html#section-5.2"><i class="fa fa-check"></i><b>5.2</b> 矩阵分解</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="math-operator.html"><a href="math-operator.html#cholesky-"><i class="fa fa-check"></i><b>5.2.1</b> Cholesky 分解</a></li>
+<li class="chapter" data-level="5.2.2" data-path="math-operator.html"><a href="math-operator.html#section-5.2.2"><i class="fa fa-check"></i><b>5.2.2</b> 奇异值及分解</a></li>
+<li class="chapter" data-level="5.2.3" data-path="math-operator.html"><a href="math-operator.html#qr"><i class="fa fa-check"></i><b>5.2.3</b> QR分解</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="math-operator.html"><a href="math-operator.html#section-5.3"><i class="fa fa-check"></i><b>5.3</b> 特殊函数</a><ul>
+<li class="chapter" data-level="5.3.1" data-path="math-operator.html"><a href="math-operator.html#section-5.3.1"><i class="fa fa-check"></i><b>5.3.1</b> 阶乘</a></li>
+<li class="chapter" data-level="5.3.2" data-path="math-operator.html"><a href="math-operator.html#section-5.3.2"><i class="fa fa-check"></i><b>5.3.2</b> 伽马函数</a></li>
+<li class="chapter" data-level="5.3.3" data-path="math-operator.html"><a href="math-operator.html#section-5.3.3"><i class="fa fa-check"></i><b>5.3.3</b> 贝塔函数</a></li>
+<li class="chapter" data-level="5.3.4" data-path="math-operator.html"><a href="math-operator.html#section-5.3.4"><i class="fa fa-check"></i><b>5.3.4</b> 贝塞尔函数</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="math-operator.html"><a href="math-operator.html#distribution"><i class="fa fa-check"></i><b>5.4</b> 统计分布</a><ul>
+<li class="chapter" data-level="5.4.1" data-path="math-operator.html"><a href="math-operator.html#section-5.4.1"><i class="fa fa-check"></i><b>5.4.1</b> 一元分布</a></li>
+<li class="chapter" data-level="5.4.2" data-path="math-operator.html"><a href="math-operator.html#section-5.4.2"><i class="fa fa-check"></i><b>5.4.2</b> 多元分布</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="section-6.html"><a href="section-6.html"><i class="fa fa-check"></i><b>6</b> 数据操作</a><ul>
+<li class="chapter" data-level="6.1" data-path="section-6.html"><a href="section-6.html#section-6.1"><i class="fa fa-check"></i><b>6.1</b> 集合运算</a></li>
+<li class="chapter" data-level="6.2" data-path="section-6.html"><a href="section-6.html#section-6.2"><i class="fa fa-check"></i><b>6.2</b> 正则匹配</a></li>
+<li class="chapter" data-level="6.3" data-path="section-6.html"><a href="section-6.html#section-6.3"><i class="fa fa-check"></i><b>6.3</b> 排序</a><ul>
+<li class="chapter" data-level="6.3.1" data-path="section-6.html"><a href="section-6.html#order"><i class="fa fa-check"></i><b>6.3.1</b> order</a></li>
+<li class="chapter" data-level="6.3.2" data-path="section-6.html"><a href="section-6.html#sort"><i class="fa fa-check"></i><b>6.3.2</b> sort</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="section-6.html"><a href="section-6.html#section-6.4"><i class="fa fa-check"></i><b>6.4</b> 索引</a><ul>
+<li class="chapter" data-level="6.4.1" data-path="section-6.html"><a href="section-6.html#which"><i class="fa fa-check"></i><b>6.4.1</b> which</a></li>
+<li class="chapter" data-level="6.4.2" data-path="section-6.html"><a href="section-6.html#section"><i class="fa fa-check"></i><b>6.4.2</b> <code>[[</code></a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="section-6.html"><a href="section-6.html#section-6.5"><i class="fa fa-check"></i><b>6.5</b> 分组</a></li>
+<li class="chapter" data-level="6.6" data-path="section-6.html"><a href="section-6.html#apply"><i class="fa fa-check"></i><b>6.6</b> apply</a><ul>
+<li class="chapter" data-level="6.6.1" data-path="section-6.html"><a href="section-6.html#lapply"><i class="fa fa-check"></i><b>6.6.1</b> lapply</a></li>
+<li class="chapter" data-level="6.6.2" data-path="section-6.html"><a href="section-6.html#sapply"><i class="fa fa-check"></i><b>6.6.2</b> sapply</a></li>
+<li class="chapter" data-level="6.6.3" data-path="section-6.html"><a href="section-6.html#parallel"><i class="fa fa-check"></i><b>6.6.3</b> parallel</a></li>
+</ul></li>
+<li class="chapter" data-level="6.7" data-path="section-6.html"><a href="section-6.html#section-6.7"><i class="fa fa-check"></i><b>6.7</b> 合并</a><ul>
+<li class="chapter" data-level="6.7.1" data-path="section-6.html"><a href="section-6.html#aggregate"><i class="fa fa-check"></i><b>6.7.1</b> aggregate</a></li>
+</ul></li>
+<li class="chapter" data-level="6.8" data-path="section-6.html"><a href="section-6.html#section-6.8"><i class="fa fa-check"></i><b>6.8</b> 映射</a><ul>
+<li class="chapter" data-level="6.8.1" data-path="section-6.html"><a href="section-6.html#map"><i class="fa fa-check"></i><b>6.8.1</b> Map</a></li>
+<li class="chapter" data-level="6.8.2" data-path="section-6.html"><a href="section-6.html#reduce"><i class="fa fa-check"></i><b>6.8.2</b> Reduce</a></li>
+</ul></li>
+<li class="chapter" data-level="6.9" data-path="section-6.html"><a href="section-6.html#section-6.9"><i class="fa fa-check"></i><b>6.9</b> 拆分</a><ul>
+<li class="chapter" data-level="6.9.1" data-path="section-6.html"><a href="section-6.html#split"><i class="fa fa-check"></i><b>6.9.1</b> split</a></li>
+<li class="chapter" data-level="6.9.2" data-path="section-6.html"><a href="section-6.html#cut"><i class="fa fa-check"></i><b>6.9.2</b> cut</a></li>
+</ul></li>
+<li class="chapter" data-level="6.10" data-path="section-6.html"><a href="section-6.html#section-6.10"><i class="fa fa-check"></i><b>6.10</b> 数据库</a></li>
+</ul></li>
+<li class="part"><span><b>II 统计图形</b></span></li>
+<li class="chapter" data-level="7" data-path="graphics.html"><a href="graphics.html"><i class="fa fa-check"></i><b>7</b> 基础图形</a><ul>
+<li class="chapter" data-level="7.1" data-path="graphics.html"><a href="graphics.html#base"><i class="fa fa-check"></i><b>7.1</b> plot</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="ggplot.html"><a href="ggplot.html"><i class="fa fa-check"></i><b>8</b> 高级图形</a></li>
+<li class="chapter" data-level="9" data-path="section-9.html"><a href="section-9.html"><i class="fa fa-check"></i><b>9</b> 动态图形</a><ul>
+<li class="chapter" data-level="9.1" data-path="section-9.html"><a href="section-9.html#echarts"><i class="fa fa-check"></i><b>9.1</b> ECharts</a></li>
+<li class="chapter" data-level="9.2" data-path="section-9.html"><a href="section-9.html#d3"><i class="fa fa-check"></i><b>9.2</b> D3</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="section-10.html"><a href="section-10.html"><i class="fa fa-check"></i><b>10</b> 绘图工具</a><ul>
+<li class="chapter" data-level="10.1" data-path="section-10.html"><a href="section-10.html#section-10.1"><i class="fa fa-check"></i><b>10.1</b> 截图</a></li>
+<li class="chapter" data-level="10.2" data-path="section-10.html"><a href="section-10.html#inkscape"><i class="fa fa-check"></i><b>10.2</b> Inkscape</a></li>
+<li class="chapter" data-level="10.3" data-path="section-10.html"><a href="section-10.html#section-10.3"><i class="fa fa-check"></i><b>10.3</b> 转化</a></li>
+<li class="chapter" data-level="10.4" data-path="section-10.html"><a href="section-10.html#section-10.4"><i class="fa fa-check"></i><b>10.4</b> 优化</a></li>
+<li class="chapter" data-level="10.5" data-path="section-10.html"><a href="section-10.html#section-10.5"><i class="fa fa-check"></i><b>10.5</b> 裁剪</a></li>
+<li class="chapter" data-level="10.6" data-path="section-10.html"><a href="section-10.html#section-10.6"><i class="fa fa-check"></i><b>10.6</b> 接口</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="color.html"><a href="color.html"><i class="fa fa-check"></i><b>11</b> 配色</a><ul>
+<li class="chapter" data-level="11.1" data-path="color.html"><a href="color.html#section-11.1"><i class="fa fa-check"></i><b>11.1</b> 调色板</a></li>
+<li class="chapter" data-level="11.2" data-path="color.html"><a href="color.html#section-11.2"><i class="fa fa-check"></i><b>11.2</b> 颜色空间</a><ul>
+<li class="chapter" data-level="11.2.1" data-path="color.html"><a href="color.html#rgb"><i class="fa fa-check"></i><b>11.2.1</b> RGB</a></li>
+<li class="chapter" data-level="11.2.2" data-path="color.html"><a href="color.html#hsl"><i class="fa fa-check"></i><b>11.2.2</b> HSL</a></li>
+<li class="chapter" data-level="11.2.3" data-path="color.html"><a href="color.html#hsv"><i class="fa fa-check"></i><b>11.2.3</b> HSV</a></li>
+<li class="chapter" data-level="11.2.4" data-path="color.html"><a href="color.html#hcl"><i class="fa fa-check"></i><b>11.2.4</b> HCL</a></li>
+<li class="chapter" data-level="11.2.5" data-path="color.html"><a href="color.html#cmyk"><i class="fa fa-check"></i><b>11.2.5</b> CMYK</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="fonts.html"><a href="fonts.html"><i class="fa fa-check"></i><b>12</b> 字体</a><ul>
+<li class="chapter" data-level="12.1" data-path="fonts.html"><a href="fonts.html#cjk-"><i class="fa fa-check"></i><b>12.1</b> CJK 字体</a></li>
+<li class="chapter" data-level="12.2" data-path="fonts.html"><a href="fonts.html#showtext"><i class="fa fa-check"></i><b>12.2</b> showtext</a></li>
+<li class="chapter" data-level="12.3" data-path="fonts.html"><a href="fonts.html#xkcd"><i class="fa fa-check"></i><b>12.3</b> xkcd</a></li>
+<li class="chapter" data-level="12.4" data-path="fonts.html"><a href="fonts.html#fontcm"><i class="fa fa-check"></i><b>12.4</b> fontcm</a></li>
+<li class="chapter" data-level="12.5" data-path="fonts.html"><a href="fonts.html#tikzdevice"><i class="fa fa-check"></i><b>12.5</b> tikzDevice</a></li>
+<li class="chapter" data-level="12.6" data-path="fonts.html"><a href="fonts.html#tikz--pgf"><i class="fa fa-check"></i><b>12.6</b> TikZ 和 PGF</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="animotion.html"><a href="animotion.html"><i class="fa fa-check"></i><b>13</b> 动画</a><ul>
+<li class="chapter" data-level="13.1" data-path="animotion.html"><a href="animotion.html#js-"><i class="fa fa-check"></i><b>13.1</b> JS 动画</a></li>
+<li class="chapter" data-level="13.2" data-path="animotion.html"><a href="animotion.html#svg-"><i class="fa fa-check"></i><b>13.2</b> svg 动画</a></li>
+<li class="chapter" data-level="13.3" data-path="animotion.html"><a href="animotion.html#mapmate"><i class="fa fa-check"></i><b>13.3</b> mapmate</a></li>
+<li class="chapter" data-level="13.4" data-path="animotion.html"><a href="animotion.html#rgl"><i class="fa fa-check"></i><b>13.4</b> rgl</a></li>
+</ul></li>
+<li class="part"><span><b>III 统计计算</b></span></li>
+<li class="chapter" data-level="14" data-path="optimation.html"><a href="optimation.html"><i class="fa fa-check"></i><b>14</b> 数值优化</a><ul>
+<li class="chapter" data-level="14.1" data-path="optimation.html"><a href="optimation.html#section-14.1"><i class="fa fa-check"></i><b>14.1</b> 测试函数</a></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="section-15.html"><a href="section-15.html"><i class="fa fa-check"></i><b>15</b> 随机模拟</a><ul>
+<li class="chapter" data-level="15.1" data-path="section-15.html"><a href="section-15.html#section-15.1"><i class="fa fa-check"></i><b>15.1</b> 随机数</a></li>
+<li class="chapter" data-level="15.2" data-path="section-15.html"><a href="section-15.html#section-15.2"><i class="fa fa-check"></i><b>15.2</b> 随机过程</a><ul>
+<li class="chapter" data-level="15.2.1" data-path="section-15.html"><a href="section-15.html#section-15.2.1"><i class="fa fa-check"></i><b>15.2.1</b> 随机游走</a></li>
+<li class="chapter" data-level="15.2.2" data-path="section-15.html"><a href="section-15.html#section-15.2.2"><i class="fa fa-check"></i><b>15.2.2</b> 遍历定理</a></li>
+<li class="chapter" data-level="15.2.3" data-path="section-15.html"><a href="section-15.html#m-h-"><i class="fa fa-check"></i><b>15.2.3</b> M-H 算法</a></li>
+<li class="chapter" data-level="15.2.4" data-path="section-15.html"><a href="section-15.html#gibbs-"><i class="fa fa-check"></i><b>15.2.4</b> Gibbs 算法</a></li>
+<li class="chapter" data-level="15.2.5" data-path="section-15.html"><a href="section-15.html#hmc-"><i class="fa fa-check"></i><b>15.2.5</b> HMC 算法</a></li>
+</ul></li>
+<li class="chapter" data-level="15.3" data-path="section-15.html"><a href="section-15.html#section-15.3"><i class="fa fa-check"></i><b>15.3</b> 分布式</a><ul>
+<li class="chapter" data-level="15.3.1" data-path="section-15.html"><a href="section-15.html#rmpi"><i class="fa fa-check"></i><b>15.3.1</b> Rmpi</a></li>
+<li class="chapter" data-level="15.3.2" data-path="section-15.html"><a href="section-15.html#rhpc"><i class="fa fa-check"></i><b>15.3.2</b> Rhpc</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="bayes.html"><a href="bayes.html"><i class="fa fa-check"></i><b>16</b> 贝叶斯计算</a><ul>
+<li class="chapter" data-level="16.1" data-path="bayes.html"><a href="bayes.html#bugs-"><i class="fa fa-check"></i><b>16.1</b> BUGS 软件</a></li>
+<li class="chapter" data-level="16.2" data-path="bayes.html"><a href="bayes.html#stan-"><i class="fa fa-check"></i><b>16.2</b> Stan 框架</a><ul>
+<li class="chapter" data-level="16.2.1" data-path="bayes.html"><a href="bayes.html#pystan-"><i class="fa fa-check"></i><b>16.2.1</b> PyStan 接口</a></li>
+<li class="chapter" data-level="16.2.2" data-path="bayes.html"><a href="bayes.html#rstan-"><i class="fa fa-check"></i><b>16.2.2</b> RStan 接口</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="r-inla.html"><a href="r-inla.html"><i class="fa fa-check"></i><b>17</b> 近似推断</a><ul>
+<li class="chapter" data-level="17.1" data-path="r-inla.html"><a href="r-inla.html#-"><i class="fa fa-check"></i><b>17.1</b> 高斯-马尔科夫随机场</a></li>
+<li class="chapter" data-level="17.2" data-path="r-inla.html"><a href="r-inla.html#section-17.2"><i class="fa fa-check"></i><b>17.2</b> 贝叶斯近似推断</a></li>
+</ul></li>
+<li class="part"><span><b>IV 数据分析</b></span></li>
+<li class="chapter" data-level="18" data-path="spatial.html"><a href="spatial.html"><i class="fa fa-check"></i><b>18</b> 空间数据</a><ul>
+<li class="chapter" data-level="18.1" data-path="spatial.html"><a href="spatial.html#section-18.1"><i class="fa fa-check"></i><b>18.1</b> 分析与可视化</a></li>
+<li class="chapter" data-level="18.2" data-path="spatial.html"><a href="spatial.html#sf"><i class="fa fa-check"></i><b>18.2</b> sf</a></li>
+<li class="chapter" data-level="18.3" data-path="spatial.html"><a href="spatial.html#prevmap"><i class="fa fa-check"></i><b>18.3</b> PrevMap</a></li>
+</ul></li>
+<li class="chapter" data-level="19" data-path="network.html"><a href="network.html"><i class="fa fa-check"></i><b>19</b> 网络数据</a><ul>
+<li class="chapter" data-level="19.1" data-path="network.html"><a href="network.html#-1"><i class="fa fa-check"></i><b>19.1</b> 分析与可视化</a></li>
+<li class="chapter" data-level="19.2" data-path="network.html"><a href="network.html#gephi"><i class="fa fa-check"></i><b>19.2</b> gephi</a></li>
+</ul></li>
+<li class="part"><span><b>V 统计模型</b></span></li>
+<li class="chapter" data-level="20" data-path="glm.html"><a href="glm.html"><i class="fa fa-check"></i><b>20</b> 广义线性模型</a><ul>
+<li class="chapter" data-level="20.1" data-path="glm.html"><a href="glm.html#section-20.1"><i class="fa fa-check"></i><b>20.1</b> 线性模型</a><ul>
+<li class="chapter" data-level="20.1.1" data-path="glm.html"><a href="glm.html#section-20.1.1"><i class="fa fa-check"></i><b>20.1.1</b> 参数估计</a></li>
+<li class="chapter" data-level="20.1.2" data-path="glm.html"><a href="glm.html#section-20.1.2"><i class="fa fa-check"></i><b>20.1.2</b> 最小二乘</a></li>
+<li class="chapter" data-level="20.1.3" data-path="glm.html"><a href="glm.html#section-20.1.3"><i class="fa fa-check"></i><b>20.1.3</b> 最大似然</a></li>
+</ul></li>
+<li class="chapter" data-level="20.2" data-path="network.html"><a href="network.html#-1"><i class="fa fa-check"></i><b>20.2</b> 参数估计</a><ul>
+<li class="chapter" data-level="20.2.1" data-path="glm.html"><a href="glm.html#section-20.2.1"><i class="fa fa-check"></i><b>20.2.1</b> 最小二乘估计</a></li>
+<li class="chapter" data-level="20.2.2" data-path="glm.html"><a href="glm.html#section-20.2.2"><i class="fa fa-check"></i><b>20.2.2</b> 广义最小二乘估计</a></li>
+<li class="chapter" data-level="20.2.3" data-path="glm.html"><a href="glm.html#section-20.2.3"><i class="fa fa-check"></i><b>20.2.3</b> 最大似然估计</a></li>
+</ul></li>
+<li class="chapter" data-level="20.3" data-path="glm.html"><a href="glm.html#section-20.3"><i class="fa fa-check"></i><b>20.3</b> 高维问题</a></li>
+</ul></li>
+<li class="chapter" data-level="21" data-path="mixed-model.html"><a href="mixed-model.html"><i class="fa fa-check"></i><b>21</b> 混合效应模型</a><ul>
+<li class="chapter" data-level="21.1" data-path="mixed-model.html"><a href="mixed-model.html#section-21.1"><i class="fa fa-check"></i><b>21.1</b> 方差分析</a></li>
+<li class="chapter" data-level="21.2" data-path="mixed-model.html"><a href="mixed-model.html#section-21.2"><i class="fa fa-check"></i><b>21.2</b> 线性混合效应模型</a></li>
+<li class="chapter" data-level="21.3" data-path="mixed-model.html"><a href="mixed-model.html#section-21.3"><i class="fa fa-check"></i><b>21.3</b> 广义线性混合效应模型</a></li>
+<li class="chapter" data-level="21.4" data-path="mixed-model.html"><a href="mixed-model.html#section-21.4"><i class="fa fa-check"></i><b>21.4</b> 空间广义线性混合效应模型</a></li>
+<li class="chapter" data-level="21.5" data-path="mixed-model.html"><a href="mixed-model.html#-2"><i class="fa fa-check"></i><b>21.5</b> 参数估计</a><ul>
+<li class="chapter" data-level="21.5.1" data-path="mixed-model.html"><a href="mixed-model.html#section-21.5.1"><i class="fa fa-check"></i><b>21.5.1</b> 限制极大似然估计</a></li>
+<li class="chapter" data-level="21.5.2" data-path="mixed-model.html"><a href="mixed-model.html#profile-"><i class="fa fa-check"></i><b>21.5.2</b> profile 似然估计</a></li>
+<li class="chapter" data-level="21.5.3" data-path="mixed-model.html"><a href="mixed-model.html#section-21.5.3"><i class="fa fa-check"></i><b>21.5.3</b> 贝叶斯估计</a></li>
+</ul></li>
+<li class="chapter" data-level="21.6" data-path="network.html"><a href="network.html#-1"><i class="fa fa-check"></i><b>21.6</b> 高维问题</a></li>
+</ul></li>
+<li class="chapter" data-level="22" data-path="gam.html"><a href="gam.html"><i class="fa fa-check"></i><b>22</b> 广义可加模型</a><ul>
+<li class="chapter" data-level="22.1" data-path="gam.html"><a href="gam.html#section-22.1"><i class="fa fa-check"></i><b>22.1</b> 一般广义可加模型</a></li>
+<li class="chapter" data-level="22.2" data-path="gam.html"><a href="gam.html#section-22.2"><i class="fa fa-check"></i><b>22.2</b> 广义可加混合效应模型</a></li>
+<li class="chapter" data-level="22.3" data-path="mixed-model.html"><a href="mixed-model.html#-2"><i class="fa fa-check"></i><b>22.3</b> 高维问题</a></li>
+</ul></li>
+<li class="appendix"><span><b>附录</b></span></li>
+<li class="chapter" data-level="A" data-path="pandoc-markdown.html"><a href="pandoc-markdown.html"><i class="fa fa-check"></i><b>A</b> R Markdown</a><ul>
+<li class="chapter" data-level="A.1" data-path="pandoc-markdown.html"><a href="pandoc-markdown.html#bookdown"><i class="fa fa-check"></i><b>A.1</b> bookdown</a></li>
+<li class="chapter" data-level="A.2" data-path="pandoc-markdown.html"><a href="pandoc-markdown.html#kableExtra"><i class="fa fa-check"></i><b>A.2</b> 复杂表格制作</a></li>
+</ul></li>
+<li class="chapter" data-level="B" data-path="python-plot.html"><a href="python-plot.html"><i class="fa fa-check"></i><b>B</b> Python 绘图</a><ul>
+<li class="chapter" data-level="B.1" data-path="python-plot.html"><a href="python-plot.html#matplotlib"><i class="fa fa-check"></i><b>B.1</b> matplotlib</a></li>
+<li class="chapter" data-level="B.2" data-path="python-plot.html"><a href="python-plot.html#seaborn"><i class="fa fa-check"></i><b>B.2</b> seaborn</a></li>
+<li class="chapter" data-level="B.3" data-path="python-plot.html"><a href="python-plot.html#pyglet"><i class="fa fa-check"></i><b>B.3</b> pyglet</a></li>
+<li class="chapter" data-level="B.4" data-path="python-plot.html"><a href="python-plot.html#mayavi"><i class="fa fa-check"></i><b>B.4</b> mayavi</a></li>
+<li class="chapter" data-level="B.5" data-path="python-plot.html"><a href="python-plot.html#bokeh"><i class="fa fa-check"></i><b>B.5</b> bokeh</a></li>
+<li class="chapter" data-level="B.6" data-path="python-plot.html"><a href="python-plot.html#plotly"><i class="fa fa-check"></i><b>B.6</b> plotly</a></li>
+</ul></li>
+<li class="chapter" data-level="C" data-path="performance.html"><a href="performance.html"><i class="fa fa-check"></i><b>C</b> 性能提升</a><ul>
+<li class="chapter" data-level="C.1" data-path="performance.html"><a href="performance.html#rcpp"><i class="fa fa-check"></i><b>C.1</b> Rcpp</a><ul>
+<li class="chapter" data-level="C.1.1" data-path="performance.html"><a href="performance.html#rcppoctave"><i class="fa fa-check"></i><b>C.1.1</b> RcppOctave</a></li>
+<li class="chapter" data-level="C.1.2" data-path="performance.html"><a href="performance.html#rcppgsl"><i class="fa fa-check"></i><b>C.1.2</b> RcppGSL</a></li>
+<li class="chapter" data-level="C.1.3" data-path="performance.html"><a href="performance.html#rcpparmadillo"><i class="fa fa-check"></i><b>C.1.3</b> RcppArmadillo</a></li>
+<li class="chapter" data-level="C.1.4" data-path="performance.html"><a href="performance.html#rcppparallel"><i class="fa fa-check"></i><b>C.1.4</b> RcppParallel</a></li>
+<li class="chapter" data-level="C.1.5" data-path="performance.html"><a href="performance.html#rcppnumerical"><i class="fa fa-check"></i><b>C.1.5</b> RcppNumerical</a></li>
+<li class="chapter" data-level="C.1.6" data-path="performance.html"><a href="performance.html#rcppalgos"><i class="fa fa-check"></i><b>C.1.6</b> RcppAlgos</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="D" data-path="other-tools.html"><a href="other-tools.html"><i class="fa fa-check"></i><b>D</b> 软件工具</a><ul>
+<li class="chapter" data-level="D.1" data-path="other-tools.html"><a href="other-tools.html#octave"><i class="fa fa-check"></i><b>D.1</b> Octave</a></li>
+<li class="chapter" data-level="D.2" data-path="other-tools.html"><a href="other-tools.html#python"><i class="fa fa-check"></i><b>D.2</b> Python</a></li>
+<li class="chapter" data-level="D.3" data-path="other-tools.html"><a href="other-tools.html#hugo"><i class="fa fa-check"></i><b>D.3</b> Hugo</a></li>
+<li class="chapter" data-level="D.4" data-path="other-tools.html"><a href="other-tools.html#latex"><i class="fa fa-check"></i><b>D.4</b> LaTeX</a></li>
+<li class="chapter" data-level="D.5" data-path="other-tools.html"><a href="other-tools.html#pandoc"><i class="fa fa-check"></i><b>D.5</b> Pandoc</a></li>
+<li class="chapter" data-level="D.6" data-path="other-tools.html"><a href="other-tools.html#rtools"><i class="fa fa-check"></i><b>D.6</b> Rtools</a></li>
+<li class="chapter" data-level="D.7" data-path="other-tools.html"><a href="other-tools.html#container"><i class="fa fa-check"></i><b>D.7</b> 容器</a><ul>
+<li class="chapter" data-level="D.7.1" data-path="other-tools.html"><a href="other-tools.html#rocker"><i class="fa fa-check"></i><b>D.7.1</b> rocker</a></li>
+<li class="chapter" data-level="D.7.2" data-path="other-tools.html"><a href="other-tools.html#singularity"><i class="fa fa-check"></i><b>D.7.2</b> Singularity</a></li>
+<li class="chapter" data-level="D.7.3" data-path="other-tools.html"><a href="other-tools.html#kubernetes"><i class="fa fa-check"></i><b>D.7.3</b> Kubernetes</a></li>
+</ul></li>
+<li class="chapter" data-level="D.8" data-path="other-tools.html"><a href="other-tools.html#apt"><i class="fa fa-check"></i><b>D.8</b> apt</a></li>
+<li class="chapter" data-level="D.9" data-path="other-tools.html"><a href="other-tools.html#yum"><i class="fa fa-check"></i><b>D.9</b> yum</a></li>
+<li class="chapter" data-level="D.10" data-path="other-tools.html"><a href="other-tools.html#tlmgr"><i class="fa fa-check"></i><b>D.10</b> tlmgr</a></li>
+<li class="chapter" data-level="D.11" data-path="other-tools.html"><a href="other-tools.html#git"><i class="fa fa-check"></i><b>D.11</b> Git</a></li>
+<li class="chapter" data-level="D.12" data-path="packages.html"><a href="#section-D.12"><i class="fa fa-check"></i><b>D.12</b> 其它</a></li>
+</ul></li>
+<li class="chapter" data-level="E" data-path="reproduce.html"><a href="reproduce.html"><i class="fa fa-check"></i><b>E</b> 重现</a></li>
+<li class="chapter" data-level="F" data-path="bookmarks.html"><a href="bookmarks.html"><i class="fa fa-check"></i><b>F</b> 书签</a><ul>
+<li class="chapter" data-level="F.1" data-path="bookmarks.html"><a href="bookmarks.html#homepage"><i class="fa fa-check"></i><b>F.1</b> 主页</a></li>
+<li class="chapter" data-level="F.2" data-path="bookmarks.html"><a href="bookmarks.html#blogger"><i class="fa fa-check"></i><b>F.2</b> 博客</a></li>
+<li class="chapter" data-level="F.3" data-path="bookmarks.html"><a href="bookmarks.html#books"><i class="fa fa-check"></i><b>F.3</b> 书单</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="e58f82e88083e69687e78cae.html"><a href="e58f82e88083e69687e78cae.html"><i class="fa fa-check"></i>参考文献</a></li>
+<li class="divider"></li>
+<li><a href="https://xiangyun.netlify.com/">黄湘云</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">R 语言学习笔记</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="reproduce" class="section level1">
+<h1><span class="header-section-number">E</span> 重现</h1>
+<ul>
+<li>R</li>
+</ul>
+<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb202-1" data-line-number="1"><span class="kw">sessionInfo</span>(<span class="st">&quot;bookdown&quot;</span>)</a>
+<a class="sourceLine" id="cb202-2" data-line-number="2"><span class="co">#&gt; R version 3.4.4 (2017-01-27)</span></a>
+<a class="sourceLine" id="cb202-3" data-line-number="3"><span class="co">#&gt; Platform: x86_64-pc-linux-gnu (64-bit)</span></a>
+<a class="sourceLine" id="cb202-4" data-line-number="4"><span class="co">#&gt; Running under: Ubuntu 14.04.5 LTS</span></a>
+<a class="sourceLine" id="cb202-5" data-line-number="5"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb202-6" data-line-number="6"><span class="co">#&gt; Matrix products: default</span></a>
+<a class="sourceLine" id="cb202-7" data-line-number="7"><span class="co">#&gt; BLAS: /home/travis/R-bin/lib/R/lib/libRblas.so</span></a>
+<a class="sourceLine" id="cb202-8" data-line-number="8"><span class="co">#&gt; LAPACK: /home/travis/R-bin/lib/R/lib/libRlapack.so</span></a>
+<a class="sourceLine" id="cb202-9" data-line-number="9"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb202-10" data-line-number="10"><span class="co">#&gt; locale:</span></a>
+<a class="sourceLine" id="cb202-11" data-line-number="11"><span class="co">#&gt;  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              </span></a>
+<a class="sourceLine" id="cb202-12" data-line-number="12"><span class="co">#&gt;  [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    </span></a>
+<a class="sourceLine" id="cb202-13" data-line-number="13"><span class="co">#&gt;  [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   </span></a>
+<a class="sourceLine" id="cb202-14" data-line-number="14"><span class="co">#&gt;  [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 </span></a>
+<a class="sourceLine" id="cb202-15" data-line-number="15"><span class="co">#&gt;  [9] LC_ADDRESS=C               LC_TELEPHONE=C            </span></a>
+<a class="sourceLine" id="cb202-16" data-line-number="16"><span class="co">#&gt; [11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       </span></a>
+<a class="sourceLine" id="cb202-17" data-line-number="17"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb202-18" data-line-number="18"><span class="co">#&gt; attached base packages:</span></a>
+<a class="sourceLine" id="cb202-19" data-line-number="19"><span class="co">#&gt; character(0)</span></a>
+<a class="sourceLine" id="cb202-20" data-line-number="20"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb202-21" data-line-number="21"><span class="co">#&gt; other attached packages:</span></a>
+<a class="sourceLine" id="cb202-22" data-line-number="22"><span class="co">#&gt; [1] bookdown_0.7</span></a>
+<a class="sourceLine" id="cb202-23" data-line-number="23"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb202-24" data-line-number="24"><span class="co">#&gt; loaded via a namespace (and not attached):</span></a>
+<a class="sourceLine" id="cb202-25" data-line-number="25"><span class="co">#&gt;  [1] Rcpp_0.12.16    grDevices_3.4.4 sysfonts_0.7.2  digest_0.6.15  </span></a>
+<a class="sourceLine" id="cb202-26" data-line-number="26"><span class="co">#&gt;  [5] showtextdb_2.0  rprojroot_1.3-2 Rttf2pt1_1.3.6  backports_1.1.2</span></a>
+<a class="sourceLine" id="cb202-27" data-line-number="27"><span class="co">#&gt;  [9] magrittr_1.5    evaluate_0.10.1 datasets_3.4.4  stringi_1.2.2  </span></a>
+<a class="sourceLine" id="cb202-28" data-line-number="28"><span class="co">#&gt; [13] utils_3.4.4     extrafontdb_1.0 graphics_3.4.4  rmarkdown_1.9  </span></a>
+<a class="sourceLine" id="cb202-29" data-line-number="29"><span class="co">#&gt; [17] base_3.4.4      extrafont_0.17  tools_3.4.4     stringr_1.3.1  </span></a>
+<a class="sourceLine" id="cb202-30" data-line-number="30"><span class="co">#&gt; [21] xfun_0.1        yaml_2.1.19     compiler_3.4.4  stats_3.4.4    </span></a>
+<a class="sourceLine" id="cb202-31" data-line-number="31"><span class="co">#&gt; [25] htmltools_0.3.6 knitr_1.20      methods_3.4.4</span></a></code></pre></div>
+<div class="sourceCode" id="cb203"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb203-1" data-line-number="1">pkg &lt;-<span class="st"> </span><span class="kw">.packages</span>(<span class="dt">all.available =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb203-2" data-line-number="2">pkgInfo &lt;-<span class="st"> </span><span class="kw">lapply</span>(pkg, packageDescription,</a>
+<a class="sourceLine" id="cb203-3" data-line-number="3">  <span class="dt">fields =</span> <span class="kw">c</span>(<span class="st">&quot;Package&quot;</span>, <span class="st">&quot;Version&quot;</span>, <span class="st">&quot;Maintainer&quot;</span>, <span class="st">&quot;Title&quot;</span>)</a>
+<a class="sourceLine" id="cb203-4" data-line-number="4">)</a>
+<a class="sourceLine" id="cb203-5" data-line-number="5">knitr<span class="op">::</span><span class="kw">kable</span>(<span class="kw">data.frame</span>(</a>
+<a class="sourceLine" id="cb203-6" data-line-number="6">  <span class="dt">Package =</span> <span class="kw">sapply</span>(pkgInfo, <span class="st">`</span><span class="dt">[[</span><span class="st">`</span>, <span class="dv">1</span>),</a>
+<a class="sourceLine" id="cb203-7" data-line-number="7">  <span class="dt">Version =</span> <span class="kw">sapply</span>(pkgInfo, <span class="st">`</span><span class="dt">[[</span><span class="st">`</span>, <span class="dv">2</span>),</a>
+<a class="sourceLine" id="cb203-8" data-line-number="8">  <span class="co"># Maintainer = sapply(pkgInfo, &quot;[[&quot;, 3),</span></a>
+<a class="sourceLine" id="cb203-9" data-line-number="9">  <span class="dt">Title =</span> <span class="kw">sapply</span>(pkgInfo, <span class="st">&quot;[[&quot;</span>, <span class="dv">4</span>)</a>
+<a class="sourceLine" id="cb203-10" data-line-number="10">),</a>
+<a class="sourceLine" id="cb203-11" data-line-number="11"><span class="dt">caption =</span> <span class="st">&quot;R包信息列表&quot;</span>,</a>
+<a class="sourceLine" id="cb203-12" data-line-number="12"><span class="dt">booktabs =</span> <span class="ot">TRUE</span>,</a>
+<a class="sourceLine" id="cb203-13" data-line-number="13"><span class="dt">longtable =</span> <span class="ot">TRUE</span></a>
+<a class="sourceLine" id="cb203-14" data-line-number="14">)</a></code></pre></div>
+<ul>
+<li>LaTeX</li>
+</ul>
+<div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb204-1" data-line-number="1">base<span class="op">::</span><span class="kw">system</span>(<span class="st">&#39;xelatex --version&#39;</span>, <span class="dt">intern =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb204-2" data-line-number="2"><span class="co">#&gt;  [1] &quot;XeTeX 3.14159265-2.6-0.99999 (TeX Live 2018)&quot;                    </span></a>
+<a class="sourceLine" id="cb204-3" data-line-number="3"><span class="co">#&gt;  [2] &quot;kpathsea version 6.3.0&quot;                                          </span></a>
+<a class="sourceLine" id="cb204-4" data-line-number="4"><span class="co">#&gt;  [3] &quot;Copyright 2018 SIL International, Jonathan Kew and Khaled Hosny.&quot;</span></a>
+<a class="sourceLine" id="cb204-5" data-line-number="5"><span class="co">#&gt;  [4] &quot;There is NO warranty.  Redistribution of this software is&quot;       </span></a>
+<a class="sourceLine" id="cb204-6" data-line-number="6"><span class="co">#&gt;  [5] &quot;covered by the terms of both the XeTeX copyright and&quot;            </span></a>
+<a class="sourceLine" id="cb204-7" data-line-number="7"><span class="co">#&gt;  [6] &quot;the Lesser GNU General Public License.&quot;                          </span></a>
+<a class="sourceLine" id="cb204-8" data-line-number="8"><span class="co">#&gt;  [7] &quot;For more information about these matters, see the file&quot;          </span></a>
+<a class="sourceLine" id="cb204-9" data-line-number="9"><span class="co">#&gt;  [8] &quot;named COPYING and the XeTeX source.&quot;                             </span></a>
+<a class="sourceLine" id="cb204-10" data-line-number="10"><span class="co">#&gt;  [9] &quot;Primary author of XeTeX: Jonathan Kew.&quot;                          </span></a>
+<a class="sourceLine" id="cb204-11" data-line-number="11"><span class="co">#&gt; [10] &quot;Compiled with ICU version 61.1; using 61.1&quot;                      </span></a>
+<a class="sourceLine" id="cb204-12" data-line-number="12"><span class="co">#&gt; [11] &quot;Compiled with zlib version 1.2.11; using 1.2.11&quot;                 </span></a>
+<a class="sourceLine" id="cb204-13" data-line-number="13"><span class="co">#&gt; [12] &quot;Compiled with FreeType2 version 2.9.0; using 2.9.0&quot;              </span></a>
+<a class="sourceLine" id="cb204-14" data-line-number="14"><span class="co">#&gt; [13] &quot;Compiled with Graphite2 version 1.3.11; using 1.3.11&quot;            </span></a>
+<a class="sourceLine" id="cb204-15" data-line-number="15"><span class="co">#&gt; [14] &quot;Compiled with HarfBuzz version 1.7.6; using 1.7.6&quot;               </span></a>
+<a class="sourceLine" id="cb204-16" data-line-number="16"><span class="co">#&gt; [15] &quot;Compiled with libpng version 1.6.34; using 1.6.34&quot;               </span></a>
+<a class="sourceLine" id="cb204-17" data-line-number="17"><span class="co">#&gt; [16] &quot;Compiled with poppler version 0.63.0&quot;                            </span></a>
+<a class="sourceLine" id="cb204-18" data-line-number="18"><span class="co">#&gt; [17] &quot;Compiled with fontconfig version 2.11.0; using 2.11.0&quot;</span></a></code></pre></div>
+<div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb205-1" data-line-number="1">base<span class="op">::</span><span class="kw">system</span>(<span class="st">&#39;tlmgr info --list --only-installed --data name,size&#39;</span>, <span class="dt">intern =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb205-2" data-line-number="2"><span class="co">#&gt;   [1] &quot;a4wide,4096&quot;                      </span></a>
+<a class="sourceLine" id="cb205-3" data-line-number="3"><span class="co">#&gt;   [2] &quot;adjustbox,90112&quot;                  </span></a>
+<a class="sourceLine" id="cb205-4" data-line-number="4"><span class="co">#&gt;   [3] &quot;ae,643072&quot;                        </span></a>
+<a class="sourceLine" id="cb205-5" data-line-number="5"><span class="co">#&gt;   [4] &quot;algorithm2e,167936&quot;               </span></a>
+<a class="sourceLine" id="cb205-6" data-line-number="6"><span class="co">#&gt;   [5] &quot;algorithms,16384&quot;                 </span></a>
+<a class="sourceLine" id="cb205-7" data-line-number="7"><span class="co">#&gt;   [6] &quot;amscls,323584&quot;                    </span></a>
+<a class="sourceLine" id="cb205-8" data-line-number="8"><span class="co">#&gt;   [7] &quot;amsfonts,7696384&quot;                 </span></a>
+<a class="sourceLine" id="cb205-9" data-line-number="9"><span class="co">#&gt;   [8] &quot;amsmath,196608&quot;                   </span></a>
+<a class="sourceLine" id="cb205-10" data-line-number="10"><span class="co">#&gt;   [9] &quot;animate,110592&quot;                   </span></a>
+<a class="sourceLine" id="cb205-11" data-line-number="11"><span class="co">#&gt;  [10] &quot;apacite,774144&quot;                   </span></a>
+<a class="sourceLine" id="cb205-12" data-line-number="12"><span class="co">#&gt;  [11] &quot;appendix,12288&quot;                   </span></a>
+<a class="sourceLine" id="cb205-13" data-line-number="13"><span class="co">#&gt;  [12] &quot;babel,3268608&quot;                    </span></a>
+<a class="sourceLine" id="cb205-14" data-line-number="14"><span class="co">#&gt;  [13] &quot;babel-english,36864&quot;              </span></a>
+<a class="sourceLine" id="cb205-15" data-line-number="15"><span class="co">#&gt;  [14] &quot;babelbib,856064&quot;                  </span></a>
+<a class="sourceLine" id="cb205-16" data-line-number="16"><span class="co">#&gt;  [15] &quot;bbm-macros,16384&quot;                 </span></a>
+<a class="sourceLine" id="cb205-17" data-line-number="17"><span class="co">#&gt;  [16] &quot;beamer,1032192&quot;                   </span></a>
+<a class="sourceLine" id="cb205-18" data-line-number="18"><span class="co">#&gt;  [17] &quot;biblatex,2084864&quot;                 </span></a>
+<a class="sourceLine" id="cb205-19" data-line-number="19"><span class="co">#&gt;  [18] &quot;bibtex,208896&quot;                    </span></a>
+<a class="sourceLine" id="cb205-20" data-line-number="20"><span class="co">#&gt;  [19] &quot;bibtex.x86_64-linux,167936&quot;       </span></a>
+<a class="sourceLine" id="cb205-21" data-line-number="21"><span class="co">#&gt;  [20] &quot;blkarray,73728&quot;                   </span></a>
+<a class="sourceLine" id="cb205-22" data-line-number="22"><span class="co">#&gt;  [21] &quot;booktabs,8192&quot;                    </span></a>
+<a class="sourceLine" id="cb205-23" data-line-number="23"><span class="co">#&gt;  [22] &quot;boondox,401408&quot;                   </span></a>
+<a class="sourceLine" id="cb205-24" data-line-number="24"><span class="co">#&gt;  [23] &quot;breakurl,12288&quot;                   </span></a>
+<a class="sourceLine" id="cb205-25" data-line-number="25"><span class="co">#&gt;  [24] &quot;caption,212992&quot;                   </span></a>
+<a class="sourceLine" id="cb205-26" data-line-number="26"><span class="co">#&gt;  [25] &quot;carlisle,45056&quot;                   </span></a>
+<a class="sourceLine" id="cb205-27" data-line-number="27"><span class="co">#&gt;  [26] &quot;ccaption,24576&quot;                   </span></a>
+<a class="sourceLine" id="cb205-28" data-line-number="28"><span class="co">#&gt;  [27] &quot;changepage,16384&quot;                 </span></a>
+<a class="sourceLine" id="cb205-29" data-line-number="29"><span class="co">#&gt;  [28] &quot;chemgreek,49152&quot;                  </span></a>
+<a class="sourceLine" id="cb205-30" data-line-number="30"><span class="co">#&gt;  [29] &quot;cite,73728&quot;                       </span></a>
+<a class="sourceLine" id="cb205-31" data-line-number="31"><span class="co">#&gt;  [30] &quot;cleveref,331776&quot;                  </span></a>
+<a class="sourceLine" id="cb205-32" data-line-number="32"><span class="co">#&gt;  [31] &quot;cm,1392640&quot;                       </span></a>
+<a class="sourceLine" id="cb205-33" data-line-number="33"><span class="co">#&gt;  [32] &quot;collectbox,12288&quot;                 </span></a>
+<a class="sourceLine" id="cb205-34" data-line-number="34"><span class="co">#&gt;  [33] &quot;collection-basic,0&quot;               </span></a>
+<a class="sourceLine" id="cb205-35" data-line-number="35"><span class="co">#&gt;  [34] &quot;collection-latex,0&quot;               </span></a>
+<a class="sourceLine" id="cb205-36" data-line-number="36"><span class="co">#&gt;  [35] &quot;colortbl,12288&quot;                   </span></a>
+<a class="sourceLine" id="cb205-37" data-line-number="37"><span class="co">#&gt;  [36] &quot;comment,12288&quot;                    </span></a>
+<a class="sourceLine" id="cb205-38" data-line-number="38"><span class="co">#&gt;  [37] &quot;courier,1191936&quot;                  </span></a>
+<a class="sourceLine" id="cb205-39" data-line-number="39"><span class="co">#&gt;  [38] &quot;csquotes,94208&quot;                   </span></a>
+<a class="sourceLine" id="cb205-40" data-line-number="40"><span class="co">#&gt;  [39] &quot;ctable,12288&quot;                     </span></a>
+<a class="sourceLine" id="cb205-41" data-line-number="41"><span class="co">#&gt;  [40] &quot;datetime,270336&quot;                  </span></a>
+<a class="sourceLine" id="cb205-42" data-line-number="42"><span class="co">#&gt;  [41] &quot;diagbox,12288&quot;                    </span></a>
+<a class="sourceLine" id="cb205-43" data-line-number="43"><span class="co">#&gt;  [42] &quot;doi,4096&quot;                         </span></a>
+<a class="sourceLine" id="cb205-44" data-line-number="44"><span class="co">#&gt;  [43] &quot;doublestroke,237568&quot;              </span></a>
+<a class="sourceLine" id="cb205-45" data-line-number="45"><span class="co">#&gt;  [44] &quot;draftwatermark,4096&quot;              </span></a>
+<a class="sourceLine" id="cb205-46" data-line-number="46"><span class="co">#&gt;  [45] &quot;dvipdfmx,163840&quot;                  </span></a>
+<a class="sourceLine" id="cb205-47" data-line-number="47"><span class="co">#&gt;  [46] &quot;dvipdfmx.x86_64-linux,20480&quot;      </span></a>
+<a class="sourceLine" id="cb205-48" data-line-number="48"><span class="co">#&gt;  [47] &quot;dvips,380928&quot;                     </span></a>
+<a class="sourceLine" id="cb205-49" data-line-number="49"><span class="co">#&gt;  [48] &quot;dvips.x86_64-linux,376832&quot;        </span></a>
+<a class="sourceLine" id="cb205-50" data-line-number="50"><span class="co">#&gt;  [49] &quot;dvisvgm,0&quot;                        </span></a>
+<a class="sourceLine" id="cb205-51" data-line-number="51"><span class="co">#&gt;  [50] &quot;dvisvgm.x86_64-linux,5492736&quot;     </span></a>
+<a class="sourceLine" id="cb205-52" data-line-number="52"><span class="co">#&gt;  [51] &quot;ec,5918720&quot;                       </span></a>
+<a class="sourceLine" id="cb205-53" data-line-number="53"><span class="co">#&gt;  [52] &quot;enctex,253952&quot;                    </span></a>
+<a class="sourceLine" id="cb205-54" data-line-number="54"><span class="co">#&gt;  [53] &quot;enumitem,45056&quot;                   </span></a>
+<a class="sourceLine" id="cb205-55" data-line-number="55"><span class="co">#&gt;  [54] &quot;environ,8192&quot;                     </span></a>
+<a class="sourceLine" id="cb205-56" data-line-number="56"><span class="co">#&gt;  [55] &quot;eso-pic,16384&quot;                    </span></a>
+<a class="sourceLine" id="cb205-57" data-line-number="57"><span class="co">#&gt;  [56] &quot;etex,45056&quot;                       </span></a>
+<a class="sourceLine" id="cb205-58" data-line-number="58"><span class="co">#&gt;  [57] &quot;etex-pkg,20480&quot;                   </span></a>
+<a class="sourceLine" id="cb205-59" data-line-number="59"><span class="co">#&gt;  [58] &quot;etoolbox,49152&quot;                   </span></a>
+<a class="sourceLine" id="cb205-60" data-line-number="60"><span class="co">#&gt;  [59] &quot;euenc,57344&quot;                      </span></a>
+<a class="sourceLine" id="cb205-61" data-line-number="61"><span class="co">#&gt;  [60] &quot;eurosym,294912&quot;                   </span></a>
+<a class="sourceLine" id="cb205-62" data-line-number="62"><span class="co">#&gt;  [61] &quot;everypage,4096&quot;                   </span></a>
+<a class="sourceLine" id="cb205-63" data-line-number="63"><span class="co">#&gt;  [62] &quot;fancybox,28672&quot;                   </span></a>
+<a class="sourceLine" id="cb205-64" data-line-number="64"><span class="co">#&gt;  [63] &quot;fancyhdr,20480&quot;                   </span></a>
+<a class="sourceLine" id="cb205-65" data-line-number="65"><span class="co">#&gt;  [64] &quot;fancyvrb,73728&quot;                   </span></a>
+<a class="sourceLine" id="cb205-66" data-line-number="66"><span class="co">#&gt;  [65] &quot;fix2col,8192&quot;                     </span></a>
+<a class="sourceLine" id="cb205-67" data-line-number="67"><span class="co">#&gt;  [66] &quot;float,8192&quot;                       </span></a>
+<a class="sourceLine" id="cb205-68" data-line-number="68"><span class="co">#&gt;  [67] &quot;floatrow,90112&quot;                   </span></a>
+<a class="sourceLine" id="cb205-69" data-line-number="69"><span class="co">#&gt;  [68] &quot;fmtcount,290816&quot;                  </span></a>
+<a class="sourceLine" id="cb205-70" data-line-number="70"><span class="co">#&gt;  [69] &quot;fontspec,307200&quot;                  </span></a>
+<a class="sourceLine" id="cb205-71" data-line-number="71"><span class="co">#&gt;  [70] &quot;footmisc,28672&quot;                   </span></a>
+<a class="sourceLine" id="cb205-72" data-line-number="72"><span class="co">#&gt;  [71] &quot;fp,151552&quot;                        </span></a>
+<a class="sourceLine" id="cb205-73" data-line-number="73"><span class="co">#&gt;  [72] &quot;fpl,737280&quot;                       </span></a>
+<a class="sourceLine" id="cb205-74" data-line-number="74"><span class="co">#&gt;  [73] &quot;framed,24576&quot;                     </span></a>
+<a class="sourceLine" id="cb205-75" data-line-number="75"><span class="co">#&gt;  [74] &quot;geometry,45056&quot;                   </span></a>
+<a class="sourceLine" id="cb205-76" data-line-number="76"><span class="co">#&gt;  [75] &quot;glyphlist,98304&quot;                  </span></a>
+<a class="sourceLine" id="cb205-77" data-line-number="77"><span class="co">#&gt;  [76] &quot;graphics,126976&quot;                  </span></a>
+<a class="sourceLine" id="cb205-78" data-line-number="78"><span class="co">#&gt;  [77] &quot;graphics-cfg,8192&quot;                </span></a>
+<a class="sourceLine" id="cb205-79" data-line-number="79"><span class="co">#&gt;  [78] &quot;graphics-def,86016&quot;               </span></a>
+<a class="sourceLine" id="cb205-80" data-line-number="80"><span class="co">#&gt;  [79] &quot;gsftopk,8192&quot;                     </span></a>
+<a class="sourceLine" id="cb205-81" data-line-number="81"><span class="co">#&gt;  [80] &quot;gsftopk.x86_64-linux,94208&quot;       </span></a>
+<a class="sourceLine" id="cb205-82" data-line-number="82"><span class="co">#&gt;  [81] &quot;hardwrap,12288&quot;                   </span></a>
+<a class="sourceLine" id="cb205-83" data-line-number="83"><span class="co">#&gt;  [82] &quot;harvard,225280&quot;                   </span></a>
+<a class="sourceLine" id="cb205-84" data-line-number="84"><span class="co">#&gt;  [83] &quot;helvetic,2433024&quot;                 </span></a>
+<a class="sourceLine" id="cb205-85" data-line-number="85"><span class="co">#&gt;  [84] &quot;hyperref,962560&quot;                  </span></a>
+<a class="sourceLine" id="cb205-86" data-line-number="86"><span class="co">#&gt;  [85] &quot;hyph-utf8,102400&quot;                 </span></a>
+<a class="sourceLine" id="cb205-87" data-line-number="87"><span class="co">#&gt;  [86] &quot;hyphen-base,98304&quot;                </span></a>
+<a class="sourceLine" id="cb205-88" data-line-number="88"><span class="co">#&gt;  [87] &quot;ifluatex,8192&quot;                    </span></a>
+<a class="sourceLine" id="cb205-89" data-line-number="89"><span class="co">#&gt;  [88] &quot;ifmtarg,4096&quot;                     </span></a>
+<a class="sourceLine" id="cb205-90" data-line-number="90"><span class="co">#&gt;  [89] &quot;iftex,4096&quot;                       </span></a>
+<a class="sourceLine" id="cb205-91" data-line-number="91"><span class="co">#&gt;  [90] &quot;ifxetex,4096&quot;                     </span></a>
+<a class="sourceLine" id="cb205-92" data-line-number="92"><span class="co">#&gt;  [91] &quot;inconsolata,1302528&quot;              </span></a>
+<a class="sourceLine" id="cb205-93" data-line-number="93"><span class="co">#&gt;  [92] &quot;jknapltx,77824&quot;                   </span></a>
+<a class="sourceLine" id="cb205-94" data-line-number="94"><span class="co">#&gt;  [93] &quot;kastrup,4096&quot;                     </span></a>
+<a class="sourceLine" id="cb205-95" data-line-number="95"><span class="co">#&gt;  [94] &quot;kerkis,3112960&quot;                   </span></a>
+<a class="sourceLine" id="cb205-96" data-line-number="96"><span class="co">#&gt;  [95] &quot;knuth-lib,192512&quot;                 </span></a>
+<a class="sourceLine" id="cb205-97" data-line-number="97"><span class="co">#&gt;  [96] &quot;knuth-local,212992&quot;               </span></a>
+<a class="sourceLine" id="cb205-98" data-line-number="98"><span class="co">#&gt;  [97] &quot;koma-script,23203840&quot;             </span></a>
+<a class="sourceLine" id="cb205-99" data-line-number="99"><span class="co">#&gt;  [98] &quot;kpathsea,208896&quot;                  </span></a>
+<a class="sourceLine" id="cb205-100" data-line-number="100"><span class="co">#&gt;  [99] &quot;kpathsea.x86_64-linux,163840&quot;     </span></a>
+<a class="sourceLine" id="cb205-101" data-line-number="101"><span class="co">#&gt; [100] &quot;l3experimental,286720&quot;            </span></a>
+<a class="sourceLine" id="cb205-102" data-line-number="102"><span class="co">#&gt; [101] &quot;l3kernel,1146880&quot;                 </span></a>
+<a class="sourceLine" id="cb205-103" data-line-number="103"><span class="co">#&gt; [102] &quot;l3packages,155648&quot;                </span></a>
+<a class="sourceLine" id="cb205-104" data-line-number="104"><span class="co">#&gt; [103] &quot;lastpage,16384&quot;                   </span></a>
+<a class="sourceLine" id="cb205-105" data-line-number="105"><span class="co">#&gt; [104] &quot;latex,1675264&quot;                    </span></a>
+<a class="sourceLine" id="cb205-106" data-line-number="106"><span class="co">#&gt; [105] &quot;latex-bin,0&quot;                      </span></a>
+<a class="sourceLine" id="cb205-107" data-line-number="107"><span class="co">#&gt; [106] &quot;latex-bin.x86_64-linux,16384&quot;     </span></a>
+<a class="sourceLine" id="cb205-108" data-line-number="108"><span class="co">#&gt; [107] &quot;latex-fonts,249856&quot;               </span></a>
+<a class="sourceLine" id="cb205-109" data-line-number="109"><span class="co">#&gt; [108] &quot;latexconfig,40960&quot;                </span></a>
+<a class="sourceLine" id="cb205-110" data-line-number="110"><span class="co">#&gt; [109] &quot;lineno,245760&quot;                    </span></a>
+<a class="sourceLine" id="cb205-111" data-line-number="111"><span class="co">#&gt; [110] &quot;lipsum,106496&quot;                    </span></a>
+<a class="sourceLine" id="cb205-112" data-line-number="112"><span class="co">#&gt; [111] &quot;listings,479232&quot;                  </span></a>
+<a class="sourceLine" id="cb205-113" data-line-number="113"><span class="co">#&gt; [112] &quot;lm,43601920&quot;                      </span></a>
+<a class="sourceLine" id="cb205-114" data-line-number="114"><span class="co">#&gt; [113] &quot;logreq,12288&quot;                     </span></a>
+<a class="sourceLine" id="cb205-115" data-line-number="115"><span class="co">#&gt; [114] &quot;ltxmisc,69632&quot;                    </span></a>
+<a class="sourceLine" id="cb205-116" data-line-number="116"><span class="co">#&gt; [115] &quot;lua-alt-getopt,4096&quot;              </span></a>
+<a class="sourceLine" id="cb205-117" data-line-number="117"><span class="co">#&gt; [116] &quot;luatex,151552&quot;                    </span></a>
+<a class="sourceLine" id="cb205-118" data-line-number="118"><span class="co">#&gt; [117] &quot;luatex.x86_64-linux,26660864&quot;     </span></a>
+<a class="sourceLine" id="cb205-119" data-line-number="119"><span class="co">#&gt; [118] &quot;makeindex,36864&quot;                  </span></a>
+<a class="sourceLine" id="cb205-120" data-line-number="120"><span class="co">#&gt; [119] &quot;makeindex.x86_64-linux,151552&quot;    </span></a>
+<a class="sourceLine" id="cb205-121" data-line-number="121"><span class="co">#&gt; [120] &quot;manfnt,4096&quot;                      </span></a>
+<a class="sourceLine" id="cb205-122" data-line-number="122"><span class="co">#&gt; [121] &quot;marvosym,208896&quot;                  </span></a>
+<a class="sourceLine" id="cb205-123" data-line-number="123"><span class="co">#&gt; [122] &quot;mathabx,880640&quot;                   </span></a>
+<a class="sourceLine" id="cb205-124" data-line-number="124"><span class="co">#&gt; [123] &quot;mathpazo,167936&quot;                  </span></a>
+<a class="sourceLine" id="cb205-125" data-line-number="125"><span class="co">#&gt; [124] &quot;mathspec,45056&quot;                   </span></a>
+<a class="sourceLine" id="cb205-126" data-line-number="126"><span class="co">#&gt; [125] &quot;mathtools,114688&quot;                 </span></a>
+<a class="sourceLine" id="cb205-127" data-line-number="127"><span class="co">#&gt; [126] &quot;mdwtools,126976&quot;                  </span></a>
+<a class="sourceLine" id="cb205-128" data-line-number="128"><span class="co">#&gt; [127] &quot;memoir,487424&quot;                    </span></a>
+<a class="sourceLine" id="cb205-129" data-line-number="129"><span class="co">#&gt; [128] &quot;metafont,147456&quot;                  </span></a>
+<a class="sourceLine" id="cb205-130" data-line-number="130"><span class="co">#&gt; [129] &quot;metafont.x86_64-linux,696320&quot;     </span></a>
+<a class="sourceLine" id="cb205-131" data-line-number="131"><span class="co">#&gt; [130] &quot;metalogo,8192&quot;                    </span></a>
+<a class="sourceLine" id="cb205-132" data-line-number="132"><span class="co">#&gt; [131] &quot;mflogo,16384&quot;                     </span></a>
+<a class="sourceLine" id="cb205-133" data-line-number="133"><span class="co">#&gt; [132] &quot;mfnfss,32768&quot;                     </span></a>
+<a class="sourceLine" id="cb205-134" data-line-number="134"><span class="co">#&gt; [133] &quot;mfware,16384&quot;                     </span></a>
+<a class="sourceLine" id="cb205-135" data-line-number="135"><span class="co">#&gt; [134] &quot;mfware.x86_64-linux,593920&quot;       </span></a>
+<a class="sourceLine" id="cb205-136" data-line-number="136"><span class="co">#&gt; [135] &quot;mhchem,446464&quot;                    </span></a>
+<a class="sourceLine" id="cb205-137" data-line-number="137"><span class="co">#&gt; [136] &quot;microtype,430080&quot;                 </span></a>
+<a class="sourceLine" id="cb205-138" data-line-number="138"><span class="co">#&gt; [137] &quot;morefloats,40960&quot;                 </span></a>
+<a class="sourceLine" id="cb205-139" data-line-number="139"><span class="co">#&gt; [138] &quot;mptopdf,176128&quot;                   </span></a>
+<a class="sourceLine" id="cb205-140" data-line-number="140"><span class="co">#&gt; [139] &quot;mptopdf.x86_64-linux,4096&quot;        </span></a>
+<a class="sourceLine" id="cb205-141" data-line-number="141"><span class="co">#&gt; [140] &quot;ms,49152&quot;                         </span></a>
+<a class="sourceLine" id="cb205-142" data-line-number="142"><span class="co">#&gt; [141] &quot;multirow,16384&quot;                   </span></a>
+<a class="sourceLine" id="cb205-143" data-line-number="143"><span class="co">#&gt; [142] &quot;natbib,135168&quot;                    </span></a>
+<a class="sourceLine" id="cb205-144" data-line-number="144"><span class="co">#&gt; [143] &quot;newtx,8867840&quot;                    </span></a>
+<a class="sourceLine" id="cb205-145" data-line-number="145"><span class="co">#&gt; [144] &quot;nextpage,4096&quot;                    </span></a>
+<a class="sourceLine" id="cb205-146" data-line-number="146"><span class="co">#&gt; [145] &quot;ntgclass,299008&quot;                  </span></a>
+<a class="sourceLine" id="cb205-147" data-line-number="147"><span class="co">#&gt; [146] &quot;ntheorem,49152&quot;                   </span></a>
+<a class="sourceLine" id="cb205-148" data-line-number="148"><span class="co">#&gt; [147] &quot;oberdiek,2879488&quot;                 </span></a>
+<a class="sourceLine" id="cb205-149" data-line-number="149"><span class="co">#&gt; [148] &quot;palatino,1589248&quot;                 </span></a>
+<a class="sourceLine" id="cb205-150" data-line-number="150"><span class="co">#&gt; [149] &quot;paralist,16384&quot;                   </span></a>
+<a class="sourceLine" id="cb205-151" data-line-number="151"><span class="co">#&gt; [150] &quot;parskip,4096&quot;                     </span></a>
+<a class="sourceLine" id="cb205-152" data-line-number="152"><span class="co">#&gt; [151] &quot;pbox,4096&quot;                        </span></a>
+<a class="sourceLine" id="cb205-153" data-line-number="153"><span class="co">#&gt; [152] &quot;pdfcrop,40960&quot;                    </span></a>
+<a class="sourceLine" id="cb205-154" data-line-number="154"><span class="co">#&gt; [153] &quot;pdfcrop.x86_64-linux,8192&quot;        </span></a>
+<a class="sourceLine" id="cb205-155" data-line-number="155"><span class="co">#&gt; [154] &quot;pdfpages,98304&quot;                   </span></a>
+<a class="sourceLine" id="cb205-156" data-line-number="156"><span class="co">#&gt; [155] &quot;pdftex,266240&quot;                    </span></a>
+<a class="sourceLine" id="cb205-157" data-line-number="157"><span class="co">#&gt; [156] &quot;pdftex.x86_64-linux,2191360&quot;      </span></a>
+<a class="sourceLine" id="cb205-158" data-line-number="158"><span class="co">#&gt; [157] &quot;pgf,5386240&quot;                      </span></a>
+<a class="sourceLine" id="cb205-159" data-line-number="159"><span class="co">#&gt; [158] &quot;picinpar,16384&quot;                   </span></a>
+<a class="sourceLine" id="cb205-160" data-line-number="160"><span class="co">#&gt; [159] &quot;pict2e,73728&quot;                     </span></a>
+<a class="sourceLine" id="cb205-161" data-line-number="161"><span class="co">#&gt; [160] &quot;placeins,4096&quot;                    </span></a>
+<a class="sourceLine" id="cb205-162" data-line-number="162"><span class="co">#&gt; [161] &quot;plain,1376256&quot;                    </span></a>
+<a class="sourceLine" id="cb205-163" data-line-number="163"><span class="co">#&gt; [162] &quot;preprint,36864&quot;                   </span></a>
+<a class="sourceLine" id="cb205-164" data-line-number="164"><span class="co">#&gt; [163] &quot;preview,57344&quot;                    </span></a>
+<a class="sourceLine" id="cb205-165" data-line-number="165"><span class="co">#&gt; [164] &quot;pslatex,36864&quot;                    </span></a>
+<a class="sourceLine" id="cb205-166" data-line-number="166"><span class="co">#&gt; [165] &quot;psnfss,450560&quot;                    </span></a>
+<a class="sourceLine" id="cb205-167" data-line-number="167"><span class="co">#&gt; [166] &quot;pspicture,8192&quot;                   </span></a>
+<a class="sourceLine" id="cb205-168" data-line-number="168"><span class="co">#&gt; [167] &quot;realscripts,8192&quot;                 </span></a>
+<a class="sourceLine" id="cb205-169" data-line-number="169"><span class="co">#&gt; [168] &quot;relsize,16384&quot;                    </span></a>
+<a class="sourceLine" id="cb205-170" data-line-number="170"><span class="co">#&gt; [169] &quot;rsfs,143360&quot;                      </span></a>
+<a class="sourceLine" id="cb205-171" data-line-number="171"><span class="co">#&gt; [170] &quot;sauerj,32768&quot;                     </span></a>
+<a class="sourceLine" id="cb205-172" data-line-number="172"><span class="co">#&gt; [171] &quot;scheme-basic,0&quot;                   </span></a>
+<a class="sourceLine" id="cb205-173" data-line-number="173"><span class="co">#&gt; [172] &quot;scheme-infraonly,0&quot;               </span></a>
+<a class="sourceLine" id="cb205-174" data-line-number="174"><span class="co">#&gt; [173] &quot;scheme-minimal,0&quot;                 </span></a>
+<a class="sourceLine" id="cb205-175" data-line-number="175"><span class="co">#&gt; [174] &quot;sectsty,24576&quot;                    </span></a>
+<a class="sourceLine" id="cb205-176" data-line-number="176"><span class="co">#&gt; [175] &quot;setspace,24576&quot;                   </span></a>
+<a class="sourceLine" id="cb205-177" data-line-number="177"><span class="co">#&gt; [176] &quot;shadethm,32768&quot;                   </span></a>
+<a class="sourceLine" id="cb205-178" data-line-number="178"><span class="co">#&gt; [177] &quot;siunitx,323584&quot;                   </span></a>
+<a class="sourceLine" id="cb205-179" data-line-number="179"><span class="co">#&gt; [178] &quot;soul,24576&quot;                       </span></a>
+<a class="sourceLine" id="cb205-180" data-line-number="180"><span class="co">#&gt; [179] &quot;stmaryrd,401408&quot;                  </span></a>
+<a class="sourceLine" id="cb205-181" data-line-number="181"><span class="co">#&gt; [180] &quot;subfig,32768&quot;                     </span></a>
+<a class="sourceLine" id="cb205-182" data-line-number="182"><span class="co">#&gt; [181] &quot;subfigure,20480&quot;                  </span></a>
+<a class="sourceLine" id="cb205-183" data-line-number="183"><span class="co">#&gt; [182] &quot;symbol,102400&quot;                    </span></a>
+<a class="sourceLine" id="cb205-184" data-line-number="184"><span class="co">#&gt; [183] &quot;tabu,118784&quot;                      </span></a>
+<a class="sourceLine" id="cb205-185" data-line-number="185"><span class="co">#&gt; [184] &quot;tabulary,16384&quot;                   </span></a>
+<a class="sourceLine" id="cb205-186" data-line-number="186"><span class="co">#&gt; [185] &quot;tetex,516096&quot;                     </span></a>
+<a class="sourceLine" id="cb205-187" data-line-number="187"><span class="co">#&gt; [186] &quot;tetex.x86_64-linux,77824&quot;         </span></a>
+<a class="sourceLine" id="cb205-188" data-line-number="188"><span class="co">#&gt; [187] &quot;tex,0&quot;                            </span></a>
+<a class="sourceLine" id="cb205-189" data-line-number="189"><span class="co">#&gt; [188] &quot;tex-ini-files,32768&quot;              </span></a>
+<a class="sourceLine" id="cb205-190" data-line-number="190"><span class="co">#&gt; [189] &quot;tex.x86_64-linux,385024&quot;          </span></a>
+<a class="sourceLine" id="cb205-191" data-line-number="191"><span class="co">#&gt; [190] &quot;tex4ht,33177600&quot;                  </span></a>
+<a class="sourceLine" id="cb205-192" data-line-number="192"><span class="co">#&gt; [191] &quot;tex4ht.x86_64-linux,299008&quot;       </span></a>
+<a class="sourceLine" id="cb205-193" data-line-number="193"><span class="co">#&gt; [192] &quot;texlive-common,0&quot;                 </span></a>
+<a class="sourceLine" id="cb205-194" data-line-number="194"><span class="co">#&gt; [193] &quot;texlive-docindex,1105920&quot;         </span></a>
+<a class="sourceLine" id="cb205-195" data-line-number="195"><span class="co">#&gt; [194] &quot;texlive-en,0&quot;                     </span></a>
+<a class="sourceLine" id="cb205-196" data-line-number="196"><span class="co">#&gt; [195] &quot;texlive-msg-translations,1167360&quot; </span></a>
+<a class="sourceLine" id="cb205-197" data-line-number="197"><span class="co">#&gt; [196] &quot;texlive-scripts,282624&quot;           </span></a>
+<a class="sourceLine" id="cb205-198" data-line-number="198"><span class="co">#&gt; [197] &quot;texlive-scripts.x86_64-linux,8192&quot;</span></a>
+<a class="sourceLine" id="cb205-199" data-line-number="199"><span class="co">#&gt; [198] &quot;texlive.infra,987136&quot;             </span></a>
+<a class="sourceLine" id="cb205-200" data-line-number="200"><span class="co">#&gt; [199] &quot;texlive.infra.x86_64-linux,270336&quot;</span></a>
+<a class="sourceLine" id="cb205-201" data-line-number="201"><span class="co">#&gt; [200] &quot;textcase,4096&quot;                    </span></a>
+<a class="sourceLine" id="cb205-202" data-line-number="202"><span class="co">#&gt; [201] &quot;threeparttable,20480&quot;             </span></a>
+<a class="sourceLine" id="cb205-203" data-line-number="203"><span class="co">#&gt; [202] &quot;thumbpdf,77824&quot;                   </span></a>
+<a class="sourceLine" id="cb205-204" data-line-number="204"><span class="co">#&gt; [203] &quot;thumbpdf.x86_64-linux,4096&quot;       </span></a>
+<a class="sourceLine" id="cb205-205" data-line-number="205"><span class="co">#&gt; [204] &quot;times,1372160&quot;                    </span></a>
+<a class="sourceLine" id="cb205-206" data-line-number="206"><span class="co">#&gt; [205] &quot;tipa,4489216&quot;                     </span></a>
+<a class="sourceLine" id="cb205-207" data-line-number="207"><span class="co">#&gt; [206] &quot;titlesec,122880&quot;                  </span></a>
+<a class="sourceLine" id="cb205-208" data-line-number="208"><span class="co">#&gt; [207] &quot;titling,8192&quot;                     </span></a>
+<a class="sourceLine" id="cb205-209" data-line-number="209"><span class="co">#&gt; [208] &quot;tocbibind,12288&quot;                  </span></a>
+<a class="sourceLine" id="cb205-210" data-line-number="210"><span class="co">#&gt; [209] &quot;tocloft,36864&quot;                    </span></a>
+<a class="sourceLine" id="cb205-211" data-line-number="211"><span class="co">#&gt; [210] &quot;todonotes,20480&quot;                  </span></a>
+<a class="sourceLine" id="cb205-212" data-line-number="212"><span class="co">#&gt; [211] &quot;tools,368640&quot;                     </span></a>
+<a class="sourceLine" id="cb205-213" data-line-number="213"><span class="co">#&gt; [212] &quot;trimspaces,4096&quot;                  </span></a>
+<a class="sourceLine" id="cb205-214" data-line-number="214"><span class="co">#&gt; [213] &quot;tufte-latex,110592&quot;               </span></a>
+<a class="sourceLine" id="cb205-215" data-line-number="215"><span class="co">#&gt; [214] &quot;txfonts,2285568&quot;                  </span></a>
+<a class="sourceLine" id="cb205-216" data-line-number="216"><span class="co">#&gt; [215] &quot;ucs,2883584&quot;                      </span></a>
+<a class="sourceLine" id="cb205-217" data-line-number="217"><span class="co">#&gt; [216] &quot;ulem,24576&quot;                       </span></a>
+<a class="sourceLine" id="cb205-218" data-line-number="218"><span class="co">#&gt; [217] &quot;underscore,12288&quot;                 </span></a>
+<a class="sourceLine" id="cb205-219" data-line-number="219"><span class="co">#&gt; [218] &quot;unicode-data,2277376&quot;             </span></a>
+<a class="sourceLine" id="cb205-220" data-line-number="220"><span class="co">#&gt; [219] &quot;updmap-map,19132416&quot;              </span></a>
+<a class="sourceLine" id="cb205-221" data-line-number="221"><span class="co">#&gt; [220] &quot;upquote,4096&quot;                     </span></a>
+<a class="sourceLine" id="cb205-222" data-line-number="222"><span class="co">#&gt; [221] &quot;url,16384&quot;                        </span></a>
+<a class="sourceLine" id="cb205-223" data-line-number="223"><span class="co">#&gt; [222] &quot;varwidth,12288&quot;                   </span></a>
+<a class="sourceLine" id="cb205-224" data-line-number="224"><span class="co">#&gt; [223] &quot;vmargin,8192&quot;                     </span></a>
+<a class="sourceLine" id="cb205-225" data-line-number="225"><span class="co">#&gt; [224] &quot;wrapfig,28672&quot;                    </span></a>
+<a class="sourceLine" id="cb205-226" data-line-number="226"><span class="co">#&gt; [225] &quot;xargs,16384&quot;                      </span></a>
+<a class="sourceLine" id="cb205-227" data-line-number="227"><span class="co">#&gt; [226] &quot;xcolor,81920&quot;                     </span></a>
+<a class="sourceLine" id="cb205-228" data-line-number="228"><span class="co">#&gt; [227] &quot;xcomment,12288&quot;                   </span></a>
+<a class="sourceLine" id="cb205-229" data-line-number="229"><span class="co">#&gt; [228] &quot;xdvi,36864&quot;                       </span></a>
+<a class="sourceLine" id="cb205-230" data-line-number="230"><span class="co">#&gt; [229] &quot;xdvi.x86_64-linux,1282048&quot;        </span></a>
+<a class="sourceLine" id="cb205-231" data-line-number="231"><span class="co">#&gt; [230] &quot;xetex,24576&quot;                      </span></a>
+<a class="sourceLine" id="cb205-232" data-line-number="232"><span class="co">#&gt; [231] &quot;xetex.x86_64-linux,27086848&quot;      </span></a>
+<a class="sourceLine" id="cb205-233" data-line-number="233"><span class="co">#&gt; [232] &quot;xetexconfig,4096&quot;                 </span></a>
+<a class="sourceLine" id="cb205-234" data-line-number="234"><span class="co">#&gt; [233] &quot;xifthen,8192&quot;                     </span></a>
+<a class="sourceLine" id="cb205-235" data-line-number="235"><span class="co">#&gt; [234] &quot;xkeyval,114688&quot;                   </span></a>
+<a class="sourceLine" id="cb205-236" data-line-number="236"><span class="co">#&gt; [235] &quot;xltxtra,8192&quot;                     </span></a>
+<a class="sourceLine" id="cb205-237" data-line-number="237"><span class="co">#&gt; [236] &quot;xstring,61440&quot;                    </span></a>
+<a class="sourceLine" id="cb205-238" data-line-number="238"><span class="co">#&gt; [237] &quot;xtab,20480&quot;                       </span></a>
+<a class="sourceLine" id="cb205-239" data-line-number="239"><span class="co">#&gt; [238] &quot;xunicode,208896&quot;                  </span></a>
+<a class="sourceLine" id="cb205-240" data-line-number="240"><span class="co">#&gt; [239] &quot;zapfchan,241664&quot;                  </span></a>
+<a class="sourceLine" id="cb205-241" data-line-number="241"><span class="co">#&gt; [240] &quot;zapfding,98304&quot;</span></a>
+<a class="sourceLine" id="cb205-242" data-line-number="242"><span class="co"># or tinytex::tlmgr(c(&quot;info&quot;, &quot;--list&quot;, &quot;--only-installed&quot;, &quot;--data&quot;, &quot;name,size&quot;))</span></a></code></pre></div>
+
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="other-tools.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="bookmarks.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": true,
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/XiangyunHuang/notesdown/edit/master/packages.Rmd",
+"text": "Edit"
+},
+"download": ["notebook.pdf"],
+"toc": {
+"collapse": "none"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

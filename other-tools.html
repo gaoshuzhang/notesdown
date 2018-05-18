@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>R 语言学习笔记</title>
+  <meta name="description" content="这是一个R语言学习笔记">
+  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
+
+  <meta property="og:title" content="R 语言学习笔记" />
+  <meta property="og:type" content="book" />
+  <meta property="og:url" content="https://notesdown.netlify.com/" />
+  <meta property="og:image" content="https://notesdown.netlify.com/images/dragon.png" />
+  <meta property="og:description" content="这是一个R语言学习笔记" />
+  <meta name="github-repo" content="xiangyunhuang/notesdown" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="R 语言学习笔记" />
+  
+  <meta name="twitter:description" content="这是一个R语言学习笔记" />
+  <meta name="twitter:image" content="https://notesdown.netlify.com/images/dragon.png" />
+
+<meta name="author" content="黄湘云">
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <link rel="apple-touch-icon-precomposed" sizes="120x120" href="images/dragon.png">
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+<link rel="prev" href="performance.html">
+<link rel="next" href="reproduce.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; position: absolute; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; }
+pre.numberSource a.sourceLine:empty
+  { position: absolute; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="css/style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">R语言笔记</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> 前言</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#e887b4e8b0a2"><i class="fa fa-check"></i>致谢</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#e7bb93e69e84"><i class="fa fa-check"></i>结构</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#e5908ee8aeb0"><i class="fa fa-check"></i>后记</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="section-2.html"><a href="section-2.html"><i class="fa fa-check"></i><b>2</b> 作者简介</a></li>
+<li class="chapter" data-level="3" data-path="section-3.html"><a href="section-3.html"><i class="fa fa-check"></i><b>3</b> 符号说明</a></li>
+<li class="part"><span><b>I 基础知识</b></span></li>
+<li class="chapter" data-level="4" data-path="install-setup.html"><a href="install-setup.html"><i class="fa fa-check"></i><b>4</b> 安装与配置</a><ul>
+<li class="chapter" data-level="4.1" data-path="install-setup.html"><a href="install-setup.html#-r-"><i class="fa fa-check"></i><b>4.1</b> 安装 R 软件</a></li>
+<li class="chapter" data-level="4.2" data-path="install-setup.html"><a href="install-setup.html#-r-"><i class="fa fa-check"></i><b>4.2</b> 安装 R 扩展包</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="install-setup.html"><a href="install-setup.html#rdieharder"><i class="fa fa-check"></i><b>4.2.1</b> RDieHarder</a></li>
+<li class="chapter" data-level="4.2.2" data-path="install-setup.html"><a href="install-setup.html#sparkr"><i class="fa fa-check"></i><b>4.2.2</b> SparkR</a></li>
+<li class="chapter" data-level="4.2.3" data-path="install-setup.html"><a href="install-setup.html#sparklyr"><i class="fa fa-check"></i><b>4.2.3</b> sparklyr</a></li>
+<li class="chapter" data-level="4.2.4" data-path="install-setup.html"><a href="install-setup.html#dbi"><i class="fa fa-check"></i><b>4.2.4</b> DBI</a></li>
+<li class="chapter" data-level="4.2.5" data-path="install-setup.html"><a href="install-setup.html#reticulate"><i class="fa fa-check"></i><b>4.2.5</b> reticulate</a></li>
+<li class="chapter" data-level="4.2.6" data-path="install-setup.html"><a href="install-setup.html#inla"><i class="fa fa-check"></i><b>4.2.6</b> INLA</a></li>
+<li class="chapter" data-level="4.2.7" data-path="install-setup.html"><a href="install-setup.html#mxnet"><i class="fa fa-check"></i><b>4.2.7</b> mxnet</a></li>
+<li class="chapter" data-level="4.2.8" data-path="install-setup.html"><a href="install-setup.html#tensorflow"><i class="fa fa-check"></i><b>4.2.8</b> tensorflow</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="install-setup.html"><a href="install-setup.html#-ide"><i class="fa fa-check"></i><b>4.3</b> 安装 IDE</a></li>
+<li class="chapter" data-level="4.4" data-path="install-setup.html"><a href="install-setup.html#section-4.4"><i class="fa fa-check"></i><b>4.4</b> 配置文件</a></li>
+<li class="chapter" data-level="4.5" data-path="install-setup.html"><a href="install-setup.html#tricks"><i class="fa fa-check"></i><b>4.5</b> 小技巧</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="math-operator.html"><a href="math-operator.html"><i class="fa fa-check"></i><b>5</b> 数学运算</a><ul>
+<li class="chapter" data-level="5.1" data-path="math-operator.html"><a href="math-operator.html#section-5.1"><i class="fa fa-check"></i><b>5.1</b> 矩阵运算</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="math-operator.html"><a href="math-operator.html#section-5.1.1"><i class="fa fa-check"></i><b>5.1.1</b> 乘法</a></li>
+<li class="chapter" data-level="5.1.2" data-path="math-operator.html"><a href="math-operator.html#Hadamard"><i class="fa fa-check"></i><b>5.1.2</b> Hadamard 积</a></li>
+<li class="chapter" data-level="5.1.3" data-path="math-operator.html"><a href="math-operator.html#section-5.1.3"><i class="fa fa-check"></i><b>5.1.3</b> 交叉积</a></li>
+<li class="chapter" data-level="5.1.4" data-path="math-operator.html"><a href="math-operator.html#section-5.1.4"><i class="fa fa-check"></i><b>5.1.4</b> 外积</a></li>
+<li class="chapter" data-level="5.1.5" data-path="math-operator.html"><a href="math-operator.html#section-5.1.5"><i class="fa fa-check"></i><b>5.1.5</b> 直积</a></li>
+<li class="chapter" data-level="5.1.6" data-path="math-operator.html"><a href="math-operator.html#section-5.1.6"><i class="fa fa-check"></i><b>5.1.6</b> 乘方</a></li>
+<li class="chapter" data-level="5.1.7" data-path="math-operator.html"><a href="math-operator.html#section-5.1.7"><i class="fa fa-check"></i><b>5.1.7</b> 幂</a></li>
+<li class="chapter" data-level="5.1.8" data-path="math-operator.html"><a href="math-operator.html#section-5.1.8"><i class="fa fa-check"></i><b>5.1.8</b> 行列式</a></li>
+<li class="chapter" data-level="5.1.9" data-path="math-operator.html"><a href="math-operator.html#section-5.1.9"><i class="fa fa-check"></i><b>5.1.9</b> 逆</a></li>
+<li class="chapter" data-level="5.1.10" data-path="math-operator.html"><a href="math-operator.html#section-5.1.10"><i class="fa fa-check"></i><b>5.1.10</b> 伴随矩阵</a></li>
+<li class="chapter" data-level="5.1.11" data-path="math-operator.html"><a href="math-operator.html#section-5.1.11"><i class="fa fa-check"></i><b>5.1.11</b> 单位矩阵</a></li>
+<li class="chapter" data-level="5.1.12" data-path="math-operator.html"><a href="math-operator.html#section-5.1.12"><i class="fa fa-check"></i><b>5.1.12</b> 对角矩阵</a></li>
+<li class="chapter" data-level="5.1.13" data-path="math-operator.html"><a href="math-operator.html#section-5.1.13"><i class="fa fa-check"></i><b>5.1.13</b> 条件数</a></li>
+<li class="chapter" data-level="5.1.14" data-path="math-operator.html"><a href="math-operator.html#section-5.1.14"><i class="fa fa-check"></i><b>5.1.14</b> 范数</a></li>
+<li class="chapter" data-level="5.1.15" data-path="math-operator.html"><a href="math-operator.html#section-5.1.15"><i class="fa fa-check"></i><b>5.1.15</b> 秩</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="math-operator.html"><a href="math-operator.html#section-5.2"><i class="fa fa-check"></i><b>5.2</b> 矩阵分解</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="math-operator.html"><a href="math-operator.html#cholesky-"><i class="fa fa-check"></i><b>5.2.1</b> Cholesky 分解</a></li>
+<li class="chapter" data-level="5.2.2" data-path="math-operator.html"><a href="math-operator.html#section-5.2.2"><i class="fa fa-check"></i><b>5.2.2</b> 奇异值及分解</a></li>
+<li class="chapter" data-level="5.2.3" data-path="math-operator.html"><a href="math-operator.html#qr"><i class="fa fa-check"></i><b>5.2.3</b> QR分解</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="math-operator.html"><a href="math-operator.html#section-5.3"><i class="fa fa-check"></i><b>5.3</b> 特殊函数</a><ul>
+<li class="chapter" data-level="5.3.1" data-path="math-operator.html"><a href="math-operator.html#section-5.3.1"><i class="fa fa-check"></i><b>5.3.1</b> 阶乘</a></li>
+<li class="chapter" data-level="5.3.2" data-path="math-operator.html"><a href="math-operator.html#section-5.3.2"><i class="fa fa-check"></i><b>5.3.2</b> 伽马函数</a></li>
+<li class="chapter" data-level="5.3.3" data-path="math-operator.html"><a href="math-operator.html#section-5.3.3"><i class="fa fa-check"></i><b>5.3.3</b> 贝塔函数</a></li>
+<li class="chapter" data-level="5.3.4" data-path="math-operator.html"><a href="math-operator.html#section-5.3.4"><i class="fa fa-check"></i><b>5.3.4</b> 贝塞尔函数</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="math-operator.html"><a href="math-operator.html#distribution"><i class="fa fa-check"></i><b>5.4</b> 统计分布</a><ul>
+<li class="chapter" data-level="5.4.1" data-path="math-operator.html"><a href="math-operator.html#section-5.4.1"><i class="fa fa-check"></i><b>5.4.1</b> 一元分布</a></li>
+<li class="chapter" data-level="5.4.2" data-path="math-operator.html"><a href="math-operator.html#section-5.4.2"><i class="fa fa-check"></i><b>5.4.2</b> 多元分布</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="section-6.html"><a href="section-6.html"><i class="fa fa-check"></i><b>6</b> 数据操作</a><ul>
+<li class="chapter" data-level="6.1" data-path="section-6.html"><a href="section-6.html#section-6.1"><i class="fa fa-check"></i><b>6.1</b> 集合运算</a></li>
+<li class="chapter" data-level="6.2" data-path="section-6.html"><a href="section-6.html#section-6.2"><i class="fa fa-check"></i><b>6.2</b> 正则匹配</a></li>
+<li class="chapter" data-level="6.3" data-path="section-6.html"><a href="section-6.html#section-6.3"><i class="fa fa-check"></i><b>6.3</b> 排序</a><ul>
+<li class="chapter" data-level="6.3.1" data-path="section-6.html"><a href="section-6.html#order"><i class="fa fa-check"></i><b>6.3.1</b> order</a></li>
+<li class="chapter" data-level="6.3.2" data-path="section-6.html"><a href="section-6.html#sort"><i class="fa fa-check"></i><b>6.3.2</b> sort</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="section-6.html"><a href="section-6.html#section-6.4"><i class="fa fa-check"></i><b>6.4</b> 索引</a><ul>
+<li class="chapter" data-level="6.4.1" data-path="section-6.html"><a href="section-6.html#which"><i class="fa fa-check"></i><b>6.4.1</b> which</a></li>
+<li class="chapter" data-level="6.4.2" data-path="section-6.html"><a href="section-6.html#section"><i class="fa fa-check"></i><b>6.4.2</b> <code>[[</code></a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="section-6.html"><a href="section-6.html#section-6.5"><i class="fa fa-check"></i><b>6.5</b> 分组</a></li>
+<li class="chapter" data-level="6.6" data-path="section-6.html"><a href="section-6.html#apply"><i class="fa fa-check"></i><b>6.6</b> apply</a><ul>
+<li class="chapter" data-level="6.6.1" data-path="section-6.html"><a href="section-6.html#lapply"><i class="fa fa-check"></i><b>6.6.1</b> lapply</a></li>
+<li class="chapter" data-level="6.6.2" data-path="section-6.html"><a href="section-6.html#sapply"><i class="fa fa-check"></i><b>6.6.2</b> sapply</a></li>
+<li class="chapter" data-level="6.6.3" data-path="section-6.html"><a href="section-6.html#parallel"><i class="fa fa-check"></i><b>6.6.3</b> parallel</a></li>
+</ul></li>
+<li class="chapter" data-level="6.7" data-path="section-6.html"><a href="section-6.html#section-6.7"><i class="fa fa-check"></i><b>6.7</b> 合并</a><ul>
+<li class="chapter" data-level="6.7.1" data-path="section-6.html"><a href="section-6.html#aggregate"><i class="fa fa-check"></i><b>6.7.1</b> aggregate</a></li>
+</ul></li>
+<li class="chapter" data-level="6.8" data-path="section-6.html"><a href="section-6.html#section-6.8"><i class="fa fa-check"></i><b>6.8</b> 映射</a><ul>
+<li class="chapter" data-level="6.8.1" data-path="section-6.html"><a href="section-6.html#map"><i class="fa fa-check"></i><b>6.8.1</b> Map</a></li>
+<li class="chapter" data-level="6.8.2" data-path="section-6.html"><a href="section-6.html#reduce"><i class="fa fa-check"></i><b>6.8.2</b> Reduce</a></li>
+</ul></li>
+<li class="chapter" data-level="6.9" data-path="section-6.html"><a href="section-6.html#section-6.9"><i class="fa fa-check"></i><b>6.9</b> 拆分</a><ul>
+<li class="chapter" data-level="6.9.1" data-path="section-6.html"><a href="section-6.html#split"><i class="fa fa-check"></i><b>6.9.1</b> split</a></li>
+<li class="chapter" data-level="6.9.2" data-path="section-6.html"><a href="section-6.html#cut"><i class="fa fa-check"></i><b>6.9.2</b> cut</a></li>
+</ul></li>
+<li class="chapter" data-level="6.10" data-path="section-6.html"><a href="section-6.html#section-6.10"><i class="fa fa-check"></i><b>6.10</b> 数据库</a></li>
+</ul></li>
+<li class="part"><span><b>II 统计图形</b></span></li>
+<li class="chapter" data-level="7" data-path="graphics.html"><a href="graphics.html"><i class="fa fa-check"></i><b>7</b> 基础图形</a><ul>
+<li class="chapter" data-level="7.1" data-path="graphics.html"><a href="graphics.html#base"><i class="fa fa-check"></i><b>7.1</b> plot</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="ggplot.html"><a href="ggplot.html"><i class="fa fa-check"></i><b>8</b> 高级图形</a></li>
+<li class="chapter" data-level="9" data-path="section-9.html"><a href="section-9.html"><i class="fa fa-check"></i><b>9</b> 动态图形</a><ul>
+<li class="chapter" data-level="9.1" data-path="section-9.html"><a href="section-9.html#echarts"><i class="fa fa-check"></i><b>9.1</b> ECharts</a></li>
+<li class="chapter" data-level="9.2" data-path="section-9.html"><a href="section-9.html#d3"><i class="fa fa-check"></i><b>9.2</b> D3</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="section-10.html"><a href="section-10.html"><i class="fa fa-check"></i><b>10</b> 绘图工具</a><ul>
+<li class="chapter" data-level="10.1" data-path="section-10.html"><a href="section-10.html#section-10.1"><i class="fa fa-check"></i><b>10.1</b> 截图</a></li>
+<li class="chapter" data-level="10.2" data-path="section-10.html"><a href="section-10.html#inkscape"><i class="fa fa-check"></i><b>10.2</b> Inkscape</a></li>
+<li class="chapter" data-level="10.3" data-path="section-10.html"><a href="section-10.html#section-10.3"><i class="fa fa-check"></i><b>10.3</b> 转化</a></li>
+<li class="chapter" data-level="10.4" data-path="section-10.html"><a href="section-10.html#section-10.4"><i class="fa fa-check"></i><b>10.4</b> 优化</a></li>
+<li class="chapter" data-level="10.5" data-path="section-10.html"><a href="section-10.html#section-10.5"><i class="fa fa-check"></i><b>10.5</b> 裁剪</a></li>
+<li class="chapter" data-level="10.6" data-path="section-10.html"><a href="section-10.html#section-10.6"><i class="fa fa-check"></i><b>10.6</b> 接口</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="color.html"><a href="color.html"><i class="fa fa-check"></i><b>11</b> 配色</a><ul>
+<li class="chapter" data-level="11.1" data-path="color.html"><a href="color.html#section-11.1"><i class="fa fa-check"></i><b>11.1</b> 调色板</a></li>
+<li class="chapter" data-level="11.2" data-path="color.html"><a href="color.html#section-11.2"><i class="fa fa-check"></i><b>11.2</b> 颜色空间</a><ul>
+<li class="chapter" data-level="11.2.1" data-path="color.html"><a href="color.html#rgb"><i class="fa fa-check"></i><b>11.2.1</b> RGB</a></li>
+<li class="chapter" data-level="11.2.2" data-path="color.html"><a href="color.html#hsl"><i class="fa fa-check"></i><b>11.2.2</b> HSL</a></li>
+<li class="chapter" data-level="11.2.3" data-path="color.html"><a href="color.html#hsv"><i class="fa fa-check"></i><b>11.2.3</b> HSV</a></li>
+<li class="chapter" data-level="11.2.4" data-path="color.html"><a href="color.html#hcl"><i class="fa fa-check"></i><b>11.2.4</b> HCL</a></li>
+<li class="chapter" data-level="11.2.5" data-path="color.html"><a href="color.html#cmyk"><i class="fa fa-check"></i><b>11.2.5</b> CMYK</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="fonts.html"><a href="fonts.html"><i class="fa fa-check"></i><b>12</b> 字体</a><ul>
+<li class="chapter" data-level="12.1" data-path="fonts.html"><a href="fonts.html#cjk-"><i class="fa fa-check"></i><b>12.1</b> CJK 字体</a></li>
+<li class="chapter" data-level="12.2" data-path="fonts.html"><a href="fonts.html#showtext"><i class="fa fa-check"></i><b>12.2</b> showtext</a></li>
+<li class="chapter" data-level="12.3" data-path="fonts.html"><a href="fonts.html#xkcd"><i class="fa fa-check"></i><b>12.3</b> xkcd</a></li>
+<li class="chapter" data-level="12.4" data-path="fonts.html"><a href="fonts.html#fontcm"><i class="fa fa-check"></i><b>12.4</b> fontcm</a></li>
+<li class="chapter" data-level="12.5" data-path="fonts.html"><a href="fonts.html#tikzdevice"><i class="fa fa-check"></i><b>12.5</b> tikzDevice</a></li>
+<li class="chapter" data-level="12.6" data-path="fonts.html"><a href="fonts.html#tikz--pgf"><i class="fa fa-check"></i><b>12.6</b> TikZ 和 PGF</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="animotion.html"><a href="animotion.html"><i class="fa fa-check"></i><b>13</b> 动画</a><ul>
+<li class="chapter" data-level="13.1" data-path="animotion.html"><a href="animotion.html#js-"><i class="fa fa-check"></i><b>13.1</b> JS 动画</a></li>
+<li class="chapter" data-level="13.2" data-path="animotion.html"><a href="animotion.html#svg-"><i class="fa fa-check"></i><b>13.2</b> svg 动画</a></li>
+<li class="chapter" data-level="13.3" data-path="animotion.html"><a href="animotion.html#mapmate"><i class="fa fa-check"></i><b>13.3</b> mapmate</a></li>
+<li class="chapter" data-level="13.4" data-path="animotion.html"><a href="animotion.html#rgl"><i class="fa fa-check"></i><b>13.4</b> rgl</a></li>
+</ul></li>
+<li class="part"><span><b>III 统计计算</b></span></li>
+<li class="chapter" data-level="14" data-path="optimation.html"><a href="optimation.html"><i class="fa fa-check"></i><b>14</b> 数值优化</a><ul>
+<li class="chapter" data-level="14.1" data-path="optimation.html"><a href="optimation.html#section-14.1"><i class="fa fa-check"></i><b>14.1</b> 测试函数</a></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="section-15.html"><a href="section-15.html"><i class="fa fa-check"></i><b>15</b> 随机模拟</a><ul>
+<li class="chapter" data-level="15.1" data-path="section-15.html"><a href="section-15.html#section-15.1"><i class="fa fa-check"></i><b>15.1</b> 随机数</a></li>
+<li class="chapter" data-level="15.2" data-path="section-15.html"><a href="section-15.html#section-15.2"><i class="fa fa-check"></i><b>15.2</b> 随机过程</a><ul>
+<li class="chapter" data-level="15.2.1" data-path="section-15.html"><a href="section-15.html#section-15.2.1"><i class="fa fa-check"></i><b>15.2.1</b> 随机游走</a></li>
+<li class="chapter" data-level="15.2.2" data-path="section-15.html"><a href="section-15.html#section-15.2.2"><i class="fa fa-check"></i><b>15.2.2</b> 遍历定理</a></li>
+<li class="chapter" data-level="15.2.3" data-path="section-15.html"><a href="section-15.html#m-h-"><i class="fa fa-check"></i><b>15.2.3</b> M-H 算法</a></li>
+<li class="chapter" data-level="15.2.4" data-path="section-15.html"><a href="section-15.html#gibbs-"><i class="fa fa-check"></i><b>15.2.4</b> Gibbs 算法</a></li>
+<li class="chapter" data-level="15.2.5" data-path="section-15.html"><a href="section-15.html#hmc-"><i class="fa fa-check"></i><b>15.2.5</b> HMC 算法</a></li>
+</ul></li>
+<li class="chapter" data-level="15.3" data-path="section-15.html"><a href="section-15.html#section-15.3"><i class="fa fa-check"></i><b>15.3</b> 分布式</a><ul>
+<li class="chapter" data-level="15.3.1" data-path="section-15.html"><a href="section-15.html#rmpi"><i class="fa fa-check"></i><b>15.3.1</b> Rmpi</a></li>
+<li class="chapter" data-level="15.3.2" data-path="section-15.html"><a href="section-15.html#rhpc"><i class="fa fa-check"></i><b>15.3.2</b> Rhpc</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="bayes.html"><a href="bayes.html"><i class="fa fa-check"></i><b>16</b> 贝叶斯计算</a><ul>
+<li class="chapter" data-level="16.1" data-path="bayes.html"><a href="bayes.html#bugs-"><i class="fa fa-check"></i><b>16.1</b> BUGS 软件</a></li>
+<li class="chapter" data-level="16.2" data-path="bayes.html"><a href="bayes.html#stan-"><i class="fa fa-check"></i><b>16.2</b> Stan 框架</a><ul>
+<li class="chapter" data-level="16.2.1" data-path="bayes.html"><a href="bayes.html#pystan-"><i class="fa fa-check"></i><b>16.2.1</b> PyStan 接口</a></li>
+<li class="chapter" data-level="16.2.2" data-path="bayes.html"><a href="bayes.html#rstan-"><i class="fa fa-check"></i><b>16.2.2</b> RStan 接口</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="r-inla.html"><a href="r-inla.html"><i class="fa fa-check"></i><b>17</b> 近似推断</a><ul>
+<li class="chapter" data-level="17.1" data-path="r-inla.html"><a href="r-inla.html#-"><i class="fa fa-check"></i><b>17.1</b> 高斯-马尔科夫随机场</a></li>
+<li class="chapter" data-level="17.2" data-path="r-inla.html"><a href="r-inla.html#section-17.2"><i class="fa fa-check"></i><b>17.2</b> 贝叶斯近似推断</a></li>
+</ul></li>
+<li class="part"><span><b>IV 数据分析</b></span></li>
+<li class="chapter" data-level="18" data-path="spatial.html"><a href="spatial.html"><i class="fa fa-check"></i><b>18</b> 空间数据</a><ul>
+<li class="chapter" data-level="18.1" data-path="spatial.html"><a href="spatial.html#section-18.1"><i class="fa fa-check"></i><b>18.1</b> 分析与可视化</a></li>
+<li class="chapter" data-level="18.2" data-path="spatial.html"><a href="spatial.html#sf"><i class="fa fa-check"></i><b>18.2</b> sf</a></li>
+<li class="chapter" data-level="18.3" data-path="spatial.html"><a href="spatial.html#prevmap"><i class="fa fa-check"></i><b>18.3</b> PrevMap</a></li>
+</ul></li>
+<li class="chapter" data-level="19" data-path="network.html"><a href="network.html"><i class="fa fa-check"></i><b>19</b> 网络数据</a><ul>
+<li class="chapter" data-level="19.1" data-path="network.html"><a href="network.html#-1"><i class="fa fa-check"></i><b>19.1</b> 分析与可视化</a></li>
+<li class="chapter" data-level="19.2" data-path="network.html"><a href="network.html#gephi"><i class="fa fa-check"></i><b>19.2</b> gephi</a></li>
+</ul></li>
+<li class="part"><span><b>V 统计模型</b></span></li>
+<li class="chapter" data-level="20" data-path="glm.html"><a href="glm.html"><i class="fa fa-check"></i><b>20</b> 广义线性模型</a><ul>
+<li class="chapter" data-level="20.1" data-path="glm.html"><a href="glm.html#section-20.1"><i class="fa fa-check"></i><b>20.1</b> 线性模型</a><ul>
+<li class="chapter" data-level="20.1.1" data-path="glm.html"><a href="glm.html#section-20.1.1"><i class="fa fa-check"></i><b>20.1.1</b> 参数估计</a></li>
+<li class="chapter" data-level="20.1.2" data-path="glm.html"><a href="glm.html#section-20.1.2"><i class="fa fa-check"></i><b>20.1.2</b> 最小二乘</a></li>
+<li class="chapter" data-level="20.1.3" data-path="glm.html"><a href="glm.html#section-20.1.3"><i class="fa fa-check"></i><b>20.1.3</b> 最大似然</a></li>
+</ul></li>
+<li class="chapter" data-level="20.2" data-path="network.html"><a href="network.html#-1"><i class="fa fa-check"></i><b>20.2</b> 参数估计</a><ul>
+<li class="chapter" data-level="20.2.1" data-path="glm.html"><a href="glm.html#section-20.2.1"><i class="fa fa-check"></i><b>20.2.1</b> 最小二乘估计</a></li>
+<li class="chapter" data-level="20.2.2" data-path="glm.html"><a href="glm.html#section-20.2.2"><i class="fa fa-check"></i><b>20.2.2</b> 广义最小二乘估计</a></li>
+<li class="chapter" data-level="20.2.3" data-path="glm.html"><a href="glm.html#section-20.2.3"><i class="fa fa-check"></i><b>20.2.3</b> 最大似然估计</a></li>
+</ul></li>
+<li class="chapter" data-level="20.3" data-path="glm.html"><a href="glm.html#section-20.3"><i class="fa fa-check"></i><b>20.3</b> 高维问题</a></li>
+</ul></li>
+<li class="chapter" data-level="21" data-path="mixed-model.html"><a href="mixed-model.html"><i class="fa fa-check"></i><b>21</b> 混合效应模型</a><ul>
+<li class="chapter" data-level="21.1" data-path="mixed-model.html"><a href="mixed-model.html#section-21.1"><i class="fa fa-check"></i><b>21.1</b> 方差分析</a></li>
+<li class="chapter" data-level="21.2" data-path="mixed-model.html"><a href="mixed-model.html#section-21.2"><i class="fa fa-check"></i><b>21.2</b> 线性混合效应模型</a></li>
+<li class="chapter" data-level="21.3" data-path="mixed-model.html"><a href="mixed-model.html#section-21.3"><i class="fa fa-check"></i><b>21.3</b> 广义线性混合效应模型</a></li>
+<li class="chapter" data-level="21.4" data-path="mixed-model.html"><a href="mixed-model.html#section-21.4"><i class="fa fa-check"></i><b>21.4</b> 空间广义线性混合效应模型</a></li>
+<li class="chapter" data-level="21.5" data-path="mixed-model.html"><a href="mixed-model.html#-2"><i class="fa fa-check"></i><b>21.5</b> 参数估计</a><ul>
+<li class="chapter" data-level="21.5.1" data-path="mixed-model.html"><a href="mixed-model.html#section-21.5.1"><i class="fa fa-check"></i><b>21.5.1</b> 限制极大似然估计</a></li>
+<li class="chapter" data-level="21.5.2" data-path="mixed-model.html"><a href="mixed-model.html#profile-"><i class="fa fa-check"></i><b>21.5.2</b> profile 似然估计</a></li>
+<li class="chapter" data-level="21.5.3" data-path="mixed-model.html"><a href="mixed-model.html#section-21.5.3"><i class="fa fa-check"></i><b>21.5.3</b> 贝叶斯估计</a></li>
+</ul></li>
+<li class="chapter" data-level="21.6" data-path="network.html"><a href="network.html#-1"><i class="fa fa-check"></i><b>21.6</b> 高维问题</a></li>
+</ul></li>
+<li class="chapter" data-level="22" data-path="gam.html"><a href="gam.html"><i class="fa fa-check"></i><b>22</b> 广义可加模型</a><ul>
+<li class="chapter" data-level="22.1" data-path="gam.html"><a href="gam.html#section-22.1"><i class="fa fa-check"></i><b>22.1</b> 一般广义可加模型</a></li>
+<li class="chapter" data-level="22.2" data-path="gam.html"><a href="gam.html#section-22.2"><i class="fa fa-check"></i><b>22.2</b> 广义可加混合效应模型</a></li>
+<li class="chapter" data-level="22.3" data-path="mixed-model.html"><a href="mixed-model.html#-2"><i class="fa fa-check"></i><b>22.3</b> 高维问题</a></li>
+</ul></li>
+<li class="appendix"><span><b>附录</b></span></li>
+<li class="chapter" data-level="A" data-path="pandoc-markdown.html"><a href="pandoc-markdown.html"><i class="fa fa-check"></i><b>A</b> R Markdown</a><ul>
+<li class="chapter" data-level="A.1" data-path="pandoc-markdown.html"><a href="pandoc-markdown.html#bookdown"><i class="fa fa-check"></i><b>A.1</b> bookdown</a></li>
+<li class="chapter" data-level="A.2" data-path="pandoc-markdown.html"><a href="pandoc-markdown.html#kableExtra"><i class="fa fa-check"></i><b>A.2</b> 复杂表格制作</a></li>
+</ul></li>
+<li class="chapter" data-level="B" data-path="python-plot.html"><a href="python-plot.html"><i class="fa fa-check"></i><b>B</b> Python 绘图</a><ul>
+<li class="chapter" data-level="B.1" data-path="python-plot.html"><a href="python-plot.html#matplotlib"><i class="fa fa-check"></i><b>B.1</b> matplotlib</a></li>
+<li class="chapter" data-level="B.2" data-path="python-plot.html"><a href="python-plot.html#seaborn"><i class="fa fa-check"></i><b>B.2</b> seaborn</a></li>
+<li class="chapter" data-level="B.3" data-path="python-plot.html"><a href="python-plot.html#pyglet"><i class="fa fa-check"></i><b>B.3</b> pyglet</a></li>
+<li class="chapter" data-level="B.4" data-path="python-plot.html"><a href="python-plot.html#mayavi"><i class="fa fa-check"></i><b>B.4</b> mayavi</a></li>
+<li class="chapter" data-level="B.5" data-path="python-plot.html"><a href="python-plot.html#bokeh"><i class="fa fa-check"></i><b>B.5</b> bokeh</a></li>
+<li class="chapter" data-level="B.6" data-path="python-plot.html"><a href="python-plot.html#plotly"><i class="fa fa-check"></i><b>B.6</b> plotly</a></li>
+</ul></li>
+<li class="chapter" data-level="C" data-path="performance.html"><a href="performance.html"><i class="fa fa-check"></i><b>C</b> 性能提升</a><ul>
+<li class="chapter" data-level="C.1" data-path="performance.html"><a href="performance.html#rcpp"><i class="fa fa-check"></i><b>C.1</b> Rcpp</a><ul>
+<li class="chapter" data-level="C.1.1" data-path="performance.html"><a href="performance.html#rcppoctave"><i class="fa fa-check"></i><b>C.1.1</b> RcppOctave</a></li>
+<li class="chapter" data-level="C.1.2" data-path="performance.html"><a href="performance.html#rcppgsl"><i class="fa fa-check"></i><b>C.1.2</b> RcppGSL</a></li>
+<li class="chapter" data-level="C.1.3" data-path="performance.html"><a href="performance.html#rcpparmadillo"><i class="fa fa-check"></i><b>C.1.3</b> RcppArmadillo</a></li>
+<li class="chapter" data-level="C.1.4" data-path="performance.html"><a href="performance.html#rcppparallel"><i class="fa fa-check"></i><b>C.1.4</b> RcppParallel</a></li>
+<li class="chapter" data-level="C.1.5" data-path="performance.html"><a href="performance.html#rcppnumerical"><i class="fa fa-check"></i><b>C.1.5</b> RcppNumerical</a></li>
+<li class="chapter" data-level="C.1.6" data-path="performance.html"><a href="performance.html#rcppalgos"><i class="fa fa-check"></i><b>C.1.6</b> RcppAlgos</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="D" data-path="other-tools.html"><a href="other-tools.html"><i class="fa fa-check"></i><b>D</b> 软件工具</a><ul>
+<li class="chapter" data-level="D.1" data-path="other-tools.html"><a href="other-tools.html#octave"><i class="fa fa-check"></i><b>D.1</b> Octave</a></li>
+<li class="chapter" data-level="D.2" data-path="other-tools.html"><a href="other-tools.html#python"><i class="fa fa-check"></i><b>D.2</b> Python</a></li>
+<li class="chapter" data-level="D.3" data-path="other-tools.html"><a href="other-tools.html#hugo"><i class="fa fa-check"></i><b>D.3</b> Hugo</a></li>
+<li class="chapter" data-level="D.4" data-path="other-tools.html"><a href="other-tools.html#latex"><i class="fa fa-check"></i><b>D.4</b> LaTeX</a></li>
+<li class="chapter" data-level="D.5" data-path="other-tools.html"><a href="other-tools.html#pandoc"><i class="fa fa-check"></i><b>D.5</b> Pandoc</a></li>
+<li class="chapter" data-level="D.6" data-path="other-tools.html"><a href="other-tools.html#rtools"><i class="fa fa-check"></i><b>D.6</b> Rtools</a></li>
+<li class="chapter" data-level="D.7" data-path="other-tools.html"><a href="other-tools.html#container"><i class="fa fa-check"></i><b>D.7</b> 容器</a><ul>
+<li class="chapter" data-level="D.7.1" data-path="other-tools.html"><a href="other-tools.html#rocker"><i class="fa fa-check"></i><b>D.7.1</b> rocker</a></li>
+<li class="chapter" data-level="D.7.2" data-path="other-tools.html"><a href="other-tools.html#singularity"><i class="fa fa-check"></i><b>D.7.2</b> Singularity</a></li>
+<li class="chapter" data-level="D.7.3" data-path="other-tools.html"><a href="other-tools.html#kubernetes"><i class="fa fa-check"></i><b>D.7.3</b> Kubernetes</a></li>
+</ul></li>
+<li class="chapter" data-level="D.8" data-path="other-tools.html"><a href="other-tools.html#apt"><i class="fa fa-check"></i><b>D.8</b> apt</a></li>
+<li class="chapter" data-level="D.9" data-path="other-tools.html"><a href="other-tools.html#yum"><i class="fa fa-check"></i><b>D.9</b> yum</a></li>
+<li class="chapter" data-level="D.10" data-path="other-tools.html"><a href="other-tools.html#tlmgr"><i class="fa fa-check"></i><b>D.10</b> tlmgr</a></li>
+<li class="chapter" data-level="D.11" data-path="other-tools.html"><a href="other-tools.html#git"><i class="fa fa-check"></i><b>D.11</b> Git</a></li>
+<li class="chapter" data-level="D.12" data-path="25-tools.html"><a href="#section-D.12"><i class="fa fa-check"></i><b>D.12</b> 其它</a></li>
+</ul></li>
+<li class="chapter" data-level="E" data-path="reproduce.html"><a href="reproduce.html"><i class="fa fa-check"></i><b>E</b> 重现</a></li>
+<li class="chapter" data-level="F" data-path="bookmarks.html"><a href="bookmarks.html"><i class="fa fa-check"></i><b>F</b> 书签</a><ul>
+<li class="chapter" data-level="F.1" data-path="bookmarks.html"><a href="bookmarks.html#homepage"><i class="fa fa-check"></i><b>F.1</b> 主页</a></li>
+<li class="chapter" data-level="F.2" data-path="bookmarks.html"><a href="bookmarks.html#blogger"><i class="fa fa-check"></i><b>F.2</b> 博客</a></li>
+<li class="chapter" data-level="F.3" data-path="bookmarks.html"><a href="bookmarks.html#books"><i class="fa fa-check"></i><b>F.3</b> 书单</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="e58f82e88083e69687e78cae.html"><a href="e58f82e88083e69687e78cae.html"><i class="fa fa-check"></i>参考文献</a></li>
+<li class="divider"></li>
+<li><a href="https://xiangyun.netlify.com/">黄湘云</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">R 语言学习笔记</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="other-tools" class="section level1">
+<h1><span class="header-section-number">D</span> 软件工具</h1>
+<div id="octave" class="section level2">
+<h2><span class="header-section-number">D.1</span> Octave</h2>
+<p>安装新版 Octave，详情请见 <a href="https://wiki.octave.org/Octave_for_Debian_systems" class="uri">https://wiki.octave.org/Octave_for_Debian_systems</a></p>
+<div class="sourceCode" id="cb177"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb177-1" data-line-number="1"><span class="fu">sudo</span> apt-add-repository -y ppa:octave/stable</a>
+<a class="sourceLine" id="cb177-2" data-line-number="2"><span class="fu">sudo</span> apt-get update</a>
+<a class="sourceLine" id="cb177-3" data-line-number="3"><span class="fu">sudo</span> apt-get install -y octave</a></code></pre></div>
+<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb178-1" data-line-number="1"><span class="kw">Sys.which</span>(<span class="st">&quot;octave&quot;</span>)</a>
+<a class="sourceLine" id="cb178-2" data-line-number="2"><span class="co">#&gt;            octave </span></a>
+<a class="sourceLine" id="cb178-3" data-line-number="3"><span class="co">#&gt; &quot;/usr/bin/octave&quot;</span></a>
+<a class="sourceLine" id="cb178-4" data-line-number="4"><span class="kw">system</span>(<span class="st">&quot;octave --version&quot;</span>)</a>
+<a class="sourceLine" id="cb178-5" data-line-number="5"><span class="co">#&gt; GNU Octave, version 4.2.2</span></a>
+<a class="sourceLine" id="cb178-6" data-line-number="6"><span class="co">#&gt; Copyright (C) 2018 John W. Eaton and others.</span></a>
+<a class="sourceLine" id="cb178-7" data-line-number="7"><span class="co">#&gt; This is free software; see the source code for copying conditions.</span></a>
+<a class="sourceLine" id="cb178-8" data-line-number="8"><span class="co">#&gt; There is ABSOLUTELY NO WARRANTY; not even for MERCHANTABILITY or</span></a>
+<a class="sourceLine" id="cb178-9" data-line-number="9"><span class="co">#&gt; FITNESS FOR A PARTICULAR PURPOSE.</span></a>
+<a class="sourceLine" id="cb178-10" data-line-number="10"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb178-11" data-line-number="11"><span class="co">#&gt; Octave was configured for &quot;x86_64-pc-linux-gnu&quot;.</span></a>
+<a class="sourceLine" id="cb178-12" data-line-number="12"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb178-13" data-line-number="13"><span class="co">#&gt; Additional information about Octave is available at http://www.octave.org.</span></a>
+<a class="sourceLine" id="cb178-14" data-line-number="14"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb178-15" data-line-number="15"><span class="co">#&gt; Please contribute if you find this software useful.</span></a>
+<a class="sourceLine" id="cb178-16" data-line-number="16"><span class="co">#&gt; For more information, visit http://www.octave.org/get-involved.html</span></a>
+<a class="sourceLine" id="cb178-17" data-line-number="17"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb178-18" data-line-number="18"><span class="co">#&gt; Read http://www.octave.org/bugs.html to learn how to submit bug reports.</span></a></code></pre></div>
+</div>
+<div id="python" class="section level2">
+<h2><span class="header-section-number">D.2</span> Python</h2>
+<p>Python 版本和位置</p>
+<div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb179-1" data-line-number="1"><span class="kw">Sys.which</span>(<span class="st">&quot;python&quot;</span>)</a>
+<a class="sourceLine" id="cb179-2" data-line-number="2"><span class="co">#&gt;            python </span></a>
+<a class="sourceLine" id="cb179-3" data-line-number="3"><span class="co">#&gt; &quot;/usr/bin/python&quot;</span></a>
+<a class="sourceLine" id="cb179-4" data-line-number="4"><span class="kw">system2</span>(<span class="st">&quot;python&quot;</span>, <span class="dt">args =</span> <span class="st">&quot;--version&quot;</span>, <span class="dt">stderr =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb179-5" data-line-number="5"><span class="co">#&gt; Python 2.7.6</span></a></code></pre></div>
+<p>升级 Python</p>
+<div class="sourceCode" id="cb180"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb180-1" data-line-number="1"><span class="fu">sudo</span> add-apt-repository ppa:fkrull/deadsnakes-python2.7  </a>
+<a class="sourceLine" id="cb180-2" data-line-number="2"><span class="fu">sudo</span> apt-get update  </a></code></pre></div>
+<p>可用的 python 模块</p>
+<div class="sourceCode" id="cb181"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb181-1" data-line-number="1"><span class="bu">help</span>(<span class="st">&#39;modules&#39;</span>)</a>
+<a class="sourceLine" id="cb181-2" data-line-number="2"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb181-3" data-line-number="3"><span class="co">#&gt; Please wait a moment while I gather a list of all available modules...</span></a>
+<a class="sourceLine" id="cb181-4" data-line-number="4"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb181-5" data-line-number="5"><span class="co">#&gt; BaseHTTPServer      atexit              imp                 sets</span></a>
+<a class="sourceLine" id="cb181-6" data-line-number="6"><span class="co">#&gt; Bastion             audiodev            importlib           setuptools</span></a>
+<a class="sourceLine" id="cb181-7" data-line-number="7"><span class="co">#&gt; CDROM               audioop             imputil             sgmllib</span></a>
+<a class="sourceLine" id="cb181-8" data-line-number="8"><span class="co">#&gt; CGIHTTPServer       axi                 inspect             sha</span></a>
+<a class="sourceLine" id="cb181-9" data-line-number="9"><span class="co">#&gt; Canvas              base64              io                  shelve</span></a>
+<a class="sourceLine" id="cb181-10" data-line-number="10"><span class="co">#&gt; Cheetah             bdb                 itertools           shlex</span></a>
+<a class="sourceLine" id="cb181-11" data-line-number="11"><span class="co">#&gt; ConfigParser        binascii            json                shutil</span></a>
+<a class="sourceLine" id="cb181-12" data-line-number="12"><span class="co">#&gt; Cookie              binhex              jsonpatch           signal</span></a>
+<a class="sourceLine" id="cb181-13" data-line-number="13"><span class="co">#&gt; DLFCN               bisect              jsonpointer         site</span></a>
+<a class="sourceLine" id="cb181-14" data-line-number="14"><span class="co">#&gt; Dialog              boto                keyword             sitecustomize</span></a>
+<a class="sourceLine" id="cb181-15" data-line-number="15"><span class="co">#&gt; DocXMLRPCServer     bsddb               landscape           six</span></a>
+<a class="sourceLine" id="cb181-16" data-line-number="16"><span class="co">#&gt; FileDialog          bz2                 lib2to3             smtpd</span></a>
+<a class="sourceLine" id="cb181-17" data-line-number="17"><span class="co">#&gt; FixTk               bzrlib              linecache           smtplib</span></a>
+<a class="sourceLine" id="cb181-18" data-line-number="18"><span class="co">#&gt; HTMLParser          cPickle             linuxaudiodev       sndhdr</span></a>
+<a class="sourceLine" id="cb181-19" data-line-number="19"><span class="co">#&gt; IN                  cProfile            locale              socket</span></a>
+<a class="sourceLine" id="cb181-20" data-line-number="20"><span class="co">#&gt; MimeWriter          cStringIO           logging             spwd</span></a>
+<a class="sourceLine" id="cb181-21" data-line-number="21"><span class="co">#&gt; OpenSSL             calendar            lsb_release         sqlite3</span></a>
+<a class="sourceLine" id="cb181-22" data-line-number="22"><span class="co">#&gt; PAM                 cgi                 macpath             sre</span></a>
+<a class="sourceLine" id="cb181-23" data-line-number="23"><span class="co">#&gt; Queue               cgitb               macurl2path         sre_compile</span></a>
+<a class="sourceLine" id="cb181-24" data-line-number="24"><span class="co">#&gt; ScrolledText        chardet             mailbox             sre_constants</span></a>
+<a class="sourceLine" id="cb181-25" data-line-number="25"><span class="co">#&gt; SimpleDialog        chunk               mailcap             sre_parse</span></a>
+<a class="sourceLine" id="cb181-26" data-line-number="26"><span class="co">#&gt; SimpleHTTPServer    cloudinit           markupbase          ssl</span></a>
+<a class="sourceLine" id="cb181-27" data-line-number="27"><span class="co">#&gt; SimpleXMLRPCServer  cmath               marshal             stat</span></a>
+<a class="sourceLine" id="cb181-28" data-line-number="28"><span class="co">#&gt; SocketServer        cmd                 math                statvfs</span></a>
+<a class="sourceLine" id="cb181-29" data-line-number="29"><span class="co">#&gt; StringIO            code                matplotlib          string</span></a>
+<a class="sourceLine" id="cb181-30" data-line-number="30"><span class="co">#&gt; TYPES               codecs              md5                 stringold</span></a>
+<a class="sourceLine" id="cb181-31" data-line-number="31"><span class="co">#&gt; Tix                 codeop              mercurial           stringprep</span></a>
+<a class="sourceLine" id="cb181-32" data-line-number="32"><span class="co">#&gt; Tkconstants         collections         mhlib               strop</span></a>
+<a class="sourceLine" id="cb181-33" data-line-number="33"><span class="co">#&gt; Tkdnd               colorsys            mimetools           struct</span></a>
+<a class="sourceLine" id="cb181-34" data-line-number="34"><span class="co">#&gt; Tkinter             commands            mimetypes           subprocess</span></a>
+<a class="sourceLine" id="cb181-35" data-line-number="35"><span class="co">#&gt; UserDict            compileall          mimify              sunau</span></a>
+<a class="sourceLine" id="cb181-36" data-line-number="36"><span class="co">#&gt; UserList            compiler            miniterm            sunaudio</span></a>
+<a class="sourceLine" id="cb181-37" data-line-number="37"><span class="co">#&gt; UserString          configobj           mmap                svg_regex</span></a>
+<a class="sourceLine" id="cb181-38" data-line-number="38"><span class="co">#&gt; _LWPCookieJar       contextlib          modulefinder        svg_transform</span></a>
+<a class="sourceLine" id="cb181-39" data-line-number="39"><span class="co">#&gt; _MozillaCookieJar   cookielib           mpl_toolkits        symbol</span></a>
+<a class="sourceLine" id="cb181-40" data-line-number="40"><span class="co">#&gt; __builtin__         copy                multifile           symtable</span></a>
+<a class="sourceLine" id="cb181-41" data-line-number="41"><span class="co">#&gt; __future__          copy_reg            multiprocessing     sys</span></a>
+<a class="sourceLine" id="cb181-42" data-line-number="42"><span class="co">#&gt; _abcoll             cqlsh               mutex               sysconfig</span></a>
+<a class="sourceLine" id="cb181-43" data-line-number="43"><span class="co">#&gt; _ast                cqlshlib            netrc               syslog</span></a>
+<a class="sourceLine" id="cb181-44" data-line-number="44"><span class="co">#&gt; _bisect             crcmod              new                 tabnanny</span></a>
+<a class="sourceLine" id="cb181-45" data-line-number="45"><span class="co">#&gt; _bsddb              crypt               nis                 tarfile</span></a>
+<a class="sourceLine" id="cb181-46" data-line-number="46"><span class="co">#&gt; _codecs             csv                 nntplib             telnetlib</span></a>
+<a class="sourceLine" id="cb181-47" data-line-number="47"><span class="co">#&gt; _codecs_cn          ctypes              ntpath              tempfile</span></a>
+<a class="sourceLine" id="cb181-48" data-line-number="48"><span class="co">#&gt; _codecs_hk          curl                nturl2path          termios</span></a>
+<a class="sourceLine" id="cb181-49" data-line-number="49"><span class="co">#&gt; _codecs_iso2022     curses              numbers             test</span></a>
+<a class="sourceLine" id="cb181-50" data-line-number="50"><span class="co">#&gt; _codecs_jp          datetime            numpy               textwrap</span></a>
+<a class="sourceLine" id="cb181-51" data-line-number="51"><span class="co">#&gt; _codecs_kr          dateutil            oauth               this</span></a>
+<a class="sourceLine" id="cb181-52" data-line-number="52"><span class="co">#&gt; _codecs_tw          dbhash              opcode              thread</span></a>
+<a class="sourceLine" id="cb181-53" data-line-number="53"><span class="co">#&gt; _collections        dbm                 operator            threading</span></a>
+<a class="sourceLine" id="cb181-54" data-line-number="54"><span class="co">#&gt; _csv                deb822              optparse            time</span></a>
+<a class="sourceLine" id="cb181-55" data-line-number="55"><span class="co">#&gt; _ctypes             debconf             os                  timeit</span></a>
+<a class="sourceLine" id="cb181-56" data-line-number="56"><span class="co">#&gt; _ctypes_test        debian              os2emxpath          tkColorChooser</span></a>
+<a class="sourceLine" id="cb181-57" data-line-number="57"><span class="co">#&gt; _curses             debian_bundle       ossaudiodev         tkCommonDialog</span></a>
+<a class="sourceLine" id="cb181-58" data-line-number="58"><span class="co">#&gt; _curses_panel       decimal             parser              tkFileDialog</span></a>
+<a class="sourceLine" id="cb181-59" data-line-number="59"><span class="co">#&gt; _elementtree        decorator           pdb                 tkFont</span></a>
+<a class="sourceLine" id="cb181-60" data-line-number="60"><span class="co">#&gt; _functools          difflib             pickle              tkMessageBox</span></a>
+<a class="sourceLine" id="cb181-61" data-line-number="61"><span class="co">#&gt; _hashlib            dircache            pickletools         tkSimpleDialog</span></a>
+<a class="sourceLine" id="cb181-62" data-line-number="62"><span class="co">#&gt; _heapq              dis                 pip                 toaiff</span></a>
+<a class="sourceLine" id="cb181-63" data-line-number="63"><span class="co">#&gt; _hotshot            distutils           pipes               token</span></a>
+<a class="sourceLine" id="cb181-64" data-line-number="64"><span class="co">#&gt; _io                 doctest             pkg_resources       tokenize</span></a>
+<a class="sourceLine" id="cb181-65" data-line-number="65"><span class="co">#&gt; _json               dumbdbm             pkgutil             trace</span></a>
+<a class="sourceLine" id="cb181-66" data-line-number="66"><span class="co">#&gt; _locale             dummy_thread        platform            traceback</span></a>
+<a class="sourceLine" id="cb181-67" data-line-number="67"><span class="co">#&gt; _lsprof             dummy_threading     plistlib            ttk</span></a>
+<a class="sourceLine" id="cb181-68" data-line-number="68"><span class="co">#&gt; _md5                easy_install        popen2              tty</span></a>
+<a class="sourceLine" id="cb181-69" data-line-number="69"><span class="co">#&gt; _multibytecodec     email               poplib              turtle</span></a>
+<a class="sourceLine" id="cb181-70" data-line-number="70"><span class="co">#&gt; _multiprocessing    encodings           posix               twisted</span></a>
+<a class="sourceLine" id="cb181-71" data-line-number="71"><span class="co">#&gt; _osx_support        errno               posixfile           types</span></a>
+<a class="sourceLine" id="cb181-72" data-line-number="72"><span class="co">#&gt; _pyio               exceptions          posixpath           unicodedata</span></a>
+<a class="sourceLine" id="cb181-73" data-line-number="73"><span class="co">#&gt; _random             fcntl               pprint              unittest</span></a>
+<a class="sourceLine" id="cb181-74" data-line-number="74"><span class="co">#&gt; _sha                filecmp             prettytable         urllib</span></a>
+<a class="sourceLine" id="cb181-75" data-line-number="75"><span class="co">#&gt; _sha256             fileinput           profile             urllib2</span></a>
+<a class="sourceLine" id="cb181-76" data-line-number="76"><span class="co">#&gt; _sha512             fnmatch             pstats              urllib3</span></a>
+<a class="sourceLine" id="cb181-77" data-line-number="77"><span class="co">#&gt; _socket             formatter           pty                 urlparse</span></a>
+<a class="sourceLine" id="cb181-78" data-line-number="78"><span class="co">#&gt; _sqlite3            fpectl              pwd                 user</span></a>
+<a class="sourceLine" id="cb181-79" data-line-number="79"><span class="co">#&gt; _sre                fpformat            py_compile          uu</span></a>
+<a class="sourceLine" id="cb181-80" data-line-number="80"><span class="co">#&gt; _ssl                fractions           pyclbr              uuid</span></a>
+<a class="sourceLine" id="cb181-81" data-line-number="81"><span class="co">#&gt; _strptime           ftplib              pycurl              validate</span></a>
+<a class="sourceLine" id="cb181-82" data-line-number="82"><span class="co">#&gt; _struct             functools           pydoc               virtualenv</span></a>
+<a class="sourceLine" id="cb181-83" data-line-number="83"><span class="co">#&gt; _symtable           future_builtins     pydoc_data          virtualenv_support</span></a>
+<a class="sourceLine" id="cb181-84" data-line-number="84"><span class="co">#&gt; _sysconfigdata      gc                  pyexpat             warnings</span></a>
+<a class="sourceLine" id="cb181-85" data-line-number="85"><span class="co">#&gt; _sysconfigdata_nd   gdbm                pylab               wave</span></a>
+<a class="sourceLine" id="cb181-86" data-line-number="86"><span class="co">#&gt; _testcapi           genericpath         pyparsing           weakref</span></a>
+<a class="sourceLine" id="cb181-87" data-line-number="87"><span class="co">#&gt; _threading_local    getopt              pytz                webbrowser</span></a>
+<a class="sourceLine" id="cb181-88" data-line-number="88"><span class="co">#&gt; _tkinter            getpass             quopri              wheel</span></a>
+<a class="sourceLine" id="cb181-89" data-line-number="89"><span class="co">#&gt; _warnings           gettext             random              whichdb</span></a>
+<a class="sourceLine" id="cb181-90" data-line-number="90"><span class="co">#&gt; _weakref            glob                re                  wsgiref</span></a>
+<a class="sourceLine" id="cb181-91" data-line-number="91"><span class="co">#&gt; _weakrefset         google_compute_engine readline            xapian</span></a>
+<a class="sourceLine" id="cb181-92" data-line-number="92"><span class="co">#&gt; _yaml               grp                 repr                xdrlib</span></a>
+<a class="sourceLine" id="cb181-93" data-line-number="93"><span class="co">#&gt; abc                 gzip                requests            xml</span></a>
+<a class="sourceLine" id="cb181-94" data-line-number="94"><span class="co">#&gt; aifc                hashlib             resource            xmllib</span></a>
+<a class="sourceLine" id="cb181-95" data-line-number="95"><span class="co">#&gt; antigravity         heapq               rexec               xmlrpclib</span></a>
+<a class="sourceLine" id="cb181-96" data-line-number="96"><span class="co">#&gt; anydbm              hgext               rfc822              xxsubtype</span></a>
+<a class="sourceLine" id="cb181-97" data-line-number="97"><span class="co">#&gt; apt                 hgext3rd            rlcompleter         yaml</span></a>
+<a class="sourceLine" id="cb181-98" data-line-number="98"><span class="co">#&gt; apt_inst            hmac                robotparser         yocto_css</span></a>
+<a class="sourceLine" id="cb181-99" data-line-number="99"><span class="co">#&gt; apt_pkg             hotshot             rpytools            zipfile</span></a>
+<a class="sourceLine" id="cb181-100" data-line-number="100"><span class="co">#&gt; aptsources          htmlentitydefs      runpy               zipimport</span></a>
+<a class="sourceLine" id="cb181-101" data-line-number="101"><span class="co">#&gt; argparse            htmllib             sched               zlib</span></a>
+<a class="sourceLine" id="cb181-102" data-line-number="102"><span class="co">#&gt; array               httplib             scipy               zope</span></a>
+<a class="sourceLine" id="cb181-103" data-line-number="103"><span class="co">#&gt; ast                 ihooks              scour               </span></a>
+<a class="sourceLine" id="cb181-104" data-line-number="104"><span class="co">#&gt; asynchat            imaplib             select              </span></a>
+<a class="sourceLine" id="cb181-105" data-line-number="105"><span class="co">#&gt; asyncore            imghdr              serial              </span></a>
+<a class="sourceLine" id="cb181-106" data-line-number="106"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb181-107" data-line-number="107"><span class="co">#&gt; Enter any module name to get more help.  Or, type &quot;modules spam&quot; to search</span></a>
+<a class="sourceLine" id="cb181-108" data-line-number="108"><span class="co">#&gt; for modules whose descriptions contain the word &quot;spam&quot;.</span></a></code></pre></div>
+</div>
+<div id="hugo" class="section level2">
+<h2><span class="header-section-number">D.3</span> Hugo</h2>
+<p>下载 <a href="https://github.com/gohugoio/hugo/releases" class="uri">https://github.com/gohugoio/hugo/releases</a></p>
+<div class="sourceCode" id="cb182"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb182-1" data-line-number="1"><span class="fu">wget</span> https://github.com/gohugoio/hugo/releases/download/v0.40.2/hugo_0.40.2_Linux-64bit.deb</a>
+<a class="sourceLine" id="cb182-2" data-line-number="2"><span class="fu">sudo</span> dpkg -i hugo_0.40.2_Linux-64bit.deb</a></code></pre></div>
+</div>
+<div id="latex" class="section level2">
+<h2><span class="header-section-number">D.4</span> LaTeX</h2>
+<p>可以考虑打包自定义 TinyTeX 发行版，自定义在于最小的中文支持和最喜爱的英文字体设置 fandol 和 sourceserifpro(XeLaTeX)，mathptmx 和 inconsolata(PDFLaTeX), fibeamer, Pandoc’s LaTeX 模板</p>
+<p>在 Windows or MacOS 下需要这行操作</p>
+<pre><code>tlmgr --repository http://www.preining.info/tlgpg/ install tlgpg</code></pre>
+<p>系统安装的字体</p>
+<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb184-1" data-line-number="1">fonts &lt;-<span class="st"> </span>base<span class="op">::</span><span class="kw">system</span>(<span class="st">&quot;fc-list :lang=en | sort&quot;</span>, <span class="dt">intern =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb184-2" data-line-number="2"><span class="kw">unique</span>(<span class="kw">do.call</span>(rbind, <span class="kw">strsplit</span>(fonts, <span class="dt">split =</span> <span class="st">&quot;:&quot;</span>))[, <span class="dv">2</span>])</a>
+<a class="sourceLine" id="cb184-3" data-line-number="3"><span class="co">#&gt;  [1] &quot; DejaVu Sans&quot;            &quot; DejaVu Sans Mono&quot;      </span></a>
+<a class="sourceLine" id="cb184-4" data-line-number="4"><span class="co">#&gt;  [3] &quot; DejaVu Serif&quot;           &quot; Liberation Mono&quot;       </span></a>
+<a class="sourceLine" id="cb184-5" data-line-number="5"><span class="co">#&gt;  [5] &quot; Liberation Sans&quot;        &quot; Liberation Sans Narrow&quot;</span></a>
+<a class="sourceLine" id="cb184-6" data-line-number="6"><span class="co">#&gt;  [7] &quot; Liberation Serif&quot;       &quot; URW Gothic L&quot;          </span></a>
+<a class="sourceLine" id="cb184-7" data-line-number="7"><span class="co">#&gt;  [9] &quot; URW Bookman L&quot;          &quot; Century Schoolbook L&quot;  </span></a>
+<a class="sourceLine" id="cb184-8" data-line-number="8"><span class="co">#&gt; [11] &quot; Nimbus Sans L&quot;          &quot; Nimbus Roman No9 L&quot;    </span></a>
+<a class="sourceLine" id="cb184-9" data-line-number="9"><span class="co">#&gt; [13] &quot; Nimbus Mono L&quot;          &quot; URW Palladio L&quot;        </span></a>
+<a class="sourceLine" id="cb184-10" data-line-number="10"><span class="co">#&gt; [15] &quot; URW Chancery L&quot;</span></a></code></pre></div>
+</div>
+<div id="pandoc" class="section level2">
+<h2><span class="header-section-number">D.5</span> Pandoc</h2>
+<p>pandoc 在 R Markdown 中是否可用</p>
+<div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb185-1" data-line-number="1">rmarkdown<span class="op">::</span><span class="kw">pandoc_available</span>()</a>
+<a class="sourceLine" id="cb185-2" data-line-number="2"><span class="co">#&gt; [1] TRUE</span></a></code></pre></div>
+<p>pandoc 版本</p>
+<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb186-1" data-line-number="1"><span class="kw">Sys.which</span>(<span class="st">&quot;pandoc&quot;</span>)</a>
+<a class="sourceLine" id="cb186-2" data-line-number="2"><span class="co">#&gt;            pandoc </span></a>
+<a class="sourceLine" id="cb186-3" data-line-number="3"><span class="co">#&gt; &quot;/usr/bin/pandoc&quot;</span></a>
+<a class="sourceLine" id="cb186-4" data-line-number="4"><span class="kw">system</span>(<span class="st">&quot;pandoc -v&quot;</span>)</a>
+<a class="sourceLine" id="cb186-5" data-line-number="5"><span class="co">#&gt; pandoc 2.2.1</span></a>
+<a class="sourceLine" id="cb186-6" data-line-number="6"><span class="co">#&gt; Compiled with pandoc-types 1.17.4.2, texmath 0.11, skylighting 0.7.0.2</span></a>
+<a class="sourceLine" id="cb186-7" data-line-number="7"><span class="co">#&gt; Default user data directory: /home/travis/.pandoc</span></a>
+<a class="sourceLine" id="cb186-8" data-line-number="8"><span class="co">#&gt; Copyright (C) 2006-2018 John MacFarlane</span></a>
+<a class="sourceLine" id="cb186-9" data-line-number="9"><span class="co">#&gt; Web:  http://pandoc.org</span></a>
+<a class="sourceLine" id="cb186-10" data-line-number="10"><span class="co">#&gt; This is free software; see the source for copying conditions.</span></a>
+<a class="sourceLine" id="cb186-11" data-line-number="11"><span class="co">#&gt; There is no warranty, not even for merchantability or fitness</span></a>
+<a class="sourceLine" id="cb186-12" data-line-number="12"><span class="co">#&gt; for a particular purpose.</span></a></code></pre></div>
+</div>
+<div id="rtools" class="section level2">
+<h2><span class="header-section-number">D.6</span> Rtools</h2>
+<p>rtools 是否可用</p>
+<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb187-1" data-line-number="1">devtools<span class="op">::</span><span class="kw">find_rtools</span>()</a>
+<a class="sourceLine" id="cb187-2" data-line-number="2"><span class="co">#&gt; [1] TRUE</span></a></code></pre></div>
+<p>算个小栗子</p>
+<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb188-1" data-line-number="1">fx &lt;-<span class="st"> </span>inline<span class="op">::</span><span class="kw">cxxfunction</span>( <span class="kw">signature</span>(<span class="dt">x =</span> <span class="st">&quot;integer&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;numeric&quot;</span> ) , <span class="st">&#39;</span></a>
+<a class="sourceLine" id="cb188-2" data-line-number="2"><span class="st">    return ScalarReal( INTEGER(x)[0] * REAL(y)[0] ) ;</span></a>
+<a class="sourceLine" id="cb188-3" data-line-number="3"><span class="st">&#39;</span> )</a>
+<a class="sourceLine" id="cb188-4" data-line-number="4"><span class="kw">fx</span>( 2L, <span class="dv">5</span> ) </a>
+<a class="sourceLine" id="cb188-5" data-line-number="5"><span class="co">#&gt; [1] 10</span></a></code></pre></div>
+</div>
+<div id="container" class="section level2">
+<h2><span class="header-section-number">D.7</span> 容器</h2>
+<div id="rocker" class="section level3">
+<h3><span class="header-section-number">D.7.1</span> rocker</h3>
+<ul>
+<li>Dockerfile <a href="https://docs.docker.com/develop/develop-images/dockerfile_best-practices/" class="uri">https://docs.docker.com/develop/develop-images/dockerfile_best-practices/</a></li>
+<li>build <a href="https://docs.docker.com/engine/reference/builder/#usage" class="uri">https://docs.docker.com/engine/reference/builder/#usage</a></li>
+</ul>
+</div>
+<div id="singularity" class="section level3">
+<h3><span class="header-section-number">D.7.2</span> Singularity</h3>
+<ul>
+<li><a href="https://github.com/bwlewis/r-and-singularity" class="uri">https://github.com/bwlewis/r-and-singularity</a></li>
+<li><a href="http://singularity.lbl.gov/" class="uri">http://singularity.lbl.gov/</a></li>
+</ul>
+</div>
+<div id="kubernetes" class="section level3">
+<h3><span class="header-section-number">D.7.3</span> Kubernetes</h3>
+<p>Kubernetes 容器集群管理 <a href="https://www.kubernetes.org.cn" class="uri">https://www.kubernetes.org.cn</a>
+参见高策的博客 <a href="http://gaocegege.com" class="uri">http://gaocegege.com</a></p>
+</div>
+</div>
+<div id="apt" class="section level2">
+<h2><span class="header-section-number">D.8</span> apt</h2>
+<p>适用于 Debian 和 Ubuntu 的软件包管理器</p>
+</div>
+<div id="yum" class="section level2">
+<h2><span class="header-section-number">D.9</span> yum</h2>
+<p>适用于 Fedora 和 CentOS 的软件包管理器</p>
+</div>
+<div id="tlmgr" class="section level2">
+<h2><span class="header-section-number">D.10</span> tlmgr</h2>
+<p>基本使用已包含在 <strong>tinytex</strong> 包 <span class="citation">(Xie <a href="#ref-R-tinytex">2018</a>)</span> 内</p>
+</div>
+<div id="git" class="section level2">
+<h2><span class="header-section-number">D.11</span> Git</h2>
+<p>CR (Carriage Return) 表示回车，LF (Line Feed) 表示换行，Windows 下用回车加换行表示下一行，UNIX/Linux 采用换行符 (LF) 表示下一行，MAC OS 则采用回车符 (CR) 表示下一行</p>
+<div class="sourceCode" id="cb189"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb189-1" data-line-number="1"><span class="fu">git</span> config --global core.autocrlf false</a></code></pre></div>
+<p>添加子模块</p>
+<div class="sourceCode" id="cb190"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb190-1" data-line-number="1"><span class="fu">git</span> submodule add git://github.com/jgm/pandoc-templates.git templates</a></code></pre></div>
+<p>克隆项目</p>
+<div class="sourceCode" id="cb191"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb191-1" data-line-number="1"><span class="fu">git</span> clone --depth=10 --branch=master --recursive \</a>
+<a class="sourceLine" id="cb191-2" data-line-number="2">    git@github.com:XiangyunHuang/pandoc4everything.git</a></code></pre></div>
+<p>配置账户</p>
+<div class="sourceCode" id="cb192"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb192-1" data-line-number="1"><span class="fu">git</span> config --global user.email <span class="st">&quot;email&quot;</span></a>
+<a class="sourceLine" id="cb192-2" data-line-number="2"><span class="fu">git</span> config --global user.name <span class="st">&quot;username&quot;</span></a>
+<a class="sourceLine" id="cb192-3" data-line-number="3"><span class="fu">touch</span> .git-credentials</a>
+<a class="sourceLine" id="cb192-4" data-line-number="4"><span class="bu">echo</span> <span class="st">&quot;https://username:password@github.com&quot;</span> <span class="op">&gt;&gt;</span> .git-credentials</a>
+<a class="sourceLine" id="cb192-5" data-line-number="5"><span class="fu">git</span> config --global credential.helper store</a></code></pre></div>
+<p>往空的 Github 仓库添加本地文件</p>
+<div class="sourceCode" id="cb193"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb193-1" data-line-number="1"><span class="fu">git</span> init</a>
+<a class="sourceLine" id="cb193-2" data-line-number="2"><span class="fu">git</span> remote add origin https://github.com/XiangyunHuang/notesdown.git</a>
+<a class="sourceLine" id="cb193-3" data-line-number="3"><span class="fu">git</span> add -A</a>
+<a class="sourceLine" id="cb193-4" data-line-number="4"><span class="fu">git</span> commit -m <span class="st">&quot;balabala&quot;</span></a>
+<a class="sourceLine" id="cb193-5" data-line-number="5"><span class="fu">git</span> push -u origin master</a></code></pre></div>
+<p>本地新建仓库推送至远程分支</p>
+<div class="sourceCode" id="cb194"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb194-1" data-line-number="1"><span class="fu">git</span> remote add origin https://github.com/XiangyunHuang/notesdown.git</a>
+<a class="sourceLine" id="cb194-2" data-line-number="2"><span class="fu">git</span> add .</a>
+<a class="sourceLine" id="cb194-3" data-line-number="3"><span class="fu">git</span> commit -m <span class="st">&quot;init cos-art&quot;</span></a>
+<a class="sourceLine" id="cb194-4" data-line-number="4"><span class="co"># 此时远程仓库 notesdown 还没有 cos-art 分支</span></a>
+<a class="sourceLine" id="cb194-5" data-line-number="5"><span class="fu">git</span> push origin master:cos-art</a></code></pre></div>
+<p>使用 zsh</p>
+<div class="sourceCode" id="cb195"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb195-1" data-line-number="1"><span class="fu">sudo</span> apt update <span class="kw">&amp;&amp;</span> <span class="fu">sudo</span> apt install zsh</a>
+<a class="sourceLine" id="cb195-2" data-line-number="2"><span class="fu">sh</span> -c <span class="st">&quot;</span><span class="va">$(</span><span class="fu">wget</span> https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -<span class="va">)</span><span class="st">&quot;</span></a></code></pre></div>
+</div>
+<div id="section-26.12" class="section level2">
+<h2><span class="header-section-number">D.12</span> 其它</h2>
+<p>重复实现的关键是拉取一个现有的 Docker 镜像，可以免去安装和环境配置的诸多麻烦。</p>
+<div class="sourceCode" id="cb196"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb196-1" data-line-number="1"><span class="ex">docker</span> run --rm -it --name book -e \</a>
+<a class="sourceLine" id="cb196-2" data-line-number="2"> DISPLAY=192.168.99.100:0 -d -p 8282:8787 -e ROOT=TRUE \</a>
+<a class="sourceLine" id="cb196-3" data-line-number="3"> -e USER=rstudio -e PASSWORD=cloud rocker/geospatial</a></code></pre></div>
+<p><code>DISPLAY=192.168.99.100:0</code> 用于启用 X11 设备，否则 rgl 等软件包会报显示警告，<code>--rm -it</code> 使得 主机和虚拟机时间一致，否则会有警告<a href="#fn10" class="footnote-ref" id="fnref10"><sup>10</sup></a></p>
+<pre><code># 两个与时间有关的警告
+Warning message:
+running command &#39;timedatectl&#39; had status 1 
+Failed to create bus connection: No such file or directory</code></pre>
+<p><a href="https://stackoverflow.com/questions/43907925/ubuntu-timedatectl-fails-in-docker-container" class="uri">https://stackoverflow.com/questions/43907925/ubuntu-timedatectl-fails-in-docker-container</a></p>
+<div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb198-1" data-line-number="1"><span class="kw">capabilities</span>()</a>
+<a class="sourceLine" id="cb198-2" data-line-number="2"> jpeg         png        tiff       tcltk         X11        aqua    http<span class="op">/</span>ftp     sockets      libxml </a>
+<a class="sourceLine" id="cb198-3" data-line-number="3"> <span class="ot">TRUE</span>        <span class="ot">TRUE</span>        <span class="ot">TRUE</span>        <span class="ot">TRUE</span>       <span class="ot">FALSE</span>       <span class="ot">FALSE</span>        <span class="ot">TRUE</span>        <span class="ot">TRUE</span>        <span class="ot">TRUE</span> </a>
+<a class="sourceLine" id="cb198-4" data-line-number="4"> fifo      cledit       iconv         NLS     profmem       cairo         ICU long.double     libcurl </a>
+<a class="sourceLine" id="cb198-5" data-line-number="5"> <span class="ot">TRUE</span>        <span class="ot">TRUE</span>        <span class="ot">TRUE</span>       <span class="ot">FALSE</span>        <span class="ot">TRUE</span>        <span class="ot">TRUE</span>        <span class="ot">TRUE</span>        <span class="ot">TRUE</span>        <span class="ot">TRUE</span> </a></code></pre></div>
+<p>主机端口号 8282，这里可以改成你自己喜欢的，虚拟机端口号 8787 对应 RStudio Server 默认端口，如果你想自己指定，就去修改 RStudio Server的配置文件。拉取的 Docker 镜像取名 book，这是方便以后启动 docker 时方便，只需</p>
+<div class="sourceCode" id="cb199"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb199-1" data-line-number="1"><span class="co"># 启动</span></a>
+<a class="sourceLine" id="cb199-2" data-line-number="2"><span class="ex">docker</span> start book</a>
+<a class="sourceLine" id="cb199-3" data-line-number="3"><span class="co"># 进入</span></a>
+<a class="sourceLine" id="cb199-4" data-line-number="4"><span class="ex">docker</span> exec -it book bash</a></code></pre></div>
+<p>由于要安装 rstan 和 rstanarm 包，编译的过程中需要比较大的内存空间，默认分配给 docker 的内存要增加到 4 Gb，也就装个软件，大一点的基于 stan 实现的模型，还是适合放在大机器上跑，笔电可以跑跑简单的模型，学习一下就可以了。</p>
+<p>R包库存放位置</p>
+<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb200-1" data-line-number="1"><span class="kw">.libPaths</span>()</a>
+<a class="sourceLine" id="cb200-2" data-line-number="2"><span class="co">#&gt; [1] &quot;/home/travis/R/Library&quot;           &quot;/usr/local/lib/R/site-library&quot;   </span></a>
+<a class="sourceLine" id="cb200-3" data-line-number="3"><span class="co">#&gt; [3] &quot;/usr/lib/R/site-library&quot;          &quot;/home/travis/R-bin/lib/R/library&quot;</span></a></code></pre></div>
+<p>查看系统路径，环境变量</p>
+<div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb201-1" data-line-number="1"><span class="kw">strsplit</span>(<span class="kw">Sys.getenv</span>(<span class="st">&quot;PATH&quot;</span>),<span class="dt">split =</span> .Platform<span class="op">$</span>path.sep)</a>
+<a class="sourceLine" id="cb201-2" data-line-number="2"><span class="co">#&gt; [[1]]</span></a>
+<a class="sourceLine" id="cb201-3" data-line-number="3"><span class="co">#&gt;  [1] &quot;/usr/bin&quot;                                            </span></a>
+<a class="sourceLine" id="cb201-4" data-line-number="4"><span class="co">#&gt;  [2] &quot;/home/travis/.rvm/gems/ruby-2.4.1/bin&quot;               </span></a>
+<a class="sourceLine" id="cb201-5" data-line-number="5"><span class="co">#&gt;  [3] &quot;/home/travis/.rvm/gems/ruby-2.4.1@global/bin&quot;        </span></a>
+<a class="sourceLine" id="cb201-6" data-line-number="6"><span class="co">#&gt;  [4] &quot;/home/travis/.rvm/rubies/ruby-2.4.1/bin&quot;             </span></a>
+<a class="sourceLine" id="cb201-7" data-line-number="7"><span class="co">#&gt;  [5] &quot;/home/travis/.rvm/bin&quot;                               </span></a>
+<a class="sourceLine" id="cb201-8" data-line-number="8"><span class="co">#&gt;  [6] &quot;/home/travis/texlive/bin/x86_64-linux&quot;               </span></a>
+<a class="sourceLine" id="cb201-9" data-line-number="9"><span class="co">#&gt;  [7] &quot;/home/travis/R-bin/bin&quot;                              </span></a>
+<a class="sourceLine" id="cb201-10" data-line-number="10"><span class="co">#&gt;  [8] &quot;/home/travis/bin&quot;                                    </span></a>
+<a class="sourceLine" id="cb201-11" data-line-number="11"><span class="co">#&gt;  [9] &quot;/home/travis/.local/bin&quot;                             </span></a>
+<a class="sourceLine" id="cb201-12" data-line-number="12"><span class="co">#&gt; [10] &quot;/opt/pyenv/shims&quot;                                    </span></a>
+<a class="sourceLine" id="cb201-13" data-line-number="13"><span class="co">#&gt; [11] &quot;/home/travis/.phpenv/shims&quot;                          </span></a>
+<a class="sourceLine" id="cb201-14" data-line-number="14"><span class="co">#&gt; [12] &quot;/home/travis/perl5/perlbrew/bin&quot;                     </span></a>
+<a class="sourceLine" id="cb201-15" data-line-number="15"><span class="co">#&gt; [13] &quot;/home/travis/.nvm/versions/node/v6.12.0/bin&quot;         </span></a>
+<a class="sourceLine" id="cb201-16" data-line-number="16"><span class="co">#&gt; [14] &quot;/home/travis/.kiex/elixirs/elixir-1.3.2/bin&quot;         </span></a>
+<a class="sourceLine" id="cb201-17" data-line-number="17"><span class="co">#&gt; [15] &quot;/home/travis/.kiex/bin&quot;                              </span></a>
+<a class="sourceLine" id="cb201-18" data-line-number="18"><span class="co">#&gt; [16] &quot;/home/travis/gopath/bin&quot;                             </span></a>
+<a class="sourceLine" id="cb201-19" data-line-number="19"><span class="co">#&gt; [17] &quot;/home/travis/.gimme/versions/go1.7.4.linux.amd64/bin&quot;</span></a>
+<a class="sourceLine" id="cb201-20" data-line-number="20"><span class="co">#&gt; [18] &quot;/usr/local/phantomjs/bin&quot;                            </span></a>
+<a class="sourceLine" id="cb201-21" data-line-number="21"><span class="co">#&gt; [19] &quot;/usr/local/phantomjs&quot;                                </span></a>
+<a class="sourceLine" id="cb201-22" data-line-number="22"><span class="co">#&gt; [20] &quot;/usr/local/neo4j-3.2.7/bin&quot;                          </span></a>
+<a class="sourceLine" id="cb201-23" data-line-number="23"><span class="co">#&gt; [21] &quot;/usr/local/cmake-3.9.2/bin&quot;                          </span></a>
+<a class="sourceLine" id="cb201-24" data-line-number="24"><span class="co">#&gt; [22] &quot;/usr/local/clang-5.0.0/bin&quot;                          </span></a>
+<a class="sourceLine" id="cb201-25" data-line-number="25"><span class="co">#&gt; [23] &quot;/usr/local/sbin&quot;                                     </span></a>
+<a class="sourceLine" id="cb201-26" data-line-number="26"><span class="co">#&gt; [24] &quot;/usr/local/bin&quot;                                      </span></a>
+<a class="sourceLine" id="cb201-27" data-line-number="27"><span class="co">#&gt; [25] &quot;/usr/sbin&quot;                                           </span></a>
+<a class="sourceLine" id="cb201-28" data-line-number="28"><span class="co">#&gt; [26] &quot;/usr/bin&quot;                                            </span></a>
+<a class="sourceLine" id="cb201-29" data-line-number="29"><span class="co">#&gt; [27] &quot;/sbin&quot;                                               </span></a>
+<a class="sourceLine" id="cb201-30" data-line-number="30"><span class="co">#&gt; [28] &quot;/bin&quot;                                                </span></a>
+<a class="sourceLine" id="cb201-31" data-line-number="31"><span class="co">#&gt; [29] &quot;/opt/ghc/bin&quot;                                        </span></a>
+<a class="sourceLine" id="cb201-32" data-line-number="32"><span class="co">#&gt; [30] &quot;/home/travis/.phpenv/bin&quot;                            </span></a>
+<a class="sourceLine" id="cb201-33" data-line-number="33"><span class="co">#&gt; [31] &quot;/opt/pyenv/bin&quot;                                      </span></a>
+<a class="sourceLine" id="cb201-34" data-line-number="34"><span class="co">#&gt; [32] &quot;/home/travis/.yarn/bin&quot;</span></a></code></pre></div>
+
+</div>
+</div>
+<h3>参考文献</h3>
+<div id="refs" class="references">
+<div id="ref-R-tinytex">
+<p>Xie, Yihui. 2018. <em>Tinytex: Helper Functions to Install and Maintain ’Tex Live’, and Compile ’Latex’ Documents</em>. <a href="https://CRAN.R-project.org/package=tinytex" class="uri">https://CRAN.R-project.org/package=tinytex</a>.</p>
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="10">
+<li id="fn10"><p><a href="https://github.com/rocker-org/rocker/wiki/Allowing-GUI-windows" class="uri">https://github.com/rocker-org/rocker/wiki/Allowing-GUI-windows</a><a href="other-tools.html#fnref10" class="footnote-back">↩</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="performance.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="reproduce.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": true,
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/XiangyunHuang/notesdown/edit/master/25-tools.Rmd",
+"text": "Edit"
+},
+"download": ["notebook.pdf"],
+"toc": {
+"collapse": "none"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

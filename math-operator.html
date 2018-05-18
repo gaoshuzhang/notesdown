@@ -1,0 +1,1039 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>R 语言学习笔记</title>
+  <meta name="description" content="这是一个R语言学习笔记">
+  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
+
+  <meta property="og:title" content="R 语言学习笔记" />
+  <meta property="og:type" content="book" />
+  <meta property="og:url" content="https://notesdown.netlify.com/" />
+  <meta property="og:image" content="https://notesdown.netlify.com/images/dragon.png" />
+  <meta property="og:description" content="这是一个R语言学习笔记" />
+  <meta name="github-repo" content="xiangyunhuang/notesdown" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="R 语言学习笔记" />
+  
+  <meta name="twitter:description" content="这是一个R语言学习笔记" />
+  <meta name="twitter:image" content="https://notesdown.netlify.com/images/dragon.png" />
+
+<meta name="author" content="黄湘云">
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <link rel="apple-touch-icon-precomposed" sizes="120x120" href="images/dragon.png">
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+<link rel="prev" href="install-setup.html">
+<link rel="next" href="section-6.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; position: absolute; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; }
+pre.numberSource a.sourceLine:empty
+  { position: absolute; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="css/style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">R语言笔记</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> 前言</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#e887b4e8b0a2"><i class="fa fa-check"></i>致谢</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#e7bb93e69e84"><i class="fa fa-check"></i>结构</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#e5908ee8aeb0"><i class="fa fa-check"></i>后记</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="section-2.html"><a href="section-2.html"><i class="fa fa-check"></i><b>2</b> 作者简介</a></li>
+<li class="chapter" data-level="3" data-path="section-3.html"><a href="section-3.html"><i class="fa fa-check"></i><b>3</b> 符号说明</a></li>
+<li class="part"><span><b>I 基础知识</b></span></li>
+<li class="chapter" data-level="4" data-path="install-setup.html"><a href="install-setup.html"><i class="fa fa-check"></i><b>4</b> 安装与配置</a><ul>
+<li class="chapter" data-level="4.1" data-path="install-setup.html"><a href="install-setup.html#-r-"><i class="fa fa-check"></i><b>4.1</b> 安装 R 软件</a></li>
+<li class="chapter" data-level="4.2" data-path="install-setup.html"><a href="install-setup.html#-r-"><i class="fa fa-check"></i><b>4.2</b> 安装 R 扩展包</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="install-setup.html"><a href="install-setup.html#rdieharder"><i class="fa fa-check"></i><b>4.2.1</b> RDieHarder</a></li>
+<li class="chapter" data-level="4.2.2" data-path="install-setup.html"><a href="install-setup.html#sparkr"><i class="fa fa-check"></i><b>4.2.2</b> SparkR</a></li>
+<li class="chapter" data-level="4.2.3" data-path="install-setup.html"><a href="install-setup.html#sparklyr"><i class="fa fa-check"></i><b>4.2.3</b> sparklyr</a></li>
+<li class="chapter" data-level="4.2.4" data-path="install-setup.html"><a href="install-setup.html#dbi"><i class="fa fa-check"></i><b>4.2.4</b> DBI</a></li>
+<li class="chapter" data-level="4.2.5" data-path="install-setup.html"><a href="install-setup.html#reticulate"><i class="fa fa-check"></i><b>4.2.5</b> reticulate</a></li>
+<li class="chapter" data-level="4.2.6" data-path="install-setup.html"><a href="install-setup.html#inla"><i class="fa fa-check"></i><b>4.2.6</b> INLA</a></li>
+<li class="chapter" data-level="4.2.7" data-path="install-setup.html"><a href="install-setup.html#mxnet"><i class="fa fa-check"></i><b>4.2.7</b> mxnet</a></li>
+<li class="chapter" data-level="4.2.8" data-path="install-setup.html"><a href="install-setup.html#tensorflow"><i class="fa fa-check"></i><b>4.2.8</b> tensorflow</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="install-setup.html"><a href="install-setup.html#-ide"><i class="fa fa-check"></i><b>4.3</b> 安装 IDE</a></li>
+<li class="chapter" data-level="4.4" data-path="install-setup.html"><a href="install-setup.html#section-4.4"><i class="fa fa-check"></i><b>4.4</b> 配置文件</a></li>
+<li class="chapter" data-level="4.5" data-path="install-setup.html"><a href="install-setup.html#tricks"><i class="fa fa-check"></i><b>4.5</b> 小技巧</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="math-operator.html"><a href="math-operator.html"><i class="fa fa-check"></i><b>5</b> 数学运算</a><ul>
+<li class="chapter" data-level="5.1" data-path="math-operator.html"><a href="math-operator.html#section-5.1"><i class="fa fa-check"></i><b>5.1</b> 矩阵运算</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="math-operator.html"><a href="math-operator.html#section-5.1.1"><i class="fa fa-check"></i><b>5.1.1</b> 乘法</a></li>
+<li class="chapter" data-level="5.1.2" data-path="math-operator.html"><a href="math-operator.html#Hadamard"><i class="fa fa-check"></i><b>5.1.2</b> Hadamard 积</a></li>
+<li class="chapter" data-level="5.1.3" data-path="math-operator.html"><a href="math-operator.html#section-5.1.3"><i class="fa fa-check"></i><b>5.1.3</b> 交叉积</a></li>
+<li class="chapter" data-level="5.1.4" data-path="math-operator.html"><a href="math-operator.html#section-5.1.4"><i class="fa fa-check"></i><b>5.1.4</b> 外积</a></li>
+<li class="chapter" data-level="5.1.5" data-path="math-operator.html"><a href="math-operator.html#section-5.1.5"><i class="fa fa-check"></i><b>5.1.5</b> 直积</a></li>
+<li class="chapter" data-level="5.1.6" data-path="math-operator.html"><a href="math-operator.html#section-5.1.6"><i class="fa fa-check"></i><b>5.1.6</b> 乘方</a></li>
+<li class="chapter" data-level="5.1.7" data-path="math-operator.html"><a href="math-operator.html#section-5.1.7"><i class="fa fa-check"></i><b>5.1.7</b> 幂</a></li>
+<li class="chapter" data-level="5.1.8" data-path="math-operator.html"><a href="math-operator.html#section-5.1.8"><i class="fa fa-check"></i><b>5.1.8</b> 行列式</a></li>
+<li class="chapter" data-level="5.1.9" data-path="math-operator.html"><a href="math-operator.html#section-5.1.9"><i class="fa fa-check"></i><b>5.1.9</b> 逆</a></li>
+<li class="chapter" data-level="5.1.10" data-path="math-operator.html"><a href="math-operator.html#section-5.1.10"><i class="fa fa-check"></i><b>5.1.10</b> 伴随矩阵</a></li>
+<li class="chapter" data-level="5.1.11" data-path="math-operator.html"><a href="math-operator.html#section-5.1.11"><i class="fa fa-check"></i><b>5.1.11</b> 单位矩阵</a></li>
+<li class="chapter" data-level="5.1.12" data-path="math-operator.html"><a href="math-operator.html#section-5.1.12"><i class="fa fa-check"></i><b>5.1.12</b> 对角矩阵</a></li>
+<li class="chapter" data-level="5.1.13" data-path="math-operator.html"><a href="math-operator.html#section-5.1.13"><i class="fa fa-check"></i><b>5.1.13</b> 条件数</a></li>
+<li class="chapter" data-level="5.1.14" data-path="math-operator.html"><a href="math-operator.html#section-5.1.14"><i class="fa fa-check"></i><b>5.1.14</b> 范数</a></li>
+<li class="chapter" data-level="5.1.15" data-path="math-operator.html"><a href="math-operator.html#section-5.1.15"><i class="fa fa-check"></i><b>5.1.15</b> 秩</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="math-operator.html"><a href="math-operator.html#section-5.2"><i class="fa fa-check"></i><b>5.2</b> 矩阵分解</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="math-operator.html"><a href="math-operator.html#cholesky-"><i class="fa fa-check"></i><b>5.2.1</b> Cholesky 分解</a></li>
+<li class="chapter" data-level="5.2.2" data-path="math-operator.html"><a href="math-operator.html#section-5.2.2"><i class="fa fa-check"></i><b>5.2.2</b> 奇异值及分解</a></li>
+<li class="chapter" data-level="5.2.3" data-path="math-operator.html"><a href="math-operator.html#qr"><i class="fa fa-check"></i><b>5.2.3</b> QR分解</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="math-operator.html"><a href="math-operator.html#section-5.3"><i class="fa fa-check"></i><b>5.3</b> 特殊函数</a><ul>
+<li class="chapter" data-level="5.3.1" data-path="math-operator.html"><a href="math-operator.html#section-5.3.1"><i class="fa fa-check"></i><b>5.3.1</b> 阶乘</a></li>
+<li class="chapter" data-level="5.3.2" data-path="math-operator.html"><a href="math-operator.html#section-5.3.2"><i class="fa fa-check"></i><b>5.3.2</b> 伽马函数</a></li>
+<li class="chapter" data-level="5.3.3" data-path="math-operator.html"><a href="math-operator.html#section-5.3.3"><i class="fa fa-check"></i><b>5.3.3</b> 贝塔函数</a></li>
+<li class="chapter" data-level="5.3.4" data-path="math-operator.html"><a href="math-operator.html#section-5.3.4"><i class="fa fa-check"></i><b>5.3.4</b> 贝塞尔函数</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="math-operator.html"><a href="math-operator.html#distribution"><i class="fa fa-check"></i><b>5.4</b> 统计分布</a><ul>
+<li class="chapter" data-level="5.4.1" data-path="math-operator.html"><a href="math-operator.html#section-5.4.1"><i class="fa fa-check"></i><b>5.4.1</b> 一元分布</a></li>
+<li class="chapter" data-level="5.4.2" data-path="math-operator.html"><a href="math-operator.html#section-5.4.2"><i class="fa fa-check"></i><b>5.4.2</b> 多元分布</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="section-6.html"><a href="section-6.html"><i class="fa fa-check"></i><b>6</b> 数据操作</a><ul>
+<li class="chapter" data-level="6.1" data-path="section-6.html"><a href="section-6.html#section-6.1"><i class="fa fa-check"></i><b>6.1</b> 集合运算</a></li>
+<li class="chapter" data-level="6.2" data-path="section-6.html"><a href="section-6.html#section-6.2"><i class="fa fa-check"></i><b>6.2</b> 正则匹配</a></li>
+<li class="chapter" data-level="6.3" data-path="section-6.html"><a href="section-6.html#section-6.3"><i class="fa fa-check"></i><b>6.3</b> 排序</a><ul>
+<li class="chapter" data-level="6.3.1" data-path="section-6.html"><a href="section-6.html#order"><i class="fa fa-check"></i><b>6.3.1</b> order</a></li>
+<li class="chapter" data-level="6.3.2" data-path="section-6.html"><a href="section-6.html#sort"><i class="fa fa-check"></i><b>6.3.2</b> sort</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="section-6.html"><a href="section-6.html#section-6.4"><i class="fa fa-check"></i><b>6.4</b> 索引</a><ul>
+<li class="chapter" data-level="6.4.1" data-path="section-6.html"><a href="section-6.html#which"><i class="fa fa-check"></i><b>6.4.1</b> which</a></li>
+<li class="chapter" data-level="6.4.2" data-path="section-6.html"><a href="section-6.html#section"><i class="fa fa-check"></i><b>6.4.2</b> <code>[[</code></a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="section-6.html"><a href="section-6.html#section-6.5"><i class="fa fa-check"></i><b>6.5</b> 分组</a></li>
+<li class="chapter" data-level="6.6" data-path="section-6.html"><a href="section-6.html#apply"><i class="fa fa-check"></i><b>6.6</b> apply</a><ul>
+<li class="chapter" data-level="6.6.1" data-path="section-6.html"><a href="section-6.html#lapply"><i class="fa fa-check"></i><b>6.6.1</b> lapply</a></li>
+<li class="chapter" data-level="6.6.2" data-path="section-6.html"><a href="section-6.html#sapply"><i class="fa fa-check"></i><b>6.6.2</b> sapply</a></li>
+<li class="chapter" data-level="6.6.3" data-path="section-6.html"><a href="section-6.html#parallel"><i class="fa fa-check"></i><b>6.6.3</b> parallel</a></li>
+</ul></li>
+<li class="chapter" data-level="6.7" data-path="section-6.html"><a href="section-6.html#section-6.7"><i class="fa fa-check"></i><b>6.7</b> 合并</a><ul>
+<li class="chapter" data-level="6.7.1" data-path="section-6.html"><a href="section-6.html#aggregate"><i class="fa fa-check"></i><b>6.7.1</b> aggregate</a></li>
+</ul></li>
+<li class="chapter" data-level="6.8" data-path="section-6.html"><a href="section-6.html#section-6.8"><i class="fa fa-check"></i><b>6.8</b> 映射</a><ul>
+<li class="chapter" data-level="6.8.1" data-path="section-6.html"><a href="section-6.html#map"><i class="fa fa-check"></i><b>6.8.1</b> Map</a></li>
+<li class="chapter" data-level="6.8.2" data-path="section-6.html"><a href="section-6.html#reduce"><i class="fa fa-check"></i><b>6.8.2</b> Reduce</a></li>
+</ul></li>
+<li class="chapter" data-level="6.9" data-path="section-6.html"><a href="section-6.html#section-6.9"><i class="fa fa-check"></i><b>6.9</b> 拆分</a><ul>
+<li class="chapter" data-level="6.9.1" data-path="section-6.html"><a href="section-6.html#split"><i class="fa fa-check"></i><b>6.9.1</b> split</a></li>
+<li class="chapter" data-level="6.9.2" data-path="section-6.html"><a href="section-6.html#cut"><i class="fa fa-check"></i><b>6.9.2</b> cut</a></li>
+</ul></li>
+<li class="chapter" data-level="6.10" data-path="section-6.html"><a href="section-6.html#section-6.10"><i class="fa fa-check"></i><b>6.10</b> 数据库</a></li>
+</ul></li>
+<li class="part"><span><b>II 统计图形</b></span></li>
+<li class="chapter" data-level="7" data-path="graphics.html"><a href="graphics.html"><i class="fa fa-check"></i><b>7</b> 基础图形</a><ul>
+<li class="chapter" data-level="7.1" data-path="graphics.html"><a href="graphics.html#base"><i class="fa fa-check"></i><b>7.1</b> plot</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="ggplot.html"><a href="ggplot.html"><i class="fa fa-check"></i><b>8</b> 高级图形</a></li>
+<li class="chapter" data-level="9" data-path="section-9.html"><a href="section-9.html"><i class="fa fa-check"></i><b>9</b> 动态图形</a><ul>
+<li class="chapter" data-level="9.1" data-path="section-9.html"><a href="section-9.html#echarts"><i class="fa fa-check"></i><b>9.1</b> ECharts</a></li>
+<li class="chapter" data-level="9.2" data-path="section-9.html"><a href="section-9.html#d3"><i class="fa fa-check"></i><b>9.2</b> D3</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="section-10.html"><a href="section-10.html"><i class="fa fa-check"></i><b>10</b> 绘图工具</a><ul>
+<li class="chapter" data-level="10.1" data-path="section-10.html"><a href="section-10.html#section-10.1"><i class="fa fa-check"></i><b>10.1</b> 截图</a></li>
+<li class="chapter" data-level="10.2" data-path="section-10.html"><a href="section-10.html#inkscape"><i class="fa fa-check"></i><b>10.2</b> Inkscape</a></li>
+<li class="chapter" data-level="10.3" data-path="section-10.html"><a href="section-10.html#section-10.3"><i class="fa fa-check"></i><b>10.3</b> 转化</a></li>
+<li class="chapter" data-level="10.4" data-path="section-10.html"><a href="section-10.html#section-10.4"><i class="fa fa-check"></i><b>10.4</b> 优化</a></li>
+<li class="chapter" data-level="10.5" data-path="section-10.html"><a href="section-10.html#section-10.5"><i class="fa fa-check"></i><b>10.5</b> 裁剪</a></li>
+<li class="chapter" data-level="10.6" data-path="section-10.html"><a href="section-10.html#section-10.6"><i class="fa fa-check"></i><b>10.6</b> 接口</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="color.html"><a href="color.html"><i class="fa fa-check"></i><b>11</b> 配色</a><ul>
+<li class="chapter" data-level="11.1" data-path="color.html"><a href="color.html#section-11.1"><i class="fa fa-check"></i><b>11.1</b> 调色板</a></li>
+<li class="chapter" data-level="11.2" data-path="color.html"><a href="color.html#section-11.2"><i class="fa fa-check"></i><b>11.2</b> 颜色空间</a><ul>
+<li class="chapter" data-level="11.2.1" data-path="color.html"><a href="color.html#rgb"><i class="fa fa-check"></i><b>11.2.1</b> RGB</a></li>
+<li class="chapter" data-level="11.2.2" data-path="color.html"><a href="color.html#hsl"><i class="fa fa-check"></i><b>11.2.2</b> HSL</a></li>
+<li class="chapter" data-level="11.2.3" data-path="color.html"><a href="color.html#hsv"><i class="fa fa-check"></i><b>11.2.3</b> HSV</a></li>
+<li class="chapter" data-level="11.2.4" data-path="color.html"><a href="color.html#hcl"><i class="fa fa-check"></i><b>11.2.4</b> HCL</a></li>
+<li class="chapter" data-level="11.2.5" data-path="color.html"><a href="color.html#cmyk"><i class="fa fa-check"></i><b>11.2.5</b> CMYK</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="fonts.html"><a href="fonts.html"><i class="fa fa-check"></i><b>12</b> 字体</a><ul>
+<li class="chapter" data-level="12.1" data-path="fonts.html"><a href="fonts.html#cjk-"><i class="fa fa-check"></i><b>12.1</b> CJK 字体</a></li>
+<li class="chapter" data-level="12.2" data-path="fonts.html"><a href="fonts.html#showtext"><i class="fa fa-check"></i><b>12.2</b> showtext</a></li>
+<li class="chapter" data-level="12.3" data-path="fonts.html"><a href="fonts.html#xkcd"><i class="fa fa-check"></i><b>12.3</b> xkcd</a></li>
+<li class="chapter" data-level="12.4" data-path="fonts.html"><a href="fonts.html#fontcm"><i class="fa fa-check"></i><b>12.4</b> fontcm</a></li>
+<li class="chapter" data-level="12.5" data-path="fonts.html"><a href="fonts.html#tikzdevice"><i class="fa fa-check"></i><b>12.5</b> tikzDevice</a></li>
+<li class="chapter" data-level="12.6" data-path="fonts.html"><a href="fonts.html#tikz--pgf"><i class="fa fa-check"></i><b>12.6</b> TikZ 和 PGF</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="animotion.html"><a href="animotion.html"><i class="fa fa-check"></i><b>13</b> 动画</a><ul>
+<li class="chapter" data-level="13.1" data-path="animotion.html"><a href="animotion.html#js-"><i class="fa fa-check"></i><b>13.1</b> JS 动画</a></li>
+<li class="chapter" data-level="13.2" data-path="animotion.html"><a href="animotion.html#svg-"><i class="fa fa-check"></i><b>13.2</b> svg 动画</a></li>
+<li class="chapter" data-level="13.3" data-path="animotion.html"><a href="animotion.html#mapmate"><i class="fa fa-check"></i><b>13.3</b> mapmate</a></li>
+<li class="chapter" data-level="13.4" data-path="animotion.html"><a href="animotion.html#rgl"><i class="fa fa-check"></i><b>13.4</b> rgl</a></li>
+</ul></li>
+<li class="part"><span><b>III 统计计算</b></span></li>
+<li class="chapter" data-level="14" data-path="optimation.html"><a href="optimation.html"><i class="fa fa-check"></i><b>14</b> 数值优化</a><ul>
+<li class="chapter" data-level="14.1" data-path="optimation.html"><a href="optimation.html#section-14.1"><i class="fa fa-check"></i><b>14.1</b> 测试函数</a></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="section-15.html"><a href="section-15.html"><i class="fa fa-check"></i><b>15</b> 随机模拟</a><ul>
+<li class="chapter" data-level="15.1" data-path="section-15.html"><a href="section-15.html#section-15.1"><i class="fa fa-check"></i><b>15.1</b> 随机数</a></li>
+<li class="chapter" data-level="15.2" data-path="section-15.html"><a href="section-15.html#section-15.2"><i class="fa fa-check"></i><b>15.2</b> 随机过程</a><ul>
+<li class="chapter" data-level="15.2.1" data-path="section-15.html"><a href="section-15.html#section-15.2.1"><i class="fa fa-check"></i><b>15.2.1</b> 随机游走</a></li>
+<li class="chapter" data-level="15.2.2" data-path="section-15.html"><a href="section-15.html#section-15.2.2"><i class="fa fa-check"></i><b>15.2.2</b> 遍历定理</a></li>
+<li class="chapter" data-level="15.2.3" data-path="section-15.html"><a href="section-15.html#m-h-"><i class="fa fa-check"></i><b>15.2.3</b> M-H 算法</a></li>
+<li class="chapter" data-level="15.2.4" data-path="section-15.html"><a href="section-15.html#gibbs-"><i class="fa fa-check"></i><b>15.2.4</b> Gibbs 算法</a></li>
+<li class="chapter" data-level="15.2.5" data-path="section-15.html"><a href="section-15.html#hmc-"><i class="fa fa-check"></i><b>15.2.5</b> HMC 算法</a></li>
+</ul></li>
+<li class="chapter" data-level="15.3" data-path="section-15.html"><a href="section-15.html#section-15.3"><i class="fa fa-check"></i><b>15.3</b> 分布式</a><ul>
+<li class="chapter" data-level="15.3.1" data-path="section-15.html"><a href="section-15.html#rmpi"><i class="fa fa-check"></i><b>15.3.1</b> Rmpi</a></li>
+<li class="chapter" data-level="15.3.2" data-path="section-15.html"><a href="section-15.html#rhpc"><i class="fa fa-check"></i><b>15.3.2</b> Rhpc</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="bayes.html"><a href="bayes.html"><i class="fa fa-check"></i><b>16</b> 贝叶斯计算</a><ul>
+<li class="chapter" data-level="16.1" data-path="bayes.html"><a href="bayes.html#bugs-"><i class="fa fa-check"></i><b>16.1</b> BUGS 软件</a></li>
+<li class="chapter" data-level="16.2" data-path="bayes.html"><a href="bayes.html#stan-"><i class="fa fa-check"></i><b>16.2</b> Stan 框架</a><ul>
+<li class="chapter" data-level="16.2.1" data-path="bayes.html"><a href="bayes.html#pystan-"><i class="fa fa-check"></i><b>16.2.1</b> PyStan 接口</a></li>
+<li class="chapter" data-level="16.2.2" data-path="bayes.html"><a href="bayes.html#rstan-"><i class="fa fa-check"></i><b>16.2.2</b> RStan 接口</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="r-inla.html"><a href="r-inla.html"><i class="fa fa-check"></i><b>17</b> 近似推断</a><ul>
+<li class="chapter" data-level="17.1" data-path="r-inla.html"><a href="r-inla.html#-"><i class="fa fa-check"></i><b>17.1</b> 高斯-马尔科夫随机场</a></li>
+<li class="chapter" data-level="17.2" data-path="r-inla.html"><a href="r-inla.html#section-17.2"><i class="fa fa-check"></i><b>17.2</b> 贝叶斯近似推断</a></li>
+</ul></li>
+<li class="part"><span><b>IV 数据分析</b></span></li>
+<li class="chapter" data-level="18" data-path="spatial.html"><a href="spatial.html"><i class="fa fa-check"></i><b>18</b> 空间数据</a><ul>
+<li class="chapter" data-level="18.1" data-path="spatial.html"><a href="spatial.html#section-18.1"><i class="fa fa-check"></i><b>18.1</b> 分析与可视化</a></li>
+<li class="chapter" data-level="18.2" data-path="spatial.html"><a href="spatial.html#sf"><i class="fa fa-check"></i><b>18.2</b> sf</a></li>
+<li class="chapter" data-level="18.3" data-path="spatial.html"><a href="spatial.html#prevmap"><i class="fa fa-check"></i><b>18.3</b> PrevMap</a></li>
+</ul></li>
+<li class="chapter" data-level="19" data-path="network.html"><a href="network.html"><i class="fa fa-check"></i><b>19</b> 网络数据</a><ul>
+<li class="chapter" data-level="19.1" data-path="network.html"><a href="network.html#-1"><i class="fa fa-check"></i><b>19.1</b> 分析与可视化</a></li>
+<li class="chapter" data-level="19.2" data-path="network.html"><a href="network.html#gephi"><i class="fa fa-check"></i><b>19.2</b> gephi</a></li>
+</ul></li>
+<li class="part"><span><b>V 统计模型</b></span></li>
+<li class="chapter" data-level="20" data-path="glm.html"><a href="glm.html"><i class="fa fa-check"></i><b>20</b> 广义线性模型</a><ul>
+<li class="chapter" data-level="20.1" data-path="glm.html"><a href="glm.html#section-20.1"><i class="fa fa-check"></i><b>20.1</b> 线性模型</a><ul>
+<li class="chapter" data-level="20.1.1" data-path="glm.html"><a href="glm.html#section-20.1.1"><i class="fa fa-check"></i><b>20.1.1</b> 参数估计</a></li>
+<li class="chapter" data-level="20.1.2" data-path="glm.html"><a href="glm.html#section-20.1.2"><i class="fa fa-check"></i><b>20.1.2</b> 最小二乘</a></li>
+<li class="chapter" data-level="20.1.3" data-path="glm.html"><a href="glm.html#section-20.1.3"><i class="fa fa-check"></i><b>20.1.3</b> 最大似然</a></li>
+</ul></li>
+<li class="chapter" data-level="20.2" data-path="network.html"><a href="network.html#-1"><i class="fa fa-check"></i><b>20.2</b> 参数估计</a><ul>
+<li class="chapter" data-level="20.2.1" data-path="glm.html"><a href="glm.html#section-20.2.1"><i class="fa fa-check"></i><b>20.2.1</b> 最小二乘估计</a></li>
+<li class="chapter" data-level="20.2.2" data-path="glm.html"><a href="glm.html#section-20.2.2"><i class="fa fa-check"></i><b>20.2.2</b> 广义最小二乘估计</a></li>
+<li class="chapter" data-level="20.2.3" data-path="glm.html"><a href="glm.html#section-20.2.3"><i class="fa fa-check"></i><b>20.2.3</b> 最大似然估计</a></li>
+</ul></li>
+<li class="chapter" data-level="20.3" data-path="glm.html"><a href="glm.html#section-20.3"><i class="fa fa-check"></i><b>20.3</b> 高维问题</a></li>
+</ul></li>
+<li class="chapter" data-level="21" data-path="mixed-model.html"><a href="mixed-model.html"><i class="fa fa-check"></i><b>21</b> 混合效应模型</a><ul>
+<li class="chapter" data-level="21.1" data-path="mixed-model.html"><a href="mixed-model.html#section-21.1"><i class="fa fa-check"></i><b>21.1</b> 方差分析</a></li>
+<li class="chapter" data-level="21.2" data-path="mixed-model.html"><a href="mixed-model.html#section-21.2"><i class="fa fa-check"></i><b>21.2</b> 线性混合效应模型</a></li>
+<li class="chapter" data-level="21.3" data-path="mixed-model.html"><a href="mixed-model.html#section-21.3"><i class="fa fa-check"></i><b>21.3</b> 广义线性混合效应模型</a></li>
+<li class="chapter" data-level="21.4" data-path="mixed-model.html"><a href="mixed-model.html#section-21.4"><i class="fa fa-check"></i><b>21.4</b> 空间广义线性混合效应模型</a></li>
+<li class="chapter" data-level="21.5" data-path="mixed-model.html"><a href="mixed-model.html#-2"><i class="fa fa-check"></i><b>21.5</b> 参数估计</a><ul>
+<li class="chapter" data-level="21.5.1" data-path="mixed-model.html"><a href="mixed-model.html#section-21.5.1"><i class="fa fa-check"></i><b>21.5.1</b> 限制极大似然估计</a></li>
+<li class="chapter" data-level="21.5.2" data-path="mixed-model.html"><a href="mixed-model.html#profile-"><i class="fa fa-check"></i><b>21.5.2</b> profile 似然估计</a></li>
+<li class="chapter" data-level="21.5.3" data-path="mixed-model.html"><a href="mixed-model.html#section-21.5.3"><i class="fa fa-check"></i><b>21.5.3</b> 贝叶斯估计</a></li>
+</ul></li>
+<li class="chapter" data-level="21.6" data-path="network.html"><a href="network.html#-1"><i class="fa fa-check"></i><b>21.6</b> 高维问题</a></li>
+</ul></li>
+<li class="chapter" data-level="22" data-path="gam.html"><a href="gam.html"><i class="fa fa-check"></i><b>22</b> 广义可加模型</a><ul>
+<li class="chapter" data-level="22.1" data-path="gam.html"><a href="gam.html#section-22.1"><i class="fa fa-check"></i><b>22.1</b> 一般广义可加模型</a></li>
+<li class="chapter" data-level="22.2" data-path="gam.html"><a href="gam.html#section-22.2"><i class="fa fa-check"></i><b>22.2</b> 广义可加混合效应模型</a></li>
+<li class="chapter" data-level="22.3" data-path="mixed-model.html"><a href="mixed-model.html#-2"><i class="fa fa-check"></i><b>22.3</b> 高维问题</a></li>
+</ul></li>
+<li class="appendix"><span><b>附录</b></span></li>
+<li class="chapter" data-level="A" data-path="pandoc-markdown.html"><a href="pandoc-markdown.html"><i class="fa fa-check"></i><b>A</b> R Markdown</a><ul>
+<li class="chapter" data-level="A.1" data-path="pandoc-markdown.html"><a href="pandoc-markdown.html#bookdown"><i class="fa fa-check"></i><b>A.1</b> bookdown</a></li>
+<li class="chapter" data-level="A.2" data-path="pandoc-markdown.html"><a href="pandoc-markdown.html#kableExtra"><i class="fa fa-check"></i><b>A.2</b> 复杂表格制作</a></li>
+</ul></li>
+<li class="chapter" data-level="B" data-path="python-plot.html"><a href="python-plot.html"><i class="fa fa-check"></i><b>B</b> Python 绘图</a><ul>
+<li class="chapter" data-level="B.1" data-path="python-plot.html"><a href="python-plot.html#matplotlib"><i class="fa fa-check"></i><b>B.1</b> matplotlib</a></li>
+<li class="chapter" data-level="B.2" data-path="python-plot.html"><a href="python-plot.html#seaborn"><i class="fa fa-check"></i><b>B.2</b> seaborn</a></li>
+<li class="chapter" data-level="B.3" data-path="python-plot.html"><a href="python-plot.html#pyglet"><i class="fa fa-check"></i><b>B.3</b> pyglet</a></li>
+<li class="chapter" data-level="B.4" data-path="python-plot.html"><a href="python-plot.html#mayavi"><i class="fa fa-check"></i><b>B.4</b> mayavi</a></li>
+<li class="chapter" data-level="B.5" data-path="python-plot.html"><a href="python-plot.html#bokeh"><i class="fa fa-check"></i><b>B.5</b> bokeh</a></li>
+<li class="chapter" data-level="B.6" data-path="python-plot.html"><a href="python-plot.html#plotly"><i class="fa fa-check"></i><b>B.6</b> plotly</a></li>
+</ul></li>
+<li class="chapter" data-level="C" data-path="performance.html"><a href="performance.html"><i class="fa fa-check"></i><b>C</b> 性能提升</a><ul>
+<li class="chapter" data-level="C.1" data-path="performance.html"><a href="performance.html#rcpp"><i class="fa fa-check"></i><b>C.1</b> Rcpp</a><ul>
+<li class="chapter" data-level="C.1.1" data-path="performance.html"><a href="performance.html#rcppoctave"><i class="fa fa-check"></i><b>C.1.1</b> RcppOctave</a></li>
+<li class="chapter" data-level="C.1.2" data-path="performance.html"><a href="performance.html#rcppgsl"><i class="fa fa-check"></i><b>C.1.2</b> RcppGSL</a></li>
+<li class="chapter" data-level="C.1.3" data-path="performance.html"><a href="performance.html#rcpparmadillo"><i class="fa fa-check"></i><b>C.1.3</b> RcppArmadillo</a></li>
+<li class="chapter" data-level="C.1.4" data-path="performance.html"><a href="performance.html#rcppparallel"><i class="fa fa-check"></i><b>C.1.4</b> RcppParallel</a></li>
+<li class="chapter" data-level="C.1.5" data-path="performance.html"><a href="performance.html#rcppnumerical"><i class="fa fa-check"></i><b>C.1.5</b> RcppNumerical</a></li>
+<li class="chapter" data-level="C.1.6" data-path="performance.html"><a href="performance.html#rcppalgos"><i class="fa fa-check"></i><b>C.1.6</b> RcppAlgos</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="D" data-path="other-tools.html"><a href="other-tools.html"><i class="fa fa-check"></i><b>D</b> 软件工具</a><ul>
+<li class="chapter" data-level="D.1" data-path="other-tools.html"><a href="other-tools.html#octave"><i class="fa fa-check"></i><b>D.1</b> Octave</a></li>
+<li class="chapter" data-level="D.2" data-path="other-tools.html"><a href="other-tools.html#python"><i class="fa fa-check"></i><b>D.2</b> Python</a></li>
+<li class="chapter" data-level="D.3" data-path="other-tools.html"><a href="other-tools.html#hugo"><i class="fa fa-check"></i><b>D.3</b> Hugo</a></li>
+<li class="chapter" data-level="D.4" data-path="other-tools.html"><a href="other-tools.html#latex"><i class="fa fa-check"></i><b>D.4</b> LaTeX</a></li>
+<li class="chapter" data-level="D.5" data-path="other-tools.html"><a href="other-tools.html#pandoc"><i class="fa fa-check"></i><b>D.5</b> Pandoc</a></li>
+<li class="chapter" data-level="D.6" data-path="other-tools.html"><a href="other-tools.html#rtools"><i class="fa fa-check"></i><b>D.6</b> Rtools</a></li>
+<li class="chapter" data-level="D.7" data-path="other-tools.html"><a href="other-tools.html#container"><i class="fa fa-check"></i><b>D.7</b> 容器</a><ul>
+<li class="chapter" data-level="D.7.1" data-path="other-tools.html"><a href="other-tools.html#rocker"><i class="fa fa-check"></i><b>D.7.1</b> rocker</a></li>
+<li class="chapter" data-level="D.7.2" data-path="other-tools.html"><a href="other-tools.html#singularity"><i class="fa fa-check"></i><b>D.7.2</b> Singularity</a></li>
+<li class="chapter" data-level="D.7.3" data-path="other-tools.html"><a href="other-tools.html#kubernetes"><i class="fa fa-check"></i><b>D.7.3</b> Kubernetes</a></li>
+</ul></li>
+<li class="chapter" data-level="D.8" data-path="other-tools.html"><a href="other-tools.html#apt"><i class="fa fa-check"></i><b>D.8</b> apt</a></li>
+<li class="chapter" data-level="D.9" data-path="other-tools.html"><a href="other-tools.html#yum"><i class="fa fa-check"></i><b>D.9</b> yum</a></li>
+<li class="chapter" data-level="D.10" data-path="other-tools.html"><a href="other-tools.html#tlmgr"><i class="fa fa-check"></i><b>D.10</b> tlmgr</a></li>
+<li class="chapter" data-level="D.11" data-path="other-tools.html"><a href="other-tools.html#git"><i class="fa fa-check"></i><b>D.11</b> Git</a></li>
+<li class="chapter" data-level="D.12" data-path="02-operators.html"><a href="#section-D.12"><i class="fa fa-check"></i><b>D.12</b> 其它</a></li>
+</ul></li>
+<li class="chapter" data-level="E" data-path="reproduce.html"><a href="reproduce.html"><i class="fa fa-check"></i><b>E</b> 重现</a></li>
+<li class="chapter" data-level="F" data-path="bookmarks.html"><a href="bookmarks.html"><i class="fa fa-check"></i><b>F</b> 书签</a><ul>
+<li class="chapter" data-level="F.1" data-path="bookmarks.html"><a href="bookmarks.html#homepage"><i class="fa fa-check"></i><b>F.1</b> 主页</a></li>
+<li class="chapter" data-level="F.2" data-path="bookmarks.html"><a href="bookmarks.html#blogger"><i class="fa fa-check"></i><b>F.2</b> 博客</a></li>
+<li class="chapter" data-level="F.3" data-path="bookmarks.html"><a href="bookmarks.html#books"><i class="fa fa-check"></i><b>F.3</b> 书单</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="e58f82e88083e69687e78cae.html"><a href="e58f82e88083e69687e78cae.html"><i class="fa fa-check"></i>参考文献</a></li>
+<li class="divider"></li>
+<li><a href="https://xiangyun.netlify.com/">黄湘云</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">R 语言学习笔记</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="math-operator" class="section level1">
+<h1><span class="header-section-number">第 5 章</span> 数学运算</h1>
+<p>统计计算之矩阵运算，自然离不开 <strong>Matrix</strong> 包 <span class="citation">(Bates and Maechler <a href="#ref-R-Matrix">2017</a>)</span></p>
+<div id="section-5.1" class="section level2">
+<h2><span class="header-section-number">5.1</span> 矩阵运算</h2>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" data-line-number="1">A &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">3</span>), <span class="dt">nrow =</span> <span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb26-2" data-line-number="2">A</a>
+<a class="sourceLine" id="cb26-3" data-line-number="3"><span class="co">#&gt;      [,1] [,2]</span></a>
+<a class="sourceLine" id="cb26-4" data-line-number="4"><span class="co">#&gt; [1,]    1    2</span></a>
+<a class="sourceLine" id="cb26-5" data-line-number="5"><span class="co">#&gt; [2,]    2    3</span></a></code></pre></div>
+<div id="section-5.1.1" class="section level3">
+<h3><span class="header-section-number">5.1.1</span> 乘法</h3>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" data-line-number="1">A <span class="op">%*%</span><span class="st"> </span>A</a>
+<a class="sourceLine" id="cb27-2" data-line-number="2"><span class="co">#&gt;      [,1] [,2]</span></a>
+<a class="sourceLine" id="cb27-3" data-line-number="3"><span class="co">#&gt; [1,]    5    8</span></a>
+<a class="sourceLine" id="cb27-4" data-line-number="4"><span class="co">#&gt; [2,]    8   13</span></a></code></pre></div>
+</div>
+<div id="Hadamard" class="section level3">
+<h3><span class="header-section-number">5.1.2</span> Hadamard 积</h3>
+<p>矩阵每个元素平方</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" data-line-number="1">A<span class="op">^</span><span class="dv">2</span></a>
+<a class="sourceLine" id="cb28-2" data-line-number="2"><span class="co">#&gt;      [,1] [,2]</span></a>
+<a class="sourceLine" id="cb28-3" data-line-number="3"><span class="co">#&gt; [1,]    1    4</span></a>
+<a class="sourceLine" id="cb28-4" data-line-number="4"><span class="co">#&gt; [2,]    4    9</span></a></code></pre></div>
+</div>
+<div id="section-5.1.3" class="section level3">
+<h3><span class="header-section-number">5.1.3</span> 交叉积</h3>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" data-line-number="1"><span class="kw">crossprod</span>(A, A)  <span class="co">#  t(x) %*% y</span></a>
+<a class="sourceLine" id="cb29-2" data-line-number="2"><span class="co">#&gt;      [,1] [,2]</span></a>
+<a class="sourceLine" id="cb29-3" data-line-number="3"><span class="co">#&gt; [1,]    5    8</span></a>
+<a class="sourceLine" id="cb29-4" data-line-number="4"><span class="co">#&gt; [2,]    8   13</span></a>
+<a class="sourceLine" id="cb29-5" data-line-number="5"><span class="kw">tcrossprod</span>(A, A) <span class="co">#  x %*% t(y)</span></a>
+<a class="sourceLine" id="cb29-6" data-line-number="6"><span class="co">#&gt;      [,1] [,2]</span></a>
+<a class="sourceLine" id="cb29-7" data-line-number="7"><span class="co">#&gt; [1,]    5    8</span></a>
+<a class="sourceLine" id="cb29-8" data-line-number="8"><span class="co">#&gt; [2,]    8   13</span></a></code></pre></div>
+</div>
+<div id="section-5.1.4" class="section level3">
+<h3><span class="header-section-number">5.1.4</span> 外积</h3>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" data-line-number="1">A <span class="op">%o%</span><span class="st"> </span>A</a>
+<a class="sourceLine" id="cb30-2" data-line-number="2"><span class="co">#&gt; , , 1, 1</span></a>
+<a class="sourceLine" id="cb30-3" data-line-number="3"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb30-4" data-line-number="4"><span class="co">#&gt;      [,1] [,2]</span></a>
+<a class="sourceLine" id="cb30-5" data-line-number="5"><span class="co">#&gt; [1,]    1    2</span></a>
+<a class="sourceLine" id="cb30-6" data-line-number="6"><span class="co">#&gt; [2,]    2    3</span></a>
+<a class="sourceLine" id="cb30-7" data-line-number="7"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb30-8" data-line-number="8"><span class="co">#&gt; , , 2, 1</span></a>
+<a class="sourceLine" id="cb30-9" data-line-number="9"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb30-10" data-line-number="10"><span class="co">#&gt;      [,1] [,2]</span></a>
+<a class="sourceLine" id="cb30-11" data-line-number="11"><span class="co">#&gt; [1,]    2    4</span></a>
+<a class="sourceLine" id="cb30-12" data-line-number="12"><span class="co">#&gt; [2,]    4    6</span></a>
+<a class="sourceLine" id="cb30-13" data-line-number="13"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb30-14" data-line-number="14"><span class="co">#&gt; , , 1, 2</span></a>
+<a class="sourceLine" id="cb30-15" data-line-number="15"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb30-16" data-line-number="16"><span class="co">#&gt;      [,1] [,2]</span></a>
+<a class="sourceLine" id="cb30-17" data-line-number="17"><span class="co">#&gt; [1,]    2    4</span></a>
+<a class="sourceLine" id="cb30-18" data-line-number="18"><span class="co">#&gt; [2,]    4    6</span></a>
+<a class="sourceLine" id="cb30-19" data-line-number="19"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb30-20" data-line-number="20"><span class="co">#&gt; , , 2, 2</span></a>
+<a class="sourceLine" id="cb30-21" data-line-number="21"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb30-22" data-line-number="22"><span class="co">#&gt;      [,1] [,2]</span></a>
+<a class="sourceLine" id="cb30-23" data-line-number="23"><span class="co">#&gt; [1,]    3    6</span></a>
+<a class="sourceLine" id="cb30-24" data-line-number="24"><span class="co">#&gt; [2,]    6    9</span></a>
+<a class="sourceLine" id="cb30-25" data-line-number="25"><span class="kw">outer</span>(A, A, <span class="dt">FUN =</span> <span class="st">&quot;*&quot;</span>)</a>
+<a class="sourceLine" id="cb30-26" data-line-number="26"><span class="co">#&gt; , , 1, 1</span></a>
+<a class="sourceLine" id="cb30-27" data-line-number="27"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb30-28" data-line-number="28"><span class="co">#&gt;      [,1] [,2]</span></a>
+<a class="sourceLine" id="cb30-29" data-line-number="29"><span class="co">#&gt; [1,]    1    2</span></a>
+<a class="sourceLine" id="cb30-30" data-line-number="30"><span class="co">#&gt; [2,]    2    3</span></a>
+<a class="sourceLine" id="cb30-31" data-line-number="31"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb30-32" data-line-number="32"><span class="co">#&gt; , , 2, 1</span></a>
+<a class="sourceLine" id="cb30-33" data-line-number="33"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb30-34" data-line-number="34"><span class="co">#&gt;      [,1] [,2]</span></a>
+<a class="sourceLine" id="cb30-35" data-line-number="35"><span class="co">#&gt; [1,]    2    4</span></a>
+<a class="sourceLine" id="cb30-36" data-line-number="36"><span class="co">#&gt; [2,]    4    6</span></a>
+<a class="sourceLine" id="cb30-37" data-line-number="37"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb30-38" data-line-number="38"><span class="co">#&gt; , , 1, 2</span></a>
+<a class="sourceLine" id="cb30-39" data-line-number="39"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb30-40" data-line-number="40"><span class="co">#&gt;      [,1] [,2]</span></a>
+<a class="sourceLine" id="cb30-41" data-line-number="41"><span class="co">#&gt; [1,]    2    4</span></a>
+<a class="sourceLine" id="cb30-42" data-line-number="42"><span class="co">#&gt; [2,]    4    6</span></a>
+<a class="sourceLine" id="cb30-43" data-line-number="43"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb30-44" data-line-number="44"><span class="co">#&gt; , , 2, 2</span></a>
+<a class="sourceLine" id="cb30-45" data-line-number="45"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb30-46" data-line-number="46"><span class="co">#&gt;      [,1] [,2]</span></a>
+<a class="sourceLine" id="cb30-47" data-line-number="47"><span class="co">#&gt; [1,]    3    6</span></a>
+<a class="sourceLine" id="cb30-48" data-line-number="48"><span class="co">#&gt; [2,]    6    9</span></a></code></pre></div>
+</div>
+<div id="section-5.1.5" class="section level3">
+<h3><span class="header-section-number">5.1.5</span> 直积</h3>
+<p>直积/克罗内克积</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" data-line-number="1">A <span class="op">%x%</span><span class="st"> </span>A</a>
+<a class="sourceLine" id="cb31-2" data-line-number="2"><span class="co">#&gt;      [,1] [,2] [,3] [,4]</span></a>
+<a class="sourceLine" id="cb31-3" data-line-number="3"><span class="co">#&gt; [1,]    1    2    2    4</span></a>
+<a class="sourceLine" id="cb31-4" data-line-number="4"><span class="co">#&gt; [2,]    2    3    4    6</span></a>
+<a class="sourceLine" id="cb31-5" data-line-number="5"><span class="co">#&gt; [3,]    2    4    3    6</span></a>
+<a class="sourceLine" id="cb31-6" data-line-number="6"><span class="co">#&gt; [4,]    4    6    6    9</span></a>
+<a class="sourceLine" id="cb31-7" data-line-number="7"><span class="kw">kronecker</span>(A, A, <span class="dt">FUN =</span> <span class="st">&quot;*&quot;</span>)</a>
+<a class="sourceLine" id="cb31-8" data-line-number="8"><span class="co">#&gt;      [,1] [,2] [,3] [,4]</span></a>
+<a class="sourceLine" id="cb31-9" data-line-number="9"><span class="co">#&gt; [1,]    1    2    2    4</span></a>
+<a class="sourceLine" id="cb31-10" data-line-number="10"><span class="co">#&gt; [2,]    2    3    4    6</span></a>
+<a class="sourceLine" id="cb31-11" data-line-number="11"><span class="co">#&gt; [3,]    2    4    3    6</span></a>
+<a class="sourceLine" id="cb31-12" data-line-number="12"><span class="co">#&gt; [4,]    4    6    6    9</span></a></code></pre></div>
+</div>
+<div id="section-5.1.6" class="section level3">
+<h3><span class="header-section-number">5.1.6</span> 乘方</h3>
+<p>矩阵 A 首先是一个方阵，对称性和正定性未知，n 个 矩阵 A 相乘</p>
+<p>统计之都论坛讨论如何求矩阵的乘方 <a href="https://d.cosx.org/d/5619-svd" class="uri">https://d.cosx.org/d/5619-svd</a></p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb32-1" data-line-number="1"><span class="st">&quot;%^%&quot;</span> &lt;-<span class="st"> </span><span class="cf">function</span>(mat, pow) {</a>
+<a class="sourceLine" id="cb32-2" data-line-number="2">  <span class="cf">if</span> (<span class="op">!</span><span class="kw">is.matrix</span>(mat)) mat &lt;-<span class="st"> </span><span class="kw">as.matrix</span>(mat)</a>
+<a class="sourceLine" id="cb32-3" data-line-number="3">  <span class="kw">stopifnot</span>(<span class="op">!</span><span class="kw">diff</span>(<span class="kw">dim</span>(mat)))</a>
+<a class="sourceLine" id="cb32-4" data-line-number="4">  <span class="cf">if</span> (pow <span class="op">&lt;</span><span class="st"> </span><span class="dv">0</span>) {</a>
+<a class="sourceLine" id="cb32-5" data-line-number="5">    pow &lt;-<span class="st"> </span><span class="op">-</span>pow</a>
+<a class="sourceLine" id="cb32-6" data-line-number="6">    mat &lt;-<span class="st"> </span><span class="kw">solve</span>(mat)</a>
+<a class="sourceLine" id="cb32-7" data-line-number="7">  }</a>
+<a class="sourceLine" id="cb32-8" data-line-number="8">  pow &lt;-<span class="st"> </span><span class="kw">round</span>(pow)</a>
+<a class="sourceLine" id="cb32-9" data-line-number="9">  <span class="cf">switch</span>(pow <span class="op">+</span><span class="st"> </span><span class="dv">1</span>, <span class="kw">return</span>(<span class="kw">diag</span>(<span class="dv">1</span>, <span class="kw">nrow</span>(mat))), <span class="kw">return</span>(mat))</a>
+<a class="sourceLine" id="cb32-10" data-line-number="10">  get.exponents &lt;-<span class="st"> </span><span class="cf">function</span>(pow)</a>
+<a class="sourceLine" id="cb32-11" data-line-number="11">    <span class="cf">if</span> (pow <span class="op">==</span><span class="st"> </span><span class="dv">0</span>) <span class="ot">NULL</span> <span class="cf">else</span> <span class="kw">c</span>(k &lt;-<span class="st"> </span><span class="dv">2</span><span class="op">^</span><span class="kw">floor</span>(<span class="kw">log2</span>(pow)), <span class="kw">get.exponents</span>(pow <span class="op">-</span><span class="st"> </span>k))</a>
+<a class="sourceLine" id="cb32-12" data-line-number="12">  ans &lt;-<span class="st"> </span><span class="kw">diag</span>(<span class="kw">nrow</span>(mat))</a>
+<a class="sourceLine" id="cb32-13" data-line-number="13">  dlog2exp &lt;-<span class="st"> </span><span class="kw">rev</span>(<span class="op">-</span><span class="kw">diff</span>(<span class="kw">c</span>(<span class="kw">log2</span>(<span class="kw">get.exponents</span>(pow)), <span class="dv">0</span>)))</a>
+<a class="sourceLine" id="cb32-14" data-line-number="14">  <span class="cf">for</span> (j <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">length</span>(dlog2exp)) {</a>
+<a class="sourceLine" id="cb32-15" data-line-number="15">    <span class="cf">if</span> (dlog2exp[j]) <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>dlog2exp[j]) mat &lt;-<span class="st"> </span>mat <span class="op">%*%</span><span class="st"> </span>mat</a>
+<a class="sourceLine" id="cb32-16" data-line-number="16">    ans &lt;-<span class="st"> </span>ans <span class="op">%*%</span><span class="st"> </span>mat</a>
+<a class="sourceLine" id="cb32-17" data-line-number="17">  }</a>
+<a class="sourceLine" id="cb32-18" data-line-number="18">  ans</a>
+<a class="sourceLine" id="cb32-19" data-line-number="19">}</a></code></pre></div>
+<p>奇异值分解</p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb33-1" data-line-number="1">s &lt;-<span class="st"> </span><span class="kw">svd</span>(A)</a>
+<a class="sourceLine" id="cb33-2" data-line-number="2"><span class="kw">all.equal</span>(s<span class="op">$</span>u<span class="op">%*%</span><span class="kw">diag</span>(s<span class="op">$</span>d)<span class="op">%*%</span><span class="kw">t</span>(s<span class="op">$</span>v),A)</a></code></pre></div>
+<p>特征值及分解 <span class="math inline">\(A = V \Lambda V^{-1}\)</span> 求解矩阵 A 的 n 次方</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb34-1" data-line-number="1"><span class="kw">eigen</span>(A)</a>
+<a class="sourceLine" id="cb34-2" data-line-number="2"><span class="co">#&gt; eigen() decomposition</span></a>
+<a class="sourceLine" id="cb34-3" data-line-number="3"><span class="co">#&gt; $values</span></a>
+<a class="sourceLine" id="cb34-4" data-line-number="4"><span class="co">#&gt; [1]  4.236 -0.236</span></a>
+<a class="sourceLine" id="cb34-5" data-line-number="5"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb34-6" data-line-number="6"><span class="co">#&gt; $vectors</span></a>
+<a class="sourceLine" id="cb34-7" data-line-number="7"><span class="co">#&gt;       [,1]   [,2]</span></a>
+<a class="sourceLine" id="cb34-8" data-line-number="8"><span class="co">#&gt; [1,] 0.526 -0.851</span></a>
+<a class="sourceLine" id="cb34-9" data-line-number="9"><span class="co">#&gt; [2,] 0.851  0.526</span></a>
+<a class="sourceLine" id="cb34-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb34-11" data-line-number="11"><span class="kw">eigen</span>(A)<span class="op">$</span>vectors <span class="op">%*%</span><span class="st"> </span><span class="kw">diag</span>(<span class="kw">eigen</span>(A)<span class="op">$</span>values) <span class="op">%*%</span><span class="st"> </span><span class="kw">solve</span>(<span class="kw">eigen</span>(A)<span class="op">$</span>vectors)</a>
+<a class="sourceLine" id="cb34-12" data-line-number="12"><span class="co">#&gt;      [,1] [,2]</span></a>
+<a class="sourceLine" id="cb34-13" data-line-number="13"><span class="co">#&gt; [1,]    1    2</span></a>
+<a class="sourceLine" id="cb34-14" data-line-number="14"><span class="co">#&gt; [2,]    2    3</span></a>
+<a class="sourceLine" id="cb34-15" data-line-number="15"><span class="kw">eigen</span>(A)<span class="op">$</span>vectors <span class="op">%*%</span><span class="st"> </span><span class="kw">diag</span>(<span class="kw">eigen</span>(A)<span class="op">$</span>values)<span class="op">^</span><span class="dv">3</span> <span class="op">%*%</span><span class="st"> </span><span class="kw">solve</span>(<span class="kw">eigen</span>(A)<span class="op">$</span>vectors)</a>
+<a class="sourceLine" id="cb34-16" data-line-number="16"><span class="co">#&gt;      [,1] [,2]</span></a>
+<a class="sourceLine" id="cb34-17" data-line-number="17"><span class="co">#&gt; [1,]   21   34</span></a>
+<a class="sourceLine" id="cb34-18" data-line-number="18"><span class="co">#&gt; [2,]   34   55</span></a>
+<a class="sourceLine" id="cb34-19" data-line-number="19">A <span class="op">%*%</span><span class="st"> </span>A <span class="op">%*%</span><span class="st"> </span>A</a>
+<a class="sourceLine" id="cb34-20" data-line-number="20"><span class="co">#&gt;      [,1] [,2]</span></a>
+<a class="sourceLine" id="cb34-21" data-line-number="21"><span class="co">#&gt; [1,]   21   34</span></a>
+<a class="sourceLine" id="cb34-22" data-line-number="22"><span class="co">#&gt; [2,]   34   55</span></a></code></pre></div>
+</div>
+<div id="section-5.1.7" class="section level3">
+<h3><span class="header-section-number">5.1.7</span> 幂</h3>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb35-1" data-line-number="1"><span class="dv">2</span><span class="op">^</span>A</a>
+<a class="sourceLine" id="cb35-2" data-line-number="2"><span class="co">#&gt;      [,1] [,2]</span></a>
+<a class="sourceLine" id="cb35-3" data-line-number="3"><span class="co">#&gt; [1,]    2    4</span></a>
+<a class="sourceLine" id="cb35-4" data-line-number="4"><span class="co">#&gt; [2,]    4    8</span></a>
+<a class="sourceLine" id="cb35-5" data-line-number="5"><span class="kw">exp</span>(A)</a>
+<a class="sourceLine" id="cb35-6" data-line-number="6"><span class="co">#&gt;      [,1]  [,2]</span></a>
+<a class="sourceLine" id="cb35-7" data-line-number="7"><span class="co">#&gt; [1,] 2.72  7.39</span></a>
+<a class="sourceLine" id="cb35-8" data-line-number="8"><span class="co">#&gt; [2,] 7.39 20.09</span></a></code></pre></div>
+</div>
+<div id="section-5.1.8" class="section level3">
+<h3><span class="header-section-number">5.1.8</span> 行列式</h3>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb36-1" data-line-number="1"><span class="kw">det</span>(A)</a>
+<a class="sourceLine" id="cb36-2" data-line-number="2"><span class="co">#&gt; [1] -1</span></a></code></pre></div>
+</div>
+<div id="section-5.1.9" class="section level3">
+<h3><span class="header-section-number">5.1.9</span> 逆</h3>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb37-1" data-line-number="1"><span class="kw">solve</span>(A)</a>
+<a class="sourceLine" id="cb37-2" data-line-number="2"><span class="co">#&gt;      [,1] [,2]</span></a>
+<a class="sourceLine" id="cb37-3" data-line-number="3"><span class="co">#&gt; [1,]   -3    2</span></a>
+<a class="sourceLine" id="cb37-4" data-line-number="4"><span class="co">#&gt; [2,]    2   -1</span></a></code></pre></div>
+<p>应用之线性方程组</p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb38-1" data-line-number="1">B &lt;-<span class="st"> </span><span class="kw">Hilbert</span>(<span class="dv">6</span>)</a>
+<a class="sourceLine" id="cb38-2" data-line-number="2">b &lt;-<span class="st"> </span><span class="kw">rowSums</span>(B)</a>
+<a class="sourceLine" id="cb38-3" data-line-number="3"><span class="co"># not inv</span></a>
+<a class="sourceLine" id="cb38-4" data-line-number="4"><span class="kw">solve</span>(B,b) </a>
+<a class="sourceLine" id="cb38-5" data-line-number="5"><span class="co">#&gt; 6 x 1 Matrix of class &quot;dgeMatrix&quot;</span></a>
+<a class="sourceLine" id="cb38-6" data-line-number="6"><span class="co">#&gt;      [,1]</span></a>
+<a class="sourceLine" id="cb38-7" data-line-number="7"><span class="co">#&gt; [1,]    1</span></a>
+<a class="sourceLine" id="cb38-8" data-line-number="8"><span class="co">#&gt; [2,]    1</span></a>
+<a class="sourceLine" id="cb38-9" data-line-number="9"><span class="co">#&gt; [3,]    1</span></a>
+<a class="sourceLine" id="cb38-10" data-line-number="10"><span class="co">#&gt; [4,]    1</span></a>
+<a class="sourceLine" id="cb38-11" data-line-number="11"><span class="co">#&gt; [5,]    1</span></a>
+<a class="sourceLine" id="cb38-12" data-line-number="12"><span class="co">#&gt; [6,]    1</span></a>
+<a class="sourceLine" id="cb38-13" data-line-number="13"></a>
+<a class="sourceLine" id="cb38-14" data-line-number="14"><span class="co"># inv</span></a>
+<a class="sourceLine" id="cb38-15" data-line-number="15"><span class="kw">solve</span>(B) <span class="op">%*%</span><span class="st"> </span>b</a>
+<a class="sourceLine" id="cb38-16" data-line-number="16"><span class="co">#&gt; 6 x 1 Matrix of class &quot;dgeMatrix&quot;</span></a>
+<a class="sourceLine" id="cb38-17" data-line-number="17"><span class="co">#&gt;      [,1]</span></a>
+<a class="sourceLine" id="cb38-18" data-line-number="18"><span class="co">#&gt; [1,]    1</span></a>
+<a class="sourceLine" id="cb38-19" data-line-number="19"><span class="co">#&gt; [2,]    1</span></a>
+<a class="sourceLine" id="cb38-20" data-line-number="20"><span class="co">#&gt; [3,]    1</span></a>
+<a class="sourceLine" id="cb38-21" data-line-number="21"><span class="co">#&gt; [4,]    1</span></a>
+<a class="sourceLine" id="cb38-22" data-line-number="22"><span class="co">#&gt; [5,]    1</span></a>
+<a class="sourceLine" id="cb38-23" data-line-number="23"><span class="co">#&gt; [6,]    1</span></a></code></pre></div>
+<p>Moore-Penrose generalized inverse 广义逆，如果 A 可逆则，广义逆就是逆</p>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb39-1" data-line-number="1"><span class="kw">library</span>(MASS)</a>
+<a class="sourceLine" id="cb39-2" data-line-number="2"><span class="kw">ginv</span>(A)</a>
+<a class="sourceLine" id="cb39-3" data-line-number="3"><span class="co">#&gt;      [,1] [,2]</span></a>
+<a class="sourceLine" id="cb39-4" data-line-number="4"><span class="co">#&gt; [1,]   -3    2</span></a>
+<a class="sourceLine" id="cb39-5" data-line-number="5"><span class="co">#&gt; [2,]    2   -1</span></a>
+<a class="sourceLine" id="cb39-6" data-line-number="6">A <span class="op">%*%</span><span class="st"> </span><span class="kw">ginv</span>(A) <span class="op">%*%</span><span class="st"> </span>A</a>
+<a class="sourceLine" id="cb39-7" data-line-number="7"><span class="co">#&gt;      [,1] [,2]</span></a>
+<a class="sourceLine" id="cb39-8" data-line-number="8"><span class="co">#&gt; [1,]    1    2</span></a>
+<a class="sourceLine" id="cb39-9" data-line-number="9"><span class="co">#&gt; [2,]    2    3</span></a>
+<a class="sourceLine" id="cb39-10" data-line-number="10"><span class="kw">ginv</span>(A) <span class="op">%*%</span><span class="st"> </span>A <span class="op">%*%</span><span class="st"> </span><span class="kw">ginv</span>(A)</a>
+<a class="sourceLine" id="cb39-11" data-line-number="11"><span class="co">#&gt;      [,1] [,2]</span></a>
+<a class="sourceLine" id="cb39-12" data-line-number="12"><span class="co">#&gt; [1,]   -3    2</span></a>
+<a class="sourceLine" id="cb39-13" data-line-number="13"><span class="co">#&gt; [2,]    2   -1</span></a>
+<a class="sourceLine" id="cb39-14" data-line-number="14"><span class="kw">t</span>(A <span class="op">%*%</span><span class="st"> </span><span class="kw">ginv</span>(A))</a>
+<a class="sourceLine" id="cb39-15" data-line-number="15"><span class="co">#&gt;           [,1]     [,2]</span></a>
+<a class="sourceLine" id="cb39-16" data-line-number="16"><span class="co">#&gt; [1,]  1.00e+00 8.88e-16</span></a>
+<a class="sourceLine" id="cb39-17" data-line-number="17"><span class="co">#&gt; [2,] -8.88e-16 1.00e+00</span></a>
+<a class="sourceLine" id="cb39-18" data-line-number="18">A <span class="op">%*%</span><span class="st"> </span><span class="kw">ginv</span>(A)</a>
+<a class="sourceLine" id="cb39-19" data-line-number="19"><span class="co">#&gt;          [,1]      [,2]</span></a>
+<a class="sourceLine" id="cb39-20" data-line-number="20"><span class="co">#&gt; [1,] 1.00e+00 -8.88e-16</span></a>
+<a class="sourceLine" id="cb39-21" data-line-number="21"><span class="co">#&gt; [2,] 8.88e-16  1.00e+00</span></a>
+<a class="sourceLine" id="cb39-22" data-line-number="22"><span class="kw">t</span>(<span class="kw">ginv</span>(A) <span class="op">%*%</span><span class="st"> </span>A)</a>
+<a class="sourceLine" id="cb39-23" data-line-number="23"><span class="co">#&gt;          [,1]      [,2]</span></a>
+<a class="sourceLine" id="cb39-24" data-line-number="24"><span class="co">#&gt; [1,] 1.00e+00 -8.88e-16</span></a>
+<a class="sourceLine" id="cb39-25" data-line-number="25"><span class="co">#&gt; [2,] 8.88e-16  1.00e+00</span></a>
+<a class="sourceLine" id="cb39-26" data-line-number="26"><span class="kw">ginv</span>(A) <span class="op">%*%</span><span class="st"> </span>A</a>
+<a class="sourceLine" id="cb39-27" data-line-number="27"><span class="co">#&gt;           [,1]     [,2]</span></a>
+<a class="sourceLine" id="cb39-28" data-line-number="28"><span class="co">#&gt; [1,]  1.00e+00 8.88e-16</span></a>
+<a class="sourceLine" id="cb39-29" data-line-number="29"><span class="co">#&gt; [2,] -8.88e-16 1.00e+00</span></a></code></pre></div>
+<p><code>ginv</code> 函数实现</p>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb40-1" data-line-number="1"><span class="co"># The function is currently defined as</span></a>
+<a class="sourceLine" id="cb40-2" data-line-number="2"><span class="cf">function</span>(X, <span class="dt">tol =</span> <span class="kw">sqrt</span>(.Machine<span class="op">$</span>double.eps))</a>
+<a class="sourceLine" id="cb40-3" data-line-number="3">{</a>
+<a class="sourceLine" id="cb40-4" data-line-number="4">## Generalized Inverse of a Matrix</a>
+<a class="sourceLine" id="cb40-5" data-line-number="5">  dnx &lt;-<span class="st"> </span><span class="kw">dimnames</span>(X)</a>
+<a class="sourceLine" id="cb40-6" data-line-number="6">  <span class="cf">if</span>(<span class="kw">is.null</span>(dnx)) dnx &lt;-<span class="st"> </span><span class="kw">vector</span>(<span class="st">&quot;list&quot;</span>, <span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb40-7" data-line-number="7">  s &lt;-<span class="st"> </span><span class="kw">svd</span>(X)</a>
+<a class="sourceLine" id="cb40-8" data-line-number="8">  nz &lt;-<span class="st"> </span>s<span class="op">$</span>d <span class="op">&gt;</span><span class="st"> </span>tol <span class="op">*</span><span class="st"> </span>s<span class="op">$</span>d[<span class="dv">1</span>]</a>
+<a class="sourceLine" id="cb40-9" data-line-number="9">  <span class="kw">structure</span>(</a>
+<a class="sourceLine" id="cb40-10" data-line-number="10">    <span class="cf">if</span>(<span class="kw">any</span>(nz)) s<span class="op">$</span>v[, nz] <span class="op">%*%</span><span class="st"> </span>(<span class="kw">t</span>(s<span class="op">$</span>u[, nz])<span class="op">/</span>s<span class="op">$</span>d[nz]) <span class="cf">else</span> X,</a>
+<a class="sourceLine" id="cb40-11" data-line-number="11">    <span class="dt">dimnames =</span> dnx[<span class="dv">2</span><span class="op">:</span><span class="dv">1</span>])</a>
+<a class="sourceLine" id="cb40-12" data-line-number="12">}</a></code></pre></div>
+</div>
+<div id="section-5.1.10" class="section level3">
+<h3><span class="header-section-number">5.1.10</span> 伴随矩阵</h3>
+<p>伴随矩阵 <span class="math inline">\(A*A^{\star} = A^{\star} *A = |A|*I, A^{\star} = |A|*A^{-1}\)</span></p>
+<ul>
+<li><span class="math inline">\(|A^{\star}| = |A|^{n-1}, A \in \mathbb{R}^{n\times n},n \geq 2\)</span></li>
+<li><span class="math inline">\((A^{\star})^{\star} = |A|^{n-2}A, A \in \mathbb{R}^{n\times n},n \geq 2\)</span></li>
+<li><span class="math inline">\((A^{\star})^{\star}\)</span> A 的 n 次伴随是？</li>
+</ul>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb41-1" data-line-number="1"><span class="kw">det</span>(A)<span class="op">*</span><span class="kw">solve</span>(A)</a>
+<a class="sourceLine" id="cb41-2" data-line-number="2"><span class="co">#&gt;      [,1] [,2]</span></a>
+<a class="sourceLine" id="cb41-3" data-line-number="3"><span class="co">#&gt; [1,]    3   -2</span></a>
+<a class="sourceLine" id="cb41-4" data-line-number="4"><span class="co">#&gt; [2,]   -2    1</span></a></code></pre></div>
+</div>
+<div id="section-5.1.11" class="section level3">
+<h3><span class="header-section-number">5.1.11</span> 单位矩阵</h3>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb42-1" data-line-number="1"><span class="kw">diag</span>(<span class="kw">rep</span>(<span class="dv">3</span>))</a>
+<a class="sourceLine" id="cb42-2" data-line-number="2"><span class="co">#&gt;      [,1] [,2] [,3]</span></a>
+<a class="sourceLine" id="cb42-3" data-line-number="3"><span class="co">#&gt; [1,]    1    0    0</span></a>
+<a class="sourceLine" id="cb42-4" data-line-number="4"><span class="co">#&gt; [2,]    0    1    0</span></a>
+<a class="sourceLine" id="cb42-5" data-line-number="5"><span class="co">#&gt; [3,]    0    0    1</span></a></code></pre></div>
+<p>全1矩阵，借助外积运算，如3阶矩阵</p>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb43-1" data-line-number="1"><span class="kw">rep</span>(<span class="dv">1</span>,<span class="dv">3</span>) <span class="op">%o%</span><span class="st"> </span><span class="kw">rep</span>(<span class="dv">1</span>,<span class="dv">3</span>) </a>
+<a class="sourceLine" id="cb43-2" data-line-number="2"><span class="co">#&gt;      [,1] [,2] [,3]</span></a>
+<a class="sourceLine" id="cb43-3" data-line-number="3"><span class="co">#&gt; [1,]    1    1    1</span></a>
+<a class="sourceLine" id="cb43-4" data-line-number="4"><span class="co">#&gt; [2,]    1    1    1</span></a>
+<a class="sourceLine" id="cb43-5" data-line-number="5"><span class="co">#&gt; [3,]    1    1    1</span></a></code></pre></div>
+</div>
+<div id="section-5.1.12" class="section level3">
+<h3><span class="header-section-number">5.1.12</span> 对角矩阵</h3>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb44-1" data-line-number="1"><span class="kw">diag</span>(A)       <span class="co"># diagonal of a matrix</span></a>
+<a class="sourceLine" id="cb44-2" data-line-number="2"><span class="co">#&gt; [1] 1 3</span></a>
+<a class="sourceLine" id="cb44-3" data-line-number="3"><span class="kw">diag</span>(<span class="kw">diag</span>(A)) <span class="co"># construct a diagonal matrix</span></a>
+<a class="sourceLine" id="cb44-4" data-line-number="4"><span class="co">#&gt;      [,1] [,2]</span></a>
+<a class="sourceLine" id="cb44-5" data-line-number="5"><span class="co">#&gt; [1,]    1    0</span></a>
+<a class="sourceLine" id="cb44-6" data-line-number="6"><span class="co">#&gt; [2,]    0    3</span></a></code></pre></div>
+</div>
+<div id="section-5.1.13" class="section level3">
+<h3><span class="header-section-number">5.1.13</span> 条件数</h3>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb45-1" data-line-number="1">base<span class="op">::</span><span class="kw">rcond</span>(A)</a>
+<a class="sourceLine" id="cb45-2" data-line-number="2"><span class="co">#&gt; [1] 0.04</span></a>
+<a class="sourceLine" id="cb45-3" data-line-number="3"><span class="kw">kappa</span>(A)</a>
+<a class="sourceLine" id="cb45-4" data-line-number="4"><span class="co">#&gt; [1] 21.9</span></a>
+<a class="sourceLine" id="cb45-5" data-line-number="5">Matrix<span class="op">::</span><span class="kw">rcond</span>(<span class="kw">Hilbert</span>(<span class="dv">6</span>))</a>
+<a class="sourceLine" id="cb45-6" data-line-number="6"><span class="co">#&gt; [1] 3.44e-08</span></a>
+<a class="sourceLine" id="cb45-7" data-line-number="7">Matrix<span class="op">::</span><span class="kw">rcond</span>(A)</a>
+<a class="sourceLine" id="cb45-8" data-line-number="8"><span class="co">#&gt; [1] 0.04</span></a></code></pre></div>
+</div>
+<div id="section-5.1.14" class="section level3">
+<h3><span class="header-section-number">5.1.14</span> 范数</h3>
+<p>向量和矩阵的范数，包括1，2，无穷范数，其他操作看 Matrix 包 <span class="citation">(Bates and Maechler <a href="#ref-R-Matrix">2017</a>)</span> ，尤其关于稀疏矩阵计算部分</p>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb46-1" data-line-number="1"><span class="kw">norm</span>(A)</a>
+<a class="sourceLine" id="cb46-2" data-line-number="2"><span class="co">#&gt; [1] 5</span></a></code></pre></div>
+</div>
+<div id="section-5.1.15" class="section level3">
+<h3><span class="header-section-number">5.1.15</span> 秩</h3>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb47-1" data-line-number="1"><span class="kw">qr</span>(A)<span class="op">$</span>rank <span class="co"># or qr.default(A)$rank</span></a>
+<a class="sourceLine" id="cb47-2" data-line-number="2"><span class="co">#&gt; [1] 2</span></a></code></pre></div>
+</div>
+</div>
+<div id="section-5.2" class="section level2">
+<h2><span class="header-section-number">5.2</span> 矩阵分解</h2>
+<div id="cholesky-" class="section level3">
+<h3><span class="header-section-number">5.2.1</span> Cholesky 分解</h3>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb48-1" data-line-number="1"><span class="co"># Compute the Choleski factorization of a real symmetric positive-definite square matrix.</span></a>
+<a class="sourceLine" id="cb48-2" data-line-number="2"><span class="kw">chol</span>(A <span class="op">+</span><span class="st"> </span><span class="kw">diag</span>(<span class="kw">rep</span>(<span class="dv">1</span>,<span class="dv">2</span>)))</a>
+<a class="sourceLine" id="cb48-3" data-line-number="3"><span class="co">#&gt;      [,1] [,2]</span></a>
+<a class="sourceLine" id="cb48-4" data-line-number="4"><span class="co">#&gt; [1,] 1.41 1.41</span></a>
+<a class="sourceLine" id="cb48-5" data-line-number="5"><span class="co">#&gt; [2,] 0.00 1.41</span></a>
+<a class="sourceLine" id="cb48-6" data-line-number="6"><span class="co"># Inverse from Choleski (or QR) Decomposition</span></a>
+<a class="sourceLine" id="cb48-7" data-line-number="7">Matrix<span class="op">::</span><span class="kw">chol2inv</span>(A <span class="op">+</span><span class="st"> </span><span class="kw">diag</span>(<span class="kw">rep</span>(<span class="dv">1</span>,<span class="dv">2</span>)))</a>
+<a class="sourceLine" id="cb48-8" data-line-number="8"><span class="co">#&gt;         [,1]    [,2]</span></a>
+<a class="sourceLine" id="cb48-9" data-line-number="9"><span class="co">#&gt; [1,]  0.3125 -0.0625</span></a>
+<a class="sourceLine" id="cb48-10" data-line-number="10"><span class="co">#&gt; [2,] -0.0625  0.0625</span></a></code></pre></div>
+</div>
+<div id="section-5.2.2" class="section level3">
+<h3><span class="header-section-number">5.2.2</span> 奇异值及分解</h3>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb49-1" data-line-number="1"><span class="kw">svd</span>(A)</a>
+<a class="sourceLine" id="cb49-2" data-line-number="2"><span class="co">#&gt; $d</span></a>
+<a class="sourceLine" id="cb49-3" data-line-number="3"><span class="co">#&gt; [1] 4.236 0.236</span></a>
+<a class="sourceLine" id="cb49-4" data-line-number="4"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb49-5" data-line-number="5"><span class="co">#&gt; $u</span></a>
+<a class="sourceLine" id="cb49-6" data-line-number="6"><span class="co">#&gt;        [,1]   [,2]</span></a>
+<a class="sourceLine" id="cb49-7" data-line-number="7"><span class="co">#&gt; [1,] -0.526 -0.851</span></a>
+<a class="sourceLine" id="cb49-8" data-line-number="8"><span class="co">#&gt; [2,] -0.851  0.526</span></a>
+<a class="sourceLine" id="cb49-9" data-line-number="9"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb49-10" data-line-number="10"><span class="co">#&gt; $v</span></a>
+<a class="sourceLine" id="cb49-11" data-line-number="11"><span class="co">#&gt;        [,1]   [,2]</span></a>
+<a class="sourceLine" id="cb49-12" data-line-number="12"><span class="co">#&gt; [1,] -0.526  0.851</span></a>
+<a class="sourceLine" id="cb49-13" data-line-number="13"><span class="co">#&gt; [2,] -0.851 -0.526</span></a>
+<a class="sourceLine" id="cb49-14" data-line-number="14"><span class="kw">svd</span>(A)<span class="op">$</span>d</a>
+<a class="sourceLine" id="cb49-15" data-line-number="15"><span class="co">#&gt; [1] 4.236 0.236</span></a></code></pre></div>
+</div>
+<div id="qr" class="section level3">
+<h3><span class="header-section-number">5.2.3</span> QR分解</h3>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb50-1" data-line-number="1"><span class="kw">qr.default</span>(A)</a>
+<a class="sourceLine" id="cb50-2" data-line-number="2"><span class="co">#&gt; $qr</span></a>
+<a class="sourceLine" id="cb50-3" data-line-number="3"><span class="co">#&gt;        [,1]   [,2]</span></a>
+<a class="sourceLine" id="cb50-4" data-line-number="4"><span class="co">#&gt; [1,] -2.236 -3.578</span></a>
+<a class="sourceLine" id="cb50-5" data-line-number="5"><span class="co">#&gt; [2,]  0.894 -0.447</span></a>
+<a class="sourceLine" id="cb50-6" data-line-number="6"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb50-7" data-line-number="7"><span class="co">#&gt; $rank</span></a>
+<a class="sourceLine" id="cb50-8" data-line-number="8"><span class="co">#&gt; [1] 2</span></a>
+<a class="sourceLine" id="cb50-9" data-line-number="9"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb50-10" data-line-number="10"><span class="co">#&gt; $qraux</span></a>
+<a class="sourceLine" id="cb50-11" data-line-number="11"><span class="co">#&gt; [1] 1.447 0.447</span></a>
+<a class="sourceLine" id="cb50-12" data-line-number="12"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb50-13" data-line-number="13"><span class="co">#&gt; $pivot</span></a>
+<a class="sourceLine" id="cb50-14" data-line-number="14"><span class="co">#&gt; [1] 1 2</span></a>
+<a class="sourceLine" id="cb50-15" data-line-number="15"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb50-16" data-line-number="16"><span class="co">#&gt; attr(,&quot;class&quot;)</span></a>
+<a class="sourceLine" id="cb50-17" data-line-number="17"><span class="co">#&gt; [1] &quot;qr&quot;</span></a>
+<a class="sourceLine" id="cb50-18" data-line-number="18"><span class="kw">qr.X</span>(<span class="kw">qr.default</span>(A))</a>
+<a class="sourceLine" id="cb50-19" data-line-number="19"><span class="co">#&gt;      [,1] [,2]</span></a>
+<a class="sourceLine" id="cb50-20" data-line-number="20"><span class="co">#&gt; [1,]    1    2</span></a>
+<a class="sourceLine" id="cb50-21" data-line-number="21"><span class="co">#&gt; [2,]    2    3</span></a>
+<a class="sourceLine" id="cb50-22" data-line-number="22"><span class="kw">qr.Q</span>(<span class="kw">qr.default</span>(A))</a>
+<a class="sourceLine" id="cb50-23" data-line-number="23"><span class="co">#&gt;        [,1]   [,2]</span></a>
+<a class="sourceLine" id="cb50-24" data-line-number="24"><span class="co">#&gt; [1,] -0.447 -0.894</span></a>
+<a class="sourceLine" id="cb50-25" data-line-number="25"><span class="co">#&gt; [2,] -0.894  0.447</span></a>
+<a class="sourceLine" id="cb50-26" data-line-number="26"><span class="kw">qr.R</span>(<span class="kw">qr.default</span>(A))</a>
+<a class="sourceLine" id="cb50-27" data-line-number="27"><span class="co">#&gt;       [,1]   [,2]</span></a>
+<a class="sourceLine" id="cb50-28" data-line-number="28"><span class="co">#&gt; [1,] -2.24 -3.578</span></a>
+<a class="sourceLine" id="cb50-29" data-line-number="29"><span class="co">#&gt; [2,]  0.00 -0.447</span></a>
+<a class="sourceLine" id="cb50-30" data-line-number="30"><span class="kw">qr.Q</span>(<span class="kw">qr.default</span>(A)) <span class="op">%*%</span><span class="st"> </span><span class="kw">qr.R</span>(<span class="kw">qr.default</span>(A))</a>
+<a class="sourceLine" id="cb50-31" data-line-number="31"><span class="co">#&gt;      [,1] [,2]</span></a>
+<a class="sourceLine" id="cb50-32" data-line-number="32"><span class="co">#&gt; [1,]    1    2</span></a>
+<a class="sourceLine" id="cb50-33" data-line-number="33"><span class="co">#&gt; [2,]    2    3</span></a></code></pre></div>
+<p>LU 分解、Jordan分解</p>
+<p>矩阵下三角</p>
+<p>row 和 col</p>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb51-1" data-line-number="1"><span class="kw">row</span>(A)</a>
+<a class="sourceLine" id="cb51-2" data-line-number="2"><span class="co">#&gt;      [,1] [,2]</span></a>
+<a class="sourceLine" id="cb51-3" data-line-number="3"><span class="co">#&gt; [1,]    1    1</span></a>
+<a class="sourceLine" id="cb51-4" data-line-number="4"><span class="co">#&gt; [2,]    2    2</span></a>
+<a class="sourceLine" id="cb51-5" data-line-number="5"><span class="kw">col</span>(A)</a>
+<a class="sourceLine" id="cb51-6" data-line-number="6"><span class="co">#&gt;      [,1] [,2]</span></a>
+<a class="sourceLine" id="cb51-7" data-line-number="7"><span class="co">#&gt; [1,]    1    2</span></a>
+<a class="sourceLine" id="cb51-8" data-line-number="8"><span class="co">#&gt; [2,]    1    2</span></a>
+<a class="sourceLine" id="cb51-9" data-line-number="9">A[<span class="kw">row</span>(A)]</a>
+<a class="sourceLine" id="cb51-10" data-line-number="10"><span class="co">#&gt; [1] 1 3</span></a></code></pre></div>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb52-1" data-line-number="1"><span class="kw">lower.tri</span>(A)</a>
+<a class="sourceLine" id="cb52-2" data-line-number="2"><span class="co">#&gt;       [,1]  [,2]</span></a>
+<a class="sourceLine" id="cb52-3" data-line-number="3"><span class="co">#&gt; [1,] FALSE FALSE</span></a>
+<a class="sourceLine" id="cb52-4" data-line-number="4"><span class="co">#&gt; [2,]  TRUE FALSE</span></a>
+<a class="sourceLine" id="cb52-5" data-line-number="5"><span class="kw">upper.tri</span>(A) <span class="co"># 矩阵上三角</span></a>
+<a class="sourceLine" id="cb52-6" data-line-number="6"><span class="co">#&gt;       [,1]  [,2]</span></a>
+<a class="sourceLine" id="cb52-7" data-line-number="7"><span class="co">#&gt; [1,] FALSE  TRUE</span></a>
+<a class="sourceLine" id="cb52-8" data-line-number="8"><span class="co">#&gt; [2,] FALSE FALSE</span></a>
+<a class="sourceLine" id="cb52-9" data-line-number="9">A[<span class="kw">lower.tri</span>(A)]</a>
+<a class="sourceLine" id="cb52-10" data-line-number="10"><span class="co">#&gt; [1] 2</span></a>
+<a class="sourceLine" id="cb52-11" data-line-number="11">A[<span class="kw">lower.tri</span>(A)] &lt;-<span class="st"> </span><span class="dv">0</span> <span class="co"># 获得上三角矩阵</span></a>
+<a class="sourceLine" id="cb52-12" data-line-number="12">A</a>
+<a class="sourceLine" id="cb52-13" data-line-number="13"><span class="co">#&gt;      [,1] [,2]</span></a>
+<a class="sourceLine" id="cb52-14" data-line-number="14"><span class="co">#&gt; [1,]    1    2</span></a>
+<a class="sourceLine" id="cb52-15" data-line-number="15"><span class="co">#&gt; [2,]    0    3</span></a>
+<a class="sourceLine" id="cb52-16" data-line-number="16">A[<span class="kw">row</span>(A) <span class="op">&lt;</span><span class="st"> </span><span class="kw">col</span>(A)] &lt;-<span class="st"> </span><span class="dv">0</span></a>
+<a class="sourceLine" id="cb52-17" data-line-number="17">A</a>
+<a class="sourceLine" id="cb52-18" data-line-number="18"><span class="co">#&gt;      [,1] [,2]</span></a>
+<a class="sourceLine" id="cb52-19" data-line-number="19"><span class="co">#&gt; [1,]    1    0</span></a>
+<a class="sourceLine" id="cb52-20" data-line-number="20"><span class="co">#&gt; [2,]    0    3</span></a></code></pre></div>
+<ul>
+<li>Householder 变换 <a href="https://www.wikiwand.com/en/Householder_transformation" class="uri">https://www.wikiwand.com/en/Householder_transformation</a></li>
+<li>Givens 旋转 <a href="https://www.wikiwand.com/en/Givens_rotation" class="uri">https://www.wikiwand.com/en/Givens_rotation</a></li>
+<li>帽子矩阵在统计中的应用 回归与方差分析 <span class="citation">(Hoaglin and Welsch <a href="#ref-David1978Hat">1978</a>)</span></li>
+</ul>
+</div>
+</div>
+<div id="section-5.3" class="section level2">
+<h2><span class="header-section-number">5.3</span> 特殊函数</h2>
+<div id="section-5.3.1" class="section level3">
+<h3><span class="header-section-number">5.3.1</span> 阶乘</h3>
+<ul>
+<li>阶乘 <span class="math inline">\(n! = 1\times 2\times 3\cdots n\)</span></li>
+<li>双阶乘 <span class="math inline">\((2n+1)!! = 1 \times 3\times 5 \times \cdots \times (2n+1), n = 0,1,2,\cdots\)</span></li>
+</ul>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb53-1" data-line-number="1"><span class="kw">factorial</span>(<span class="dv">5</span>) <span class="co"># 阶乘</span></a>
+<a class="sourceLine" id="cb53-2" data-line-number="2"><span class="co">#&gt; [1] 120</span></a>
+<a class="sourceLine" id="cb53-3" data-line-number="3"><span class="kw">seq</span>(<span class="dt">from =</span> <span class="dv">1</span>, <span class="dt">to =</span> <span class="dv">5</span>, <span class="dt">length.out =</span> <span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb53-4" data-line-number="4"><span class="co">#&gt; [1] 1 3 5</span></a>
+<a class="sourceLine" id="cb53-5" data-line-number="5"><span class="kw">prod</span>(<span class="kw">seq</span>(<span class="dt">from =</span> <span class="dv">1</span>, <span class="dt">to =</span> <span class="dv">5</span>, <span class="dt">length.out =</span> <span class="dv">3</span>)) <span class="co"># 连乘 双阶乘</span></a>
+<a class="sourceLine" id="cb53-6" data-line-number="6"><span class="co">#&gt; [1] 15</span></a>
+<a class="sourceLine" id="cb53-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb53-8" data-line-number="8"><span class="kw">seq</span>(<span class="dv">5</span>)</a>
+<a class="sourceLine" id="cb53-9" data-line-number="9"><span class="co">#&gt; [1] 1 2 3 4 5</span></a>
+<a class="sourceLine" id="cb53-10" data-line-number="10"><span class="kw">cumprod</span>(<span class="kw">seq</span>(<span class="dv">5</span>)) <span class="co"># 累积</span></a>
+<a class="sourceLine" id="cb53-11" data-line-number="11"><span class="co">#&gt; [1]   1   2   6  24 120</span></a>
+<a class="sourceLine" id="cb53-12" data-line-number="12"><span class="kw">cumsum</span>(<span class="kw">seq</span>(<span class="dv">5</span>)) <span class="co"># 累和</span></a>
+<a class="sourceLine" id="cb53-13" data-line-number="13"><span class="co">#&gt; [1]  1  3  6 10 15</span></a></code></pre></div>
+<p>此外还有 <code>cummax</code> 和 <code>cummin</code></p>
+<ul>
+<li>组合数 <span class="math inline">\(C_{n}^{k} = \frac{n(n-1)…(n-k+1)}{k!}\)</span></li>
+</ul>
+<p><span class="math inline">\(C_{5}^{3} = \frac{5 \times 4 \times 3}{3 \times 2 \times 1}\)</span></p>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb54-1" data-line-number="1"><span class="kw">choose</span>(<span class="dv">5</span>,<span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb54-2" data-line-number="2"><span class="co">#&gt; [1] 10</span></a></code></pre></div>
+<blockquote>
+<p>斯特林公式</p>
+</blockquote>
+</div>
+<div id="section-5.3.2" class="section level3">
+<h3><span class="header-section-number">5.3.2</span> 伽马函数</h3>
+<p><span class="math inline">\(\Gamma(x) = \int_{0}^{\infty} t^{x-1}\exp(-t)dt\)</span>
+<span class="math inline">\(\Gamma(n) = (n-1)!, n \in \mathbb{Z}^{+}\)</span></p>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb55-1" data-line-number="1"><span class="kw">gamma</span>(<span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb55-2" data-line-number="2"><span class="co">#&gt; [1] 1</span></a>
+<a class="sourceLine" id="cb55-3" data-line-number="3"><span class="kw">gamma</span>(<span class="dv">10</span>)</a>
+<a class="sourceLine" id="cb55-4" data-line-number="4"><span class="co">#&gt; [1] 362880</span></a>
+<a class="sourceLine" id="cb55-5" data-line-number="5">gamma2 &lt;-<span class="st"> </span><span class="cf">function</span>(t,x){</a>
+<a class="sourceLine" id="cb55-6" data-line-number="6">  t<span class="op">^</span>(x<span class="dv">-1</span>)<span class="op">*</span><span class="kw">exp</span>(<span class="op">-</span>t)</a>
+<a class="sourceLine" id="cb55-7" data-line-number="7">}</a>
+<a class="sourceLine" id="cb55-8" data-line-number="8"><span class="kw">integrate</span>(gamma2, <span class="dt">lower =</span> <span class="dv">0</span>, <span class="dt">upper =</span> <span class="op">+</span><span class="st"> </span><span class="ot">Inf</span>, <span class="dt">x =</span> <span class="dv">10</span>)</a>
+<a class="sourceLine" id="cb55-9" data-line-number="9"><span class="co">#&gt; 362880 with absolute error &lt; 0.025</span></a></code></pre></div>
+<ul>
+<li>psigamma(x, deriv) 表示 <span class="math inline">\(\psi(x)\)</span> 的 <code>deriv</code> 阶导数</li>
+</ul>
+<p><span class="math inline">\(\mathrm{digamma}(x) \triangleq \psi(x) = \frac{d}{dx}{\ln \Gamma(x)} = \Gamma&#39;(x) / \Gamma(x)\)</span></p>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb56-1" data-line-number="1"><span class="co"># 例1</span></a>
+<a class="sourceLine" id="cb56-2" data-line-number="2">x &lt;-<span class="st"> </span><span class="dv">2</span></a>
+<a class="sourceLine" id="cb56-3" data-line-number="3"><span class="kw">eval</span>(<span class="kw">deriv</span>(<span class="op">~</span><span class="st"> </span><span class="kw">gamma</span>(x), <span class="st">&quot;x&quot;</span>))<span class="op">/</span><span class="kw">gamma</span>(x)</a>
+<a class="sourceLine" id="cb56-4" data-line-number="4"><span class="co">#&gt; [1] 1</span></a>
+<a class="sourceLine" id="cb56-5" data-line-number="5"><span class="co">#&gt; attr(,&quot;gradient&quot;)</span></a>
+<a class="sourceLine" id="cb56-6" data-line-number="6"><span class="co">#&gt;          x</span></a>
+<a class="sourceLine" id="cb56-7" data-line-number="7"><span class="co">#&gt; [1,] 0.423</span></a>
+<a class="sourceLine" id="cb56-8" data-line-number="8"><span class="co"># 与此等价</span></a>
+<a class="sourceLine" id="cb56-9" data-line-number="9"><span class="kw">psigamma</span>(<span class="dv">2</span>, <span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb56-10" data-line-number="10"><span class="co">#&gt; [1] 0.423</span></a>
+<a class="sourceLine" id="cb56-11" data-line-number="11"></a>
+<a class="sourceLine" id="cb56-12" data-line-number="12"><span class="kw">digamma</span>(x) <span class="co"># psi(x) 的一阶导数</span></a>
+<a class="sourceLine" id="cb56-13" data-line-number="13"><span class="co">#&gt; [1] 0.423</span></a>
+<a class="sourceLine" id="cb56-14" data-line-number="14"><span class="kw">trigamma</span>(x) <span class="co"># psi(x) 的二阶导数</span></a>
+<a class="sourceLine" id="cb56-15" data-line-number="15"><span class="co">#&gt; [1] 0.645</span></a>
+<a class="sourceLine" id="cb56-16" data-line-number="16"></a>
+<a class="sourceLine" id="cb56-17" data-line-number="17"><span class="co"># 例2</span></a>
+<a class="sourceLine" id="cb56-18" data-line-number="18"><span class="kw">eval</span>(<span class="kw">deriv</span>(<span class="op">~</span><span class="st"> </span><span class="kw">psigamma</span>(x, <span class="dv">1</span>), <span class="st">&quot;x&quot;</span>))</a>
+<a class="sourceLine" id="cb56-19" data-line-number="19"><span class="co">#&gt; [1] 0.645</span></a>
+<a class="sourceLine" id="cb56-20" data-line-number="20"><span class="co">#&gt; attr(,&quot;gradient&quot;)</span></a>
+<a class="sourceLine" id="cb56-21" data-line-number="21"><span class="co">#&gt;           x</span></a>
+<a class="sourceLine" id="cb56-22" data-line-number="22"><span class="co">#&gt; [1,] -0.404</span></a>
+<a class="sourceLine" id="cb56-23" data-line-number="23"><span class="co"># 与此等价</span></a>
+<a class="sourceLine" id="cb56-24" data-line-number="24"><span class="kw">psigamma</span>(<span class="dv">2</span>, <span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb56-25" data-line-number="25"><span class="co">#&gt; [1] -0.404</span></a>
+<a class="sourceLine" id="cb56-26" data-line-number="26"></a>
+<a class="sourceLine" id="cb56-27" data-line-number="27"><span class="co"># 注意与下面这个例子比较</span></a>
+<a class="sourceLine" id="cb56-28" data-line-number="28">dx2x &lt;-<span class="st"> </span><span class="kw">deriv</span>(<span class="op">~</span><span class="st"> </span>x<span class="op">^</span><span class="dv">3</span>, <span class="st">&quot;x&quot;</span>)</a>
+<a class="sourceLine" id="cb56-29" data-line-number="29"><span class="kw">eval</span>(dx2x)</a>
+<a class="sourceLine" id="cb56-30" data-line-number="30"><span class="co">#&gt; [1] 8</span></a>
+<a class="sourceLine" id="cb56-31" data-line-number="31"><span class="co">#&gt; attr(,&quot;gradient&quot;)</span></a>
+<a class="sourceLine" id="cb56-32" data-line-number="32"><span class="co">#&gt;       x</span></a>
+<a class="sourceLine" id="cb56-33" data-line-number="33"><span class="co">#&gt; [1,] 12</span></a></code></pre></div>
+</div>
+<div id="section-5.3.3" class="section level3">
+<h3><span class="header-section-number">5.3.3</span> 贝塔函数</h3>
+<p><span class="math inline">\(B(a,b) = \Gamma(a)\Gamma(b)/\Gamma(a+b) = \int_{0}^{1} t^{a-1} (1-t)^{b-1} dt\)</span></p>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb57-1" data-line-number="1"><span class="kw">beta</span>(<span class="dv">1</span>, <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb57-2" data-line-number="2"><span class="co">#&gt; [1] 1</span></a>
+<a class="sourceLine" id="cb57-3" data-line-number="3"><span class="kw">beta</span>(<span class="dv">2</span>, <span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb57-4" data-line-number="4"><span class="co">#&gt; [1] 0.0833</span></a>
+<a class="sourceLine" id="cb57-5" data-line-number="5">beta2 &lt;-<span class="st"> </span><span class="cf">function</span>(t, a, b) {</a>
+<a class="sourceLine" id="cb57-6" data-line-number="6">  t<span class="op">^</span>(a <span class="op">-</span><span class="st"> </span><span class="dv">1</span>) <span class="op">*</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">-</span><span class="st"> </span>t)<span class="op">^</span>(b <span class="op">-</span><span class="st"> </span><span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb57-7" data-line-number="7">}</a>
+<a class="sourceLine" id="cb57-8" data-line-number="8"><span class="kw">integrate</span>(beta2, <span class="dt">lower =</span> <span class="dv">0</span>, <span class="dt">upper =</span> <span class="dv">1</span>, <span class="dt">a =</span> <span class="dv">2</span>, <span class="dt">b =</span> <span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb57-9" data-line-number="9"><span class="co">#&gt; 0.0833 with absolute error &lt; 9.3e-16</span></a></code></pre></div>
+</div>
+<div id="section-5.3.4" class="section level3">
+<h3><span class="header-section-number">5.3.4</span> 贝塞尔函数</h3>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb58-1" data-line-number="1"><span class="kw">besselI</span>(x, nu, <span class="dt">expon.scaled =</span> <span class="ot">FALSE</span>) <span class="co"># 修正的第一类</span></a>
+<a class="sourceLine" id="cb58-2" data-line-number="2"><span class="kw">besselK</span>(x, nu, <span class="dt">expon.scaled =</span> <span class="ot">FALSE</span>) <span class="co"># 修正的第二类</span></a>
+<a class="sourceLine" id="cb58-3" data-line-number="3"><span class="kw">besselJ</span>(x, nu) <span class="co"># 第一类</span></a>
+<a class="sourceLine" id="cb58-4" data-line-number="4"><span class="kw">besselY</span>(x, nu) <span class="co"># 第二类</span></a></code></pre></div>
+<ul>
+<li><span class="math inline">\(\nu\)</span> 贝塞尔函数的阶，可以是分数</li>
+<li>expon.scaled 是否使用指数表示</li>
+</ul>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb59-1" data-line-number="1">nus &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</span><span class="op">:</span><span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">20</span>)</a>
+<a class="sourceLine" id="cb59-2" data-line-number="2">x &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">4</span>, <span class="dt">length.out =</span> <span class="dv">501</span>)</a>
+<a class="sourceLine" id="cb59-3" data-line-number="3"><span class="kw">plot</span>(x, x, <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">6</span>), <span class="dt">ylab =</span> <span class="st">&quot;&quot;</span>, <span class="dt">type =</span> <span class="st">&quot;n&quot;</span>,</a>
+<a class="sourceLine" id="cb59-4" data-line-number="4">     <span class="dt">main =</span> <span class="st">&quot;Bessel Functions  I_nu(x)&quot;</span>)</a>
+<a class="sourceLine" id="cb59-5" data-line-number="5"><span class="cf">for</span>(nu <span class="cf">in</span> nus) <span class="kw">lines</span>(x, <span class="kw">besselI</span>(x, <span class="dt">nu =</span> nu), <span class="dt">col =</span> nu <span class="op">+</span><span class="st"> </span><span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb59-6" data-line-number="6"><span class="kw">legend</span>(<span class="dv">0</span>, <span class="dv">6</span>, <span class="dt">legend =</span> <span class="kw">paste</span>(<span class="st">&quot;nu=&quot;</span>, nus), <span class="dt">col =</span> nus <span class="op">+</span><span class="st"> </span><span class="dv">2</span>, <span class="dt">lwd =</span> <span class="dv">1</span>)</a></code></pre></div>
+<p><img src="02-operators_files/figure-html/Modified-Bessel-1.svg" width="70%" style="display: block; margin: auto;" /></p>
+</div>
+</div>
+<div id="distribution" class="section level2">
+<h2><span class="header-section-number">5.4</span> 统计分布</h2>
+<div id="section-5.4.1" class="section level3">
+<h3><span class="header-section-number">5.4.1</span> 一元分布</h3>
+<p>三大抽样及其历史</p>
+</div>
+<div id="section-5.4.2" class="section level3">
+<h3><span class="header-section-number">5.4.2</span> 多元分布</h3>
+<p>多元t分布函数</p>
+<p>The multivariate <span class="math inline">\(t\)</span> distribution (MVT) is given by</p>
+<p><span class="math display">\[T(\mathbf{a},\mathbf{b},\Sigma,\nu)=\frac{2^{1-\frac{\nu}{2}}}{\Gamma(\frac{\nu}{2}) } \int_{0}^{\infty} s^{\nu-1}e^{-\frac{s^2}{2}} \Phi(\frac{s\mathbf{a}}{\sqrt{\nu}},\frac{s\mathbf{b}}{\sqrt{\nu}},\Sigma)ds\]</span></p>
+<p>multivariate normal distribution function (MVN)</p>
+<p><span class="math display">\[\Phi(\mathbf{a},\mathbf{b},\Sigma)=\frac{1}{\sqrt{|\Sigma|(2\pi)^m}} \int_{a_1}^{b_1}\!\int_{a_2}^{b_2}\!\cdots\!\int_{a_m}^{b_m} e^{-\frac{1}{2}x^\top\Sigma^{-1}x}dx\]</span>
+<span class="math inline">\(x=(x_1,x_2,\dots,x_m)^\top,-\infty \le a_i \le b_i \le \infty\)</span> for all <span class="math inline">\(i\)</span> and <span class="math inline">\(\Sigma\)</span> is a positive semi-definite symmetric <span class="math inline">\(m \times m\)</span> matrix</p>
+<p>多元<span class="math inline">\(t\)</span>分布分位数计算</p>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb60-1" data-line-number="1"><span class="kw">library</span>(mvtnorm)</a>
+<a class="sourceLine" id="cb60-2" data-line-number="2"><span class="kw">library</span>(matrixcalc)</a>
+<a class="sourceLine" id="cb60-3" data-line-number="3">n &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">26</span>, <span class="dv">24</span>, <span class="dv">20</span>, <span class="dv">33</span>, <span class="dv">32</span>)</a>
+<a class="sourceLine" id="cb60-4" data-line-number="4">V &lt;-<span class="st"> </span><span class="kw">diag</span>(<span class="dv">1</span> <span class="op">/</span><span class="st"> </span>n)</a>
+<a class="sourceLine" id="cb60-5" data-line-number="5">df &lt;-<span class="st"> </span><span class="dv">130</span></a>
+<a class="sourceLine" id="cb60-6" data-line-number="6">C &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(</a>
+<a class="sourceLine" id="cb60-7" data-line-number="7">  <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">-1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>,</a>
+<a class="sourceLine" id="cb60-8" data-line-number="8">  <span class="dv">0</span>, <span class="dv">-1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">-1</span>, <span class="dv">-1</span>,</a>
+<a class="sourceLine" id="cb60-9" data-line-number="9">  <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">-1</span>, <span class="dv">0</span>, <span class="dv">0</span></a>
+<a class="sourceLine" id="cb60-10" data-line-number="10">), <span class="dt">ncol =</span> <span class="dv">5</span>)</a>
+<a class="sourceLine" id="cb60-11" data-line-number="11">cv &lt;-<span class="st"> </span>C <span class="op">%*%</span><span class="st"> </span>V <span class="op">%*%</span><span class="st"> </span><span class="kw">t</span>(C) ## covariance matrix</a>
+<a class="sourceLine" id="cb60-12" data-line-number="12">dv &lt;-<span class="st"> </span><span class="kw">t</span>(<span class="dv">1</span> <span class="op">/</span><span class="st"> </span><span class="kw">sqrt</span>(<span class="kw">diag</span>(cv)))</a>
+<a class="sourceLine" id="cb60-13" data-line-number="13">cr &lt;-<span class="st"> </span>cv <span class="op">*</span><span class="st"> </span>(<span class="kw">t</span>(dv) <span class="op">%*%</span><span class="st"> </span>dv) ## correlation matrix</a>
+<a class="sourceLine" id="cb60-14" data-line-number="14">delta &lt;-<span class="st"> </span><span class="kw">rep</span>(<span class="dv">0</span>, <span class="dv">5</span>)</a>
+<a class="sourceLine" id="cb60-15" data-line-number="15">Tn &lt;-<span class="st"> </span><span class="kw">qmvt</span>(<span class="fl">0.95</span>,</a>
+<a class="sourceLine" id="cb60-16" data-line-number="16">  <span class="dt">df =</span> df, <span class="dt">delta =</span> delta, <span class="dt">corr =</span> cr,</a>
+<a class="sourceLine" id="cb60-17" data-line-number="17">  <span class="dt">abseps =</span> <span class="fl">0.0001</span>, <span class="dt">maxpts =</span> <span class="dv">100000</span>, <span class="dt">tail =</span> <span class="st">&quot;both&quot;</span></a>
+<a class="sourceLine" id="cb60-18" data-line-number="18">)</a>
+<a class="sourceLine" id="cb60-19" data-line-number="19">Tn</a></code></pre></div>
+<p>计算多元正态分布的概率</p>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb61-1" data-line-number="1">sigma &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="dt">file =</span> <span class="st">&quot;data/sigma.csv&quot;</span>, <span class="dt">header =</span> F, <span class="dt">sep =</span> <span class="st">&quot;,&quot;</span>)</a>
+<a class="sourceLine" id="cb61-2" data-line-number="2">mat &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dv">0</span>, <span class="dt">nrow =</span> <span class="kw">nrow</span>(sigma), <span class="dt">ncol =</span> <span class="kw">ncol</span>(sigma))</a>
+<a class="sourceLine" id="cb61-3" data-line-number="3">sigma &lt;-<span class="st"> </span><span class="kw">as.matrix</span>(sigma)</a>
+<a class="sourceLine" id="cb61-4" data-line-number="4"><span class="kw">attributes</span>(sigma) &lt;-<span class="st"> </span><span class="kw">attributes</span>(mat)</a>
+<a class="sourceLine" id="cb61-5" data-line-number="5"><span class="co"># str(sigma)</span></a>
+<a class="sourceLine" id="cb61-6" data-line-number="6"><span class="co"># is.symmetric.matrix(sigma)</span></a>
+<a class="sourceLine" id="cb61-7" data-line-number="7"><span class="co"># is.positive.definite(sigma)</span></a>
+<a class="sourceLine" id="cb61-8" data-line-number="8">m &lt;-<span class="st"> </span><span class="kw">nrow</span>(sigma)</a>
+<a class="sourceLine" id="cb61-9" data-line-number="9">Fn &lt;-<span class="st"> </span><span class="kw">pmvnorm</span>(</a>
+<a class="sourceLine" id="cb61-10" data-line-number="10">  <span class="dt">lower =</span> <span class="kw">rep</span>(<span class="op">-</span><span class="ot">Inf</span>, m), <span class="dt">upper =</span> <span class="kw">rep</span>(<span class="dv">0</span>, m),</a>
+<a class="sourceLine" id="cb61-11" data-line-number="11">  <span class="dt">mean =</span> <span class="kw">rep</span>(<span class="dv">0</span>, m), <span class="dt">sigma =</span> sigma</a>
+<a class="sourceLine" id="cb61-12" data-line-number="12">)</a>
+<a class="sourceLine" id="cb61-13" data-line-number="13">Fn</a></code></pre></div>
+<p>mvrnorm 函数来自 MASS 包，模拟多元正态分布的样本</p>
+
+</div>
+</div>
+</div>
+<h3>参考文献</h3>
+<div id="refs" class="references">
+<div id="ref-R-Matrix">
+<p>Bates, Douglas, and Martin Maechler. 2017. <em>Matrix: Sparse and Dense Matrix Classes and Methods</em>. <a href="https://CRAN.R-project.org/package=Matrix" class="uri">https://CRAN.R-project.org/package=Matrix</a>.</p>
+</div>
+<div id="ref-David1978Hat">
+<p>Hoaglin, David C., and Roy E. Welsch. 1978. “The Hat Matrix in Regression and Anova.” <em>The American Statistician</em> 32 (1): 17–22. <a href="http://www.jstor.org/stable/2683469" class="uri">http://www.jstor.org/stable/2683469</a>.</p>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="install-setup.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="section-6.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": true,
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/XiangyunHuang/notesdown/edit/master/02-operators.Rmd",
+"text": "Edit"
+},
+"download": ["notebook.pdf"],
+"toc": {
+"collapse": "none"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

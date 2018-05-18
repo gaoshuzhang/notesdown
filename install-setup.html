@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>R 语言学习笔记</title>
+  <meta name="description" content="这是一个R语言学习笔记">
+  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
+
+  <meta property="og:title" content="R 语言学习笔记" />
+  <meta property="og:type" content="book" />
+  <meta property="og:url" content="https://notesdown.netlify.com/" />
+  <meta property="og:image" content="https://notesdown.netlify.com/images/dragon.png" />
+  <meta property="og:description" content="这是一个R语言学习笔记" />
+  <meta name="github-repo" content="xiangyunhuang/notesdown" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="R 语言学习笔记" />
+  
+  <meta name="twitter:description" content="这是一个R语言学习笔记" />
+  <meta name="twitter:image" content="https://notesdown.netlify.com/images/dragon.png" />
+
+<meta name="author" content="黄湘云">
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <link rel="apple-touch-icon-precomposed" sizes="120x120" href="images/dragon.png">
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+<link rel="prev" href="section-3.html">
+<link rel="next" href="math-operator.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; position: absolute; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; }
+pre.numberSource a.sourceLine:empty
+  { position: absolute; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="css/style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">R语言笔记</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> 前言</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#e887b4e8b0a2"><i class="fa fa-check"></i>致谢</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#e7bb93e69e84"><i class="fa fa-check"></i>结构</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#e5908ee8aeb0"><i class="fa fa-check"></i>后记</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="section-2.html"><a href="section-2.html"><i class="fa fa-check"></i><b>2</b> 作者简介</a></li>
+<li class="chapter" data-level="3" data-path="section-3.html"><a href="section-3.html"><i class="fa fa-check"></i><b>3</b> 符号说明</a></li>
+<li class="part"><span><b>I 基础知识</b></span></li>
+<li class="chapter" data-level="4" data-path="install-setup.html"><a href="install-setup.html"><i class="fa fa-check"></i><b>4</b> 安装与配置</a><ul>
+<li class="chapter" data-level="4.1" data-path="install-setup.html"><a href="install-setup.html#-r-"><i class="fa fa-check"></i><b>4.1</b> 安装 R 软件</a></li>
+<li class="chapter" data-level="4.2" data-path="install-setup.html"><a href="install-setup.html#-r-"><i class="fa fa-check"></i><b>4.2</b> 安装 R 扩展包</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="install-setup.html"><a href="install-setup.html#rdieharder"><i class="fa fa-check"></i><b>4.2.1</b> RDieHarder</a></li>
+<li class="chapter" data-level="4.2.2" data-path="install-setup.html"><a href="install-setup.html#sparkr"><i class="fa fa-check"></i><b>4.2.2</b> SparkR</a></li>
+<li class="chapter" data-level="4.2.3" data-path="install-setup.html"><a href="install-setup.html#sparklyr"><i class="fa fa-check"></i><b>4.2.3</b> sparklyr</a></li>
+<li class="chapter" data-level="4.2.4" data-path="install-setup.html"><a href="install-setup.html#dbi"><i class="fa fa-check"></i><b>4.2.4</b> DBI</a></li>
+<li class="chapter" data-level="4.2.5" data-path="install-setup.html"><a href="install-setup.html#reticulate"><i class="fa fa-check"></i><b>4.2.5</b> reticulate</a></li>
+<li class="chapter" data-level="4.2.6" data-path="install-setup.html"><a href="install-setup.html#inla"><i class="fa fa-check"></i><b>4.2.6</b> INLA</a></li>
+<li class="chapter" data-level="4.2.7" data-path="install-setup.html"><a href="install-setup.html#mxnet"><i class="fa fa-check"></i><b>4.2.7</b> mxnet</a></li>
+<li class="chapter" data-level="4.2.8" data-path="install-setup.html"><a href="install-setup.html#tensorflow"><i class="fa fa-check"></i><b>4.2.8</b> tensorflow</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="install-setup.html"><a href="install-setup.html#-ide"><i class="fa fa-check"></i><b>4.3</b> 安装 IDE</a></li>
+<li class="chapter" data-level="4.4" data-path="install-setup.html"><a href="install-setup.html#section-4.4"><i class="fa fa-check"></i><b>4.4</b> 配置文件</a></li>
+<li class="chapter" data-level="4.5" data-path="install-setup.html"><a href="install-setup.html#tricks"><i class="fa fa-check"></i><b>4.5</b> 小技巧</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="math-operator.html"><a href="math-operator.html"><i class="fa fa-check"></i><b>5</b> 数学运算</a><ul>
+<li class="chapter" data-level="5.1" data-path="math-operator.html"><a href="math-operator.html#section-5.1"><i class="fa fa-check"></i><b>5.1</b> 矩阵运算</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="math-operator.html"><a href="math-operator.html#section-5.1.1"><i class="fa fa-check"></i><b>5.1.1</b> 乘法</a></li>
+<li class="chapter" data-level="5.1.2" data-path="math-operator.html"><a href="math-operator.html#Hadamard"><i class="fa fa-check"></i><b>5.1.2</b> Hadamard 积</a></li>
+<li class="chapter" data-level="5.1.3" data-path="math-operator.html"><a href="math-operator.html#section-5.1.3"><i class="fa fa-check"></i><b>5.1.3</b> 交叉积</a></li>
+<li class="chapter" data-level="5.1.4" data-path="math-operator.html"><a href="math-operator.html#section-5.1.4"><i class="fa fa-check"></i><b>5.1.4</b> 外积</a></li>
+<li class="chapter" data-level="5.1.5" data-path="math-operator.html"><a href="math-operator.html#section-5.1.5"><i class="fa fa-check"></i><b>5.1.5</b> 直积</a></li>
+<li class="chapter" data-level="5.1.6" data-path="math-operator.html"><a href="math-operator.html#section-5.1.6"><i class="fa fa-check"></i><b>5.1.6</b> 乘方</a></li>
+<li class="chapter" data-level="5.1.7" data-path="math-operator.html"><a href="math-operator.html#section-5.1.7"><i class="fa fa-check"></i><b>5.1.7</b> 幂</a></li>
+<li class="chapter" data-level="5.1.8" data-path="math-operator.html"><a href="math-operator.html#section-5.1.8"><i class="fa fa-check"></i><b>5.1.8</b> 行列式</a></li>
+<li class="chapter" data-level="5.1.9" data-path="math-operator.html"><a href="math-operator.html#section-5.1.9"><i class="fa fa-check"></i><b>5.1.9</b> 逆</a></li>
+<li class="chapter" data-level="5.1.10" data-path="math-operator.html"><a href="math-operator.html#section-5.1.10"><i class="fa fa-check"></i><b>5.1.10</b> 伴随矩阵</a></li>
+<li class="chapter" data-level="5.1.11" data-path="math-operator.html"><a href="math-operator.html#section-5.1.11"><i class="fa fa-check"></i><b>5.1.11</b> 单位矩阵</a></li>
+<li class="chapter" data-level="5.1.12" data-path="math-operator.html"><a href="math-operator.html#section-5.1.12"><i class="fa fa-check"></i><b>5.1.12</b> 对角矩阵</a></li>
+<li class="chapter" data-level="5.1.13" data-path="math-operator.html"><a href="math-operator.html#section-5.1.13"><i class="fa fa-check"></i><b>5.1.13</b> 条件数</a></li>
+<li class="chapter" data-level="5.1.14" data-path="math-operator.html"><a href="math-operator.html#section-5.1.14"><i class="fa fa-check"></i><b>5.1.14</b> 范数</a></li>
+<li class="chapter" data-level="5.1.15" data-path="math-operator.html"><a href="math-operator.html#section-5.1.15"><i class="fa fa-check"></i><b>5.1.15</b> 秩</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="math-operator.html"><a href="math-operator.html#section-5.2"><i class="fa fa-check"></i><b>5.2</b> 矩阵分解</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="math-operator.html"><a href="math-operator.html#cholesky-"><i class="fa fa-check"></i><b>5.2.1</b> Cholesky 分解</a></li>
+<li class="chapter" data-level="5.2.2" data-path="math-operator.html"><a href="math-operator.html#section-5.2.2"><i class="fa fa-check"></i><b>5.2.2</b> 奇异值及分解</a></li>
+<li class="chapter" data-level="5.2.3" data-path="math-operator.html"><a href="math-operator.html#qr"><i class="fa fa-check"></i><b>5.2.3</b> QR分解</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="math-operator.html"><a href="math-operator.html#section-5.3"><i class="fa fa-check"></i><b>5.3</b> 特殊函数</a><ul>
+<li class="chapter" data-level="5.3.1" data-path="math-operator.html"><a href="math-operator.html#section-5.3.1"><i class="fa fa-check"></i><b>5.3.1</b> 阶乘</a></li>
+<li class="chapter" data-level="5.3.2" data-path="math-operator.html"><a href="math-operator.html#section-5.3.2"><i class="fa fa-check"></i><b>5.3.2</b> 伽马函数</a></li>
+<li class="chapter" data-level="5.3.3" data-path="math-operator.html"><a href="math-operator.html#section-5.3.3"><i class="fa fa-check"></i><b>5.3.3</b> 贝塔函数</a></li>
+<li class="chapter" data-level="5.3.4" data-path="math-operator.html"><a href="math-operator.html#section-5.3.4"><i class="fa fa-check"></i><b>5.3.4</b> 贝塞尔函数</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="math-operator.html"><a href="math-operator.html#distribution"><i class="fa fa-check"></i><b>5.4</b> 统计分布</a><ul>
+<li class="chapter" data-level="5.4.1" data-path="math-operator.html"><a href="math-operator.html#section-5.4.1"><i class="fa fa-check"></i><b>5.4.1</b> 一元分布</a></li>
+<li class="chapter" data-level="5.4.2" data-path="math-operator.html"><a href="math-operator.html#section-5.4.2"><i class="fa fa-check"></i><b>5.4.2</b> 多元分布</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="section-6.html"><a href="section-6.html"><i class="fa fa-check"></i><b>6</b> 数据操作</a><ul>
+<li class="chapter" data-level="6.1" data-path="section-6.html"><a href="section-6.html#section-6.1"><i class="fa fa-check"></i><b>6.1</b> 集合运算</a></li>
+<li class="chapter" data-level="6.2" data-path="section-6.html"><a href="section-6.html#section-6.2"><i class="fa fa-check"></i><b>6.2</b> 正则匹配</a></li>
+<li class="chapter" data-level="6.3" data-path="section-6.html"><a href="section-6.html#section-6.3"><i class="fa fa-check"></i><b>6.3</b> 排序</a><ul>
+<li class="chapter" data-level="6.3.1" data-path="section-6.html"><a href="section-6.html#order"><i class="fa fa-check"></i><b>6.3.1</b> order</a></li>
+<li class="chapter" data-level="6.3.2" data-path="section-6.html"><a href="section-6.html#sort"><i class="fa fa-check"></i><b>6.3.2</b> sort</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="section-6.html"><a href="section-6.html#section-6.4"><i class="fa fa-check"></i><b>6.4</b> 索引</a><ul>
+<li class="chapter" data-level="6.4.1" data-path="section-6.html"><a href="section-6.html#which"><i class="fa fa-check"></i><b>6.4.1</b> which</a></li>
+<li class="chapter" data-level="6.4.2" data-path="section-6.html"><a href="section-6.html#section"><i class="fa fa-check"></i><b>6.4.2</b> <code>[[</code></a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="section-6.html"><a href="section-6.html#section-6.5"><i class="fa fa-check"></i><b>6.5</b> 分组</a></li>
+<li class="chapter" data-level="6.6" data-path="section-6.html"><a href="section-6.html#apply"><i class="fa fa-check"></i><b>6.6</b> apply</a><ul>
+<li class="chapter" data-level="6.6.1" data-path="section-6.html"><a href="section-6.html#lapply"><i class="fa fa-check"></i><b>6.6.1</b> lapply</a></li>
+<li class="chapter" data-level="6.6.2" data-path="section-6.html"><a href="section-6.html#sapply"><i class="fa fa-check"></i><b>6.6.2</b> sapply</a></li>
+<li class="chapter" data-level="6.6.3" data-path="section-6.html"><a href="section-6.html#parallel"><i class="fa fa-check"></i><b>6.6.3</b> parallel</a></li>
+</ul></li>
+<li class="chapter" data-level="6.7" data-path="section-6.html"><a href="section-6.html#section-6.7"><i class="fa fa-check"></i><b>6.7</b> 合并</a><ul>
+<li class="chapter" data-level="6.7.1" data-path="section-6.html"><a href="section-6.html#aggregate"><i class="fa fa-check"></i><b>6.7.1</b> aggregate</a></li>
+</ul></li>
+<li class="chapter" data-level="6.8" data-path="section-6.html"><a href="section-6.html#section-6.8"><i class="fa fa-check"></i><b>6.8</b> 映射</a><ul>
+<li class="chapter" data-level="6.8.1" data-path="section-6.html"><a href="section-6.html#map"><i class="fa fa-check"></i><b>6.8.1</b> Map</a></li>
+<li class="chapter" data-level="6.8.2" data-path="section-6.html"><a href="section-6.html#reduce"><i class="fa fa-check"></i><b>6.8.2</b> Reduce</a></li>
+</ul></li>
+<li class="chapter" data-level="6.9" data-path="section-6.html"><a href="section-6.html#section-6.9"><i class="fa fa-check"></i><b>6.9</b> 拆分</a><ul>
+<li class="chapter" data-level="6.9.1" data-path="section-6.html"><a href="section-6.html#split"><i class="fa fa-check"></i><b>6.9.1</b> split</a></li>
+<li class="chapter" data-level="6.9.2" data-path="section-6.html"><a href="section-6.html#cut"><i class="fa fa-check"></i><b>6.9.2</b> cut</a></li>
+</ul></li>
+<li class="chapter" data-level="6.10" data-path="section-6.html"><a href="section-6.html#section-6.10"><i class="fa fa-check"></i><b>6.10</b> 数据库</a></li>
+</ul></li>
+<li class="part"><span><b>II 统计图形</b></span></li>
+<li class="chapter" data-level="7" data-path="graphics.html"><a href="graphics.html"><i class="fa fa-check"></i><b>7</b> 基础图形</a><ul>
+<li class="chapter" data-level="7.1" data-path="graphics.html"><a href="graphics.html#base"><i class="fa fa-check"></i><b>7.1</b> plot</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="ggplot.html"><a href="ggplot.html"><i class="fa fa-check"></i><b>8</b> 高级图形</a></li>
+<li class="chapter" data-level="9" data-path="section-9.html"><a href="section-9.html"><i class="fa fa-check"></i><b>9</b> 动态图形</a><ul>
+<li class="chapter" data-level="9.1" data-path="section-9.html"><a href="section-9.html#echarts"><i class="fa fa-check"></i><b>9.1</b> ECharts</a></li>
+<li class="chapter" data-level="9.2" data-path="section-9.html"><a href="section-9.html#d3"><i class="fa fa-check"></i><b>9.2</b> D3</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="section-10.html"><a href="section-10.html"><i class="fa fa-check"></i><b>10</b> 绘图工具</a><ul>
+<li class="chapter" data-level="10.1" data-path="section-10.html"><a href="section-10.html#section-10.1"><i class="fa fa-check"></i><b>10.1</b> 截图</a></li>
+<li class="chapter" data-level="10.2" data-path="section-10.html"><a href="section-10.html#inkscape"><i class="fa fa-check"></i><b>10.2</b> Inkscape</a></li>
+<li class="chapter" data-level="10.3" data-path="section-10.html"><a href="section-10.html#section-10.3"><i class="fa fa-check"></i><b>10.3</b> 转化</a></li>
+<li class="chapter" data-level="10.4" data-path="section-10.html"><a href="section-10.html#section-10.4"><i class="fa fa-check"></i><b>10.4</b> 优化</a></li>
+<li class="chapter" data-level="10.5" data-path="section-10.html"><a href="section-10.html#section-10.5"><i class="fa fa-check"></i><b>10.5</b> 裁剪</a></li>
+<li class="chapter" data-level="10.6" data-path="section-10.html"><a href="section-10.html#section-10.6"><i class="fa fa-check"></i><b>10.6</b> 接口</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="color.html"><a href="color.html"><i class="fa fa-check"></i><b>11</b> 配色</a><ul>
+<li class="chapter" data-level="11.1" data-path="color.html"><a href="color.html#section-11.1"><i class="fa fa-check"></i><b>11.1</b> 调色板</a></li>
+<li class="chapter" data-level="11.2" data-path="color.html"><a href="color.html#section-11.2"><i class="fa fa-check"></i><b>11.2</b> 颜色空间</a><ul>
+<li class="chapter" data-level="11.2.1" data-path="color.html"><a href="color.html#rgb"><i class="fa fa-check"></i><b>11.2.1</b> RGB</a></li>
+<li class="chapter" data-level="11.2.2" data-path="color.html"><a href="color.html#hsl"><i class="fa fa-check"></i><b>11.2.2</b> HSL</a></li>
+<li class="chapter" data-level="11.2.3" data-path="color.html"><a href="color.html#hsv"><i class="fa fa-check"></i><b>11.2.3</b> HSV</a></li>
+<li class="chapter" data-level="11.2.4" data-path="color.html"><a href="color.html#hcl"><i class="fa fa-check"></i><b>11.2.4</b> HCL</a></li>
+<li class="chapter" data-level="11.2.5" data-path="color.html"><a href="color.html#cmyk"><i class="fa fa-check"></i><b>11.2.5</b> CMYK</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="fonts.html"><a href="fonts.html"><i class="fa fa-check"></i><b>12</b> 字体</a><ul>
+<li class="chapter" data-level="12.1" data-path="fonts.html"><a href="fonts.html#cjk-"><i class="fa fa-check"></i><b>12.1</b> CJK 字体</a></li>
+<li class="chapter" data-level="12.2" data-path="fonts.html"><a href="fonts.html#showtext"><i class="fa fa-check"></i><b>12.2</b> showtext</a></li>
+<li class="chapter" data-level="12.3" data-path="fonts.html"><a href="fonts.html#xkcd"><i class="fa fa-check"></i><b>12.3</b> xkcd</a></li>
+<li class="chapter" data-level="12.4" data-path="fonts.html"><a href="fonts.html#fontcm"><i class="fa fa-check"></i><b>12.4</b> fontcm</a></li>
+<li class="chapter" data-level="12.5" data-path="fonts.html"><a href="fonts.html#tikzdevice"><i class="fa fa-check"></i><b>12.5</b> tikzDevice</a></li>
+<li class="chapter" data-level="12.6" data-path="fonts.html"><a href="fonts.html#tikz--pgf"><i class="fa fa-check"></i><b>12.6</b> TikZ 和 PGF</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="animotion.html"><a href="animotion.html"><i class="fa fa-check"></i><b>13</b> 动画</a><ul>
+<li class="chapter" data-level="13.1" data-path="animotion.html"><a href="animotion.html#js-"><i class="fa fa-check"></i><b>13.1</b> JS 动画</a></li>
+<li class="chapter" data-level="13.2" data-path="animotion.html"><a href="animotion.html#svg-"><i class="fa fa-check"></i><b>13.2</b> svg 动画</a></li>
+<li class="chapter" data-level="13.3" data-path="animotion.html"><a href="animotion.html#mapmate"><i class="fa fa-check"></i><b>13.3</b> mapmate</a></li>
+<li class="chapter" data-level="13.4" data-path="animotion.html"><a href="animotion.html#rgl"><i class="fa fa-check"></i><b>13.4</b> rgl</a></li>
+</ul></li>
+<li class="part"><span><b>III 统计计算</b></span></li>
+<li class="chapter" data-level="14" data-path="optimation.html"><a href="optimation.html"><i class="fa fa-check"></i><b>14</b> 数值优化</a><ul>
+<li class="chapter" data-level="14.1" data-path="optimation.html"><a href="optimation.html#section-14.1"><i class="fa fa-check"></i><b>14.1</b> 测试函数</a></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="section-15.html"><a href="section-15.html"><i class="fa fa-check"></i><b>15</b> 随机模拟</a><ul>
+<li class="chapter" data-level="15.1" data-path="section-15.html"><a href="section-15.html#section-15.1"><i class="fa fa-check"></i><b>15.1</b> 随机数</a></li>
+<li class="chapter" data-level="15.2" data-path="section-15.html"><a href="section-15.html#section-15.2"><i class="fa fa-check"></i><b>15.2</b> 随机过程</a><ul>
+<li class="chapter" data-level="15.2.1" data-path="section-15.html"><a href="section-15.html#section-15.2.1"><i class="fa fa-check"></i><b>15.2.1</b> 随机游走</a></li>
+<li class="chapter" data-level="15.2.2" data-path="section-15.html"><a href="section-15.html#section-15.2.2"><i class="fa fa-check"></i><b>15.2.2</b> 遍历定理</a></li>
+<li class="chapter" data-level="15.2.3" data-path="section-15.html"><a href="section-15.html#m-h-"><i class="fa fa-check"></i><b>15.2.3</b> M-H 算法</a></li>
+<li class="chapter" data-level="15.2.4" data-path="section-15.html"><a href="section-15.html#gibbs-"><i class="fa fa-check"></i><b>15.2.4</b> Gibbs 算法</a></li>
+<li class="chapter" data-level="15.2.5" data-path="section-15.html"><a href="section-15.html#hmc-"><i class="fa fa-check"></i><b>15.2.5</b> HMC 算法</a></li>
+</ul></li>
+<li class="chapter" data-level="15.3" data-path="section-15.html"><a href="section-15.html#section-15.3"><i class="fa fa-check"></i><b>15.3</b> 分布式</a><ul>
+<li class="chapter" data-level="15.3.1" data-path="section-15.html"><a href="section-15.html#rmpi"><i class="fa fa-check"></i><b>15.3.1</b> Rmpi</a></li>
+<li class="chapter" data-level="15.3.2" data-path="section-15.html"><a href="section-15.html#rhpc"><i class="fa fa-check"></i><b>15.3.2</b> Rhpc</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="bayes.html"><a href="bayes.html"><i class="fa fa-check"></i><b>16</b> 贝叶斯计算</a><ul>
+<li class="chapter" data-level="16.1" data-path="bayes.html"><a href="bayes.html#bugs-"><i class="fa fa-check"></i><b>16.1</b> BUGS 软件</a></li>
+<li class="chapter" data-level="16.2" data-path="bayes.html"><a href="bayes.html#stan-"><i class="fa fa-check"></i><b>16.2</b> Stan 框架</a><ul>
+<li class="chapter" data-level="16.2.1" data-path="bayes.html"><a href="bayes.html#pystan-"><i class="fa fa-check"></i><b>16.2.1</b> PyStan 接口</a></li>
+<li class="chapter" data-level="16.2.2" data-path="bayes.html"><a href="bayes.html#rstan-"><i class="fa fa-check"></i><b>16.2.2</b> RStan 接口</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="r-inla.html"><a href="r-inla.html"><i class="fa fa-check"></i><b>17</b> 近似推断</a><ul>
+<li class="chapter" data-level="17.1" data-path="r-inla.html"><a href="r-inla.html#-"><i class="fa fa-check"></i><b>17.1</b> 高斯-马尔科夫随机场</a></li>
+<li class="chapter" data-level="17.2" data-path="r-inla.html"><a href="r-inla.html#section-17.2"><i class="fa fa-check"></i><b>17.2</b> 贝叶斯近似推断</a></li>
+</ul></li>
+<li class="part"><span><b>IV 数据分析</b></span></li>
+<li class="chapter" data-level="18" data-path="spatial.html"><a href="spatial.html"><i class="fa fa-check"></i><b>18</b> 空间数据</a><ul>
+<li class="chapter" data-level="18.1" data-path="spatial.html"><a href="spatial.html#section-18.1"><i class="fa fa-check"></i><b>18.1</b> 分析与可视化</a></li>
+<li class="chapter" data-level="18.2" data-path="spatial.html"><a href="spatial.html#sf"><i class="fa fa-check"></i><b>18.2</b> sf</a></li>
+<li class="chapter" data-level="18.3" data-path="spatial.html"><a href="spatial.html#prevmap"><i class="fa fa-check"></i><b>18.3</b> PrevMap</a></li>
+</ul></li>
+<li class="chapter" data-level="19" data-path="network.html"><a href="network.html"><i class="fa fa-check"></i><b>19</b> 网络数据</a><ul>
+<li class="chapter" data-level="19.1" data-path="network.html"><a href="network.html#-1"><i class="fa fa-check"></i><b>19.1</b> 分析与可视化</a></li>
+<li class="chapter" data-level="19.2" data-path="network.html"><a href="network.html#gephi"><i class="fa fa-check"></i><b>19.2</b> gephi</a></li>
+</ul></li>
+<li class="part"><span><b>V 统计模型</b></span></li>
+<li class="chapter" data-level="20" data-path="glm.html"><a href="glm.html"><i class="fa fa-check"></i><b>20</b> 广义线性模型</a><ul>
+<li class="chapter" data-level="20.1" data-path="glm.html"><a href="glm.html#section-20.1"><i class="fa fa-check"></i><b>20.1</b> 线性模型</a><ul>
+<li class="chapter" data-level="20.1.1" data-path="glm.html"><a href="glm.html#section-20.1.1"><i class="fa fa-check"></i><b>20.1.1</b> 参数估计</a></li>
+<li class="chapter" data-level="20.1.2" data-path="glm.html"><a href="glm.html#section-20.1.2"><i class="fa fa-check"></i><b>20.1.2</b> 最小二乘</a></li>
+<li class="chapter" data-level="20.1.3" data-path="glm.html"><a href="glm.html#section-20.1.3"><i class="fa fa-check"></i><b>20.1.3</b> 最大似然</a></li>
+</ul></li>
+<li class="chapter" data-level="20.2" data-path="network.html"><a href="network.html#-1"><i class="fa fa-check"></i><b>20.2</b> 参数估计</a><ul>
+<li class="chapter" data-level="20.2.1" data-path="glm.html"><a href="glm.html#section-20.2.1"><i class="fa fa-check"></i><b>20.2.1</b> 最小二乘估计</a></li>
+<li class="chapter" data-level="20.2.2" data-path="glm.html"><a href="glm.html#section-20.2.2"><i class="fa fa-check"></i><b>20.2.2</b> 广义最小二乘估计</a></li>
+<li class="chapter" data-level="20.2.3" data-path="glm.html"><a href="glm.html#section-20.2.3"><i class="fa fa-check"></i><b>20.2.3</b> 最大似然估计</a></li>
+</ul></li>
+<li class="chapter" data-level="20.3" data-path="glm.html"><a href="glm.html#section-20.3"><i class="fa fa-check"></i><b>20.3</b> 高维问题</a></li>
+</ul></li>
+<li class="chapter" data-level="21" data-path="mixed-model.html"><a href="mixed-model.html"><i class="fa fa-check"></i><b>21</b> 混合效应模型</a><ul>
+<li class="chapter" data-level="21.1" data-path="mixed-model.html"><a href="mixed-model.html#section-21.1"><i class="fa fa-check"></i><b>21.1</b> 方差分析</a></li>
+<li class="chapter" data-level="21.2" data-path="mixed-model.html"><a href="mixed-model.html#section-21.2"><i class="fa fa-check"></i><b>21.2</b> 线性混合效应模型</a></li>
+<li class="chapter" data-level="21.3" data-path="mixed-model.html"><a href="mixed-model.html#section-21.3"><i class="fa fa-check"></i><b>21.3</b> 广义线性混合效应模型</a></li>
+<li class="chapter" data-level="21.4" data-path="mixed-model.html"><a href="mixed-model.html#section-21.4"><i class="fa fa-check"></i><b>21.4</b> 空间广义线性混合效应模型</a></li>
+<li class="chapter" data-level="21.5" data-path="mixed-model.html"><a href="mixed-model.html#-2"><i class="fa fa-check"></i><b>21.5</b> 参数估计</a><ul>
+<li class="chapter" data-level="21.5.1" data-path="mixed-model.html"><a href="mixed-model.html#section-21.5.1"><i class="fa fa-check"></i><b>21.5.1</b> 限制极大似然估计</a></li>
+<li class="chapter" data-level="21.5.2" data-path="mixed-model.html"><a href="mixed-model.html#profile-"><i class="fa fa-check"></i><b>21.5.2</b> profile 似然估计</a></li>
+<li class="chapter" data-level="21.5.3" data-path="mixed-model.html"><a href="mixed-model.html#section-21.5.3"><i class="fa fa-check"></i><b>21.5.3</b> 贝叶斯估计</a></li>
+</ul></li>
+<li class="chapter" data-level="21.6" data-path="network.html"><a href="network.html#-1"><i class="fa fa-check"></i><b>21.6</b> 高维问题</a></li>
+</ul></li>
+<li class="chapter" data-level="22" data-path="gam.html"><a href="gam.html"><i class="fa fa-check"></i><b>22</b> 广义可加模型</a><ul>
+<li class="chapter" data-level="22.1" data-path="gam.html"><a href="gam.html#section-22.1"><i class="fa fa-check"></i><b>22.1</b> 一般广义可加模型</a></li>
+<li class="chapter" data-level="22.2" data-path="gam.html"><a href="gam.html#section-22.2"><i class="fa fa-check"></i><b>22.2</b> 广义可加混合效应模型</a></li>
+<li class="chapter" data-level="22.3" data-path="mixed-model.html"><a href="mixed-model.html#-2"><i class="fa fa-check"></i><b>22.3</b> 高维问题</a></li>
+</ul></li>
+<li class="appendix"><span><b>附录</b></span></li>
+<li class="chapter" data-level="A" data-path="pandoc-markdown.html"><a href="pandoc-markdown.html"><i class="fa fa-check"></i><b>A</b> R Markdown</a><ul>
+<li class="chapter" data-level="A.1" data-path="pandoc-markdown.html"><a href="pandoc-markdown.html#bookdown"><i class="fa fa-check"></i><b>A.1</b> bookdown</a></li>
+<li class="chapter" data-level="A.2" data-path="pandoc-markdown.html"><a href="pandoc-markdown.html#kableExtra"><i class="fa fa-check"></i><b>A.2</b> 复杂表格制作</a></li>
+</ul></li>
+<li class="chapter" data-level="B" data-path="python-plot.html"><a href="python-plot.html"><i class="fa fa-check"></i><b>B</b> Python 绘图</a><ul>
+<li class="chapter" data-level="B.1" data-path="python-plot.html"><a href="python-plot.html#matplotlib"><i class="fa fa-check"></i><b>B.1</b> matplotlib</a></li>
+<li class="chapter" data-level="B.2" data-path="python-plot.html"><a href="python-plot.html#seaborn"><i class="fa fa-check"></i><b>B.2</b> seaborn</a></li>
+<li class="chapter" data-level="B.3" data-path="python-plot.html"><a href="python-plot.html#pyglet"><i class="fa fa-check"></i><b>B.3</b> pyglet</a></li>
+<li class="chapter" data-level="B.4" data-path="python-plot.html"><a href="python-plot.html#mayavi"><i class="fa fa-check"></i><b>B.4</b> mayavi</a></li>
+<li class="chapter" data-level="B.5" data-path="python-plot.html"><a href="python-plot.html#bokeh"><i class="fa fa-check"></i><b>B.5</b> bokeh</a></li>
+<li class="chapter" data-level="B.6" data-path="python-plot.html"><a href="python-plot.html#plotly"><i class="fa fa-check"></i><b>B.6</b> plotly</a></li>
+</ul></li>
+<li class="chapter" data-level="C" data-path="performance.html"><a href="performance.html"><i class="fa fa-check"></i><b>C</b> 性能提升</a><ul>
+<li class="chapter" data-level="C.1" data-path="performance.html"><a href="performance.html#rcpp"><i class="fa fa-check"></i><b>C.1</b> Rcpp</a><ul>
+<li class="chapter" data-level="C.1.1" data-path="performance.html"><a href="performance.html#rcppoctave"><i class="fa fa-check"></i><b>C.1.1</b> RcppOctave</a></li>
+<li class="chapter" data-level="C.1.2" data-path="performance.html"><a href="performance.html#rcppgsl"><i class="fa fa-check"></i><b>C.1.2</b> RcppGSL</a></li>
+<li class="chapter" data-level="C.1.3" data-path="performance.html"><a href="performance.html#rcpparmadillo"><i class="fa fa-check"></i><b>C.1.3</b> RcppArmadillo</a></li>
+<li class="chapter" data-level="C.1.4" data-path="performance.html"><a href="performance.html#rcppparallel"><i class="fa fa-check"></i><b>C.1.4</b> RcppParallel</a></li>
+<li class="chapter" data-level="C.1.5" data-path="performance.html"><a href="performance.html#rcppnumerical"><i class="fa fa-check"></i><b>C.1.5</b> RcppNumerical</a></li>
+<li class="chapter" data-level="C.1.6" data-path="performance.html"><a href="performance.html#rcppalgos"><i class="fa fa-check"></i><b>C.1.6</b> RcppAlgos</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="D" data-path="other-tools.html"><a href="other-tools.html"><i class="fa fa-check"></i><b>D</b> 软件工具</a><ul>
+<li class="chapter" data-level="D.1" data-path="other-tools.html"><a href="other-tools.html#octave"><i class="fa fa-check"></i><b>D.1</b> Octave</a></li>
+<li class="chapter" data-level="D.2" data-path="other-tools.html"><a href="other-tools.html#python"><i class="fa fa-check"></i><b>D.2</b> Python</a></li>
+<li class="chapter" data-level="D.3" data-path="other-tools.html"><a href="other-tools.html#hugo"><i class="fa fa-check"></i><b>D.3</b> Hugo</a></li>
+<li class="chapter" data-level="D.4" data-path="other-tools.html"><a href="other-tools.html#latex"><i class="fa fa-check"></i><b>D.4</b> LaTeX</a></li>
+<li class="chapter" data-level="D.5" data-path="other-tools.html"><a href="other-tools.html#pandoc"><i class="fa fa-check"></i><b>D.5</b> Pandoc</a></li>
+<li class="chapter" data-level="D.6" data-path="other-tools.html"><a href="other-tools.html#rtools"><i class="fa fa-check"></i><b>D.6</b> Rtools</a></li>
+<li class="chapter" data-level="D.7" data-path="other-tools.html"><a href="other-tools.html#container"><i class="fa fa-check"></i><b>D.7</b> 容器</a><ul>
+<li class="chapter" data-level="D.7.1" data-path="other-tools.html"><a href="other-tools.html#rocker"><i class="fa fa-check"></i><b>D.7.1</b> rocker</a></li>
+<li class="chapter" data-level="D.7.2" data-path="other-tools.html"><a href="other-tools.html#singularity"><i class="fa fa-check"></i><b>D.7.2</b> Singularity</a></li>
+<li class="chapter" data-level="D.7.3" data-path="other-tools.html"><a href="other-tools.html#kubernetes"><i class="fa fa-check"></i><b>D.7.3</b> Kubernetes</a></li>
+</ul></li>
+<li class="chapter" data-level="D.8" data-path="other-tools.html"><a href="other-tools.html#apt"><i class="fa fa-check"></i><b>D.8</b> apt</a></li>
+<li class="chapter" data-level="D.9" data-path="other-tools.html"><a href="other-tools.html#yum"><i class="fa fa-check"></i><b>D.9</b> yum</a></li>
+<li class="chapter" data-level="D.10" data-path="other-tools.html"><a href="other-tools.html#tlmgr"><i class="fa fa-check"></i><b>D.10</b> tlmgr</a></li>
+<li class="chapter" data-level="D.11" data-path="other-tools.html"><a href="other-tools.html#git"><i class="fa fa-check"></i><b>D.11</b> Git</a></li>
+<li class="chapter" data-level="D.12" data-path="01-installations.html"><a href="#section-D.12"><i class="fa fa-check"></i><b>D.12</b> 其它</a></li>
+</ul></li>
+<li class="chapter" data-level="E" data-path="reproduce.html"><a href="reproduce.html"><i class="fa fa-check"></i><b>E</b> 重现</a></li>
+<li class="chapter" data-level="F" data-path="bookmarks.html"><a href="bookmarks.html"><i class="fa fa-check"></i><b>F</b> 书签</a><ul>
+<li class="chapter" data-level="F.1" data-path="bookmarks.html"><a href="bookmarks.html#homepage"><i class="fa fa-check"></i><b>F.1</b> 主页</a></li>
+<li class="chapter" data-level="F.2" data-path="bookmarks.html"><a href="bookmarks.html#blogger"><i class="fa fa-check"></i><b>F.2</b> 博客</a></li>
+<li class="chapter" data-level="F.3" data-path="bookmarks.html"><a href="bookmarks.html#books"><i class="fa fa-check"></i><b>F.3</b> 书单</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="e58f82e88083e69687e78cae.html"><a href="e58f82e88083e69687e78cae.html"><i class="fa fa-check"></i>参考文献</a></li>
+<li class="divider"></li>
+<li><a href="https://xiangyun.netlify.com/">黄湘云</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">R 语言学习笔记</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="install-setup" class="section level1">
+<h1><span class="header-section-number">第 4 章</span> 安装与配置</h1>
+<div id="-r-" class="section level2">
+<h2><span class="header-section-number">4.1</span> 安装 R 软件</h2>
+<p>Windows 下安装指导见《R语言忍者秘笈》的第二章<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a></p>
+<p>推荐没事多翻翻官网 <a href="https://mirrors.tuna.tsinghua.edu.cn/CRAN/doc/FAQ/R-FAQ.html">FAQ 文档</a> 以及6本自带的手册</p>
+<ul>
+<li><strong>An Introduction to R</strong> (R-intro) includes information on data types, programming elements, statistical modeling and graphics. This document is based on the <strong>Notes on S-PLUS</strong> by Bill Venables and David Smith.
+<ul>
+<li>介绍数据类型，编程基础，统计模型和图形</li>
+</ul></li>
+<li><strong>Writing R Extensions</strong> (R-exts) currently describes the process of creating R add-on packages, writing R documentation, R’s system and foreign language interfaces, and the R API.
+<ul>
+<li>描述创建扩展包、写R包文档的过程，介绍 R 系统，外部语言接口以及 R 的API</li>
+</ul></li>
+<li><strong>R Data Import/Export</strong> (R-data) is a guide to importing and exporting data to and from R.
+<ul>
+<li>从 R 导入和导出数据</li>
+</ul></li>
+<li><strong>The R Language Definition</strong> (R-lang), a first version of the <em>Kernighan &amp; Ritchie of R</em>, explains evaluation, parsing, object oriented programming, computing on the language, and so forth.
+<ul>
+<li>介绍 R 语言程序设计，解释计算、解析、面向对象编程以及计算</li>
+</ul></li>
+<li><strong>R Installation and Administration</strong> (R-admin).
+<ul>
+<li>R 安装和管理</li>
+</ul></li>
+<li><strong>R Internals</strong> (R-ints) is a guide to R’s internal structures. (Added in R 2.4.0.)
+<ul>
+<li>R 内部结构指南</li>
+</ul></li>
+</ul>
+<p>Hadley Wickham 正在写文档介绍 <a href="https://github.com/hadley/r-internals">Documentation for R’s internal C API</a></p>
+<ul>
+<li>从源码编译 R 的需求在哪呢？</li>
+</ul>
+<ol style="list-style-type: decimal">
+<li>爱折腾的极客：玩配置，学习 make 相关工具和 Linux 世界的依赖</li>
+<li>追求性能：如 <a href="http://users.suse.com/~aj/linux_lfs.html">LFS 支持</a> 和 <a href="http://dirk.eddelbuettel.com/blog/2018/04/15/#018_mkl_for_debian_ubuntu">Intel MKL 加速</a></li>
+<li>环境限制：CentOS 6/7 或者红帽系统，自带的R版本比较落后</li>
+<li>微软提供的一套 MSR （这里不需要编译）</li>
+</ol>
+<p>现在很多东西都讲究 docker 化，直接往 CentOS 系统上编译安装最新版 R 会越来越少，这里给个例子，在 docker 内安装 R 和扩展包，Dockerfile 的内容如下</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw">cat</span>(<span class="kw">readLines</span>(con &lt;-<span class="st"> </span><span class="kw">file</span>(<span class="st">&quot;docs/Dockerfile&quot;</span>, <span class="dt">encoding =</span> <span class="st">&quot;UTF-8&quot;</span>)) ,<span class="dt">sep =</span> <span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>)</a>
+<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="co">#&gt; FROM rocker/geospatial:latest</span></a>
+<a class="sourceLine" id="cb2-3" data-line-number="3"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb2-4" data-line-number="4"><span class="co">#&gt; MAINTAINER Xiangyun Huang &lt;xiangyunfaith@outlook.com&gt;</span></a>
+<a class="sourceLine" id="cb2-5" data-line-number="5"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb2-6" data-line-number="6"><span class="co">#&gt; # System dependencies for required R packages</span></a>
+<a class="sourceLine" id="cb2-7" data-line-number="7"><span class="co">#&gt; RUN apt-get update \</span></a>
+<a class="sourceLine" id="cb2-8" data-line-number="8"><span class="co">#&gt;   &amp;&amp; apt-get install -y --no-install-recommends \</span></a>
+<a class="sourceLine" id="cb2-9" data-line-number="9"><span class="co">#&gt;     imagemagick \</span></a>
+<a class="sourceLine" id="cb2-10" data-line-number="10"><span class="co">#&gt;     optipng \</span></a>
+<a class="sourceLine" id="cb2-11" data-line-number="11"><span class="co">#&gt;     curl \</span></a>
+<a class="sourceLine" id="cb2-12" data-line-number="12"><span class="co">#&gt;     dieharder \</span></a>
+<a class="sourceLine" id="cb2-13" data-line-number="13"><span class="co">#&gt;     libdieharder3 \</span></a>
+<a class="sourceLine" id="cb2-14" data-line-number="14"><span class="co">#&gt;     libdieharder-dev \</span></a>
+<a class="sourceLine" id="cb2-15" data-line-number="15"><span class="co">#&gt;     libpoppler-cpp-dev \</span></a>
+<a class="sourceLine" id="cb2-16" data-line-number="16"><span class="co">#&gt;     python-dev \</span></a>
+<a class="sourceLine" id="cb2-17" data-line-number="17"><span class="co">#&gt;     python-pip \</span></a>
+<a class="sourceLine" id="cb2-18" data-line-number="18"><span class="co">#&gt;     python-tk \</span></a>
+<a class="sourceLine" id="cb2-19" data-line-number="19"><span class="co">#&gt;     octave \</span></a>
+<a class="sourceLine" id="cb2-20" data-line-number="20"><span class="co">#&gt;     proj-bin \</span></a>
+<a class="sourceLine" id="cb2-21" data-line-number="21"><span class="co">#&gt;     libpaper-utils \</span></a>
+<a class="sourceLine" id="cb2-22" data-line-number="22"><span class="co">#&gt;     libatlas3-base \</span></a>
+<a class="sourceLine" id="cb2-23" data-line-number="23"><span class="co">#&gt;     build-essential \</span></a>
+<a class="sourceLine" id="cb2-24" data-line-number="24"><span class="co">#&gt;     python-wheel \</span></a>
+<a class="sourceLine" id="cb2-25" data-line-number="25"><span class="co">#&gt;     pstoedit \</span></a>
+<a class="sourceLine" id="cb2-26" data-line-number="26"><span class="co">#&gt;   &amp;&amp; pip install numpy \</span></a>
+<a class="sourceLine" id="cb2-27" data-line-number="27"><span class="co">#&gt;     matplotlib</span></a>
+<a class="sourceLine" id="cb2-28" data-line-number="28"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb2-29" data-line-number="29"><span class="co">#&gt; # TinyTeX for PDF</span></a>
+<a class="sourceLine" id="cb2-30" data-line-number="30"><span class="co">#&gt; RUN mkdir ~/.fonts \</span></a>
+<a class="sourceLine" id="cb2-31" data-line-number="31"><span class="co">#&gt;   &amp;&amp; curl -o ~/.fonts/Inconsolata-Bold.ttf https://raw.githubusercontent.com/google/fonts/master/ofl/inconsolata/Inconsolata-Bold.ttf \</span></a>
+<a class="sourceLine" id="cb2-32" data-line-number="32"><span class="co">#&gt;   &amp;&amp; curl -o ~/.fonts/Inconsolata-Regular.ttf https://raw.githubusercontent.com/google/fonts/master/ofl/inconsolata/Inconsolata-Regular.ttf \</span></a>
+<a class="sourceLine" id="cb2-33" data-line-number="33"><span class="co">#&gt;   &amp;&amp; fc-cache -fv ~/.fonts \</span></a>
+<a class="sourceLine" id="cb2-34" data-line-number="34"><span class="co">#&gt;   &amp;&amp; git clone --depth=1 --branch=master https://github.com/XiangyunHuang/bookdown-chinese.git \</span></a>
+<a class="sourceLine" id="cb2-35" data-line-number="35"><span class="co">#&gt;   &amp;&amp; cd bookdown-chinese \</span></a>
+<a class="sourceLine" id="cb2-36" data-line-number="36"><span class="co">#&gt;   &amp;&amp; tlmgr update --all --self \</span></a>
+<a class="sourceLine" id="cb2-37" data-line-number="37"><span class="co">#&gt;   &amp;&amp; tlmgr install $(cat TeXLive.pkgs | tr &#39;\n&#39; &#39; &#39;) || true \</span></a>
+<a class="sourceLine" id="cb2-38" data-line-number="38"><span class="co">#&gt;   &amp;&amp; Rscript -e &quot;devtools::install_github(&#39;leonawicz/mapmate&#39;)&quot; \</span></a>
+<a class="sourceLine" id="cb2-39" data-line-number="39"><span class="co">#&gt;   &amp;&amp; Rscript -e &quot;devtools::install_github(&#39;dgrtwo/gganimate&#39;)&quot; \</span></a>
+<a class="sourceLine" id="cb2-40" data-line-number="40"><span class="co">#&gt;   &amp;&amp; Rscript -e &quot;bookdown::render_book(&#39;index.Rmd&#39;)&quot;</span></a>
+<a class="sourceLine" id="cb2-41" data-line-number="41"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb2-42" data-line-number="42"><span class="co">#&gt; RUN mkdir /liftrroot/</span></a>
+<a class="sourceLine" id="cb2-43" data-line-number="43"><span class="co">#&gt; WORKDIR /liftrroot/</span></a></code></pre></div>
+<p>这种方式可以安装到最新版的 R，同时省去了自己配置安装过程中的麻烦，只是系统自带的 texlive 还是比较旧，如何安装 tlmgr 管理器，安装新的 TeX 包到之前的位置值得考虑，主要目的是为中文的 R Markdown 文档服务。</p>
+<p>Pandoc 提供的 LaTeX 文类，是希望用户在 YAML 指定 CJKmainfont 等，显式地安装系统中文字体供使用，楷体和宋体，文泉驿黑体都是系统自带的。要我说可以用思源黑体和宋体，或者自己拷贝一份中文字体到 <code>~/.fonts</code> 然后刷新，就是添加这样一段代码，这种做法使用最广</p>
+<pre><code>RUN mkdir ~/.fonts \
+  &amp;&amp; curl -o ~/.fonts/Inconsolata-Bold.ttf https://raw.githubusercontent.com/google/fonts/master/ofl/inconsolata/Inconsolata-Bold.ttf \
+  &amp;&amp; curl -o ~/.fonts/Inconsolata-Regular.ttf https://raw.githubusercontent.com/google/fonts/master/ofl/inconsolata/Inconsolata-Regular.ttf \
+  &amp;&amp; fc-cache -fv ~/.fonts \</code></pre>
+<p>文泉驿字体</p>
+<pre><code>wqy-unibit-fonts wqy-microhei-fonts wqy-zenhei-fonts</code></pre>
+<p>安装 RStudio 或者 RStudio Server 请看官网介绍</p>
+<ul>
+<li><a href="https://www.rstudio.com/products/rstudio/download/" class="uri">https://www.rstudio.com/products/rstudio/download/</a></li>
+<li><p><a href="http://docs.rstudio.com/ide/server-pro/" class="uri">http://docs.rstudio.com/ide/server-pro/</a></p></li>
+<li>安装 Microsoft R Open <a href="https://mran.microsoft.com/documents/rro/installation#revorinst-lin" class="uri">https://mran.microsoft.com/documents/rro/installation#revorinst-lin</a></li>
+<li>安装 Machine Learning Server
+<ul>
+<li><a href="https://docs.microsoft.com/en-us/machine-learning-server/install/machine-learning-server-linux-install">在线安装</a></li>
+<li><a href="https://docs.microsoft.com/en-us/machine-learning-server/install/machine-learning-server-linux-offline">离线安装</a></li>
+</ul></li>
+</ul>
+</div>
+<div id="-r-" class="section level2">
+<h2><span class="header-section-number">4.2</span> 安装 R 扩展包</h2>
+<ul>
+<li>从指定的镜像站点安装（源头）</li>
+</ul>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw">install.packages</span>(<span class="st">&quot;rbokeh&quot;</span>, <span class="dt">repos =</span> <span class="st">&quot;https://mirrors.tuna.tsinghua.edu.cn/CRAN/&quot;</span>)</a></code></pre></div>
+<ul>
+<li>再指定安装的位置（本地）</li>
+</ul>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw">install.packages</span>(<span class="st">&quot;rbokeh&quot;</span>,</a>
+<a class="sourceLine" id="cb6-2" data-line-number="2">  <span class="dt">repos =</span> <span class="kw">c</span>(</a>
+<a class="sourceLine" id="cb6-3" data-line-number="3">    <span class="dt">deltarho =</span> <span class="st">&quot;http://packages.deltarho.org&quot;</span>,</a>
+<a class="sourceLine" id="cb6-4" data-line-number="4">    <span class="kw">getOption</span>(<span class="st">&quot;repos&quot;</span>)</a>
+<a class="sourceLine" id="cb6-5" data-line-number="5">  ),</a>
+<a class="sourceLine" id="cb6-6" data-line-number="6">  <span class="dt">lib =</span> <span class="kw">R.home</span>(<span class="st">&quot;site-library&quot;</span>)</a>
+<a class="sourceLine" id="cb6-7" data-line-number="7">)</a></code></pre></div>
+<ul>
+<li>安装 Bioconductor 上的 R 包</li>
+</ul>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="kw">source</span>(<span class="st">&quot;https://bioconductor.org/biocLite.R&quot;</span>)</a>
+<a class="sourceLine" id="cb7-2" data-line-number="2">BiocInstaller<span class="op">::</span><span class="kw">biocLite</span>(<span class="st">&quot;rbokeh&quot;</span>)</a></code></pre></div>
+<ul>
+<li>安装Github上的R包</li>
+</ul>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1">devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">&quot;bokeh/rbokeh&quot;</span>)</a></code></pre></div>
+<ul>
+<li>依赖问题：主要针对离线安装和源码编译安装</li>
+<li>平台问题：有些 R 包只能装在 Linux 操作系统上</li>
+<li>软件问题：有些 R 包要求相应 R 软件版本</li>
+<li>特定库依赖：如 <strong>RDieHarder</strong>  包就依赖 <code>libgsl-dev</code> 和 <code>libdieharder-dev</code> 库</li>
+</ul>
+<p>所以我们需要查看以下信息</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1"><span class="kw">sessionInfo</span>()</a>
+<a class="sourceLine" id="cb9-2" data-line-number="2"><span class="co">#&gt; R version 3.4.4 (2017-01-27)</span></a>
+<a class="sourceLine" id="cb9-3" data-line-number="3"><span class="co">#&gt; Platform: x86_64-pc-linux-gnu (64-bit)</span></a>
+<a class="sourceLine" id="cb9-4" data-line-number="4"><span class="co">#&gt; Running under: Ubuntu 14.04.5 LTS</span></a>
+<a class="sourceLine" id="cb9-5" data-line-number="5"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb9-6" data-line-number="6"><span class="co">#&gt; Matrix products: default</span></a>
+<a class="sourceLine" id="cb9-7" data-line-number="7"><span class="co">#&gt; BLAS: /home/travis/R-bin/lib/R/lib/libRblas.so</span></a>
+<a class="sourceLine" id="cb9-8" data-line-number="8"><span class="co">#&gt; LAPACK: /home/travis/R-bin/lib/R/lib/libRlapack.so</span></a>
+<a class="sourceLine" id="cb9-9" data-line-number="9"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb9-10" data-line-number="10"><span class="co">#&gt; locale:</span></a>
+<a class="sourceLine" id="cb9-11" data-line-number="11"><span class="co">#&gt;  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              </span></a>
+<a class="sourceLine" id="cb9-12" data-line-number="12"><span class="co">#&gt;  [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    </span></a>
+<a class="sourceLine" id="cb9-13" data-line-number="13"><span class="co">#&gt;  [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   </span></a>
+<a class="sourceLine" id="cb9-14" data-line-number="14"><span class="co">#&gt;  [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 </span></a>
+<a class="sourceLine" id="cb9-15" data-line-number="15"><span class="co">#&gt;  [9] LC_ADDRESS=C               LC_TELEPHONE=C            </span></a>
+<a class="sourceLine" id="cb9-16" data-line-number="16"><span class="co">#&gt; [11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       </span></a>
+<a class="sourceLine" id="cb9-17" data-line-number="17"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb9-18" data-line-number="18"><span class="co">#&gt; attached base packages:</span></a>
+<a class="sourceLine" id="cb9-19" data-line-number="19"><span class="co">#&gt; [1] methods   stats     graphics  grDevices utils     datasets  base     </span></a>
+<a class="sourceLine" id="cb9-20" data-line-number="20"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb9-21" data-line-number="21"><span class="co">#&gt; loaded via a namespace (and not attached):</span></a>
+<a class="sourceLine" id="cb9-22" data-line-number="22"><span class="co">#&gt;  [1] Rcpp_0.12.16     bookdown_0.7     codetools_0.2-15 sysfonts_0.7.2  </span></a>
+<a class="sourceLine" id="cb9-23" data-line-number="23"><span class="co">#&gt;  [5] digest_0.6.15    showtextdb_2.0   rprojroot_1.3-2  Rttf2pt1_1.3.6  </span></a>
+<a class="sourceLine" id="cb9-24" data-line-number="24"><span class="co">#&gt;  [9] backports_1.1.2  magrittr_1.5     evaluate_0.10.1  stringi_1.2.2   </span></a>
+<a class="sourceLine" id="cb9-25" data-line-number="25"><span class="co">#&gt; [13] extrafontdb_1.0  rmarkdown_1.9    extrafont_0.17   tools_3.4.4     </span></a>
+<a class="sourceLine" id="cb9-26" data-line-number="26"><span class="co">#&gt; [17] stringr_1.3.1    xfun_0.1         yaml_2.1.19      compiler_3.4.4  </span></a>
+<a class="sourceLine" id="cb9-27" data-line-number="27"><span class="co">#&gt; [21] htmltools_0.3.6  knitr_1.20</span></a></code></pre></div>
+<p>有时候甚至是</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1">devtools<span class="op">::</span><span class="kw">session_info</span>(<span class="st">&quot;showtext&quot;</span>)</a>
+<a class="sourceLine" id="cb10-2" data-line-number="2"><span class="co">#&gt; Session info -------------------------------------------------------------</span></a>
+<a class="sourceLine" id="cb10-3" data-line-number="3"><span class="co">#&gt;  setting  value                       </span></a>
+<a class="sourceLine" id="cb10-4" data-line-number="4"><span class="co">#&gt;  version  R version 3.4.4 (2017-01-27)</span></a>
+<a class="sourceLine" id="cb10-5" data-line-number="5"><span class="co">#&gt;  system   x86_64, linux-gnu           </span></a>
+<a class="sourceLine" id="cb10-6" data-line-number="6"><span class="co">#&gt;  ui       X11                         </span></a>
+<a class="sourceLine" id="cb10-7" data-line-number="7"><span class="co">#&gt;  language (EN)                        </span></a>
+<a class="sourceLine" id="cb10-8" data-line-number="8"><span class="co">#&gt;  collate  en_US.UTF-8                 </span></a>
+<a class="sourceLine" id="cb10-9" data-line-number="9"><span class="co">#&gt;  tz       UTC                         </span></a>
+<a class="sourceLine" id="cb10-10" data-line-number="10"><span class="co">#&gt;  date     2018-05-15</span></a>
+<a class="sourceLine" id="cb10-11" data-line-number="11"><span class="co">#&gt; Packages -----------------------------------------------------------------</span></a>
+<a class="sourceLine" id="cb10-12" data-line-number="12"><span class="co">#&gt;  package    * version date       source        </span></a>
+<a class="sourceLine" id="cb10-13" data-line-number="13"><span class="co">#&gt;  grDevices  * 3.4.4   2018-03-15 local         </span></a>
+<a class="sourceLine" id="cb10-14" data-line-number="14"><span class="co">#&gt;  showtext     0.5-1   2018-01-16 CRAN (R 3.4.4)</span></a>
+<a class="sourceLine" id="cb10-15" data-line-number="15"><span class="co">#&gt;  showtextdb   2.0     2017-09-11 CRAN (R 3.4.4)</span></a>
+<a class="sourceLine" id="cb10-16" data-line-number="16"><span class="co">#&gt;  sysfonts     0.7.2   2018-01-16 CRAN (R 3.4.4)</span></a>
+<a class="sourceLine" id="cb10-17" data-line-number="17"><span class="co">#&gt;  utils      * 3.4.4   2018-03-15 local</span></a></code></pre></div>
+
+<div class="rmdnote">
+推荐 <code>devtools::session_info(&quot;package&quot;)</code> 而不是 <code>sessionInfo()</code>，尤其在遇到因为版本不对而带来错误的时候，如 <a href="https://d.cosx.org/d/419765-showtext" class="uri">https://d.cosx.org/d/419765-showtext</a>
+</div>
+
+<div id="rdieharder" class="section level3">
+<h3><span class="header-section-number">4.2.1</span> RDieHarder</h3>
+<p>在安装 <strong>RDieHarder</strong>  包之前需要安装依赖库，并且这个 R 包目前只能在 Linux/Mac 系统上安装</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb11-1" data-line-number="1"><span class="fu">sudo</span> apt-get update <span class="kw">&amp;&amp;</span> <span class="fu">sudo</span> apt-get install -y libgsl-dev libdieharder-dev</a></code></pre></div>
+<p>安装并加载 <strong>RDieHarder</strong> 包</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1"><span class="kw">library</span>(magrittr)</a>
+<a class="sourceLine" id="cb12-2" data-line-number="2"><span class="kw">library</span>(RDieHarder)</a>
+<a class="sourceLine" id="cb12-3" data-line-number="3"><span class="kw">dieharderGenerators</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">head</span>()</a>
+<a class="sourceLine" id="cb12-4" data-line-number="4"><span class="co">#&gt;       names id</span></a>
+<a class="sourceLine" id="cb12-5" data-line-number="5"><span class="co">#&gt; 1  borosh13  0</span></a>
+<a class="sourceLine" id="cb12-6" data-line-number="6"><span class="co">#&gt; 2      cmrg  1</span></a>
+<a class="sourceLine" id="cb12-7" data-line-number="7"><span class="co">#&gt; 3   coveyou  2</span></a>
+<a class="sourceLine" id="cb12-8" data-line-number="8"><span class="co">#&gt; 4 fishman18  3</span></a>
+<a class="sourceLine" id="cb12-9" data-line-number="9"><span class="co">#&gt; 5 fishman20  4</span></a>
+<a class="sourceLine" id="cb12-10" data-line-number="10"><span class="co">#&gt; 6 fishman2x  5</span></a>
+<a class="sourceLine" id="cb12-11" data-line-number="11"><span class="kw">dieharderTests</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">head</span>()</a>
+<a class="sourceLine" id="cb12-12" data-line-number="12"><span class="co">#&gt;                names id</span></a>
+<a class="sourceLine" id="cb12-13" data-line-number="13"><span class="co">#&gt; 1  diehard_birthdays  0</span></a>
+<a class="sourceLine" id="cb12-14" data-line-number="14"><span class="co">#&gt; 2     diehard_operm5  1</span></a>
+<a class="sourceLine" id="cb12-15" data-line-number="15"><span class="co">#&gt; 3 diehard_rank_32x32  2</span></a>
+<a class="sourceLine" id="cb12-16" data-line-number="16"><span class="co">#&gt; 4   diehard_rank_6x8  3</span></a>
+<a class="sourceLine" id="cb12-17" data-line-number="17"><span class="co">#&gt; 5  diehard_bitstream  4</span></a>
+<a class="sourceLine" id="cb12-18" data-line-number="18"><span class="co">#&gt; 6       diehard_opso  5</span></a></code></pre></div>
+<p>RDieHarder  <span class="citation">(Eddelbuettel <a href="#ref-R-RDieHarder">2018</a>)</span> 由 <a href="http://dirk.eddelbuettel.com">Dirk Eddelbuettel</a> 开发，将 <a href="http://www.phy.duke.edu/~rgb/General/dieharder.php">Robert G. Brown</a> 的工作介绍给 R 用户</p>
+</div>
+<div id="sparkr" class="section level3">
+<h3><span class="header-section-number">4.2.2</span> SparkR</h3>
+</div>
+<div id="sparklyr" class="section level3">
+<h3><span class="header-section-number">4.2.3</span> sparklyr</h3>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1"><span class="kw">library</span>(sparklyr)</a>
+<a class="sourceLine" id="cb13-2" data-line-number="2"><span class="co"># spark_available_versions()</span></a>
+<a class="sourceLine" id="cb13-3" data-line-number="3"><span class="kw">spark_install</span>(<span class="dt">version =</span> <span class="st">&quot;2.2.0&quot;</span>, <span class="dt">hadoop_version =</span> <span class="st">&quot;2.7&quot;</span>)</a></code></pre></div>
+</div>
+<div id="dbi" class="section level3">
+<h3><span class="header-section-number">4.2.4</span> DBI</h3>
+<p>这是一个存放在Github上的包，随着 ClikHouse 在大厂的流行，此包也受到越来越多的关注
+与数据仓库如何连接，如何查询数据，背后的接口 DBI 如何使用，实例化一个新的接口（如 clickhouse2r ）</p>
+<ul>
+<li><a href="https://github.com/hannesmuehleisen/clickhouse-r" class="uri">https://github.com/hannesmuehleisen/clickhouse-r</a></li>
+<li>壮士！交给你个任务，基于 clickhouse 的 odbc 驱动 <a href="https://github.com/yandex/clickhouse-odbc" class="uri">https://github.com/yandex/clickhouse-odbc</a> 写了 R 包如何，顺带介绍 clickhouse ，再给统计之都投篇稿子，在明年的 R 会给个相关报告。名字 r4clickhouse 还是 clickhouse4r 呢</li>
+</ul>
+<p><a href="https://clickhouse.yandex/">ClickHouse</a> 独辟蹊径，基于 C++ 的实现，数据查询速度超级快，官网介绍碾压大量传统数据库。还有不少接口，其中还有 R 的 <a href="https://github.com/hannesmuehleisen/clickhouse-r" class="uri">https://github.com/hannesmuehleisen/clickhouse-r</a></p>
+<ul>
+<li>安装</li>
+</ul>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1">devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">&quot;hannesmuehleisen/clickhouse-r&quot;</span>)</a></code></pre></div>
+<p>下载 <a href="https://clickhouse.yandex/docs/en/single/#installation" class="uri">https://clickhouse.yandex/docs/en/single/#installation</a></p>
+<ul>
+<li>使用</li>
+</ul>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1"><span class="kw">library</span>(DBI)</a>
+<a class="sourceLine" id="cb15-2" data-line-number="2">con &lt;-<span class="st"> </span><span class="kw">dbConnect</span>(clickhouse<span class="op">::</span><span class="kw">clickhouse</span>(),</a>
+<a class="sourceLine" id="cb15-3" data-line-number="3">  <span class="dt">host =</span> <span class="st">&quot;localhost&quot;</span>,</a>
+<a class="sourceLine" id="cb15-4" data-line-number="4">  <span class="dt">port =</span> 8123L,</a>
+<a class="sourceLine" id="cb15-5" data-line-number="5">  <span class="dt">user =</span> <span class="st">&quot;default&quot;</span>,</a>
+<a class="sourceLine" id="cb15-6" data-line-number="6">  <span class="dt">password =</span> <span class="st">&quot;&quot;</span></a>
+<a class="sourceLine" id="cb15-7" data-line-number="7">)</a>
+<a class="sourceLine" id="cb15-8" data-line-number="8"><span class="kw">dbWriteTable</span>(con, <span class="st">&quot;mtcars&quot;</span>, mtcars)</a>
+<a class="sourceLine" id="cb15-9" data-line-number="9"><span class="kw">dbListTables</span>(con)</a>
+<a class="sourceLine" id="cb15-10" data-line-number="10"><span class="kw">dbGetQuery</span>(con, <span class="st">&quot;SELECT COUNT(*) FROM mtcars&quot;</span>)</a>
+<a class="sourceLine" id="cb15-11" data-line-number="11">d &lt;-<span class="st"> </span><span class="kw">dbReadTable</span>(con, <span class="st">&quot;mtcars&quot;</span>)</a>
+<a class="sourceLine" id="cb15-12" data-line-number="12"><span class="kw">dbDisconnect</span>(con)</a></code></pre></div>
+<p>发现它和 knitr 里的 SQL 钩子，都用 DBI 这个R包 <a href="https://github.com/rstats-db/DBI" class="uri">https://github.com/rstats-db/DBI</a></p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1">knitr<span class="op">::</span><span class="kw">include_graphics</span>(<span class="dt">path =</span> <span class="st">&quot;images/clickhouse.png&quot;</span>)</a></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:clickhouse"></span>
+<img src="images/clickhouse.png" alt="ClickHouse与R" width="70%" />
+<p class="caption">
+图 4.1: ClickHouse与R
+</p>
+</div>
+<p>参考 <a href="https://d.cosx.org/d/419974-r-markdown-sql" class="uri">https://d.cosx.org/d/419974-r-markdown-sql</a></p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode markdown"><code class="sourceCode markdown"><a class="sourceLine" id="cb17-1" data-line-number="1">```{r setup}</a>
+<a class="sourceLine" id="cb17-2" data-line-number="2">library(DBI)</a>
+<a class="sourceLine" id="cb17-3" data-line-number="3">library(RMySQL)</a>
+<a class="sourceLine" id="cb17-4" data-line-number="4"><span class="fu"># 这里的数据库链接信息我改了</span></a>
+<a class="sourceLine" id="cb17-5" data-line-number="5">db &lt;- dbConnect(MySQL(),</a>
+<a class="sourceLine" id="cb17-6" data-line-number="6">  dbname = &quot;dbtest&quot;,</a>
+<a class="sourceLine" id="cb17-7" data-line-number="7">  username = &quot;user_test&quot;,</a>
+<a class="sourceLine" id="cb17-8" data-line-number="8">  password = &quot;password&quot;,</a>
+<a class="sourceLine" id="cb17-9" data-line-number="9">  host = &quot;10.10.101.10&quot;,</a>
+<a class="sourceLine" id="cb17-10" data-line-number="10">  port = 3306</a>
+<a class="sourceLine" id="cb17-11" data-line-number="11">)</a>
+<a class="sourceLine" id="cb17-12" data-line-number="12"><span class="fu"># 创建默认连接</span></a>
+<a class="sourceLine" id="cb17-13" data-line-number="13">knitr::opts_chunk$set(connection = &quot;db&quot;)</a>
+<a class="sourceLine" id="cb17-14" data-line-number="14"><span class="fu"># 设置字符，以免中文查询乱码</span></a>
+<a class="sourceLine" id="cb17-15" data-line-number="15">dbSendQuery(db, &quot;SET NAMES utf8&quot;)</a>
+<a class="sourceLine" id="cb17-16" data-line-number="16"><span class="fu"># 设置日期变量，以运用在SQL中</span></a>
+<a class="sourceLine" id="cb17-17" data-line-number="17">idate &lt;- &quot;2018-05-03&quot;</a>
+<a class="sourceLine" id="cb17-18" data-line-number="18"><span class="fu"># 请忽略我</span></a>
+<a class="sourceLine" id="cb17-19" data-line-number="19">```</a></code></pre></div>
+<p>SQL中使用R的变量并将结果输出为数据框</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode markdown"><code class="sourceCode markdown"><a class="sourceLine" id="cb18-1" data-line-number="1">```{sql, output.var=&quot;data_output&quot;}</a>
+<a class="sourceLine" id="cb18-2" data-line-number="2">SELECT * FROM user_table where date_format(created_date,&#39;%Y-%m-%d&#39;)&gt;=?idate  </a>
+<a class="sourceLine" id="cb18-3" data-line-number="3"><span class="fu"># 请忽略我</span></a>
+<a class="sourceLine" id="cb18-4" data-line-number="4">```</a></code></pre></div>
+<p>以上代码会将SQL的运行结果存在 <code>data_output</code> 这是数据库中。如果SQL比较长，为了代码美观，把带有变量的SQL保存为.sql脚本，那怎么在SQL的chunk中直接导入SQL文件</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode markdown"><code class="sourceCode markdown"><a class="sourceLine" id="cb19-1" data-line-number="1">```{sql, code=readLines(&quot;你的脚本.sql&quot;)}</a>
+<a class="sourceLine" id="cb19-2" data-line-number="2">```</a></code></pre></div>
+</div>
+<div id="reticulate" class="section level3">
+<h3><span class="header-section-number">4.2.5</span> reticulate</h3>
+<p>Python 与 R 交互</p>
+</div>
+<div id="inla" class="section level3">
+<h3><span class="header-section-number">4.2.6</span> INLA</h3>
+<p>具有非常多的依赖关系，除了 CRAN 还有来自 bioconductor 的包，介绍 <a href="http://www.r-inla.org/events/newtutorialsonspatialmodelsininla" class="uri">http://www.r-inla.org/events/newtutorialsonspatialmodelsininla</a></p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" data-line-number="1"><span class="kw">install.packages</span>(<span class="st">&quot;INLA&quot;</span>,</a>
+<a class="sourceLine" id="cb20-2" data-line-number="2">  <span class="dt">repos =</span> <span class="st">&quot;https://www.math.ntnu.no/inla/R/testing&quot;</span></a>
+<a class="sourceLine" id="cb20-3" data-line-number="3">)</a></code></pre></div>
+</div>
+<div id="mxnet" class="section level3">
+<h3><span class="header-section-number">4.2.7</span> mxnet</h3>
+<p>依赖也是很多，主要在于 GPU 版如何安装使用</p>
+</div>
+<div id="tensorflow" class="section level3">
+<h3><span class="header-section-number">4.2.8</span> tensorflow</h3>
+<p>同样地，依赖也是很多，主要在于 GPU 版如何安装使用</p>
+</div>
+</div>
+<div id="-ide" class="section level2">
+<h2><span class="header-section-number">4.3</span> 安装 IDE</h2>
+<p>RStudio</p>
+</div>
+<div id="section-4.4" class="section level2">
+<h2><span class="header-section-number">4.4</span> 配置文件</h2>
+<p>工作目录下的 .Rprofile，设置 site-library，设置环境变量 Renviron</p>
+</div>
+<div id="tricks" class="section level2">
+<h2><span class="header-section-number">4.5</span> 小技巧</h2>
+<ol style="list-style-type: decimal">
+<li>设置 Notepad++ 为 Git Bash 默认编辑器</li>
+</ol>
+<p>图 <a href="install-setup.html#fig:notepad-git">4.2</a> 所示<a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a></p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" data-line-number="1">knitr<span class="op">::</span><span class="kw">include_graphics</span>(<span class="dt">path =</span> <span class="st">&quot;images/git-vim-commit-message.png&quot;</span>)</a></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:notepad-git"></span>
+<img src="images/git-vim-commit-message.png" alt="Notepad++ 与 Git" width="70%" />
+<p class="caption">
+图 4.2: Notepad++ 与 Git
+</p>
+</div>
+<p>在 Git Bash 中输入下面一行</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb22-1" data-line-number="1"><span class="fu">git</span> config --global core.editor <span class="st">&quot;&#39;c:\Program Files\Notepad++\notepad++.exe&#39; -multiInst -notabbar -nosession -noPlugin &#39;</span><span class="va">$*</span><span class="st">&#39;&quot;</span></a></code></pre></div>
+<p>Windows下配置 Git 中 ssh-agent 自动启动 <a href="https://lfkid.github.io/" class="uri">https://lfkid.github.io/</a>
+这种让 Git 的 ssh-agent 常驻内存貌似不合理，占内存嘛</p>
+<p>设置 ssh 和 store 保存应该比较好</p>
+<ol start="2" style="list-style-type: decimal">
+<li>打开 bookdown 项目出来警告</li>
+</ol>
+<p>如图 <a href="install-setup.html#fig:yaml-load">4.3</a> 所示，目前只出现在 Windows 平台下</p>
+<div class="figure" style="text-align: center"><span id="fig:yaml-load"></span>
+<img src="diagrams/ymal-load-error.png" alt="YAML 扫描错误" width="70%" />
+<p class="caption">
+图 4.3: YAML 扫描错误
+</p>
+</div>
+<p>直观来看，是字符串 string 本身需要转化为 UTF8（其实是需要YAML区域都变成UTF8），有关详细介绍见 <a href="http://biostat.mc.vanderbilt.edu/wiki/Main/YamlR#yaml.load" class="uri">http://biostat.mc.vanderbilt.edu/wiki/Main/YamlR#yaml.load</a> 和 <a href="https://github.com/viking/r-yaml" class="uri">https://github.com/viking/r-yaml</a></p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" data-line-number="1">yaml<span class="op">::</span>yaml.load</a>
+<a class="sourceLine" id="cb23-2" data-line-number="2"><span class="co">#&gt; function (string, as.named.list = TRUE, handlers = NULL, error.label = NULL, </span></a>
+<a class="sourceLine" id="cb23-3" data-line-number="3"><span class="co">#&gt;     eval.expr = getOption(&quot;yaml.eval.expr&quot;, TRUE)) </span></a>
+<a class="sourceLine" id="cb23-4" data-line-number="4"><span class="co">#&gt; {</span></a>
+<a class="sourceLine" id="cb23-5" data-line-number="5"><span class="co">#&gt;     eval.warning &lt;- missing(eval.expr) &amp;&amp; is.null(getOption(&quot;yaml.eval.expr&quot;))</span></a>
+<a class="sourceLine" id="cb23-6" data-line-number="6"><span class="co">#&gt;     string &lt;- enc2utf8(paste(string, collapse = &quot;\n&quot;))</span></a>
+<a class="sourceLine" id="cb23-7" data-line-number="7"><span class="co">#&gt;     .Call(C_unserialize_from_yaml, string, as.named.list, handlers, </span></a>
+<a class="sourceLine" id="cb23-8" data-line-number="8"><span class="co">#&gt;         error.label, eval.expr, eval.warning, PACKAGE = &quot;yaml&quot;)</span></a>
+<a class="sourceLine" id="cb23-9" data-line-number="9"><span class="co">#&gt; }</span></a>
+<a class="sourceLine" id="cb23-10" data-line-number="10"><span class="co">#&gt; &lt;environment: namespace:yaml&gt;</span></a></code></pre></div>
+<p>先看个简单的</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" data-line-number="1">yaml<span class="op">::</span><span class="kw">yaml.load</span>(<span class="st">&#39;你好&#39;</span>)</a>
+<a class="sourceLine" id="cb24-2" data-line-number="2"><span class="co">#&gt; [1] &quot;你好&quot;</span></a></code></pre></div>
+<p>开发者用如下方式避免一个警告 <a href="https://github.com/viking/r-yaml/issues/47">issues #47</a></p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" data-line-number="1">yaml<span class="op">::</span><span class="kw">yaml.load</span>(<span class="st">&quot;!expr paste(&#39;orange&#39;)&quot;</span>, <span class="dt">handlers =</span> <span class="kw">list</span>(<span class="dt">expr =</span> <span class="cf">function</span>(x) <span class="kw">eval</span>(<span class="kw">parse</span>(<span class="dt">text =</span> x))))</a>
+<a class="sourceLine" id="cb25-2" data-line-number="2"><span class="co">#&gt; [1] &quot;orange&quot;</span></a></code></pre></div>
+<p>要么等着 YAML 更新，要么等着 bookdown 或 rmarkdown 更新，目前还是在 rocker 下编辑吧，看着红红的警告信息，心里有点烦。</p>
+<ul>
+<li><a href="https://github.com/viking/r-yaml/issues/6" class="uri">https://github.com/viking/r-yaml/issues/6</a></li>
+<li><a href="https://github.com/rstudio/rmarkdown/issues/420" class="uri">https://github.com/rstudio/rmarkdown/issues/420</a></li>
+<li><a href="https://github.com/rstudio/config/issues/12" class="uri">https://github.com/rstudio/config/issues/12</a></li>
+</ul>
+
+</div>
+</div>
+<h3>参考文献</h3>
+<div id="refs" class="references">
+<div id="ref-R-RDieHarder">
+<p>Eddelbuettel, Dirk. 2018. <em>RDieHarder: R Interface to the ’Dieharder’ Rng Test Suite</em>. <a href="https://CRAN.R-project.org/package=RDieHarder" class="uri">https://CRAN.R-project.org/package=RDieHarder</a>.</p>
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="3">
+<li id="fn3"><p><a href="https://bookdown.org/yihui/r-ninja/setup.html" class="uri">https://bookdown.org/yihui/r-ninja/setup.html</a><a href="install-setup.html#fnref3" class="footnote-back">↩</a></p></li>
+<li id="fn4"><p><a href="http://readorskip.com/2016/09/12/Using-Notepad-to-Write-Git-Commit-Messages/" class="uri">http://readorskip.com/2016/09/12/Using-Notepad-to-Write-Git-Commit-Messages/</a><a href="install-setup.html#fnref4" class="footnote-back">↩</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="section-3.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="math-operator.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": true,
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/XiangyunHuang/notesdown/edit/master/01-installations.Rmd",
+"text": "Edit"
+},
+"download": ["notebook.pdf"],
+"toc": {
+"collapse": "none"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
