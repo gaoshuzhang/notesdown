@@ -1,7 +1,7 @@
 language: r
 r:
   - 3.4.4
-  - release
+#  - release
 dist: trusty
 sudo: false
 cache:
@@ -46,6 +46,9 @@ r_github_packages:
 #bioc_packages:
 #  - Rgraphviz
 #  - graph
+
+#r_packages: 
+#  - rstan
 
 repos:
   CRAN: https://cloud.r-project.org
@@ -93,7 +96,7 @@ addons:
       - pstoedit
 
 before_install:
-  - sudo -H apt-get install r-cran-rstan
+#  - sudo -H apt-get install r-cran-rstan
 #  - sudo -H pip install numpy matplotlib # scipy bokeh colorcet
   - npm install netlify-cli -g
   - tlmgr update --all
