@@ -83,6 +83,7 @@ addons:
       - libgdal-dev
       - python2.7
       - python-tk
+      - python-matplotlib
       - octave
       - liboctave-dev
       - proj-bin 
@@ -93,9 +94,10 @@ addons:
 
 before_install:
   - sudo -H apt-get install r-cran-rstan
-  - sudo -H pip install numpy matplotlib # scipy bokeh colorcet
+#  - sudo -H pip install numpy matplotlib # scipy bokeh colorcet
   - npm install netlify-cli -g
   - tlmgr update --all
+  - tlmgr install $(cat TeXLive.pkgs | tr '\n' ' ') || true
 
 before_script:
   - Rscript -e 'update.packages(lib.loc = .libPaths()[1],ask = FALSE)'
@@ -103,13 +105,17 @@ before_script:
 script:
   - Rscript -e 'bookdown::render_book("index.Rmd", output_format = "all")'
 
-deploy:
-  - provider: pages
-    skip_cleanup: true
-    github_token: $GITHUB_TOKEN
-    on:
-      branch: master
-    local_dir: _book
-  - provider: script
-    script: netlify deploy -t $NETLIFY_PAT
-    skip_cleanup: true
+#deploy:
+#  - provider: pages
+#    skip_cleanup: true
+#    github_token: $GITHUB_TOKEN
+#    on:
+#      branch: master
+#    local_dir: _book
+#  - provider: script
+#    script: netlify deploy -t $NETLIFY_PAT
+#    skip_cleanup: true
+
+# deploy 
+after_success:
+  - netlify deploy -t $NETLIFY_PAT
