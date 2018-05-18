@@ -9,6 +9,18 @@ sudo apt-get install -y python-tk python-pip
 sudo -H pip install numpy matplotlib
 ```
 
+在 R Markdown 中生成PDF需要如下tex包
+
+```markdown
+- psnfss
+- type1cm
+- ucs
+- tex4ht
+- ncntrsbk
+- helvetic
+- preview
+```
+
 默认使用 [STIX 数学字体](http://www.stixfonts.org/) 和 DejaVu Sans 英文字体，如图 \@ref(fig:math-matplotlib) 所示
 
 ```{python math-matplotlib, fig.cap = "数学公式"}
