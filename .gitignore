@@ -47,3 +47,4 @@ manual/
 *_files/
 temp/
 rsconnect/
+*.idx
