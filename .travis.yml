@@ -1,6 +1,7 @@
 language: r
 r:
   - 3.4.4
+  - release
 dist: trusty
 sudo: false
 cache:
@@ -59,7 +60,6 @@ addons:
     sources:
       - sourceline: ppa:opencpu/jq
       - sourceline: ppa:ubuntugis/ubuntugis-unstable
-      - sourceline: ppa:jonathonf/python-2.7
       - sourceline: ppa:octave/stable
       - sourceline: ppa:marutter/rrutter
       - sourceline: ppa:marutter/c2d4u
@@ -81,8 +81,8 @@ addons:
       - libproj-dev 
       - libgeos-dev 
       - libgdal-dev
-      - python2.7
       - python-tk
+      - python-numpy
       - python-matplotlib
       - octave
       - liboctave-dev
@@ -100,7 +100,7 @@ before_install:
   - tlmgr install $(cat TeXLive.pkgs | tr '\n' ' ') || true
 
 before_script:
-  - Rscript -e 'update.packages(lib.loc = .libPaths()[1],ask = FALSE)'
+  - Rscript -e 'update.packages(lib.loc = .libPaths()[1], ask = FALSE)'
 
 script:
   - Rscript -e 'bookdown::render_book("index.Rmd", output_format = "all")'
