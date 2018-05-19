@@ -1,6 +1,6 @@
 # 贝叶斯计算 {#bayes}
 
-```{r setup, include = FALSE}
+```{r setup, include=FALSE, eval=FALSE}
 Pkgs <- c(
   "rstan", "rstanarm", "brms"
 )
@@ -17,7 +17,7 @@ if (length(setdiff(Pkgs, .packages(TRUE))) > 0) {
 
 ## Stan 框架
 
-```{r,out.width="20%",fig.cap="Stan 家族",echo=FALSE,eval=FALSE}
+```{r, out.width="20%", fig.cap="Stan 家族", echo=FALSE, eval=FALSE}
 knitr::include_graphics(path = paste0(
   "images/",
   paste0(
@@ -27,15 +27,13 @@ knitr::include_graphics(path = paste0(
 ))
 ```
 
-
 - [LOO for non-factorized normal models](https://github.com/paul-buerkner/non-factorized-loo)
 - [Playing with negative binomial multilevel models in Stan](https://github.com/seananderson/negbin-stan)
 - [An Introduction to Greta](https://rviews.rstudio.com/2018/04/23/on-first-meeting-greta/) tensoflow and stan
 
-
 ### PyStan 接口
 
-```python
+```{python, eval=FALSE}
 # 整合 Python 语言到 R Mrakdown 
 import pystan
 import numpy as np
@@ -87,14 +85,11 @@ Stan 提供的R语言接口 rstan 包 [@R-rstan] 及其扩展 StanHeaders 包 [@
 
 加载 rstan,如果你的电脑配置有多核处理器，内存也充足，那么可以考虑使用并行方式去估计你的模型参数，
 
-```{r}
+```{r, eval=FALSE}
 library(rstan)
 rstan_options(auto_write = TRUE)
 options(mc.cores = parallel::detectCores())
-```
 
-
-```r
 schools_dat <- list(J = 8, 
                     y = c(28,  8, -3,  7, -1,  1, 18, 12),
                     sigma = c(15, 10, 16, 11,  9, 11, 10, 18))
@@ -131,15 +126,11 @@ Stan models for state space time series
 
 4. Draft introduction to probability and inference aimed at the Stan manual. <https://github.com/betanalpha/stan_intro>
 
-
-5. Bayesian Modeling using Stan
-<https://github.com/fonnesbeck/stan_workshop_2016>
-Bayesian Modeling using Stan in R (May/June 2016)
+5. [Bayesian Modeling using Stan](https://github.com/fonnesbeck/stan_workshop_2016)
 
 6. Define Stan models using glmer-style (lme4) formulas <https://github.com/rmcelreath/glmer2stan>
 
-7. Examples of working and non-working models, initially for ODCS 2016 in Boston.
-<https://github.com/sakrejda/stan-workshop>
+7. [Examples of working and non-working models](https://github.com/sakrejda/stan-workshop)
 
 8. State space models (dynamic linear models, hidden Markov models) implemented in Stan
 <https://github.com/jrnold/ssmodels-in-stan>
@@ -150,6 +141,5 @@ Bayesian Modeling using Stan in R (May/June 2016)
 
 11. Implementation of B-Splines in Stan <https://github.com/milkha/Splines_in_Stan>
 
-12. <https://magesblog.com/post/correlated-lognormal-chain-ladder-model/>
+12. 相依对数正态模型 <https://magesblog.com/post/correlated-lognormal-chain-ladder-model/>
 
-13. <http://xcelab.net/rm/statistical-rethinking/>
