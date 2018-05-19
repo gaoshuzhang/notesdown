@@ -7,7 +7,7 @@ sudo: false
 cache:
   packages: true
   directories:
-    - _bookdown_files
+#    - _bookdown_files
     - $HOME/.npm
     - $HOME/texlive
     - $HOME/.fonts

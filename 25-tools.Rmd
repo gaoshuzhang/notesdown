@@ -1,6 +1,13 @@
 # 软件工具 {#other-tools}
 
 ```{r include=FALSE}
+Pkgs <- c(
+  "inline"
+)
+if (length(setdiff(Pkgs, .packages(TRUE))) > 0) {
+  install.packages(setdiff(Pkgs, .packages(TRUE)))
+}
+
 system <- function(...) cat(base::system(..., intern = TRUE), sep = '\n')
 system2 <- function(...) cat(base::system2(..., stdout = TRUE), sep = "\n")
 ```
