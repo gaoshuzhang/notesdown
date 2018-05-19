@@ -1,6 +1,6 @@
-# 动态图形
+# 动态图形 {#js}
 
-```{r,include=FALSE}
+```{r, include=FALSE}
 Pkgs <- c(
   "leaflet","rbokeh","plotly","highcharter"
 )
