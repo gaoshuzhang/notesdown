@@ -1,5 +1,5 @@
 ---
-title: "The R-Box for Data Science"
+title: "The R-Box of Data Science"
 author: "Xiangyun Huang"
 date: "`r format(Sys.time(), tz = 'Asia/Taipei', usetz = TRUE)`"
 site: bookdown::bookdown_site
@@ -39,7 +39,12 @@ is_on_travis = identical(Sys.getenv("TRAVIS"), "true")
 is_online = curl::has_internet()
 ```
 
+
 # 前言 
+
+```{r fig.align='center', echo=FALSE, include=identical(knitr:::pandoc_to(), 'html')}
+knitr::include_graphics('images/peaks3D.png', dpi = NA)
+```
 
 > 荃者所以在鱼，得鱼而忘荃；蹄者所以在兔；得兔而忘蹄；言者所以在意，得意而忘言。吾安得夫忘言之人而与之言哉！
 
@@ -67,6 +72,12 @@ is_online = curl::has_internet()
     + bookdown: Authoring Books and Technical Documents with R Markdown <https://bookdown.org/yihui/bookdown/>
     + blogdown: Creating Websites with R Markdown <https://bookdown.org/yihui/blogdown/>
     + R Markdown: The Definitive Guide <https://bookdown.org/yihui/rmarkdown/>
+
+The R-Box 的创意来自 VirtualBox OSE，R-Box 容纳的是R基础、统计图形、统计计算、优化算法、统计模型等
+
+```{r vbox-ose, out.width="35%", fig.link='https://www.virtualbox.org/wiki/Downloads'}
+knitr::include_graphics(path = "images/VBoxOSE.png")
+```
 
 
 
@@ -124,7 +135,7 @@ sessionInfo()
 ```{block2, type = 'rmdwarning'}
 本书采用 [知识共享署名-非商业性使用-禁止演绎 4.0 国际许可协议](https://creativecommons.org/licenses/by-nc-nd/4.0/) 许可，请君自重，别没事儿拿去传个什么新浪爱问、百度文库以及 XX 经济论坛，项目中代码使用 [MIT 协议](https://github.com/XiangyunHuang/notesdown/blob/master/LICENSE) 开源
 ```
-```{r cc,echo=FALSE,out.width="15%",fig.align='left'}
+```{r cc, echo = FALSE, out.width = "15%", fig.align = 'left'}
 ext <- if (knitr::is_html_output()) ".svg" else if (knitr::is_latex_output()) ".eps" else ".png"
 knitr::include_graphics(path = paste0("images/by-nc-nd",ext))
 ```
