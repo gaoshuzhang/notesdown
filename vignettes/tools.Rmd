@@ -1,0 +1,246 @@
+# 软件工具 {#other-tools}
+
+```{r include=FALSE}
+Pkgs <- c(
+  "inline"
+)
+if (length(setdiff(Pkgs, .packages(TRUE))) > 0) {
+  install.packages(setdiff(Pkgs, .packages(TRUE)))
+}
+
+system <- function(...) cat(base::system(..., intern = TRUE), sep = '\n')
+system2 <- function(...) cat(base::system2(..., stdout = TRUE), sep = "\n")
+```
+
+## Octave
+
+安装新版 Octave，详情请见 <https://wiki.octave.org/Octave_for_Debian_systems>
+
+```bash
+sudo apt-add-repository -y ppa:octave/stable
+sudo apt-get update
+sudo apt-get install -y octave
+```
+
+```{r, eval = .Platform$OS.type != "windows"}
+Sys.which("octave")
+system("octave --version")
+```
+
+
+## Python
+
+Python 版本和位置
+
+```{r}
+Sys.which("python")
+system2("python", args = "--version", stderr = TRUE)
+```
+
+
+升级 Python
+
+```bash
+sudo add-apt-repository ppa:fkrull/deadsnakes-python2.7  
+sudo apt-get update  
+```
+
+可用的 python 模块
+
+```{python}
+help('modules')
+```
+
+## Hugo
+
+下载 <https://github.com/gohugoio/hugo/releases>
+
+```bash
+wget https://github.com/gohugoio/hugo/releases/download/v0.40.2/hugo_0.40.2_Linux-64bit.deb
+sudo dpkg -i hugo_0.40.2_Linux-64bit.deb
+```
+
+## LaTeX 
+
+可以考虑打包自定义 TinyTeX 发行版，自定义在于最小的中文支持和最喜爱的英文字体设置 fandol 和 sourceserifpro(XeLaTeX)，mathptmx 和 inconsolata(PDFLaTeX), fibeamer, Pandoc's LaTeX 模板 
+
+在 Windows or MacOS 下需要这行操作
+
+```
+tlmgr --repository http://www.preining.info/tlgpg/ install tlgpg
+```
+
+## Pandoc
+
+pandoc 在 R Markdown 中是否可用
+
+```{r}
+rmarkdown::pandoc_available()
+```
+
+pandoc 版本
+
+```{r}
+Sys.which("pandoc")
+system("pandoc -v")
+```
+
+## Rtools
+
+rtools 是否可用
+
+```{r}
+devtools::find_rtools()
+```
+
+算个小栗子
+
+```{r rtools}
+fx <- inline::cxxfunction( signature(x = "integer", y = "numeric" ) , '
+	return ScalarReal( INTEGER(x)[0] * REAL(y)[0] ) ;
+' )
+fx( 2L, 5 ) 
+```
+
+
+## 容器 {#container}
+
+### rocker
+
+- Dockerfile <https://docs.docker.com/develop/develop-images/dockerfile_best-practices/>
+- build <https://docs.docker.com/engine/reference/builder/#usage>
+
+### Singularity
+
+- <https://github.com/bwlewis/r-and-singularity>
+- <http://singularity.lbl.gov/>
+
+### Kubernetes
+
+Kubernetes 容器集群管理 <https://www.kubernetes.org.cn>
+参见高策的博客 <http://gaocegege.com>
+
+## apt
+
+适用于 Debian 和 Ubuntu 的软件包管理器
+
+## yum
+
+适用于 Fedora 和 CentOS 的软件包管理器
+
+## tlmgr
+
+基本使用已包含在 **tinytex** \index{tinytex}包 [@R-tinytex] 内
+
+
+## Git
+
+CR (Carriage Return) 表示回车，LF (Line Feed) 表示换行，Windows 下用回车加换行表示下一行，UNIX/Linux 采用换行符 (LF) 表示下一行，MAC OS 则采用回车符 (CR) 表示下一行
+
+```bash
+git config --global core.autocrlf false
+```
+
+添加子模块
+
+```bash
+git submodule add git://github.com/jgm/pandoc-templates.git templates
+```
+
+克隆项目
+
+```bash
+git clone --depth=10 --branch=master --recursive \
+    git@github.com:XiangyunHuang/pandoc4everything.git
+```
+
+配置账户
+
+```bash
+git config --global user.email "email"
+git config --global user.name "username"
+touch .git-credentials
+echo "https://username:password@github.com" >> .git-credentials
+git config --global credential.helper store
+```
+
+往空的 Github 仓库添加本地文件
+
+```bash
+git init
+git remote add origin https://github.com/XiangyunHuang/notesdown.git
+git add -A
+git commit -m "balabala"
+git push -u origin master
+```
+
+本地新建仓库推送至远程分支
+
+```bash
+git remote add origin https://github.com/XiangyunHuang/notesdown.git
+git add .
+git commit -m "init cos-art"
+# 此时远程仓库 notesdown 还没有 cos-art 分支
+git push origin master:cos-art
+```
+
+使用 zsh
+
+```bash
+sudo apt update && sudo apt install zsh
+sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
+```
+
+位于 [Github](https://github.com/liuhui998/gitbook) [Git Community Book 中译本](http://gitbook.liuhui998.com/)
+
+
+## 其它
+
+重复实现的关键是拉取一个现有的 Docker 镜像，可以免去安装和环境配置的诸多麻烦。
+
+```bash
+docker run --rm -it --name book -e \
+ DISPLAY=192.168.99.100:0 -d -p 8282:8787 -e ROOT=TRUE \
+ -e USER=rstudio -e PASSWORD=cloud rocker/geospatial
+```
+
+`DISPLAY=192.168.99.100:0` 用于启用 X11 设备，否则 rgl 等软件包会报显示警告，`--rm -it` 使得 主机和虚拟机时间一致，否则会有警告^[<https://github.com/rocker-org/rocker/wiki/Allowing-GUI-windows>]
+
+```
+# 两个与时间有关的警告
+Warning message:
+running command 'timedatectl' had status 1 
+Failed to create bus connection: No such file or directory
+```
+
+<https://stackoverflow.com/questions/43907925/ubuntu-timedatectl-fails-in-docker-container>
+
+```r
+capabilities()
+ jpeg         png        tiff       tcltk         X11        aqua    http/ftp     sockets      libxml 
+ TRUE        TRUE        TRUE        TRUE       FALSE       FALSE        TRUE        TRUE        TRUE 
+ fifo      cledit       iconv         NLS     profmem       cairo         ICU long.double     libcurl 
+ TRUE        TRUE        TRUE       FALSE        TRUE        TRUE        TRUE        TRUE        TRUE 
+```
+主机端口号 8282，这里可以改成你自己喜欢的，虚拟机端口号 8787 对应 RStudio Server 默认端口，如果你想自己指定，就去修改 RStudio Server的配置文件。拉取的 Docker 镜像取名 book，这是方便以后启动 docker 时方便，只需
+
+```bash
+# 启动
+docker start book
+# 进入
+docker exec -it book bash
+```
+
+由于要安装 rstan 和 rstanarm 包，编译的过程中需要比较大的内存空间，默认分配给 docker 的内存要增加到 4 Gb，也就装个软件，大一点的基于 stan 实现的模型，还是适合放在大机器上跑，笔电可以跑跑简单的模型，学习一下就可以了。
+
+R包库存放位置
+
+```{r}
+.libPaths()
+```
+
+查看系统路径，环境变量
+
+```{r}
+strsplit(Sys.getenv("PATH"),split = .Platform$path.sep)
+```

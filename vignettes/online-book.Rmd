@@ -1,0 +1,21 @@
+## 书单
+
+- [Pro Git 中文第二版](https://git-scm.com/book/zh/v2) Scott Chacon, Ben Straub 著
+- [Advanced R 第二版](https://adv-r.hadley.nz/) Hadley Wickham 著
+- [Geocomputation with R](https://geocompr.robinlovelace.net/) Robin Lovelace, Jakub Nowosad, Jannes Muenchow 著
+- [Spatial Microsimulation with R](https://spatial-microsim-book.robinlovelace.net/) Robin Lovelace and Morgane Dumont 著
+- [R Markdown: The Definitive Guide](https://bookdown.org/yihui/rmarkdown/) Yihui Xie, J. J. Allaire, Garrett Grolemund 著
+- [bookdown: Authoring Books and Technical Documents with R Markdown](https://bookdown.org/yihui/bookdown/) Yihui Xie 著
+- [blogdown: Creating Websites with R Markdown](https://bookdown.org/yihui/blogdown/) Yihui Xie, Amber Thomas, Alison Presmanes Hill 著
+- [R: A Language and Environment for Statistical Computing](https://xiangyun.netlify.com/pdf/refman.pdf) The R Core Team 著
+- [LaTeX2e unofficial reference manual](http://tug.ctan.org/tex-archive/info/latex2e-help-texinfo/latex2e.html) [pdf 版](https://xiangyun.netlify.com/pdf/latex2e.pdf)
+
+- [Statistical Rethinking](http://xcelab.net/rm/statistical-rethinking/)  Richard McElreath 著
+- [Regression Modeling Strategies](http://biostat.mc.vanderbilt.edu/wiki/Main/RmS) Frank E Harrell Jr 著
+- [Applied Predictive Modeling](http://appliedpredictivemodeling.com/) Max Kuhn and Kjell Johnson 著
+- [Forecasting: Principles and Practice](https://www.otexts.org/fpp2/) Rob J Hyndman and George Athanasopoulos 著
+- [Applied Regression Analysis and Generalized Linear Models](https://socialsciences.mcmaster.ca/jfox/) 及书评 [JASA-review](https://socialsciences.mcmaster.ca/jfox/Books/Applied-Regression-2E/JASA-review.pdf) 附录、样章和书评位于目录 docs/John-Fox
+
+- [Introduction to Data Science](https://rafalab.github.io/dsbook/) Rafael A. Irizarry 著
+
+
