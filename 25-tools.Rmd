@@ -15,7 +15,7 @@ sudo apt-get update
 sudo apt-get install -y octave
 ```
 
-```{r}
+```{r, eval = .Platform$OS.type != "windows"}
 Sys.which("octave")
 system("octave --version")
 ```
@@ -61,13 +61,6 @@ sudo dpkg -i hugo_0.40.2_Linux-64bit.deb
 
 ```
 tlmgr --repository http://www.preining.info/tlgpg/ install tlgpg
-```
-
-系统安装的字体
-
-```{r}
-fonts <- base::system("fc-list :lang=en | sort", intern = TRUE)
-unique(do.call(rbind, strsplit(fonts, split = ":"))[, 2])
 ```
 
 ## Pandoc

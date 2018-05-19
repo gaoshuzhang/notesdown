@@ -5,10 +5,10 @@ bookdown::gitbook:
     toc:
       collapse: none
       before: |
-        <li><a href="./">R语言笔记</a></li>
+        <li><a href="./">The R-Box of Data Science</a></li>
       after: |
-        <li><a href="https://xiangyun.netlify.com/">黄湘云</a></li>
-    download: ["pdf"]
+        <li><a href="https://xiangyun.netlify.com/">Xiangyun Huang</a></li>
+    download: ["pdf", "epub"]
     edit:
       link: https://github.com/XiangyunHuang/notesdown/edit/master/%s
       text: "Edit"
@@ -24,8 +24,9 @@ bookdown::pdf_book:
   pandoc_args: "--top-level-division=chapter"
   toc_depth: 3
   toc_bib: yes
-  toc_unnumbered: yes
+  toc_unnumbered: no
   toc_appendix: yes
   highlight_bw: no
   template: latex/default.latex
-#  base_format: rticles::ctex
+bookdown::epub_book: 
+  dev: svglite

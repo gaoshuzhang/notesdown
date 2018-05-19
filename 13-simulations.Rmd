@@ -4,7 +4,7 @@
 
 产生重复的随机数，octave 实现，随机数生成的详细介绍请看统计之都文章 [随机数生成及其在统计模拟中的应用](https://cosx.org/2017/05/random-number-generation/)
 
-```{octave}
+```{octave, eval = .Platform$OS.type != "windows"}
 %% copy from https://stackoverflow.com/questions/13735096/python-vs-octave-random-generator
 function state = mtstate(seed)
 state = uint32(zeros(625,1));
