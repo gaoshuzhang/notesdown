@@ -75,7 +75,7 @@ knitr::include_graphics('images/peaks3D.png', dpi = NA)
 
 The R-Box 的创意来自 VirtualBox OSE，R-Box 容纳的是R基础、统计图形、统计计算、优化算法、统计模型等
 
-```{r vbox-ose, out.width="35%", fig.link='https://www.virtualbox.org/wiki/Downloads'}
+```{r vbox-ose, echo=FALSE, out.width="55%", fig.cap="The R-Box", fig.link='https://www.virtualbox.org/wiki/Downloads'}
 knitr::include_graphics(path = "images/VBoxOSE.png")
 ```
 
