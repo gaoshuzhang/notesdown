@@ -44,13 +44,13 @@ rmd_files: [
   "13-simulations.Rmd",
 
   # 上忍
-#  "14-bayesians.Rmd",
-#  "15-approximations.Rmd",
+  "14-bayesians.Rmd",
+  "15-approximations.Rmd",
   
   # 案例篇
   "Cases.Rmd",
   
-#  "16-spatial.Rmd",
+  "16-spatial.Rmd",
   "17-network.Rmd",
   
   # 模型篇

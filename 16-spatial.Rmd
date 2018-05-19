@@ -1,6 +1,6 @@
 # 空间数据 {#spatial}
 
-```{r setup, include = FALSE}
+```{r setup, include = FALSE, eval=FALSE}
 Pkgs <- c(
   "sf", "tmap", "rgdal", "PrevMap"
 )
@@ -16,7 +16,7 @@ Here is a review of existing methods.
 
 ## sf
 
-```{r}
+```{r, eval=FALSE}
 library(sf)
 ```
 
@@ -25,14 +25,14 @@ library(sf)
 
 ## PrevMap
 
-```{r}
+```{r, eval=FALSE}
 library(PrevMap)
 ```
 
 
 案例
 
-```{r,eval=FALSE}
+```{r, eval=FALSE}
 library(HSAR)
 
 data(Beijingdistricts)
