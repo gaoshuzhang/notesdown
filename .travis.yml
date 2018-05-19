@@ -102,8 +102,8 @@ before_install:
   - tlmgr update --all
   - tlmgr install $(cat TeXLive.pkgs | tr '\n' ' ') || true
 
-#before_script:
-#  - Rscript -e 'update.packages(lib.loc = .libPaths()[1], ask = FALSE)'
+before_script:
+  - Rscript -e 'update.packages(lib.loc = .libPaths()[1], ask = FALSE)'
 
 script:
   - Rscript -e 'bookdown::render_book("index.Rmd", output_format = "all")'
