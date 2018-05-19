@@ -1,7 +1,7 @@
 --- 
-title: "R 语言学习笔记"
+title: "The R Box"
 subtitle: "Notes on R, Octave, Python, Graphics, Models and Others"
-author: "黄湘云"
+author: "Xiangyun Huang"
 date: "`r format(Sys.time(), tz = 'Asia/Taipei', usetz = TRUE)`"
 site: bookdown::bookdown_site
 geometry: margin=1.18in
