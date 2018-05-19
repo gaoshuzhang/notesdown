@@ -1,0 +1,31 @@
+book_filename: "notes-book"
+repo: https://github.com/xiangyunhuang/notes-book/
+output_dir: _book
+clean: [packages.bib,notes-book.rds]
+delete_merged_file: true
+language:
+  label:
+    fig: "图 "
+    tab: "表 "
+  ui:
+    edit: "编辑"
+    chapter_name: ["第 ", " 章"]
+
+new_session: yes
+before_chapter_script: ["common.R"]
+
+rmd_files: [
+  "index.Rmd",
+  "00-author.Rmd",
+  "00-preface.Rmd",
+  
+  # 基础篇
+  "01-introduction.Rmd",
+  "02-foundation.Rmd",
+
+  # 进阶篇 
+
+  # 高级篇
+
+  "16-references.Rmd",
+]

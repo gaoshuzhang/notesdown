@@ -1,0 +1,77 @@
+language: r
+sudo: required
+cache:
+  packages: true
+  directories:
+  - _bookdown_files
+  - $HOME/.npm
+  - $HOME/texlive
+
+branches:
+  only:
+    - master
+    - release
+    - stable
+
+git:
+  depth: 5
+  submodules: false
+
+pandoc_version: 2.2.1
+
+r_github_packages: 
+  - tidyverse/ggplot2
+#  - leonawicz/mapmate
+#  - dgrtwo/gganimate
+#  - cosname/recharts
+#  - JohnCoene/echarts4r
+  - rstudio/r2d3
+#  - rmcelreath/rethinking
+#  - rmcelreath/glmer2stan
+  - renozao/RcppOctave
+#  - ropensci/plotly
+#  - dkahle/ggmap
+#  - clauswilke/ggridges
+#  - JohnCoene/echarts4r
+
+r_binary_packages:
+  - rstan
+  - rstanarm
+  - rstantools
+#  - sf
+  - rdieharder
+  
+addons:
+  apt:
+    sources:
+      - sourceline: ppa:opencpu/jq
+      - sourceline: ppa:ubuntugis/ubuntugis-unstable
+      - sourceline: ppa:jonathonf/python-2.7    
+      - sourceline: ppa:octave/stable
+      - sourceline: ppa:marutter/rrutter
+      - sourceline: ppa:marutter/c2d4u      
+    packages:
+      - ghostscript
+      - imagemagick
+      - optipng
+      - libwebp-dev
+      - octave
+      - liboctave-dev
+
+before_install:
+  - npm install netlify-cli -g
+  - tlmgr update --all
+
+script:
+  - Rscript -e 'bookdown::render_book("index.Rmd", output_format = "all")'
+
+deploy:
+  - provider: pages
+    skip_cleanup: true
+    github_token: $GITHUB_TOKEN
+    on:
+      branch: master
+    local_dir: _book
+  - provider: script
+    script: netlify deploy -t $NETLIFY_PAT
+    skip_cleanup: true

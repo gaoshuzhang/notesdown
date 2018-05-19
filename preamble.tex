@@ -1,0 +1,25 @@
+
+\usepackage[default]{sourceserifpro}
+\usepackage[sfdefault]{sourcesanspro}
+\usepackage[scale=0.8]{sourcecodepro}
+% https://tex.stackexchange.com/questions/354873/xelatex-sourcecodepro-listings-curly-quotes-always
+\makeatletter
+\defaultfontfeatures[\ttfamily]{
+    Numbers   = \sourcecodepro@figurestyle ,
+    Scale     = \SourceCodePro@scale ,
+    Extension = .otf }
+
+\setmonofont
+		[ UprightFont    = *-\sourcecodepro@regstyle ,
+		  ItalicFont     = *-\sourcecodepro@regstyle It ,
+		  BoldFont       = *-\sourcecodepro@boldstyle , 
+		  BoldItalicFont = *-\sourcecodepro@boldstyle It ]
+		{SourceCodePro}        
+\makeatother
+
+\usepackage{amsfonts} % \mathbb \mathfrak
+\usepackage{mathrsfs} % \mathscr
+\usepackage{makeidx}
+\makeindex
+
+\frontmatter

@@ -1,0 +1,25 @@
+# 前言 {#preface}
+
+作者向读者说明撰写本书的意图及书中阐明的主要问题。其内容包括对书稿的介绍，阅读时应注意的问题，以及适用范围、编写方法(如果是工具书、手册，还应写清楚使用方法)、编者分工、审校人和作者需要说明的其他事项。切忌采取把书中每一章的章题抄一遍、然后再说一下读者对象的这样一种应付差事的态度。 You can label chapter and section titles using `{#label}` after them, e.g., we can reference Chapter \@ref(intro). If you do not manually label them, there will be automatic labels anyway.
+
+Figures and tables with captions will be placed in `figure` and `table` environments, respectively.
+
+```{r nice-fig, fig.cap='Here is a nice figure!', out.width='80%', fig.asp=.75, fig.align='center'}
+par(mar = c(4, 4, .1, .1))
+plot(pressure, type = 'b', pch = 19)
+```
+
+Reference a figure by its code chunk label with the `fig:` prefix, e.g., see Figure \@ref(fig:nice-fig). Similarly, you can reference tables generated from `knitr::kable()`, e.g., see Table \@ref(tab:nice-tab).
+
+```{r nice-tab, tidy=FALSE}
+knitr::kable(
+  head(iris, 20), caption = 'Here is a nice table!',
+  booktabs = TRUE
+)
+```
+
+You can write citations, too. For example, we are using the **bookdown** package [@R-bookdown;@R-tinytex;@R-rmarkdown] in this sample book, which was built on top of R Markdown and **knitr** [@xie2015].
+
+
+$$\mathcal{A,B,C,D,S,P,G},\mathscr{A,B,C,D,S,P,G},\mathbb{A,B,C,D,S,P,G}$$
+$$\mathbf{A,B,C,D,S,P,G},\mathsf{A,B,C,D,S,P,G}$$

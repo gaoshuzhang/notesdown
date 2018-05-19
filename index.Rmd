@@ -1,0 +1,48 @@
+--- 
+title: "R 语言学习笔记"
+subtitle: "Notes on R, Octave, Python, Graphics, Models and Others"
+author: "黄湘云"
+date: "`r format(Sys.time(), tz = 'Asia/Taipei', usetz = TRUE)`"
+site: bookdown::bookdown_site
+geometry: margin=1.18in
+documentclass: ctexbook
+bibliography: [book.bib, packages.bib]
+biblio-style: apalike
+lof: yes
+lot: yes
+graphics: yes
+tables: yes
+link-citations: yes
+links-as-notes: no
+colorlinks: yes
+toccolor: magenta
+classoption: "a4paper, table, x11names"
+description: "This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook."
+---
+
+# 序言 {#foreword}
+
+```{r fig.align='center', eval=knitr::is_html_output(), echo=FALSE, include=identical(knitr:::pandoc_to(), 'html'), fig.link='https://www.r-project.org/logo/', out.width='25%'}
+knitr::include_graphics('images/Rlogo.svg')
+```
+
+自序是由作者说明著作意图、写书经过、内容体例等情况；他序是由权威人士评价、推荐著作和作者以及对书稿有关问题的研究阐述。This is a _sample_ book written in **Markdown**. You can use anything that Pandoc's Markdown supports, e.g., a math equation $a^2 + b^2 = c^2$.
+
+The **bookdown** package can be installed from CRAN or Github:
+
+```{r eval=FALSE}
+install.packages("bookdown")
+# or the development version
+# devtools::install_github("rstudio/bookdown")
+```
+
+Remember each Rmd file contains one and only one chapter, and a chapter is defined by the first-level heading `#`.
+
+To compile this example to PDF, you need XeLaTeX. You are recommended to install TinyTeX (which includes XeLaTeX): <https://yihui.name/tinytex/>.
+
+```{r include=FALSE,cache=FALSE}
+# automatically create a bib database for R packages
+knitr::write_bib(c(
+  .packages(), 'bookdown', 'knitr', 'rmarkdown', 'tinytex'
+), 'packages.bib')
+```

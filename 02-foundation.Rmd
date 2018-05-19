@@ -1,0 +1,11 @@
+# 基础 {#basis}
+
+R 语言基础语法
+
+
+安装的R包
+
+```{r}
+devtools::session_info(installed.packages()[, "Package"])
+```
+

@@ -1,0 +1,23 @@
+Package: notes
+Title: A book of notes
+Version: 0.0.9000
+Authors@R: c(
+  person("Xiangyun", "Huang", , "xiangyunfaith@outlook.com", c("aut", "cre"))
+  )
+Maintainer: Xiangyun Huang <xiangyunfaith@outlook.com>
+Description: Some notes about R and other open souce softwares, such as Pandoc, LaTeX, Inkscape, Ghostscript, Git, Stan, Octave and Python.
+BugReports: https://github.com/XiangyunHuang/notes-book/issues
+License: MIT + file LICENSE
+URL: https://github.com/XiangyunHuang/notes-book
+Depends: 
+    R (>= 3.1.0)
+Imports: 
+    bookdown,
+    rticles
+Remotes: tidyverse/ggplot2,
+    leonawicz/mapmate,
+    dgrtwo/gganimate
+VignetteBuilder: knitr
+RoxygenNote: 6.0.1.9000
+Roxygen: list(markdown = TRUE)
+Encoding: UTF-8
