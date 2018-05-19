@@ -60,6 +60,7 @@ addons:
   apt:
     sources:
       - sourceline: ppa:opencpu/jq
+      - sourceline: ppa:opencpu/imagemagick
       - sourceline: ppa:ubuntugis/ubuntugis-unstable
       - sourceline: ppa:octave/stable
       - sourceline: ppa:marutter/rrutter
@@ -67,6 +68,7 @@ addons:
     packages:
       - ghostscript
       - imagemagick
+      - libmagick++-dev
       - optipng
       - libwebp-dev
       - libgsl0ldbl
