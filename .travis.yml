@@ -20,10 +20,6 @@ branches:
 
 pandoc_version: 2.2.1
 
-#r_packages:
-#  - sf
-#  - mxnet
-
 git:
   depth: 5
   submodules: false
@@ -49,6 +45,8 @@ r_github_packages:
 
 #r_packages: 
 #  - rstan
+#  - sf
+#  - mxnet
 
 repos:
   CRAN: https://cloud.r-project.org

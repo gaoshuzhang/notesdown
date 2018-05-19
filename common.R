@@ -48,8 +48,7 @@ knitr::opts_chunk$set(
   fig.ext = if (knitr::is_html_output()) "svg" else if (knitr::is_latex_output()) "pdf" else "png",
   dev = if (knitr::is_html_output()) "svg" else if (knitr::is_latex_output()) "pdf" else "png",
   engine.path = list(
-    octave = "/usr/bin/octave-cli",
-    python = "/usr/bin/python"
+    octave = "/usr/bin/octave-cli"
   )
 )
 ext <- if (knitr::is_html_output()) ".svg" else if (knitr::is_latex_output()) ".pdf" else ".png"
@@ -85,11 +84,16 @@ knitr::knit_hooks$set(tikz2png = function(before, options, envir) {
 })
 
 
-# devtools::install_github('rmcelreath/glmer2stan')
-# names(knitr::knit_engines$get())
+is_on_travis = identical(Sys.getenv("TRAVIS"), "true")
+is_online = curl::has_internet()
 
-# citeFun <- function(x){
-#  knitcitations::write.bibtex(citation(x),
-#                            file = 'skeleton.bib', append = TRUE)
-# }
-# invisible(lapply(pkgs,citeFun))
+library(reticulate)
+if(is_on_travis) use_python("/opt/pyenv/shims/python") else use_python("/usr/bin/python", required = FALSE)
+# Python 环境的描述在附录
+# required = FALSE 默认值，如果按照指定的位置没有找到 Python 就会扫描其它版本
+
+# use_virtualenv("shims")
+
+# 设置环境变量 RSTUDIO_CONNECT_SERVER 由 travis-ci 设置
+connectServer <- Sys.getenv("RSTUDIO_CONNECT_SERVER") # https://bookdown.org
+apiKey <- Sys.getenv("RSTUDIO_CONNECT_API_KEY")

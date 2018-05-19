@@ -1,7 +1,6 @@
 ---
-title: "R 语言学习笔记"
-subtitle: "Notes on R, Octave, Python, Graphics, Models and Others/The Box of R for Data Science"
-author: "黄湘云"
+title: "The R-Box for Data Science"
+author: "Xiangyun Huang"
 date: "`r format(Sys.time(), tz = 'Asia/Taipei', usetz = TRUE)`"
 site: bookdown::bookdown_site
 geometry: margin=1.18in
@@ -17,7 +16,7 @@ links-as-notes: no
 colorlinks: yes
 toccolor: magenta
 classoption: "hyperref, a4paper, UTF8, zihao = -4, linespread = 1.3, table"
-description: "这是一个R语言学习笔记"
+description: "Some notes about R and other open souce softwares, such as Pandoc, LaTeX, Inkscape, Ghostscript, Git, Stan, Octave and Python."
 url: 'https\://notesdown.netlify.com/'
 github-repo: "xiangyunhuang/notesdown"
 cover-image: "images/dragon.png"
@@ -34,10 +33,7 @@ knitr::opts_chunk$set(
   out.width = "70%",
   fig.align = "center",
   fig.width = 6,
-  cache = FALSE,
-  # fig.showtext = TRUE,
-  fig.asp = 0.618, # 1 / phi
-  fig.show = "hold"
+  fig.asp = 0.618
 )
 is_on_travis = identical(Sys.getenv("TRAVIS"), "true")
 is_online = curl::has_internet()
