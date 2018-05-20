@@ -1,5 +1,5 @@
 ---
-title: "The R-Box of Data Science"
+title: "The Notes of R"
 author: "Xiangyun Huang"
 date: "`r format(Sys.time(), tz = 'Asia/Taipei', usetz = TRUE)`"
 site: bookdown::bookdown_site
@@ -35,8 +35,6 @@ knitr::opts_chunk$set(
   fig.width = 6,
   fig.asp = 0.618
 )
-is_on_travis = identical(Sys.getenv("TRAVIS"), "true")
-is_online = curl::has_internet()
 ```
 
 
@@ -73,11 +71,11 @@ knitr::include_graphics('images/peaks3D.png', dpi = NA)
     + blogdown: Creating Websites with R Markdown <https://bookdown.org/yihui/blogdown/>
     + R Markdown: The Definitive Guide <https://bookdown.org/yihui/rmarkdown/>
 
-The R-Box 的创意来自 VirtualBox OSE，R-Box 容纳的是R基础、统计图形、统计计算、优化算法、统计模型等
+<!-- The R-Box 的创意来自 VirtualBox OSE，R-Box 容纳的是R基础、统计图形、统计计算、优化算法、统计模型等 -->
 
-```{r vbox-ose, echo=FALSE, out.width="55%", fig.cap="The R-Box", fig.link='https://www.virtualbox.org/wiki/Downloads'}
-knitr::include_graphics(path = "images/VBoxOSE.png")
-```
+<!-- ```{r vbox-ose, echo=FALSE, out.width="55%", fig.cap="The R-Box", fig.link='https://www.virtualbox.org/wiki/Downloads'} -->
+<!-- knitr::include_graphics(path = "images/VBoxOSE.png") -->
+<!-- ``` -->
 
 
 
