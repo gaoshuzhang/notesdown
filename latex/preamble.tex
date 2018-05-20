@@ -44,22 +44,22 @@
 		{SourceCodePro}        
 \makeatother
 
-\usepackage{titling}
-\pretitle{%
-  \begin{center}
-  \Huge
-  \includegraphics{images/cumtb.pdf}
-  \\[\bigskipamount]
-  \vspace*{2cm}
-}
-\posttitle{
-  \\[\bigskipamount]
-  \vspace*{2cm}
-  \includegraphics{images/sombrero.pdf}
-  \\[\bigskipamount]
-  \Large
-  \end{center}
-  }
+% \usepackage{titling}
+% \pretitle{%
+%   \begin{center}
+%   \Huge
+%   \includegraphics{images/cumtb.pdf}
+%   \\[\bigskipamount]
+%   \vspace*{2cm}
+% }
+% \posttitle{
+%   \\[\bigskipamount]
+%   \vspace*{2cm}
+%   \includegraphics{images/sombrero.pdf}
+%   \\[\bigskipamount]
+%   \Large
+%   \end{center}
+% }
 % ctexbook
 \RecustomVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\},formatcom=\xeCJKVerbAddon}
 
@@ -144,46 +144,46 @@
 % for kableExtra
 % \usepackage[table]{xcolor}
 
-\usepackage{tikz,everypage}
-
-\makeatletter
-\global\let\tikz@ensure@dollar@catcode=\relax
-\makeatother
+% \usepackage{tikz,everypage}
+% 
+% \makeatletter
+% \global\let\tikz@ensure@dollar@catcode=\relax
+% \makeatother
 
 %%--------- 每页第一列为行号 -----------%%
-\makeatletter
-\AtBeginDocument{%
-  \AddEverypageHook{%
-    \small
-    \begin{tikzpicture}[remember picture,overlay]
-      \path (current page.north west) --  (current page.south west)
-            \foreach \i in {1,...,\fakelinenos}
-               { node [pos={(\i-.5)/\fakelinenos},
-                  xshift=\fakelinenoshift, line number style] {\i} }  ;
-    \end{tikzpicture}%
-  }%
-}
-\makeatother
-\tikzset{%
-  line numbers/.store in=\fakelinenos,
-  line numbers=72,
-  line number shift/.store in=\fakelinenoshift,
-  line number shift=5mm,
-  line number style/.style={text=gray},
-}
+% \makeatletter
+% \AtBeginDocument{%
+%   \AddEverypageHook{%
+%     \small
+%     \begin{tikzpicture}[remember picture,overlay]
+%       \path (current page.north west) --  (current page.south west)
+%             \foreach \i in {1,...,\fakelinenos}
+%                { node [pos={(\i-.5)/\fakelinenos},
+%                   xshift=\fakelinenoshift, line number style] {\i} }  ;
+%     \end{tikzpicture}%
+%   }%
+% }
+% \makeatother
+% \tikzset{%
+%   line numbers/.store in=\fakelinenos,
+%   line numbers=72,
+%   line number shift/.store in=\fakelinenoshift,
+%   line number shift=5mm,
+%   line number style/.style={text=gray},
+% }
 
 %% 添加水印 Draft
-\usepackage{draftwatermark}
-\SetWatermarkText{DRAFT}
-\SetWatermarkLightness{0.9}
-\usepackage{background}
-\SetBgContents{仅供学习使用，不得用于商业目的。
-\url{https://github.com/XiangyunHuang/notesdown}}
-\SetBgScale{1}
-\SetBgAngle{0}
-\SetBgOpacity{1}
-\SetBgColor{red}
-\SetBgPosition{current page.north}
-\SetBgVshift{-0.5cm}
+% \usepackage{draftwatermark}
+% \SetWatermarkText{DRAFT}
+% \SetWatermarkLightness{0.9}
+% \usepackage{background}
+% \SetBgContents{仅供学习使用，不得用于商业目的。
+% \url{https://github.com/XiangyunHuang/notesdown}}
+% \SetBgScale{1}
+% \SetBgAngle{0}
+% \SetBgOpacity{1}
+% \SetBgColor{red}
+% \SetBgPosition{current page.north}
+% \SetBgVshift{-0.5cm}
 
 \frontmatter

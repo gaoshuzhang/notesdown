@@ -88,10 +88,10 @@ is_on_travis = identical(Sys.getenv("TRAVIS"), "true")
 is_online = curl::has_internet()
 
 library(reticulate)
-if(is_on_travis) use_python("/opt/pyenv/shims/python") else use_python("/usr/bin/python", required = FALSE)
+if(is_on_travis) use_virtualenv("shims") else use_python("/usr/bin/python", required = FALSE)
 # Python 环境的描述在附录
 # required = FALSE 默认值，如果按照指定的位置没有找到 Python 就会扫描其它版本
-
+# use_python("/opt/pyenv/shims/python")
 # use_virtualenv("shims")
 
 # 设置环境变量 RSTUDIO_CONNECT_SERVER 由 travis-ci 设置
