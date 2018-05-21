@@ -194,6 +194,17 @@ sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/to
 位于 [Github](https://github.com/liuhui998/gitbook) [Git Community Book 中译本](http://gitbook.liuhui998.com/)
 
 
+## PR 
+
+```bash
+git pull --rebase git@github.com:yihui/xaringan.git master
+# then force push to your master branch
+```
+
+参考 <https://github.com/yihui/xaringan/pull/107>
+
+**I don't recommend you to use your master branch for pull requests, because all commits will be squashed before merging, e.g. c2c2055 Then you will have some trouble with syncing your master branch with the master branch here (your choices are (1) delete your repo and fork again; or (2) force push; either option is not good). For pull requests, I recommend that you always use different branches for different pull requests.**
+
 ## 其它
 
 重复实现的关键是拉取一个现有的 Docker 镜像，可以免去安装和环境配置的诸多麻烦。
