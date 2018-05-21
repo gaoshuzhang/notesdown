@@ -71,7 +71,7 @@ ext <- if (knitr::is_html_output()) ".svg" else if (knitr::is_latex_output()) ".
 knitr::include_graphics(path = paste0("diagrams/kableExtra", ext))
 ```
 
-```{r, eval = knitr::is_html_output(),echo = knitr::is_html_output()}
+```{r, eval = FALSE}
 library(knitr)
 library(kableExtra)
 dt <- mtcars[1:5, 1:4]
@@ -82,12 +82,6 @@ kable(dt, format = "html", caption = "kableExtra 制作") %>%
                 full_width = F) %>%
   add_header_above(c(" ", "Group 1" = 2, "Group 2[note]" = 2)) %>%
   add_footnote(c("table footnote"))
-```
-
-```{r, eval = knitr::is_latex_output(), echo = knitr::is_latex_output()}
-library(knitr)
-library(kableExtra)
-dt <- mtcars[1:5, 1:4]
 
 # LaTeX Table
 kable(dt, format = "latex", booktabs = T, caption = "kableExtra 制作") %>%
@@ -102,7 +96,7 @@ kable(dt, format = "latex", booktabs = T, caption = "kableExtra 制作") %>%
 
 2. 添加短标题
 
-```{r,eval=FALSE}
+```{r, eval=FALSE}
 library(dplyr)
 library(knitr)
 library(kableExtra) # 这个必须加载
@@ -119,7 +113,7 @@ kable(df,
 
 
 
-```{r,eval=FALSE}
+```{r, eval=FALSE}
 kable(df,
       booktabs = TRUE,
       caption = "This caption is way too long and doesnt look good when formatted in the Table of Contents.  What you really need here is a much shorter caption so that your eyes dont go crazy trying to figure out what information the author is trying to convey.  Often there is too much information in the caption anyway so why not shorten it?.",
