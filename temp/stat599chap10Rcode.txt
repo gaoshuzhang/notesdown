@@ -1,0 +1,116 @@
+#########################
+#                       #
+# STAT 599 Spring 2013  #
+#                       #
+# Example R code        #
+#                       #
+# Chapter 10            #
+#                       #
+#########################
+
+### Installing the add-on packages needed for this course:
+
+# If you haven't already done so, 
+# type at the command line (without the preceding # ):
+
+# install.packages(c('faraway','mgcv','acepack','mda','brlr','sm','wavethresh','SuppDists','lme4'))
+
+# and choose a U.S. mirror site when the window pops up.
+# This will install the needed packages for you.
+
+# load the 'faraway' package:
+
+library(faraway)
+
+# loading the 'ctsib' dataset:
+
+data(ctsib)
+
+# attaching the 'ctsib' dataset:
+
+attach(ctsib)
+
+## Section 10.1:
+
+# Creating a binary response 'stable' (either 1 if completely stable or 0 otherwise):
+
+ctsib$stable <- ifelse(ctsib$CTSIB==1,1,0)
+
+## An ordinary binomial GLM would ignore the fact that there are repeated measurements
+## on each subject (i.e., it would treat each observation as independent):
+
+binom.glm <- glm(stable ~ Sex + Age + Height + Weight + Surface + Vision, family=binomial, data=ctsib)
+summary(binom.glm)
+
+## A binomial GLMM can account for the subject factor by including random subject effects:
+
+library(MASS)  # loading the MASS package
+
+binom.glmm <- glmmPQL(stable ~ Sex + Age + Height + Weight + Surface + Vision, random=~1|Subject, family=binomial, data=ctsib)
+summary(binom.glmm)
+
+# The glmmPQL() function uses penalized quasi-likelihood to fit the model, 
+# so there is no AIC.
+
+# When we account for subject, weight and age are non-significant, 
+# and height is just marginally significant.
+# The nature of the vision effect changes somewhat as well.
+
+###
+### Section 10.2
+###
+
+# Loading the 'gee' package:
+
+library(gee)
+
+## Revisting the 'ctsib' example using GEEs:
+
+binom.gee <- gee(stable ~ Sex + Age + Height + Weight + Surface + Vision, id=Subject, family=binomial, data=ctsib, corstr="exchangeable", scale.fix=TRUE)
+summary(binom.gee)
+
+###########################
+
+# loading the 'epilepsy' dataset:
+
+data(epilepsy)
+
+# attaching the 'epilepsy' dataset:
+
+attach(epilepsy)
+
+# Plotting the square root of seizure counts against period
+# treatment group = solid, placebo group = dashed 
+
+y <- matrix(epilepsy$seizures, nrow=5)
+matplot(1:4, sqrt(y[-1,]),type='l', lty=epilepsy$treat[5*(1:59)]+1, xlab="Period", ylab="Sqrt(Seizures)")
+
+# Finding the weekly mean of the seizure count (removing the baseline period) for each column
+my <- apply(y[-1,],2,mean)/2
+
+# Plotting the square root of the weekly mean seizure count for the experimental period
+# against the square root of the weekly mean seizure count for the baseline period
+plot(sqrt(epilepsy$seizures[epilepsy$expind==0]/8), sqrt(my), pch=epilepsy$treat[5*(1:59)]+2, xlab='Sqrt(Baseline seizures)', ylab='Sqrt(Experimental seizures)'); abline(0,1)
+
+# treatment group = '+', placebo group = triangle 
+
+# We fit a Poisson-type rate model with the offset term accounting for the 
+# number of weeks the seizures were counted for in each observation
+
+seiz.gee <- gee(seizures ~ offset(log(timeadj)) + expind + treat + I(expind*treat), id, family=poisson, corstr="AR-M", Mv=1, data = epilepsy, subset=(id!=49))
+
+# The 49th observation is excluded because it has an extreme number of seizures:
+plot(unique(id),tapply(seizures,id,sum),xlab='ID',ylab='Total seizures')
+
+# The code: corstr="AR-M", Mv=1
+# indicates a first-order autoregressive [AR(1)] correlation structure
+
+summary(seiz.gee)
+
+# A plot to aid interpreation of the interaction:
+
+interaction.plot(treat, expind, log(seizures/timeadj+.001))
+
+
+
+plot(seizures)
