@@ -18,4 +18,4 @@
 
 - [Introduction to Data Science](https://rafalab.github.io/dsbook/) Rafael A. Irizarry 著
 
-
+- [Feature Engineering and Selection: A Practical Approach for Predictive Models](http://www.feat.engineering) Max Kuhn and Kjell Johnson
