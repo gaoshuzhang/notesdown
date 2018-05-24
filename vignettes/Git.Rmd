@@ -4,6 +4,7 @@
 
 ```bash
 git clone --depth=5 https://github.com/XiangyunHuang/cosx.org.git
+git submodule update --init --recursive
 # 查看远程分支
 cd cosx.org
 git remote -v
@@ -42,6 +43,11 @@ git checkout -b stan # 新建 stan 分支
 git branch -v # 查看本地分支 stan 前有个星号标记
 git pull --rebase git@github.com:XiangyunHuang/cosx.org.git master
 # 同步到远程分支 stan
+git push --set-upstream origin stan
 git push origin master:stan
+
+git add .
+git commit -m "balabala"
+git push --set-upstream origin stan
 ```
 
