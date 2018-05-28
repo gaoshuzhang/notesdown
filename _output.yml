@@ -8,6 +8,7 @@ bookdown::pdf_book:
   citation_package: natbib
   pandoc_args: "--top-level-division=chapter"
   toc_depth: 4
+  dev: "cairo_pdf"
   toc_unnumbered: yes
   toc_appendix: no
   toc_bib: yes

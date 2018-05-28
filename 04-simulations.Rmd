@@ -13,7 +13,7 @@ knitr::include_graphics(path = "figures/reg-gp.pdf")
 ```{r irreg-gp,fig.cap="模拟高斯过程：核函数分别为指数族（左图），梅隆族（右图）"}
 knitr::include_graphics(path = "figures/irreg-gp.pdf")
 ```
-```{r mesh-spde,fig.cap="基于INLA的三角网格划分"}
+```{r mesh-spde,fig.cap="基于INLA的三角网格划分", out.width="50%"}
 knitr::include_graphics(path = "figures/mesh-spde.pdf")
 ```
 

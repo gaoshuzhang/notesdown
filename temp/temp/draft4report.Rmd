@@ -20,13 +20,6 @@ output:
    toc_bib: yes
    base_format: rticles::ctex
    pandoc_args: "--top-level-division=chapter"
-header-includes: 
-   - \renewcommand{\sfdefault}{phv} 
-   - \ctexset{ chapter/name = {,}, 
-               chapter/number = \arabic{chapter}, 
-               chapter/numberformat = \sf, 
-               chapter/fixskip = true, 
-            }
 bibliography: refer.bib
 biblio-style: apalike
 biblio-title: 参考文献
