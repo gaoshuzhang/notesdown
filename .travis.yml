@@ -76,7 +76,7 @@ addons:
       - libdieharder3
       - libdieharder-dev
       - libpoppler-cpp-dev
-      - libv8-3.14-dev
+      - libv8-dev
       - libprotobuf-dev 
       - protobuf-compiler
       - libjq-dev

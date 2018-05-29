@@ -1,0 +1,53 @@
+# Git
+
+## 合并上流的 commit 
+
+```bash
+git clone --depth=5 https://github.com/XiangyunHuang/cosx.org.git
+git submodule update --init --recursive
+# 查看远程分支
+cd cosx.org
+git remote -v
+```
+
+```
+origin  https://github.com/XiangyunHuang/cosx.org.git (fetch)
+origin  https://github.com/XiangyunHuang/cosx.org.git (push)
+```
+
+
+```bash
+# 添加上流分支
+git remote add upstream https://github.com/cosname/cosx.org.git
+git remote -v
+```
+```
+origin  https://github.com/XiangyunHuang/cosx.org.git (fetch)
+origin  https://github.com/XiangyunHuang/cosx.org.git (push)
+upstream        https://github.com/cosname/cosx.org.git (fetch)
+upstream        https://github.com/cosname/cosx.org.git (push)
+```
+
+```bash
+# 获取上流 commit 并且合并到我的 master 分支
+git fetch upstream
+git merge upstream/master master
+git push origin master
+```
+
+## 新建分支
+
+
+```bash
+git checkout -b stan # 新建 stan 分支
+git branch -v # 查看本地分支 stan 前有个星号标记
+git pull --rebase git@github.com:XiangyunHuang/cosx.org.git master
+# 同步到远程分支 stan
+git push --set-upstream origin stan
+git push origin master:stan
+
+git add .
+git commit -m "balabala"
+git push --set-upstream origin stan
+```
+
