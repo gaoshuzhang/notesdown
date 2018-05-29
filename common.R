@@ -17,21 +17,6 @@ if (!all(c("source-han-sans-cn", "source-han-serif-cn") %in% showtextdb::font_in
   showtextdb::font_install(showtextdb::source_han_serif("CN"))
   showtextdb::font_install(showtextdb::source_han_sans("CN"))
 }
-extrafont::font_install("fontcm")
-extrafont::loadfonts()
-
-if (!"xkcd" %in% extrafont::fonts()) {
-  path <- path.expand("~/.fonts")
-  if (!file.exists(path)) {
-    dir.create(path = path.expand("~/.fonts"))
-  }
-  download.file("http://simonsoftware.se/other/xkcd.ttf", dest = path.expand("~/.fonts/xkcd.ttf"), mode = "wb")
-  extrafont::font_import(paths = path.expand("~/.fonts"), pattern = "[X/x]kcd", prompt = FALSE)
-  extrafont::loadfonts()
-}
-
-extrafont::fonts() # registered with pdfFonts()
-sysfonts::font_families() # List available font families
 
 knitr::opts_chunk$set(
   comment = "#>",
