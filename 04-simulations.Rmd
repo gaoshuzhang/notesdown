@@ -17,7 +17,7 @@ knitr::include_graphics(path = "figures/irreg-gp.pdf")
 knitr::include_graphics(path = "figures/mesh-spde.pdf")
 ```
 
-REML 方法图\@ref(fig:spamm-sim)，INLA方法图 \@ref(fig:tri-mesh) ，低秩近似和 MCML 方法图 \@ref(fig:low-rank) 
+REML 方法图\@ref(fig:spamm-sim)，INLA方法图 \@ref(fig:inla-simulation) ，低秩近似和 MCML 方法图 \@ref(fig:low-rank) 
 
 ```{r low-rank, fig.cap = "低秩近似方法与精确蒙特卡罗最大似然方法"}
 knitr::include_graphics(path = "figures/simulation.pdf")

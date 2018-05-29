@@ -14,4 +14,4 @@
 
 ## 论文结构
 
-第\@ref(intro)章介绍论文相关背景，研究现状；第\@ref(models)章回顾了一般线性模型到广义线性混合效应模型的发展和模型结构；第\@ref(algorithms)章介绍了求解空间广义线性混合效应模型的算法及相关软件实现的技术路线；第\@ref(simulations) 章展示算法模拟的结果；第\@ref(applications)章给出基于SGLMM建模的案例分析。
+第\@ref(intro)章介绍论文相关背景，研究现状；第\@ref(models)章回顾了一般线性模型到广义线性混合效应模型的发展和模型结构；第\@ref(algorithms)章介绍了求解空间广义线性混合效应模型的算法及相关软件实现的技术路线；第\@ref(simulations) 章展示算法模拟的结果；第\@ref(applications)章给出基于SGLMM建模的案例分析；第\@ref(summary)章给出全文总结和展望。

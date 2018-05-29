@@ -1,4 +1,4 @@
-# 结论与展望
+# 结论与展望 {#summary}
 
 近年来，近似贝叶斯推断受到越来越多的关注，因其高效的计算性能，快速发展的 INLA 社区^[<http://www.r-inla.org/>]，R-INLA 软件的广泛使用和日益成熟的理论。可以将近似贝叶斯推断用于空间数据建模和分析[@INLA2015]，集成嵌套拉普拉斯和蒙特卡罗算法的结合也是值得研究的方向[@Rue2017arXiv]，Stan 程序库在GPU上的并行也是提高计算效率的可行方向^[<https://github.com/stan-dev/stan/wiki/Longer-Term-To-Do-List>]。
 
