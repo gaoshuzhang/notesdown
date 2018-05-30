@@ -5,31 +5,28 @@
 \usepackage{amssymb}  % for \varnothing
 \usepackage{amsmath}
 \usepackage{bm}
-% \usepackage{breqn} % provides automatic line breaking for big formulas
-% \usepackage{mathtools, nccmath} % 
-% \usepackage{nccmath}
-% https://tex.stackexchange.com/questions/375170/vertical-spacing-of-equations-using-align-environment-following-short-texts?noredirect=1&lq=1
+
 % 章节标题数字样式
 \ctexset{
   chapter/name = {,},
   chapter/number = \arabic{chapter},
   chapter/numberformat = \sf, % 数字字体 Arial
-  chapter/beforeskip = 16pt, % 标题前后的间距  即12磅
-  chapter/afterskip = 16pt,  % 即6磅
-  chapter/fixskip = true, % 标题与正文的距离
+  chapter/beforeskip = 16pt, % 标题前后的间距  12磅 小四号字体
+  chapter/afterskip = 8pt,  % 
+  chapter/fixskip = true, % 抑制多余的距离 
   chapter/format += \heiti\zihao{3},  % 一级标题
   section/numberformat = \rm,
   section/format += \heiti\zihao{4}\raggedright, % 二级标题
   section/beforeskip = 16pt, % 段前后的间距 同一级标题
-  section/afterskip = 16pt,
-  section/fixskip = true, % 标题与正文的距离  
+  section/afterskip = 8pt,
+  section/fixskip = true, 
   subsection/numberformat = \rm,
   subsection/format += \heiti\zihao{-4}\raggedright,  % 三级标题
+  subsection/fixskip = true, 
+  subsection/beforeskip = 8pt, % 段前后的间距 同一级标题
+  subsection/afterskip = 8pt,
   % contentsname = {目\quad 录},
 }
-
-%% 段首缩进40点 即两个汉字
-\setlength\parindent{40pt}
 
 \renewcommand\appendix{\setcounter{secnumdepth}{-1}}
 
@@ -52,31 +49,4 @@
 \fancyfoot[C]{\thepage}}
 
 \graphicspath{{figures/}{_bookdown_files/}}
-
-% \usepackage{parskip}
-% \setlength{\abovedisplayskip}{1pt} %3pt 个人觉得稍妥，可自行设置
-% \setlength{\belowdisplayskip}{1pt}
-
-\newenvironment{shrinkeq}[1]
-{\bgroup
-\addtolength\abovedisplayshortskip{#1}
-\addtolength\abovedisplayskip{#1}
-\addtolength\belowdisplayshortskip{#1}
-\addtolength\belowdisplayskip{#1}}
-{\egroup\ignorespacesafterend}
-
-% \begin{shrinkeq}{-3ex}
-% \end{shrinkeq}
-
-% \usepackage{amsthm}
-% \makeatletter
-% \def\thm@space@setup{%
-%   \thm@preskip=8pt plus 2pt minus 4pt
-%   \thm@postskip=\thm@preskip
-% }
-% \makeatother
-% 
-% \newtheorem{theorem}{定理}
-% \newtheorem{lemma}[theorem]{引理}
-
 \frontmatter
