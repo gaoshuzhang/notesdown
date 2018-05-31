@@ -67,29 +67,26 @@
 \usepackage{amssymb}  % for \varnothing
 \usepackage{amsmath}
 \usepackage{bm}
-% \usepackage{breqn} % provides automatic line breaking for big formulas
-% \usepackage{mathtools, nccmath} % 
-% \usepackage{nccmath}
-% https://tex.stackexchange.com/questions/375170/vertical-spacing-of-equations-using-align-environment-following-short-texts?noredirect=1&lq=1
+
 % 章节标题数字样式
 \ctexset{
   chapter/name = {,},
   chapter/number = \arabic{chapter},
   chapter/numberformat = \sf, % 数字字体 Arial
   chapter/beforeskip = 16pt, % 标题前后的间距  12磅 小四号字体
-  chapter/afterskip = 8pt,  % 
+  chapter/afterskip = 16pt,  % 
   chapter/fixskip = true, % 抑制多余的距离 
   chapter/format += \heiti\zihao{3},  % 一级标题
   section/numberformat = \rm,
   section/format += \heiti\zihao{4}\raggedright, % 二级标题
   section/beforeskip = 16pt, % 段前后的间距 同一级标题
-  section/afterskip = 8pt,
+  section/afterskip = 16pt,
   section/fixskip = true, 
   subsection/numberformat = \rm,
   subsection/format += \heiti\zihao{-4}\raggedright,  % 三级标题
   subsection/fixskip = true, 
-  subsection/beforeskip = 8pt, % 段前后的间距 同一级标题
-  subsection/afterskip = 8pt,
+  subsection/beforeskip = 16pt, % 段前后的间距 同一级标题
+  subsection/afterskip = 16pt,
   % contentsname = {目\quad 录},
 }
 
@@ -114,8 +111,6 @@
 \fancyfoot[C]{\thepage}}
 
 \graphicspath{{figures/}{_bookdown_files/}}
-
-
 \frontmatter
 \usepackage[super,square,sort]{natbib}
 \bibliographystyle{natbib}
@@ -380,9 +375,7 @@ INLA\citep{INLA2009}，
 
 \section{线性模型}
 
-线性模型的一般形式为
-
-\begin{equation}
+线性模型的一般形式为\begin{equation}
 Y = X'\beta + \epsilon, \mathrm{E}(\epsilon) = 0, \mathrm{Cov}(\epsilon) = \sigma^2I  \label{eq:LM}
 \end{equation}
 
@@ -402,9 +395,7 @@ R 包也越来越多，比较著名的有\texttt{glmnet}\citep{glmnet2011JSS} �
 
 \section{广义线性模型}
 
-广义线性模型的一般形式
-
-\begin{equation}
+广义线性模型的一般形式\begin{equation}
 g(\mu) = X'\beta,  \label{eq:GLM}
 \end{equation}
 
@@ -421,9 +412,7 @@ g(\mu) = X'\beta,  \label{eq:GLM}
 
 \section{广义线性混合效应模型}
 
-广义线性混合模型的一般形式
-
-\begin{equation}
+广义线性混合模型的一般形式\begin{equation}
 g(\mu) = X'\boldsymbol{\beta} + Z'\mathbf{b}  \label{eq:GLMM}
 \end{equation}
 
@@ -442,9 +431,7 @@ g(\mu) = X'\boldsymbol{\beta} + Z'\mathbf{b}  \label{eq:GLMM}
 models，简写为SGLMM)，顾名思义， 它既是对模型 \eqref{eq:LM}、\eqref{eq:GLM}
 和 \eqref{eq:GLMM} 的延伸也是对空间数据的具体建模，属于空间分析的内容，
 在地质统计相关的文献中也称为广义线性地统计模型(Generalized linear
-geostatistical models)\citep{Diggle2007}。
-
-\begin{equation}
+geostatistical models)\citep{Diggle2007}。\begin{equation}
 g(\mu_i) = T_{i} = d(x_i)'\beta + S(x_i) + Z_i \label{eq:SGLMM}
 \end{equation}
 
@@ -467,7 +454,6 @@ g(\mu_i) = T_{i} = d(x_i)'\beta + S(x_i) + Z_i \label{eq:SGLMM}
 
 如前所述，模型\eqref{eq:SGLMM}
 包含的空间效应主要由相关函数决定，在给出相关函数之前，先计算一下空间效应的理论变差\(V(x,x')\)（即空间过程的协方差函数的一半，变差源于采矿术语）和线性预测的变差\(V_{T}(u_{ij})\)。为方便起见，记\(\rho(u) \triangleq \rho(\|x,x'\|),u \equiv \|x-x'\|\)
-
 \begin{equation}
 \begin{aligned}
 V(x,x')&=\frac{1}{2}\mathrm{Var}\{S(x)-S(x')\}\\
@@ -480,22 +466,17 @@ V_{T}(u_{ij})&=\frac{1}{2}\mathrm{Var}\{T_{i}(x)-T_{j}(x)\}
 \end{equation}
 
 从方程 \eqref{eq:variograms}
-不难看出系数\(\frac{1}{2}\)的化简作用，随机向量 \(T\) 的协方差矩阵如下：
-
-\[\mathrm{Cov}(T_{i}(x),T_{i}(x)) = \sigma^2+\tau^2, \mathrm{Cov}(T_{i}(x),T_{j}(x))=\sigma^2\rho(u_{ij})\]
+不难看出系数\(\frac{1}{2}\)的化简作用，随机向量 \(T\)
+的协方差矩阵如下：\[\mathrm{Cov}(T_{i}(x),T_{i}(x)) = \sigma^2+\tau^2, \mathrm{Cov}(T_{i}(x),T_{j}(x))=\sigma^2\rho(u_{ij})\]
 
 相关函数 \(\rho(u)\)
-的作用和地位就显而易见了，它是既决定理论变差又决定协方差矩阵的结构。常见的相关函数族有梅隆族：
-
-\begin{equation}
+的作用和地位就显而易见了，它是既决定理论变差又决定协方差矩阵的结构。常见的相关函数族有梅隆族：\begin{equation}
 \rho(u)=\{2^{\kappa -1}\Gamma(\kappa)\}^{-1}(u/\phi)^{\kappa}\mathcal{K}_{\kappa}(u/\phi),u > 0 \label{eq:matern1}
 \end{equation}
 
 一般地，通常假定 \(\rho(u)\)
 单调不增，即任何两样本之间的相关性应该随距离变大而减弱，尺度参数\(\phi\)控制函数\(\rho(u)\)递减到0的速率，方便起见记
-\(\rho(u) = \rho_{0}(u/\phi)\)，则方程\eqref{eq:matern1}可记为
-
-\begin{equation}
+\(\rho(u) = \rho_{0}(u/\phi)\)，则方程\eqref{eq:matern1}可记为\begin{equation}
 \rho_{0}(u)=\{2^{\kappa -1}\Gamma(\kappa)\}^{-1}(u)^{\kappa}\mathcal{K}_{\kappa}(u),u > 0 \label{eq:matern2}
 \end{equation}
 
@@ -594,9 +575,7 @@ MCML 方法应用于分析西非流行病调查数据。
 \(T^{\top}=t^{\top}=(t_1,t_2,\cdots,t_n)\) 下，
 \(Y^{\top}=(Y_1,\cdots,Y_n)\)
 的条件分布是独立二项概率分布函数的乘积\(f(y|t)=\prod_{i=1}^{n}f(y_{i}|t_{i})\)，则\(\beta\)
-和 \(\bm{\theta}\) 的似然函数可以写成：
-
-\begin{equation}
+和 \(\bm{\theta}\) 的似然函数可以写成：\begin{equation}
 \begin{aligned}
 L(\beta,\theta)
 & = f(y;\beta,\bm{\theta}) \\
@@ -611,7 +590,6 @@ L(\beta,\theta)
 \(f(y,t)=N(t;D\beta_{0},\Sigma(\theta_{0}))f(y|t)\)，再使用 MCMC
 算法从条件分布\(f(T|Y=y;\beta_0,\theta_0)\)抽取 \(m\) 个样本
 \(t_{(i)}\)，那么，可以用如下方程近似 \eqref{eq:likelihood2}
-
 \begin{equation}
 L_{m}(\beta,\theta)=\frac{1}{m}\sum_{i=1}^{n}\frac{N(t_{i};D\beta,\Sigma(\theta))}{N(t_{i};D\beta_{0},\Sigma(\theta_{0}))} \label{eq:likelihood-approx}
 \end{equation}
@@ -625,22 +603,17 @@ L_{m}(\beta,\theta)=\frac{1}{m}\sum_{i=1}^{n}\frac{N(t_{i};D\beta,\Sigma(\theta)
 \section{低秩近似}
 
 模型\eqref{eq:SGLMM}中 \(S(x_i)\) 来自高斯过程
-\(\mathcal{S} = S(x),x\in \mathbb{R}^2\)，可以被表示成高斯噪声的卷积形式
-
-\begin{equation}
+\(\mathcal{S} = S(x),x\in \mathbb{R}^2\)，可以被表示成高斯噪声的卷积形式\begin{equation}
 S(x) = \int_{\mathbb{R}^2} K(\|x-t\|; \phi, \kappa) \: d B(t) \label{eq:convolution}
 \end{equation}
 
 其中，\(B\)表示布朗运动，\(\|\cdot\|\) 表示欧氏距离，\(K(\cdot)\)
-表示梅隆核，形如
-
-\begin{equation}
+表示梅隆核，形如\begin{equation}
 K(u; \phi, \kappa) = \frac{\Gamma(\kappa + 1)^{1/2}\kappa^{(\kappa+1)/4}u^{(\kappa-1)/2}}{\pi^{1/2}\Gamma((\kappa+1)/2)\Gamma(\kappa)^{1/2}(2\kappa^{1/2}\phi)^{(\kappa+1)/2}}\mathcal{K}_{\kappa}(u/\phi), u > 0. \label{eq:matern-kernel}
 \end{equation}
 
-通过离散方程 \eqref{eq:convolution}，并且让 \(r\) 充分大，可以获得低秩近似
-
-\begin{equation}
+通过离散方程 \eqref{eq:convolution}，并且让 \(r\)
+充分大，可以获得低秩近似\begin{equation}
 S(x) \approx \sum_{i = 1}^r K(\|x-\tilde{x}_{i}\|; \phi, \kappa) Z_{i}, \label{eq:lr-approx}
 \end{equation}
 
@@ -657,7 +630,7 @@ inference \textbf{U}sing \textbf{G}ibbs \textbf{S}ampling ) \citep{BUGS}
 的高效实现，可用于贝叶斯框架下，标准地质统计模型的参数估计，Stan
 提供多种语言的接口实现，方便起见，本文采用它提供的 R 语言接口 -- rstan
 包 \citep{RStan}。 　 基于 GPU 加速是一个不错的选择， Stan 开发者也把
-GPU 加速列入开发日程。scikit-cuda \citep{scikitcuda2015} 和 ArrayFire
+GPU 加速列入开发日程。SCIKIT-CUDA \citep{scikitcuda2015} 和 ArrayFire
 \citep{ArrayFire2015} 等基于 CUDA 开发的通用加速框架获得越来越多的关注。
 
 R语言作为自由的统计计算和绘图环境，因其免费，更新快，社区庞大，扩展包更是多达12500个，提供了大量的前沿统计技术的代码实现。如用于一元和多元时空模型选择和预测的
@@ -686,9 +659,7 @@ geoR 包 \citep{geoR2001}，geoRglm 包将其扩展到空间广义线性混合�
 模拟随机采样，图 \ref{fig:mesh-spde}
 基于INLA方法模拟三角网格。每个格点上重复实验10次，得到响应变量二项分布的概率值。REML
 方法图\ref{fig:spamm-sim}，INLA 方法图 \ref{fig:inla-simulation}
-，低秩近似和 MCML 方法图 \ref{fig:low-rank}
-
-\begin{gather}
+，低秩近似和 MCML 方法图 \ref{fig:low-rank}\begin{gather}
 \log\big\{\frac{p(x_i)}{1-p(x_i)}\big\} = d(x_i)'\beta + S(x_i) + Z_i \label{eq:SGPSM1}\\
 \log[\lambda(x_i)] = d(x_i)'\beta + S(x_i) + Z_i \label{eq:SGPSM2}
 \end{gather}
