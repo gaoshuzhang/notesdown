@@ -300,6 +300,7 @@ $if(dir)$
 $endif$
 $if(natbib)$
 \usepackage[$natbiboptions$]{natbib}
+\usepackage{natbibspacing}
 \bibliographystyle{$if(biblio-style)$$biblio-style$$else$plainnat$endif$}
 $endif$
 $if(biblatex)$
