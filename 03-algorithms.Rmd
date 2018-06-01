@@ -1,15 +1,15 @@
 # 算法综述 {#algorithms}
 
-## 贝叶斯
+## 贝叶斯 {#bayes}
 
 1998年 Diggle 等人最早提出基于模型的地质统计学框架，将高斯空间随机过程和（广义）线性混合模型结合应用到空间流行病数据分析中，通过贝叶斯推断方法进行参数估计和预测[@Diggle1998]。2002年 Diggle 等人使用空间广义线性混合模型分析冈比亚儿童疟疾的数据，在贝叶斯框架下，通过 Metropolis-Hastings 采样算法实现 MCMC 方法进行参数估计和模型预测[@Diggle2002]。
 
 
-## 最大似然
+## 最大似然 {#likelihood}
 
 由于贝叶斯方法构造马尔科夫链，需要很多次反复迭代，收敛速度慢，求解模型\@ref(eq:SGLMM)需要花费很多时间，将最大似然和重要性采样相结合的方法出现了，称之为蒙特卡罗最大似然法，简称 MCML。1994年 Charles J. Geyer 首先从理论证明 MCML 方法的收敛性及相关似然估计的渐进正态性，其中包括 profile 似然、近似似然和精确似然等，为后续算法的开发、改进以及应用提供了理论支持[@Geyer1994On]。2002年张在做模型的估计和预测的时候提出蒙特卡罗--期望极大梯度 (Monte Carlo EM Gradient) 算法，简称 MCEMG [@Zhang2002On]。2016 年 Hosseini 在 MCEMG 的基础上提出近似蒙特卡罗--期望极大梯度 (Approximate Monte Carlo EM Gradient) 算法，简称 AMCEMG [@Hosseini2016]。2004 年 Ole F Christensen 将 MCML 方法用于地质统计模型 [@Christensen2004]，2016 年 Peter J. Diggle 和 Emanuele Giorgi  将 MCML 方法应用于分析西非流行病调查数据。
 
-为描述方便起见，令 $\bm{\theta}^{\top} = (\sigma^2,\phi,\tau^2)$， 这里和之前先验分布一节的$\bm{\theta}$含义一样， 是模型参数构成的一个集合， 只是没有将 $\beta$ 纳入进来， 因为在贝叶斯框架下， 要求对所有未知参数给定先验分布， 包括模型系数。$D$ 表示 $n\times p$ 的协变量矩阵,  $y^{\top} = (y_1,y_2,\cdots,y_n)$，$T$ 的边际分布是 $N(D\beta,\Sigma(\theta))$。 给定 $T^{\top}=t^{\top}=(t_1,t_2,\cdots,t_n)$ 下， $Y^{\top}=(Y_1,\cdots,Y_n)$ 的条件分布是独立二项概率分布函数的乘积$f(y|t)=\prod_{i=1}^{n}f(y_{i}|t_{i})$，则$\beta$ 和 $\bm{\theta}$ 的似然函数可以写成：\begin{equation}
+为描述方便起见，令 $\bm{\theta}' = (\sigma^2,\phi,\tau^2)$， 这里和之前先验分布一节的$\bm{\theta}$含义一样， 是模型参数构成的一个集合， 只是没有将 $\beta$ 纳入进来， 因为在贝叶斯框架下， 要求对所有未知参数给定先验分布， 包括模型系数。$D$ 表示 $n\times p$ 的协变量矩阵,  $y' = (y_1,y_2,\cdots,y_n)$，$T$ 的边际分布是 $N(D\beta,\Sigma(\theta))$。 给定 $T'=t'=(t_1,t_2,\cdots,t_n)$ 下， $Y'=(Y_1,\cdots,Y_n)$ 的条件分布是独立二项概率分布函数的乘积$f(y|t)=\prod_{i=1}^{n}f(y_{i}|t_{i})$，则$\beta$ 和 $\bm{\theta}$ 的似然函数可以写成：\begin{equation}
 \begin{aligned}
 L(\beta,\theta)
 & = f(y;\beta,\bm{\theta}) \\
@@ -26,7 +26,7 @@ L_{m}(\beta,\theta)=\frac{1}{m}\sum_{i=1}^{n}\frac{N(t_{i};D\beta,\Sigma(\theta)
 
 给定合适的初始值 $\beta_{0}$ 和 $\theta_{0}$，用 $\hat{\beta}_{m}$ 和 $\hat{\theta}_{m}$ 表示最大化 $L_{m}(\beta,\theta)$ 获得的 MCML 估计，重复迭代$\beta_{0}=\hat{\beta}_{m}$ 和 $\theta_{0}=\hat{\theta}_{m}$ 直到收敛。最大化 $L_{m}(\beta,\theta)$的过程中，我们可以选择 BFGS 算法。
 
-## 低秩近似
+## 低秩近似 {#low-rank}
 
 模型\@ref(eq:SGLMM)中 $S(x_i)$ 来自高斯过程 $\mathcal{S} = S(x),x\in \mathbb{R}^2$，可以被表示成高斯噪声的卷积形式\begin{equation}
 S(x) = \int_{\mathbb{R}^2} K(\|x-t\|; \phi, \kappa) \: d B(t) (\#eq:convolution)

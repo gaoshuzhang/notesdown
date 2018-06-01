@@ -1,10 +1,10 @@
 
 # 广义线性混合效应模型
-P.324 333
+# P.324 333
 
 # http://www.highstat.com/index.php/mixed-effects-models-and-extensions-in-ecology-with-r
 
-Birdies <- read.table(file = "C:/YourDirectory/Blahblah.txt, header = TRUE, dec = ".")
+Birdies <- read.table(file = "C:/YourDirectory/Blahblah.txt", header = TRUE, dec = ".")
 
 
 library(AED); data(DeerEcervi)

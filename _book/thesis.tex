@@ -114,7 +114,7 @@
 
 \frontmatter
 
-
+% \usepackage{natbibspacing} % 一定放在加载 natbib 之后
 \usepackage[super,square,sort]{natbib}
 \usepackage{natbibspacing}
 \bibliographystyle{natbib}
@@ -356,13 +356,15 @@ variation）和空间点过程（spatial point processes）\citep{Cressie1993}�
 MCML）积分的收敛性\citep{Geyer1994On}，1998 年 Diggle
 等人提出基于贝叶斯的空间统计方法应用于地质统计领域，分析了南太平洋岛上的核残留的情况，北拉纳克郡和南坎布里亚郡的弯曲杆菌感染情况\citep{Diggle1998}。
 随后，似然估计的统计性质和随机模拟算法的收敛性成为研究的重点： 2002年
-Zhang 重点分析了空间广义线性混合效应模型的参数估计和模型预测的计算问题，
-应用 MCML \citep{Zhang2002On} 算法求解模型； 2004年 Christensen 将 MCML
+Zhang
+重点分析了空间广义线性混合效应模型的参数估计和模型预测的计算问题，应用
+MCML \citep{Zhang2002On} 算法求解模型； 2004年 Christensen 将 MCML
 方法应用于朗格拉普岛的数据分析\citep{Christensen2004}。近年来，在大数据的背景下，
 寻求高效的算法成为一个新的方向，2009 年 Rue
 等人提出基于近似贝叶斯推断的集成嵌套拉普拉斯算法，简称
 INLA\citep{INLA2009}，
-并将其应用于空间数据建模\citep{INLA2015}，还推广到一般的贝叶斯计算\citep{INLA2017}。2016
+并将其应用于空间数据建模\citep{INLA2015}，还推广到一般的贝叶斯计算\citep{INLA2017}。2013年，Liang
+等人将重抽样的技术用于大规模地质统计数据分析，相比贝叶斯方法\citep{Diggle1998}，它可以更加快速地获得准确的结果\citep{Resampling2013}。2016
 年 Bonat 和 Ribeiro Jr.~综合比较了 MCML、贝叶斯 MCMC 和 INLA
 方法\citep{Bonat2016Practical}。 同时，
 涉及空间数据分析和建模的书籍也越来越多，
@@ -547,7 +549,8 @@ MCMC 算法的表现就会不收敛；
 \hypertarget{algorithms}{%
 \chapter{算法综述}\label{algorithms}}
 
-\section{贝叶斯}
+\hypertarget{bayes}{%
+\section{贝叶斯}\label{bayes}}
 
 1998年 Diggle
 等人最早提出基于模型的地质统计学框架，将高斯空间随机过程和（广义）线性混合模型结合应用到空间流行病数据分析中，通过贝叶斯推断方法进行参数估计和预测\citep{Diggle1998}。2002年
@@ -556,7 +559,8 @@ Diggle
 Metropolis-Hastings 采样算法实现 MCMC
 方法进行参数估计和模型预测\citep{Diggle2002}。
 
-\section{最大似然}
+\hypertarget{likelihood}{%
+\section{最大似然}\label{likelihood}}
 
 由于贝叶斯方法构造马尔科夫链，需要很多次反复迭代，收敛速度慢，求解模型\eqref{eq:SGLMM}需要花费很多时间，将最大似然和重要性采样相结合的方法出现了，称之为蒙特卡罗最大似然法，简称
 MCML。1994年 Charles J. Geyer 首先从理论证明 MCML
@@ -569,15 +573,14 @@ Ole F Christensen 将 MCML 方法用于地质统计模型
 \citep{Christensen2004}，2016 年 Peter J. Diggle 和 Emanuele Giorgi 将
 MCML 方法应用于分析西非流行病调查数据。
 
-为描述方便起见，令 \(\bm{\theta}^{\top} = (\sigma^2,\phi,\tau^2)\)，
+为描述方便起见，令 \(\bm{\theta}' = (\sigma^2,\phi,\tau^2)\)，
 这里和之前先验分布一节的\(\bm{\theta}\)含义一样，
 是模型参数构成的一个集合， 只是没有将 \(\beta\) 纳入进来，
 因为在贝叶斯框架下， 要求对所有未知参数给定先验分布，
 包括模型系数。\(D\) 表示 \(n\times p\) 的协变量矩阵,
-\(y^{\top} = (y_1,y_2,\cdots,y_n)\)，\(T\) 的边际分布是
-\(N(D\beta,\Sigma(\theta))\)。 给定
-\(T^{\top}=t^{\top}=(t_1,t_2,\cdots,t_n)\) 下，
-\(Y^{\top}=(Y_1,\cdots,Y_n)\)
+\(y' = (y_1,y_2,\cdots,y_n)\)，\(T\) 的边际分布是
+\(N(D\beta,\Sigma(\theta))\)。 给定 \(T'=t'=(t_1,t_2,\cdots,t_n)\) 下，
+\(Y'=(Y_1,\cdots,Y_n)\)
 的条件分布是独立二项概率分布函数的乘积\(f(y|t)=\prod_{i=1}^{n}f(y_{i}|t_{i})\)，则\(\beta\)
 和 \(\bm{\theta}\) 的似然函数可以写成：\begin{equation}
 \begin{aligned}
@@ -604,7 +607,8 @@ L_{m}(\beta,\theta)=\frac{1}{m}\sum_{i=1}^{n}\frac{N(t_{i};D\beta,\Sigma(\theta)
 \(\theta_{0}=\hat{\theta}_{m}\) 直到收敛。最大化
 \(L_{m}(\beta,\theta)\)的过程中，我们可以选择 BFGS 算法。
 
-\section{低秩近似}
+\hypertarget{low-rank}{%
+\section{低秩近似}\label{low-rank}}
 
 模型\eqref{eq:SGLMM}中 \(S(x_i)\) 来自高斯过程
 \(\mathcal{S} = S(x),x\in \mathbb{R}^2\)，可以被表示成高斯噪声的卷积形式\begin{equation}
@@ -759,8 +763,10 @@ LONGITUDE & LATITUDE & NO\_EXAM & NO\_INF & ELEVATION\\
 \caption{Loa loa 流行度观测结果，黑点是采样点}\label{fig:loaloa-ratio}
 \end{figure}
 
-建立模型 \eqref{eq:SGLMM}
-\(\log\{p_{ij}/(1-p_{ij})\} = \alpha + \beta'z_{ij} + U_{i} + S(x_{i}),\)
+建立模型 \begin{equation} 
+\log\{p_{ij}/(1-p_{ij})\} = \alpha + \beta'z_{ij} + U_{i} + S(x_{i}),
+\end{equation}
+
 基于限制极大似然估计，计算得到固定效应参数如下表
 
 \begin{longtable}[]{@{}llll@{}}
@@ -925,7 +931,7 @@ MCML 和 Low-Rank 好。由此可知，算法的选择需要去做效果和效�
 
 
 %\chapter*{\markboth{致谢}{致谢}{致谢}}
-\chapter*{\markboth{致\quad 谢}{致谢}{致\quad 谢}}
+\chapter*{\markboth{致谢}{致谢}{致\quad 谢}}
 \addcontentsline{toc}{chapter}{致谢}
 
 三年时间说短不短，说长不长，但是对我却是意义重大的三年，无论是学习还是生活，学校对我的影响都是终生难忘的。首先，我要感谢父母一如既往的默默支持，没有他们就没有我的今天，虽然远隔千山万里，也照顾不到我的学习和生活，但只要想到，不管我做怎样的决定，他们都会全力支持，我很感动；然后，我要感谢我的导师，从他那里我学到严谨治学的态度，他也给予了我最大的自由，这得以让我去一些技术公司实习，接触到最前沿的正在发生深刻变革的人工智能领域，这段实习经历除了让我开阔眼界，接触了深度学习技术和计算框架，更重要的是结识了老师木（一流科技CEO）和一些志同道合的同事，如深度学习算法研究者陈新鹏，计算框架开发者王笑舒等；此外，还要感谢新浪的总监高鹏，实习期间，除了基本业务外，让我做了很多我感兴趣的事，如学习 R 语言绘图系统和 R Markdown生态系统，最得益的莫过于见识了大数据平台的系统架构；最后我要感谢统计之都，特别是创始人谢益辉，除了使用他开发的工具打造毕业论文模板，使得论文排版工作量直接降低了几个量级，一年多以来，还一直对我的问题有问必答。三年来，帮助过我的老师，同学，同事，朋友太多，他们当中很多都直接或间接地帮助了我的毕业论文，人生最大的幸运莫过于结识你们。

@@ -35,7 +35,11 @@ LONGITUDE & LATITUDE & NO\_EXAM & NO\_INF & ELEVATION\\
 \caption{Loa loa 流行度观测结果，黑点是采样点}(\#fig:loaloa-ratio)
 \end{figure}
 
-建立模型 \@ref(eq:SGLMM) $\log\{p_{ij}/(1-p_{ij})\} = \alpha + \beta'z_{ij} + U_{i} + S(x_{i}),$ 基于限制极大似然估计，计算得到固定效应参数如下表
+建立模型 \begin{equation} 
+\log\{p_{ij}/(1-p_{ij})\} = \alpha + \beta'z_{ij} + U_{i} + S(x_{i}),
+\end{equation}
+
+基于限制极大似然估计，计算得到固定效应参数如下表
 
 | 参数        | 估计       | 条件标准差 | t 统计量 |
 | :---------- | :--------- | :-------- | :------ |

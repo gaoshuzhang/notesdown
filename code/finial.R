@@ -64,12 +64,16 @@ par(op)
 dev.off()
 
 
-mu <- exp(exp_reg_S$data + data.x %*% beta) / (1 + exp(exp_reg_S$data + data.x %*% beta))
+mu <- exp(exp_irreg_S$data + data.x %*% beta) / (1 + exp(exp_irreg_S$data + data.x %*% beta))
 binom.data.y <- rbinom(N, size = 100, prob = mu)
 
-binom_exp_reg_sim <- cbind.data.frame(binom.data.y, exp_reg_S$coord, data.x, data.z)
+binom_exp_irreg_sim <- cbind.data.frame(binom.data.y, exp_irreg_S$coord, data.x, data.z)
 
-colnames(binom_exp_reg_sim) <- c("y","x1","x2","d1","d2","d3","z")
+colnames(binom_exp_irreg_sim) <- c("y","x1","x2","d1","d2","d3","z")
+
+RSA_binom_exp_irreg_sim <- binom_exp_irreg_sim[,c(2,3,1,4,5,6,7)]
+RSA_binom_exp_irreg_sim <- as.matrix(RSA_binom_exp_irreg_sim)
+RSA(RSA_binom_exp_irreg_sim,N_subset = 400, Stepscale = 40, Total_Iteration = 2500, Warm = 20)
 
 library(MASS)
 library(nlme) # will be loaded automatically if omitted

@@ -8,16 +8,30 @@ gData = grf(DataNum, grid = "irreg", DataNum, DataNum,
 			cov.par = c(1,25), nugget = 1, kappa = 1)
 # phi = 25 tau = 1 kappa = 1 sigma = 1
 # Simulated date matrix with response variable distributed with 'powered exponential' covariance matrix
-l = gData$coords
-y = gData$data
-x = rnorm(DataNum)
-y2 = y+.5+x
+l = gData$coords  # 坐标
+y = gData$data  # 空间效应
+x = rnorm(DataNum) # 固定效应
+y2 = y+.5+x # 截距 0.5
 gdata = cbind(l,y2,x)
 
 ## This is an illustration of the function. 
 ## In practice, Total_Iteration is recommended to be set to 2500 or higher.
 ## N_subset is recommemded to be set to 300 or higher.
 RSA(gdata,N_subset = 400, Stepscale = 40, Total_Iteration = 4000, Warm = 20)
+
+$`beta`
+[1] 0.526394 1.015483
+
+$phi
+[1] 25.67238
+
+$sigmasq
+[1] 0.829383
+
+$tausq
+[1] 0.9768072
+
+
 
 library(RSAgeo)
 data(gdata)
