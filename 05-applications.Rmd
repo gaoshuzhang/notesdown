@@ -46,10 +46,9 @@ knitr::include_graphics(path = "figures/loaloa-map.pdf")
 knitr::include_graphics(path = "figures/spaMM-loaloa.pdf")
 ```
 
-
 ## 冈比亚儿童疟疾的空间分布
 
-2002年，Peter Diggle等人分析过冈比亚儿童疟疾数据，该数据采集自冈比亚的5个地域，65个村庄，2035个5岁以下儿童的血液样本，如图\@ref(fig:map-gambia)，
+2002年，Peter Diggle等人分析过冈比亚儿童疟疾数据，该数据采集自冈比亚的5个地域，65个村庄，2035个5岁以下儿童的血液样本，如图\@ref(fig:map-gambia)。
 
 ```{r map-gambia,fig.cap="采样的村庄"}
 knitr::include_graphics(path = "figures/gambia-map.pdf")
@@ -86,9 +85,7 @@ knitr::include_graphics(path = "figures/gambia-bed-net.pdf")
 
 \newpage
 
-为进一步作出定量分析，建立模型如下：
-
-\begin{equation}
+为进一步作出定量分析，建立模型如下：\begin{equation}
 \log\{p_{ij}/(1-p_{ij})\} = \alpha + \beta'z_{ij} + U_{i} + S(x_{i})
 \end{equation}
 

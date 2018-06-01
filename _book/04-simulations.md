@@ -24,19 +24,19 @@
 \end{figure}
 \begin{figure}
 
+{\centering \includegraphics[width=0.9\linewidth]{figures/simulation} 
+
+}
+
+\caption{低秩近似方法与精确蒙特卡罗最大似然方法}(\#fig:low-rank)
+\end{figure}
+\begin{figure}
+
 {\centering \includegraphics[width=0.7\linewidth]{figures/mesh-spde} 
 
 }
 
 \caption{基于INLA的三角网格划分}(\#fig:mesh-spde)
-\end{figure}
-\begin{figure}
-
-{\centering \includegraphics[width=0.7\linewidth]{figures/simulation} 
-
-}
-
-\caption{低秩近似方法与精确蒙特卡罗最大似然方法}(\#fig:low-rank)
 \end{figure}
 \begin{figure}
 
@@ -46,6 +46,9 @@
 
 \caption{INLA方法}(\#fig:inla-simulation)
 \end{figure}
+
+\newpage
+
 \begin{figure}
 
 {\centering \includegraphics[width=0.7\linewidth]{figures/spaMM-simulation} 

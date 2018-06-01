@@ -87,7 +87,7 @@
   subsection/fixskip = true, 
   subsection/beforeskip = 16pt, % 段前后的间距 同一级标题
   subsection/afterskip = 16pt,
-  % contentsname = {目\quad 录},
+  contentsname = {目\quad 录},
 }
 
 \renewcommand\appendix{\setcounter{secnumdepth}{-1}}
@@ -546,7 +546,7 @@ MCMC 算法的表现就会不收敛；
 \section{贝叶斯}
 
 1998年 Diggle
-等人最早提出基于模型的地统计学框架，将高斯空间随机过程和（广义）线性混合模型结合应用到空间流行病数据分析中，通过贝叶斯推断方法进行参数估计和预测\citep{Diggle1998}。2002年
+等人最早提出基于模型的地质统计学框架，将高斯空间随机过程和（广义）线性混合模型结合应用到空间流行病数据分析中，通过贝叶斯推断方法进行参数估计和预测\citep{Diggle1998}。2002年
 Diggle
 等人使用空间广义线性混合模型分析冈比亚儿童疟疾的数据，在贝叶斯框架下，通过
 Metropolis-Hastings 采样算法实现 MCMC
@@ -629,8 +629,8 @@ inference \textbf{U}sing \textbf{G}ibbs \textbf{S}ampling ) \citep{BUGS}
 作为 MCMC
 的高效实现，可用于贝叶斯框架下，标准地质统计模型的参数估计，Stan
 提供多种语言的接口实现，方便起见，本文采用它提供的 R 语言接口 -- rstan
-包 \citep{RStan}。 　 基于 GPU 加速是一个不错的选择， Stan 开发者也把
-GPU 加速列入开发日程。SCIKIT-CUDA \citep{scikitcuda2015} 和 ArrayFire
+包 \citep{RStan}。基于 GPU 加速是一个不错的选择， Stan 开发者也把 GPU
+加速列入开发日程。SCIKIT-CUDA \citep{scikitcuda2015} 和 ArrayFire
 \citep{ArrayFire2015} 等基于 CUDA 开发的通用加速框架获得越来越多的关注。
 
 R语言作为自由的统计计算和绘图环境，因其免费，更新快，社区庞大，扩展包更是多达12500个，提供了大量的前沿统计技术的代码实现。如用于一元和多元时空模型选择和预测的
@@ -682,19 +682,19 @@ geoR 包 \citep{geoR2001}，geoRglm 包将其扩展到空间广义线性混合�
 \end{figure}
 \begin{figure}
 
+{\centering \includegraphics[width=0.9\linewidth]{figures/simulation} 
+
+}
+
+\caption{低秩近似方法与精确蒙特卡罗最大似然方法}\label{fig:low-rank}
+\end{figure}
+\begin{figure}
+
 {\centering \includegraphics[width=0.7\linewidth]{figures/mesh-spde} 
 
 }
 
 \caption{基于INLA的三角网格划分}\label{fig:mesh-spde}
-\end{figure}
-\begin{figure}
-
-{\centering \includegraphics[width=0.7\linewidth]{figures/simulation} 
-
-}
-
-\caption{低秩近似方法与精确蒙特卡罗最大似然方法}\label{fig:low-rank}
 \end{figure}
 \begin{figure}
 
@@ -704,6 +704,9 @@ geoR 包 \citep{geoR2001}，geoRglm 包将其扩展到空间广义线性混合�
 
 \caption{INLA方法}\label{fig:inla-simulation}
 \end{figure}
+
+\newpage
+
 \begin{figure}
 
 {\centering \includegraphics[width=0.7\linewidth]{figures/spaMM-simulation} 
@@ -786,7 +789,7 @@ seNDVI & -2.906e+00 & 4.4210991 & -0.6574\tabularnewline
 \section{冈比亚儿童疟疾的空间分布}
 
 2002年，Peter
-Diggle等人分析过冈比亚儿童疟疾数据，该数据采集自冈比亚的5个地域，65个村庄，2035个5岁以下儿童的血液样本，如图\ref{fig:map-gambia}，
+Diggle等人分析过冈比亚儿童疟疾数据，该数据采集自冈比亚的5个地域，65个村庄，2035个5岁以下儿童的血液样本，如图\ref{fig:map-gambia}。
 
 \begin{figure}
 
@@ -856,9 +859,7 @@ x & y & pos & age & netuse & treated & green & phc\\
 
 \newpage
 
-为进一步作出定量分析，建立模型如下：
-
-\begin{equation}
+为进一步作出定量分析，建立模型如下：\begin{equation}
 \log\{p_{ij}/(1-p_{ij})\} = \alpha + \beta'z_{ij} + U_{i} + S(x_{i})
 \end{equation}
 
@@ -919,8 +920,8 @@ MCML 和 Low-Rank 好。由此可知，算法的选择需要去做效果和效�
 % 附录位置
 
 
-\chapter*{\markboth{致谢}{致谢}{致谢}}
-% \chapter*{\markboth{致\quad 谢}{致谢}{致\quad 谢}}
+%\chapter*{\markboth{致谢}{致谢}{致谢}}
+\chapter*{\markboth{致\quad 谢}{致谢}{致\quad 谢}}
 \addcontentsline{toc}{chapter}{致谢}
 
 三年时间说短不短，说长不长，但是对我却是意义重大的三年，无论是学习还是生活，学校对我的影响都是终生难忘的。首先，我要感谢父母一如既往的默默支持，没有他们就没有我的今天，虽然远隔千山万里，也照顾不到我的学习和生活，但只要想到，不管我做怎样的决定，他们都会全力支持，我很感动；然后，我要感谢我的导师，从他那里我学到严谨治学的态度，他也给予了我最大的自由，这得以让我去一些技术公司实习，接触到最前沿的正在发生深刻变革的人工智能领域，这段实习经历除了让我开阔眼界，接触了深度学习技术和计算框架，更重要的是结识了老师木（一流科技CEO）和一些志同道合的同事，如深度学习算法研究者陈新鹏，计算框架开发者王笑舒等；此外，还要感谢新浪的总监高鹏，实习期间，除了基本业务外，让我做了很多我感兴趣的事，如学习 R 语言绘图系统和 R Markdown生态系统，最得益的莫过于见识了大数据平台的系统架构；最后我要感谢统计之都，特别是创始人谢益辉，除了使用他开发的工具打造毕业论文模板，使得论文排版工作量直接降低了几个量级，一年多以来，还一直对我的问题有问必答。三年来，帮助过我的老师，同学，同事，朋友太多，他们当中很多都直接或间接地帮助了我的毕业论文，人生最大的幸运莫过于结识你们。

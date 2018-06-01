@@ -58,10 +58,9 @@ LONGITUDE & LATITUDE & NO\_EXAM & NO\_INF & ELEVATION\\
 \caption{Loa loa 数据集上的预测结果}(\#fig:spamm-loaloa)
 \end{figure}
 
-
 ## 冈比亚儿童疟疾的空间分布
 
-2002年，Peter Diggle等人分析过冈比亚儿童疟疾数据，该数据采集自冈比亚的5个地域，65个村庄，2035个5岁以下儿童的血液样本，如图\@ref(fig:map-gambia)，
+2002年，Peter Diggle等人分析过冈比亚儿童疟疾数据，该数据采集自冈比亚的5个地域，65个村庄，2035个5岁以下儿童的血液样本，如图\@ref(fig:map-gambia)。
 
 \begin{figure}
 
@@ -125,9 +124,7 @@ x & y & pos & age & netuse & treated & green & phc\\
 
 \newpage
 
-为进一步作出定量分析，建立模型如下：
-
-\begin{equation}
+为进一步作出定量分析，建立模型如下：\begin{equation}
 \log\{p_{ij}/(1-p_{ij})\} = \alpha + \beta'z_{ij} + U_{i} + S(x_{i})
 \end{equation}
 

@@ -2,7 +2,7 @@
 
 ## 贝叶斯
 
-1998年 Diggle 等人最早提出基于模型的地统计学框架，将高斯空间随机过程和（广义）线性混合模型结合应用到空间流行病数据分析中，通过贝叶斯推断方法进行参数估计和预测[@Diggle1998]。2002年 Diggle 等人使用空间广义线性混合模型分析冈比亚儿童疟疾的数据，在贝叶斯框架下，通过 Metropolis-Hastings 采样算法实现 MCMC 方法进行参数估计和模型预测[@Diggle2002]。
+1998年 Diggle 等人最早提出基于模型的地质统计学框架，将高斯空间随机过程和（广义）线性混合模型结合应用到空间流行病数据分析中，通过贝叶斯推断方法进行参数估计和预测[@Diggle1998]。2002年 Diggle 等人使用空间广义线性混合模型分析冈比亚儿童疟疾的数据，在贝叶斯框架下，通过 Metropolis-Hastings 采样算法实现 MCMC 方法进行参数估计和模型预测[@Diggle2002]。
 
 
 ## 最大似然
@@ -44,7 +44,6 @@ S(x) \approx \sum_{i = 1}^r K(\|x-\tilde{x}_{i}\|; \phi, \kappa) Z_{i}, (\#eq:lr
 
 ## 相关软件
 
-[Stan](http://mc-stan.org/) 是一种概率编程语言[@Stan2017JSS]，可以替代 BUGS ( **B**ayesian inference **U**sing **G**ibbs **S**ampling ) [@BUGS] 作为 MCMC 的高效实现，可用于贝叶斯框架下，标准地质统计模型的参数估计，Stan 提供多种语言的接口实现，方便起见，本文采用它提供的 R 语言接口 -- rstan 包 [@RStan]。  　 
-基于 GPU 加速是一个不错的选择， Stan 开发者也把 GPU 加速列入开发日程。SCIKIT-CUDA [@scikitcuda2015] 和 ArrayFire [@ArrayFire2015] 等基于 CUDA 开发的通用加速框架获得越来越多的关注。
+[Stan](http://mc-stan.org/) 是一种概率编程语言[@Stan2017JSS]，可以替代 BUGS ( **B**ayesian inference **U**sing **G**ibbs **S**ampling ) [@BUGS] 作为 MCMC 的高效实现，可用于贝叶斯框架下，标准地质统计模型的参数估计，Stan 提供多种语言的接口实现，方便起见，本文采用它提供的 R 语言接口 -- rstan 包 [@RStan]。基于 GPU 加速是一个不错的选择， Stan 开发者也把 GPU 加速列入开发日程。SCIKIT-CUDA [@scikitcuda2015] 和 ArrayFire [@ArrayFire2015] 等基于 CUDA 开发的通用加速框架获得越来越多的关注。
 
 R语言作为自由的统计计算和绘图环境，因其免费，更新快，社区庞大，扩展包更是多达12500个，提供了大量的前沿统计技术的代码实现。如用于一元和多元时空模型选择和预测的 spBayes 包 [@spBayes2015]；可以对 MCMC 的输出进行诊断和分析的 coda 包 [@coda2006]；MCMCvis 包提取模型参数，MCMC 算法输出的结果并可视化，产生出版级的图形，支持转化 JAGS、Stan 和 BUGS 软件输出结果[@R-MCMCvis]；基于贝叶斯方法的空间线性混合效应模型选择和预测的 geoR 包 [@geoR2001]，geoRglm 包将其扩展到空间广义线性混合效应模型 [@geoRglm2002]；glmmBUGS 包提供WinBUGS、 OpenBUGS 和 JAGS 软件的统一接口，使求解 BUGS 模型的过程放在 R 环境中[@R-glmmBUGS;@glmmBUGS2010MCMC]；gstat 包是迁移自S语言的地质统计扩展包，提供了各种各样的克里金插值方法[@gstat2004;@gstat2016]；brms 包基于Stan框架 拟合贝叶斯广义线性和非线性混合效应模型[@brms2017JSS]。
