@@ -36,10 +36,12 @@ LONGITUDE & LATITUDE & NO\_EXAM & NO\_INF & ELEVATION\\
 \end{figure}
 
 建立模型 \begin{equation} 
-\log\{p_{ij}/(1-p_{ij})\} = \alpha + \beta'z_{ij} + U_{i} + S(x_{i}),
+\log\{p_{ij}/(1-p_{ij})\} = \alpha + \beta'z_{ij} + U_{i} + S(x_{i}) (\#eq:SGPSM-loaloa)
 \end{equation}
 
-基于限制极大似然估计，计算得到固定效应参数如下表
+基于限制极大似然估计，计算得到固定效应参数如表\@ref(tab:loaloa-estimation)所示
+
+Table: (\#tab:loaloa-estimation) 模型\@ref(eq:SGPSM-loaloa)的参数估计
 
 | 参数        | 估计       | 条件标准差 | t 统计量 |
 | :---------- | :--------- | :-------- | :------ |
@@ -75,7 +77,9 @@ LONGITUDE & LATITUDE & NO\_EXAM & NO\_INF & ELEVATION\\
 \caption{采样的村庄}(\#fig:map-gambia)
 \end{figure}
 
-并记录了他们的年龄、村庄的位置（GPS坐标）、血液中是否含有疟疾寄生虫、蚊帐是否使用、蚊帐是否杀虫、村庄周围绿色植物的覆盖度（RS测量）、村庄是否有医疗中心[@Diggle2002]。调查所得的数据如表\@ref(tab:gambia-malaria) 所示（篇幅所限展示部分）。数据各指标说明如下：
+并记录了他们的年龄、村庄的位置（GPS坐标）、血液中是否含有疟疾寄生虫、蚊帐是否使用、蚊帐是否杀虫、村庄周围绿色植物的覆盖度（RS测量）、村庄是否有医疗中心[@Diggle2002]。调查所得的数据如表\@ref(tab:gambia-malaria) 所示（篇幅所限展示部分）。数据各指标说明如表\@ref(tab:gambia-data)
+
+Table: (\#tab:gambia-data) 冈比亚疟疾数据集的描述
 
 | 变量 | 含义 |
 | :-- | :-- |
@@ -86,8 +90,6 @@ LONGITUDE & LATITUDE & NO\_EXAM & NO\_INF & ELEVATION\\
 | treated | 蚊帐是否杀虫 （1表示是，0表示否） |
 | green | 村庄附近的绿色植物的覆盖度 |
 | phi | 村庄里是否有医疗中心（1表示有，0表示没有） |
-
-\newpage
 
 \begin{table}
 
@@ -129,10 +131,12 @@ x & y & pos & age & netuse & treated & green & phc\\
 \newpage
 
 为进一步作出定量分析，建立模型如下：\begin{equation}
-\log\{p_{ij}/(1-p_{ij})\} = \alpha + \beta'z_{ij} + U_{i} + S(x_{i})
+\log\{p_{ij}/(1-p_{ij})\} = \alpha + \beta'z_{ij} + U_{i} + S(x_{i}) (\#eq:SGPSM-gambia)
 \end{equation}
 
 其中，$z_{ij}$ 表示对第$i$个村庄的第$j$个儿童的观测值，如前所述的年龄、蚊帐使用情况等固定效应，相应地，$p_{ij}$ 表示感染疟疾的概率。$S(x_{i})$ 表示空间随机效应，$U_{i}$ 表示除空间效应以外的村庄水平上的变化，也是随机效应。固定效应$\beta$和截距项$\alpha$结果如下
+
+Table: (\#tab:gambia-estimation) 模型\@ref(eq:SGPSM-gambia)的参数估计
 
 | 参数        | 估计      | 条件标准差 | t 统计量 |
 | :---------- | :-------- | :------- | :------ |
@@ -144,8 +148,6 @@ x & y & pos & age & netuse & treated & green & phc\\
 | phc         | -0.376871 | 0.247394 | -1.5234 |
 
 此外，$\nu = 0.16465,\phi = 0.000367,\sigma^2 = 2.705$，相应的空间预测如图 \@ref(fig:spamm-gambia) 所示
-
-\newpage
 
 \begin{figure}
 
