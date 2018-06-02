@@ -722,6 +722,89 @@ geoR 包 \citep{geoR2001}，geoRglm 包将其扩展到空间广义线性混合�
 \caption{规则网格上预测结果（REML方法）}\label{fig:spamm-sim}
 \end{figure}
 
+\begin{longtable}[]{@{}cccccccc@{}}
+\caption{\label{tab:simulation-norm} 数值模拟结果}\tabularnewline
+\toprule
+\begin{minipage}[b]{0.10\columnwidth}\centering
+估计\strut
+\end{minipage} & \begin{minipage}[b]{0.10\columnwidth}\centering
+\(\hat{\beta_{0}}\)\strut
+\end{minipage} & \begin{minipage}[b]{0.10\columnwidth}\centering
+\(\hat{\beta_{1}}\)\strut
+\end{minipage} & \begin{minipage}[b]{0.10\columnwidth}\centering
+\(\hat{\beta_{2}}\)\strut
+\end{minipage} & \begin{minipage}[b]{0.08\columnwidth}\centering
+\(\hat{\phi}\)\strut
+\end{minipage} & \begin{minipage}[b]{0.10\columnwidth}\centering
+\(\hat{\sigma^2}\)\strut
+\end{minipage} & \begin{minipage}[b]{0.09\columnwidth}\centering
+\(\hat{\tau^2}\)\strut
+\end{minipage} & \begin{minipage}[b]{0.10\columnwidth}\centering
+CPU (s)\strut
+\end{minipage}\tabularnewline
+\midrule
+\endfirsthead
+\toprule
+\begin{minipage}[b]{0.10\columnwidth}\centering
+估计\strut
+\end{minipage} & \begin{minipage}[b]{0.10\columnwidth}\centering
+\(\hat{\beta_{0}}\)\strut
+\end{minipage} & \begin{minipage}[b]{0.10\columnwidth}\centering
+\(\hat{\beta_{1}}\)\strut
+\end{minipage} & \begin{minipage}[b]{0.10\columnwidth}\centering
+\(\hat{\beta_{2}}\)\strut
+\end{minipage} & \begin{minipage}[b]{0.08\columnwidth}\centering
+\(\hat{\phi}\)\strut
+\end{minipage} & \begin{minipage}[b]{0.10\columnwidth}\centering
+\(\hat{\sigma^2}\)\strut
+\end{minipage} & \begin{minipage}[b]{0.09\columnwidth}\centering
+\(\hat{\tau^2}\)\strut
+\end{minipage} & \begin{minipage}[b]{0.10\columnwidth}\centering
+CPU (s)\strut
+\end{minipage}\tabularnewline
+\midrule
+\endhead
+\begin{minipage}[t]{0.10\columnwidth}\centering
+真实值\strut
+\end{minipage} & \begin{minipage}[t]{0.10\columnwidth}\centering
+1.200\strut
+\end{minipage} & \begin{minipage}[t]{0.10\columnwidth}\centering
+1.000\strut
+\end{minipage} & \begin{minipage}[t]{0.10\columnwidth}\centering
+0.800\strut
+\end{minipage} & \begin{minipage}[t]{0.08\columnwidth}\centering
+25.000\strut
+\end{minipage} & \begin{minipage}[t]{0.10\columnwidth}\centering
+1.000\strut
+\end{minipage} & \begin{minipage}[t]{0.09\columnwidth}\centering
+1.000\strut
+\end{minipage} & \begin{minipage}[t]{0.10\columnwidth}\centering
+-\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.10\columnwidth}\centering
+RSA\strut
+\end{minipage} & \begin{minipage}[t]{0.10\columnwidth}\centering
+1.977\strut
+\end{minipage} & \begin{minipage}[t]{0.10\columnwidth}\centering
+1.016\strut
+\end{minipage} & \begin{minipage}[t]{0.10\columnwidth}\centering
+0.803\strut
+\end{minipage} & \begin{minipage}[t]{0.08\columnwidth}\centering
+21.937\strut
+\end{minipage} & \begin{minipage}[t]{0.10\columnwidth}\centering
+0.857\strut
+\end{minipage} & \begin{minipage}[t]{0.09\columnwidth}\centering
+0.960\strut
+\end{minipage} & \begin{minipage}[t]{0.10\columnwidth}\centering
+298.250\strut
+\end{minipage}\tabularnewline
+\bottomrule
+\end{longtable}
+
+模拟结果如表 \ref{tab:simulation-norm} 所示，运行环境 R 版本 3.5.0，平台
+Debian GNU/Linux 9 (stretch) 64 位操作系统，CPU i7-4710MQ ， 内存 3Gb。R
+包分别是 RSAgeo (1.2)、 geoR (1.7.5.2)、 PrevMap (1.4.1) \footnote{括号内是扩展包的版本}
+
 \hypertarget{applications}{%
 \chapter{案例分析}\label{applications}}
 

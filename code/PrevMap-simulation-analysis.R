@@ -1,7 +1,7 @@
 set.seed(2018)
 library("geoR")
 library("RandomFields")
-DataNum = 1000;
+DataNum = 1600;
 gData = grf(DataNum, grid = "irreg", DataNum, DataNum,
 			xlims = c(0,100), ylims = c(0,100), nsim=1, mean=0,
 			cov.mode = "powered.exponential",
