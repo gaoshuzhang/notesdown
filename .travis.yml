@@ -99,8 +99,8 @@ before_install:
 #  - sudo -H apt-get install r-cran-rstan
 #  - sudo -H pip install numpy matplotlib # scipy bokeh colorcet
   - npm install netlify-cli -g
-  - tlmgr update --all
-  - tlmgr install $(cat TeXLive.pkgs | tr '\n' ' ') || true
+#  - tlmgr update --all
+#  - tlmgr install $(cat TeXLive.pkgs | tr '\n' ' ') || true
 
 before_script:
   - Rscript -e 'update.packages(lib.loc = .libPaths()[1], ask = FALSE)'
