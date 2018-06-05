@@ -12,6 +12,14 @@ system <- function(...) cat(base::system(..., intern = TRUE), sep = '\n')
 system2 <- function(...) cat(base::system2(..., stdout = TRUE), sep = "\n")
 ```
 
+## Bash
+
+```bash
+du -sh * | sort -nr
+```
+
+对当前目录下的文件/夹 按大小排序
+
 ## Octave
 
 安装新版 Octave，详情请见 <https://wiki.octave.org/Octave_for_Debian_systems>

@@ -142,4 +142,3 @@ RMariaDB: Implements a 'DBI'-compliant interface to 'MariaDB' (<https://mariadb.
 
 - rio <https://github.com/leeper/rio>
 
-
